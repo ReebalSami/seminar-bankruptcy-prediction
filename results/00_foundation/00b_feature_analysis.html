@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polish Features - Category & Pattern Analysis</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header p { font-size: 1.1em; opacity: 0.9; }
+        .content { padding: 40px; }
+        .section { margin: 40px 0; }
+        .section-title {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #1e3c72;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .alert {
+            background: #fee;
+            border-left: 5px solid #ef4444;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .alert h3 { color: #b91c1c; margin-bottom: 10px; }
+        .info {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        th {
+            background: #1e3c72;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td { padding: 12px 15px; border-bottom: 1px solid #ddd; }
+        tr:hover { background: #f5f7fa; }
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: white;
+        }
+        .profitability { background: #10b981; }
+        .liquidity { background: #3b82f6; }
+        .leverage { background: #ef4444; }
+        .activity { background: #f59e0b; }
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Polish Features Analysis</h1>
+            <p>Category Distribution & Formula Patterns</p>
+            <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.8;">Foundation Phase - Script 00b</p>
+        </header>
+        
+        <div class="content">
+
+            <div class="alert">
+                <h3>⚠️ Critical Finding: Multicollinearity Sources Identified</h3>
+                <p><strong>1 inverse ratio pairs</strong> detected (e.g., A/B vs B/A)</p>
+                <p><strong>9 redundant feature groups</strong> measuring similar concepts</p>
+                <p>These explain the catastrophic multicollinearity (condition number 2.68×10¹⁷)</p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Feature Category Distribution</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Features</th>
+                            <th>Percentage</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td><span class="badge profitability">Profitability</span></td>
+                            <td>20</td>
+                            <td>31.2%</td>
+                            <td>Ratios measuring company's ability to generate profit</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="badge leverage">Leverage</span></td>
+                            <td>17</td>
+                            <td>26.6%</td>
+                            <td>Ratios measuring company's debt and capital structure</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="badge activity">Activity</span></td>
+                            <td>15</td>
+                            <td>23.4%</td>
+                            <td>Ratios measuring company's operational efficiency</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="badge liquidity">Liquidity</span></td>
+                            <td>10</td>
+                            <td>15.6%</td>
+                            <td>Ratios measuring company's ability to meet short-term obligations</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="badge size">Size</span></td>
+                            <td>1</td>
+                            <td>1.6%</td>
+                            <td>Company size indicator</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="badge other">Other</span></td>
+                            <td>1</td>
+                            <td>1.6%</td>
+                            <td>Other specialized ratios</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Inverse Ratio Pairs (Guaranteed Correlation)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature 1</th>
+                            <th>Formula 1</th>
+                            <th>Feature 2</th>
+                            <th>Formula 2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td><code>A17</code></td>
+                            <td>total assets / total liabilities</td>
+                            <td><code>A2</code></td>
+                            <td>total liabilities / total assets</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Redundant Feature Groups</h2>
+                <p>Features containing same terms (likely correlated):</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Key Term</th>
+                            <th>Feature Count</th>
+                            <th>Example Features</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td><strong>sales</strong></td>
+                            <td>22</td>
+                            <td><code>A9</code>, <code>A13</code>, <code>A19</code>, <code>A20</code>, <code>A21</code> <em>(+17 more)</em></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>total assets</strong></td>
+                            <td>20</td>
+                            <td><code>A1</code>, <code>A2</code>, <code>A3</code>, <code>A6</code>, <code>A7</code> <em>(+15 more)</em></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>gross profit</strong></td>
+                            <td>11</td>
+                            <td><code>A11</code>, <code>A12</code>, <code>A13</code>, <code>A14</code>, <code>A15</code> <em>(+6 more)</em></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>total liabilities</strong></td>
+                            <td>10</td>
+                            <td><code>A2</code>, <code>A8</code>, <code>A15</code>, <code>A16</code>, <code>A17</code> <em>(+5 more)</em></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>current assets</strong></td>
+                            <td>6</td>
+                            <td><code>A4</code>, <code>A37</code>, <code>A40</code>, <code>A46</code>, <code>A50</code> <em>(+1 more)</em></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>equity</strong></td>
+                            <td>5</td>
+                            <td><code>A8</code>, <code>A10</code>, <code>A25</code>, <code>A53</code>, <code>A59</code></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>net profit</strong></td>
+                            <td>4</td>
+                            <td><code>A1</code>, <code>A23</code>, <code>A26</code>, <code>A45</code></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>working capital</strong></td>
+                            <td>3</td>
+                            <td><code>A3</code>, <code>A28</code>, <code>A55</code></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>ebit</strong></td>
+                            <td>3</td>
+                            <td><code>A7</code>, <code>A48</code>, <code>A49</code></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="info">
+                <h3>Implications for Phase 03 (Multicollinearity)</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>VIF calculation will confirm these relationships quantitatively</li>
+                    <li>Inverse pairs: Keep one from each pair based on interpretability</li>
+                    <li>Redundant groups: Select most representative feature per group</li>
+                    <li>Domain knowledge critical for feature selection decisions</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

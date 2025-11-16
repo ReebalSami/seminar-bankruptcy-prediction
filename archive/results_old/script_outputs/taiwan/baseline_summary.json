@@ -1,0 +1,9 @@
+{
+  "models_trained": 3,
+  "best_model": "Random Forest",
+  "best_roc_auc": 0.9460055096418734,
+  "best_pr_auc": 0.4982266517111852,
+  "samples_train": 5455,
+  "samples_test": 1364,
+  "features": 95
+}

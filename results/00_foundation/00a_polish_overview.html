@@ -1,0 +1,390 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polish Bankruptcy Dataset - Foundation Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .metric-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .metric-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .metric-value {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+        
+        .section {
+            margin: 40px 0;
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #1e3c72;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: #1e3c72;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tr:hover {
+            background: #f5f7fa;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .profitability { background: #10b981; }
+        .liquidity { background: #3b82f6; }
+        .leverage { background: #ef4444; }
+        .activity { background: #f59e0b; }
+        .size { background: #8b5cf6; }
+        .other { background: #6b7280; }
+        
+        .footer {
+            background: #f5f7fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .horizon-table {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Polish Companies Bankruptcy Prediction</h1>
+            <p>Foundation Phase - Dataset Overview & Feature Mapping</p>
+            <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.8;">FH Wedel | Seminar Project 2024/2025</p>
+        </header>
+        
+        <div class="content">
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Total Observations</div>
+                    <div class="metric-value">43,405</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Features</div>
+                    <div class="metric-value">64</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Bankruptcies</div>
+                    <div class="metric-value">2,091</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Bankruptcy Rate</div>
+                    <div class="metric-value">4.82%</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Feature Categories Distribution</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Feature Count</th>
+                            <th>Percentage</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td><span class="category-badge profitability">Profitability</span></td>
+                            <td>20</td>
+                            <td>31.2%</td>
+                            <td>Profitability and return metrics</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="category-badge liquidity">Liquidity</span></td>
+                            <td>10</td>
+                            <td>15.6%</td>
+                            <td>Short-term obligation coverage</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="category-badge leverage">Leverage</span></td>
+                            <td>17</td>
+                            <td>26.6%</td>
+                            <td>Debt and capital structure</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="category-badge activity">Activity</span></td>
+                            <td>15</td>
+                            <td>23.4%</td>
+                            <td>Operational efficiency ratios</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="category-badge size">Size</span></td>
+                            <td>1</td>
+                            <td>1.6%</td>
+                            <td>Company size indicator</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="category-badge other">Other</span></td>
+                            <td>1</td>
+                            <td>1.6%</td>
+                            <td>Other metrics</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Bankruptcy Rates by Prediction Horizon</h2>
+                <table class="horizon-table">
+                    <thead>
+                        <tr>
+                            <th>Horizon (Years)</th>
+                            <th>Total Observations</th>
+                            <th>Bankruptcies</th>
+                            <th>Rate (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>H1</td>
+                            <td>7,027</td>
+                            <td>271</td>
+                            <td>3.86%</td>
+                        </tr>
+
+                        <tr>
+                            <td>H2</td>
+                            <td>10,173</td>
+                            <td>400</td>
+                            <td>3.93%</td>
+                        </tr>
+
+                        <tr>
+                            <td>H3</td>
+                            <td>10,503</td>
+                            <td>495</td>
+                            <td>4.71%</td>
+                        </tr>
+
+                        <tr>
+                            <td>H4</td>
+                            <td>9,792</td>
+                            <td>515</td>
+                            <td>5.26%</td>
+                        </tr>
+
+                        <tr>
+                            <td>H5</td>
+                            <td>5,910</td>
+                            <td>410</td>
+                            <td>6.94%</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Feature Reference (Sample)</h2>
+                <p style="margin-bottom: 20px; color: #666;">Showing first 10 features. Full reference available in Excel file.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Readable Name</th>
+                            <th>Full Name</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td><strong>A1</strong></td>
+                            <td><code>net_profit_assets</code></td>
+                            <td>Net Profit / Total Assets</td>
+                            <td><span class="category-badge profitability">Profitability</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>A2</strong></td>
+                            <td><code>liabilities_assets</code></td>
+                            <td>Total Liabilities / Total Assets</td>
+                            <td><span class="category-badge leverage">Leverage</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>A3</strong></td>
+                            <td><code>working_capital_assets</code></td>
+                            <td>Working Capital / Total Assets</td>
+                            <td><span class="category-badge liquidity">Liquidity</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>A4</strong></td>
+                            <td><code>current_ratio</code></td>
+                            <td>Current Assets / Short-term Liabilities</td>
+                            <td><span class="category-badge liquidity">Liquidity</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>A5</strong></td>
+                            <td><code>cash_cycle_days</code></td>
+                            <td>[(Cash + Short-term Securities + Receivables - Short-term Liabilities) / (Operating Expenses - Depreciation)] * 365</td>
+                            <td><span class="category-badge liquidity">Liquidity</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>A6</strong></td>
+                            <td><code>retained_earnings_assets</code></td>
+                            <td>Retained Earnings / Total Assets</td>
+                            <td><span class="category-badge profitability">Profitability</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>A7</strong></td>
+                            <td><code>ebit_assets</code></td>
+                            <td>EBIT / Total Assets</td>
+                            <td><span class="category-badge profitability">Profitability</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>A8</strong></td>
+                            <td><code>equity_liabilities</code></td>
+                            <td>Book Value of Equity / Total Liabilities</td>
+                            <td><span class="category-badge leverage">Leverage</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>A9</strong></td>
+                            <td><code>asset_turnover</code></td>
+                            <td>Sales / Total Assets</td>
+                            <td><span class="category-badge activity">Activity</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>A10</strong></td>
+                            <td><code>equity_assets</code></td>
+                            <td>Equity / Total Assets</td>
+                            <td><span class="category-badge leverage">Leverage</span></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Foundation Phase - Script 00a</strong></p>
+            <p>This analysis establishes the foundation for all subsequent work.</p>
+            <p style="margin-top: 10px;">Next: Data Preparation (01_data_preparation)</p>
+        </div>
+    </div>
+</body>
+</html>

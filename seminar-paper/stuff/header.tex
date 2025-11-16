@@ -1,0 +1,85 @@
+%%%%%%%%%%%%%%%%%%%  Document info  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\projname}{***}
+\newcommand{\titel}{***}
+\newcommand{\untertitel}{}
+\newcommand{\thesisname}{***}
+\newcommand{\Datum}{19.\,November~2025}
+\newcommand{\authorname}{
+  \begin{tabular}{ll}
+    Reebal Sami  & 106441 \\
+  \end{tabular}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ----------------------- Core setup ------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[main=english,ngerman]{babel} % English UI (ToC, Lists, etc.)
+\usepackage{microtype}
+\usepackage{amsmath}                     % for align*, equation, etc.
+
+\usepackage[a4paper,
+    inner=2.5cm,
+    outer=2.0cm,
+    top=1.5cm,
+    bottom=1.5cm,
+    footskip=1.0cm,
+    includeheadfoot]{geometry}
+
+\usepackage{graphicx}
+\usepackage{svg} % allows \includesvg (needs shell-escape). We'll also fall back to PDF/PNG.
+\usepackage{xcolor}
+\usepackage{csquotes}
+
+% ----------------------- Tables & floats -------------------------
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{longtable}
+
+\usepackage{float}              % enables [H] to force “here”
+\usepackage[section]{placeins}  % keeps floats within their section
+
+\usepackage[font=footnotesize]{caption}
+\setlength{\abovecaptionskip}{5pt}
+\setlength{\belowcaptionskip}{10pt}
+
+\usepackage{setspace}
+
+% ----------------------- Headers/footers (KOMA) ------------------
+\usepackage[automark]{scrlayer-scrpage}
+
+% ----------------------- Hyperlinks ------------------------------
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=black,
+  citecolor=black,
+  pdftitle={\projname\ -- \titel},
+  pdfsubject={\thesisname},
+  pdfauthor={Reebal Sami}
+}
+
+% ----------------------- Bibliography ----------------------------
+\usepackage[
+  backend=biber,
+  style=authoryear,
+  sorting=nty,
+  natbib=true
+]{biblatex}
+\addbibresource{sources.bib} % file name must be exactly this
+
+% ----------------------- (Optional) compact code listings --------
+\usepackage{listings}
+\lstset{
+  basicstyle=\small\ttfamily,
+  breaklines=true,
+  showstringspaces=false,
+  captionpos=b
+}
+
+% ----------------------- Small helpers ---------------------------
+\newcolumntype{x}[1]{>{\centering\arraybackslash}p{#1}}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}

@@ -1,0 +1,42 @@
+{
+  "total_observations": 274780,
+  "horizons": 5,
+  "features": 18,
+  "horizon_stats": [
+    {
+      "horizon": 1,
+      "samples": 69711,
+      "bankruptcies": 4611,
+      "bankruptcy_rate": 0.06614451090932565,
+      "companies": 8216
+    },
+    {
+      "horizon": 2,
+      "samples": 61495,
+      "bankruptcies": 4012,
+      "bankruptcy_rate": 0.06524107651028539,
+      "companies": 7310
+    },
+    {
+      "horizon": 3,
+      "samples": 54185,
+      "bankruptcies": 3435,
+      "bankruptcy_rate": 0.0633939282089139,
+      "companies": 6554
+    },
+    {
+      "horizon": 4,
+      "samples": 47631,
+      "bankruptcies": 2894,
+      "bankruptcy_rate": 0.06075874955386198,
+      "companies": 5873
+    },
+    {
+      "horizon": 5,
+      "samples": 41758,
+      "bankruptcies": 2389,
+      "bankruptcy_rate": 0.05721059437712534,
+      "companies": 5257
+    }
+  ]
+}

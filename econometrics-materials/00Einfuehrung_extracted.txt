@@ -1,0 +1,340 @@
+Ökonometrie
+Prof. Dr. Franziska Bönte
+FH Wedel
+
+Sommersemester 2024
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+1 / 12
+
+Überblick und
+Organisatorisches
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+2 / 12
+
+Sprechstunde, Kontaktinformationen
+Prof. Dr. Franziska Bönte
+Sprechzeiten: jeden Montag von 10:30 Uhr bis 11:30 Uhr
+oder immer, wenn ich im Hause bin
+Tel.:
+04103-8048-35 (Wedel)
+0179-54 12 469 (mobil)
+fbo@fh-wedel.de
+Email:
+Web:
+http://intern.fh-wedel.de/mitarbeiter/fbo/
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+3 / 12
+
+Vorlesungen im Gebiet „Statistik“
+Grundlagen der Statistik: deskriptive Statistik
+Statistik: Induktive Statistik
+Qualitative und Quantitative Analysemethoden
+Übung in R
+Prognoseverfahren und Simulation
+Empirische Forschungsmethoden
+Ökonometrie
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+4 / 12
+
+LCA: Learner Centered Activities
+Flipped Classroom:
+Studierende engagieren sich in aktivem Lernen während der
+Vorlesungszeit
+Studierende übernehmen die Verantwortung für ihre Lernfortschritte
+
+Vorteile:
+Lerntiefe wird erhöht
+schnellere Lernfortschritte
+kein Bulemie-Lernen, sondern Wissen wandert ins Langzeitgedächtnis
+
+LCA (Learner Centrated Activities)
+Interaktiver Lehransatz, der innerhalb und zwischen Gruppen Wissen
+vermittelt.
+Betonung von kognitivem Lernen durch gemeinschaftliche Aktivitäten
+Die Anwendung von Wissen vertieft Kenntnisse und Fähigkeiten
+Analysen erweitern die Anwendung von Gelerntem und stellen letztlich
+den Kern von Bewertungen und Schlußfolgerungen dar.
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+5 / 12
+
+LCA: Learner Centered Activities
+Wie läuft das ab?
+Sie teilen sich in Gruppen auf (2 Personen)
+jede Gruppe erarbeitet sich jede Woche ein Thema eigenständig
+anhand der Unterlagen
+die Aufarbeitung wird in eine Präsentation gebracht und wöchentlich
+hochgeladen (Bonus!)
+per Zufall werden jede Woche 2 Gruppen ausgewählt, die ihre
+Ausarbeitungen vorstellen (Bonus!)
+
+Bonifikation
+kann nur eine bestandene Leistung verbessern, nicht eingelöste Bonis
+bleiben dauerhaft erhalten
+Hochladen akzeptabler Präsentationen: je 1 Bonuspunkte
+Halten der Präsentation: 1 Bonuspunkte für den/die Haltende/n
+Hinweis: 6 Bonuspunkte ergeben eine Teilnote
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+6 / 12
+
+LCA: Learner Centered Activities
+Leistungsnachweis
+In den Sommersemestern keine Klausur, sondern semesterbegleitende
+Vorträge in Gruppen (2 Studierende).
+fristgerechte Abgabe der Präsentationen ist erforderlich für das
+Bestehen des Moduls
+Jede Gruppe erhält eine Wild-Card, d.h. kann auf die Ausarbeitung
+verzichten
+Zum Ende der Vorlesungsperiode: individuelle Präsentation über alle
+Themen des Semesters anhand eines selbstgewählten Datensatzes
+(benotet)
+Bei Nichtbestehen: Klausur in den Wintersemestern (Februar/März)
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+7 / 12
+
+Unterlagen
+Wo finden Sie was?
+moodle: Kurs Ökonometrie enthält alle Unterlagen
+Ankündigungen/Informationen
+Skripte
+wöchentliche Themen und deren Lösungen (aller Gruppen)
+Diskussionsforum
+
+Handoutserver: nichts
+Sharpoint: Videoaufzeichnungen der Präsentationen
+Bibliotheken:
+FH Wedel: nur kleiner Bestand mit Ansichtsexemplaren, Exemplare
+sind in meinem Büro - kommen Sie gerne vorbei
+zbw (https://www.econbiz.de): Europas größte
+wirtschaftswissenschaftliche Bibliothek
+Stabi, HSU, TUHH etc.
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+8 / 12
+
+Literatur
+Gute Lehr- und Nachschlagewerke (1/2)
+Autor
+
+Jahr
+
+Titel
+
+Auer, Ludwig von
+
+2017
+
+Ökonometrie
+
+Auer, Ludwig von
+
+2016
+
+Ökonometrie
+
+Brooks, Chris
+
+2019
+
+Introductory econometrics for finance
+
+Brooks, Chris
+
+2019
+
+R Guide for Introductory Econometrics for
+Finance
+
+Enders, Walter
+
+1996
+
+Applied econometric time series
+
+Gollnick, Heinz
+
+1968
+
+Einführung in die Ökonometrie
+
+Griﬀiths, William;
+Hill, R.C.; Judge,
+G.G.
+
+1993
+
+Learning and practicing econometrics
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+9 / 12
+
+Literatur
+Gute Lehr- und Nachschlagewerke (2/2)
+Autor
+
+Jahr
+
+Titel
+
+Hackl, Peter
+
+2013
+
+Einführung in die Ökonometrie
+
+Hansen, Gerd
+
+1993
+
+Quantitative Wirtschaftsforschung
+
+Menges, Günther
+
+1967
+
+Ökonometrische Prognosen
+
+Schlittgen,
+R.;
+Streitberg, B.
+
+1989
+
+Zeitreihenanalyse
+
+Schneeweiß
+
+1990
+
+Ökonometrie
+
+Stock, James H.;
+Watson, Mark W.
+
+2019
+
+Introduction to econometrics
+
+Winker
+
+2017
+
+Empirische Wirtschaftsforschung und Ökonometrie
+
+2020
+
+Introductory econometrics
+
+Wooldridge,
+frey M.
+
+Jef-
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+10 / 12
+
+Software
+R
+http://www.r-project.org/
+
+Matlab
+https://de.mathworks.com/products/matlab.html/
+
+gretl
+https://sourceforge.net/projects/gretl/
+
+Python
+https://www.python.org
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+11 / 12
+
+Gliederung
+1
+
+Schätz- und Testverfahren im linearen Modell nach der kleinsten
+Quadrate-Methode
+
+2
+
+Schätzung verallgemeinerter linearer Modelle insbesondere Schätzen
+bei Autokorrelation der Störgröße (Aitken-Schätzung)
+
+3
+
+Allgemeine dynamische Modelle
+
+4
+
+Ökonometrische Mehrgleichungsmodelle
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+12 / 12
+
+

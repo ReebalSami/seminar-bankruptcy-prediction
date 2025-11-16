@@ -1,0 +1,10 @@
+{
+  "best_overall_dataset": "Polish",
+  "best_overall_model": "CatBoost",
+  "best_overall_auc": 0.9811664475126014,
+  "avg_auc_polish": 0.9650723208415517,
+  "avg_auc_american": 0.8471349317194289,
+  "avg_auc_taiwan": 0.9373450413223141,
+  "performance_range": 0.11445904527796458,
+  "total_models_compared": 11
+}

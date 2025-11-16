@@ -1,0 +1,8 @@
+Test,Result,Status
+Hosmer-Lemeshow,PASS,✓
+Large Residuals,42/1406 outliers,✓
+Influential Obs,191 influential,✓
+Specification,PASS,✓
+Multicollinearity,Cond# = 268477682675002944.0,⚠
+Sample Size,EPV = 3.44,⚠
+Separation,Check,⚠

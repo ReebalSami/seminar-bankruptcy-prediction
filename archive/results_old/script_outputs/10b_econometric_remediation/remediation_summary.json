@@ -1,0 +1,21 @@
+{
+  "original_issues": {
+    "multicollinearity": "SEVERE (Condition # = 2.7e17)",
+    "epv": 3.44,
+    "separation": "23.7%"
+  },
+  "solutions_applied": [
+    "VIF-based feature removal",
+    "Ridge (L2) regularization",
+    "Lasso (L1) regularization",
+    "Elastic Net",
+    "Forward selection (AIC-based)"
+  ],
+  "best_solution": {
+    "approach": "VIF Selection (VIF<10)",
+    "auc": 0.7788187595879904,
+    "epv": 5.7105263157894735,
+    "features": 38
+  },
+  "epv_fixed": true
+}

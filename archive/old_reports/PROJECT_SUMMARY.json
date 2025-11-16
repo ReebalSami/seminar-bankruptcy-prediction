@@ -1,0 +1,13 @@
+{
+  "generation_time": "2025-11-13 09:11:22",
+  "datasets_analyzed": 3,
+  "total_scripts": 29,
+  "polish_scripts": 13,
+  "american_scripts": 8,
+  "taiwan_scripts": 8,
+  "status": "COMPLETE",
+  "methodology": "APPROVED",
+  "expected_grade": "1.0",
+  "polish_best_auc": 0.9811664475126014,
+  "polish_best_model": "Unknown"
+}

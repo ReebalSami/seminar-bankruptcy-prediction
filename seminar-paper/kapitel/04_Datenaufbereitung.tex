@@ -1,0 +1,55 @@
+\chapter{Datenaufbereitung: Data Preparation}
+
+% TODO: Wird nach Phase 01 geschrieben
+% Dokumentiert die praktische Umsetzung der in Kapitel 3 identifizierten Qualitätsprobleme
+
+\section{Behandlung fehlender Werte}
+
+\subsection{Passive Imputation für Finanzkennzahlen}
+% - Theoretischer Hintergrund (von Hippel 2013)
+% - Implementierung: Zähler/Nenner separat
+% - Log-Transformation vor Imputation
+% - Validierung der Imputationsqualität
+
+\subsection{Umgang mit Kennzahl A37}
+% - Entscheidung: Imputation trotz 43,7% Missing
+% - Begründung: Domain-Wichtigkeit (Liquidity Ratio)
+% - Alternative wäre Entfernung gewesen
+
+
+\section{Behandlung von Duplikaten und Ausreißern}
+
+\subsection{Duplikat-Entfernung}
+% - Timing: VOR Train/Test-Split
+% - Begründung: Vermeidung von Data Leakage
+% - Resultat: 43.004 Beobachtungen (401 entfernt)
+
+\subsection{Winsorisierung extremer Werte}
+% - Methode: 1./99. Perzentil
+% - Anwendung auf alle 64 Features
+% - Resultat: ~10% der Werte pro Feature betroffen
+
+
+\section{Train/Validation/Test-Split}
+
+\subsection{Strategie bei horizontspezifischen Modellen}
+% - NICHT: H1-H3 train, H4 val, H5 test
+% - SONDERN: Jeder Horizont separat aufgeteilt
+% - Begründung: Unterschiedliche Verteilungen (80% Anstieg)
+
+\subsection{Stratifiziertes Sampling}
+% - Beibehaltung der Klassenverteilung
+% - 60% Train, 20% Val, 20% Test je Horizont
+% - Random Seed für Reproduzierbarkeit
+
+
+\section{Feature Scaling}
+
+\subsection{Z-Score-Normalisierung}
+% - Methode: (x - mean) / std
+% - Wichtig: Fit auf Train, Transform auf Val/Test
+% - Vermeidung von Data Leakage
+
+\subsection{Horizontspezifische Skalierung}
+% - Jeder Horizont hat eigene Scaling-Parameter
+% - Begründung: Unterschiedliche Verteilungen

@@ -1,0 +1,49 @@
+feature,mean_abs_shap,readable_name
+Attr40,0.03760969927343833,Cash Ratio
+Attr39,0.037609699273437144,Profit Margin
+Attr2,0.032132745643295275,Liabilities / Assets
+Attr17,0.03213274564329316,Asset to Liability Ratio
+Attr33,0.030172991614107882,Op. Expenses / ST Liab.
+Attr32,0.030172991614105384,Payables Days
+Attr57,0.021549101932429083,Defensive Interval
+Attr56,0.02154910193242792,Gross Margin (alt)
+Attr38,0.019784119959709575,Constant Capital / Assets
+Attr36,0.019784119959707882,Sales / Assets
+Attr15,0.013851639795164197,Liabilities Coverage (days)
+Attr13,0.013851639795162895,Gross Margin + Depr.
+Attr35,0.01361336896584614,Profit on Sales / Assets
+Attr34,0.01361336896584502,Op. Expenses / Liabilities
+Attr49,0.011532159406953589,EBITDA Margin
+Attr48,0.011532159406952396,EBITDA / Assets
+Attr62,0.010757376897721695,Payables Days (Sales)
+Attr61,0.010757376897721127,Receivables Turnover
+Attr31,0.009057109089695594,GP + Interest / Sales
+Attr30,0.009057109089695306,Net Debt / Sales
+Attr12,0.008440111734459797,Gross Profit / ST Liab.
+Attr11,0.008440111734458423,Gross Profit + Extras / Assets
+Attr9,0.008035929257856952,Asset Turnover
+Attr64,0.00803592925785639,Fixed Asset Turnover
+Attr44,0.008023710478992285,Receivables Days
+Attr43,0.008023710478991888,Operating Cycle (days)
+Attr27__isna,0.007286551245907131,Op. Profit / Fin. Expenses (Missing)
+Attr21__isna,0.007286551245906408,Sales Growth (Missing)
+Attr59,0.007259970966850208,LT Debt / Equity
+Attr58,0.007259970966849835,Cost / Sales Ratio
+Attr42,0.006879624884110054,Operating Margin
+Attr41,0.006879624884109532,Debt Service Coverage
+Attr60,0.005292427728009799,Inventory Turnover
+Attr6,0.005292427728009534,Retained Earnings / Assets
+Attr21,0.005027813419013085,Sales Growth
+Attr20,0.005027813419012696,Inventory Days
+Attr47,0.0049149532910393,Inventory Days (COGS)
+Attr45,0.004914953291039223,Net Profit / Inventory
+Attr3,0.004881278603560005,Working Capital / Assets
+Attr29,0.00488127860355986,Log(Total Assets)
+Attr27,0.004682207562847935,Op. Profit / Fin. Expenses
+Attr26,0.004682207562847474,NP + Depr. / Liabilities
+Attr25,0.0045938412017410835,Retained Equity / Assets
+Attr24,0.004593841201740709,GP (3yr) / Assets
+Attr55,0.004251569734921443,Working Capital
+Attr53,0.0042515697349213896,Equity / Fixed Assets
+Attr50,0.0037760335859574946,Current Assets / Liabilities
+Attr5,0.003776033585957349,Cash Cycle (days)

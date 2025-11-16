@@ -1,0 +1,62 @@
+{
+  "model_fit": {
+    "converged": true,
+    "log_likelihood": -915.3735614645277,
+    "pseudo_r2": 0.20257950172819927,
+    "aic": 1954.7471229290554,
+    "bic": 2379.9130623029714,
+    "n_observations": 7027,
+    "n_features": 63,
+    "n_events": 271,
+    "event_rate": 0.03856553294435748
+  },
+  "hosmer_lemeshow": {
+    "chi2_statistic": 25.904930094061275,
+    "p_value": 0.0010903702469829968,
+    "df": 8,
+    "result": "FAIL",
+    "interpretation": "Poor model fit (p < 0.05)"
+  },
+  "deviance_residuals": {
+    "mean": -0.13220737231148372,
+    "std": 0.49303773098988046,
+    "n_outliers": 14,
+    "pct_outliers": 0.19923153550590578,
+    "max_abs": 3.593702355639539,
+    "result": "PASS"
+  },
+  "pearson_residuals": {
+    "mean": -0.0026573124743954376,
+    "std": 0.9620603306056073,
+    "n_outliers": 171,
+    "pct_outliers": 2.433470897964992,
+    "result": "PASS"
+  },
+  "link_test": {
+    "logit_sq_pvalue": 0.30295453373212067,
+    "result": "PASS",
+    "interpretation": "Logit link appropriate"
+  },
+  "separation": {
+    "perfect_pred_0": 12,
+    "perfect_pred_1": 2,
+    "max_abs_coefficient": 8.461616532517354,
+    "large_coefficients_count": 0,
+    "separation_detected": true,
+    "result": "WARNING"
+  },
+  "multicollinearity": {
+    "condition_number": 4.237857619564388e+17,
+    "max_vif": Infinity,
+    "n_vif_gt_10": 40,
+    "pct_vif_gt_10": 63.49206349206349,
+    "result": "WARNING"
+  },
+  "epv": {
+    "n_events": 271,
+    "n_features": 63,
+    "epv": 4.301587301587301,
+    "threshold": 10.0,
+    "result": "WARNING"
+  }
+}

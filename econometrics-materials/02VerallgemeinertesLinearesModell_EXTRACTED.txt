@@ -1,0 +1,304 @@
+Ökonometrie
+Prof. Dr. Franziska Bönte
+FH Wedel
+
+Sommersemester 2024
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+1 / 12
+
+Gliederung des Moduls Ökonometrie
+1
+
+2
+
+3
+4
+
+Schätz- und Testverfahren im linearen Modell nach der kleinsten
+Quadrate-Methode
+Schätzung verallgemeinerter linearer Modelle insbesondere Schätzen
+bei Autokorrelation der Störgröße (Aitken-Schätzung)
+Allgemeine dynamische Modelle
+Ökonometrische Mehrgleichungsmodelle
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+2 / 12
+
+Teil 2: Verallgemeinertes Lineares Modell
+2–1 Schätzung bei Autokorrelation der Störgröße
+Aitken-Schätzung
+Iterative Aitken-Schätzung
+Verfahren nach Corchrane-Orcutt (CORC)
+Verfahren nach Hildreth-Lu (HILU)
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+3 / 12
+
+Teil 2:
+2–1
+
+Verallgemeinertes Lineares Modell
+Aitken-Schätzung
+
+2–1.1 Aitken-Schätzung bei Autokorrelation 1. Grades
+y − δy−1 = (X − δX−1 )β + ϵ
+β̂Aitken = [X′ H′ HX]−1 X′ H′ Hy mit H′ H = Ω−1
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+4 / 12
+
+Teil 2:
+2–1
+
+Verallgemeinertes Lineares Modell
+Aitken-Schätzung
+
+2–1.2 Iterative Aitken-SChätzung: Verfahren nach Cochrane und Orcutt
+(CORC)
+Zweistufige iterative Schätzung:
+1
+2
+
+3
+
+Schätze β̂ und û aus Modell y = Xβ̂ + û
+Schätze δ̂ aus û = δû−1 + ϵ
+PT
+ût ût−1
+δ̂ = Pt=2
+≈ 1 − 0,5dw
+T
+2
+t=2 ût−1
+Neue Schätzung für β unter Berücksichtung der
+Autokorrelationsbeziehung mit dem soeben geschätzten δ̂ aus
+y − δy−1 = (X − δX−1 )β + ϵ
+bzw. y∗ = X∗ β + ϵ, wenn y∗ = y − δ̂y−1 und X∗ = X − δ̂X−1
+
+..
+. Wiederhole Schritte, bis die beiden Schätzer (mehr oder minder gut)
+konvergieren.
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+5 / 12
+
+Teil 2:
+2–1
+
+Verallgemeinertes Lineares Modell
+Aitken-Schätzung
+
+2–1.2 Iterative Aikten-Schätzung: Verfahren nach Hildreth und Lu (HILU)
+Sucherverfahren
+1
+2
+3
+
+Wähle diverse δ : −1 < δ < 1
+Schätze mit allen δs den Parameter β aus y − δy−1 = (X − δX−1 )β + ϵ
+Wähle die Werte von δ̂ und β̂, bei dem die Residuenvarianz ϵ̂ϵ̂′
+minimal ist
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+6 / 12
+
+Teil 2:
+2–1
+
+Verallgemeinertes Lineares Modell
+Aitken-Schätzung
+
+2–1.3 Eigenschaften der Aitken-Schätzer: Konsistenz
+lim P(|β̂ − β| < ϵ) = p lim β̂ = 1
+
+T→∞
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+7 / 12
+
+Teil 2:
+2–1
+
+Verallgemeinertes Lineares Modell
+Aitken-Schätzung
+
+2–1.3 Eigenschaften der Aitken-Schätzer: Konsistenz
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+8 / 12
+
+Teil 2:
+2–2
+
+Verallgemeinertes Lineares Modell
+Schätzung bei Heteroskedastizität
+
+2–2 Schätzung bei Heteroskedastizität
+Aitken-Schätzung bei Heteroskedastizität: gewogene Schätzung
+Verwenden des White-Standardfehlers
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+9 / 12
+
+Teil 2:
+2–2
+
+Verallgemeinertes Lineares Modell
+Schätzung bei Heteroskedastizität
+
+Aitken-Schätzung
+Modell:
+transformiertes Modell:
+Schätzer:
+Varianz-Kovarianzmatrix:
+Aitken-Schätzer:
+Varianz des Schätzers:
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+y
+Hy
+β̂
+E(uu′ )
+β̂Aitken
+′ (β̂ − β)
+[(
+β̂
+−
+β)]
+E
+
+Ökonometrie
+
+=
+=
+=
+=
+=
+=
+
+Xβ + u
+HXβ + Hu
+[X′ H′ HX]−1 X′ H′ Hy
+σ 2 Ω mit H′ H = Ω−1
+[X′ Ω−1 X]−1 X′ Ω−1 y
+σ 2 (X′ Ω−1 X)−2
+
+Sommersemester 2024
+
+10 / 12
+
+Teil 2:
+2–2
+
+Verallgemeinertes Lineares Modell
+Schätzung bei Heteroskedastizität
+
+Whites Idee (1980)
+Verwende die quadrierten Residuen û2t anstelle der Varianzen σt2 = σ 2 · ω.
+⇒ Ersetze σ 2 (X′ ΩX) =
+
+P
+
+2 ′
+t σt (xt xt ) durch
+
+P
+
+2 ′
+t ût (xt xt )
+
+Es ergibt sich die Varianz-Kovarianz-Matrix der Parameter:
+!
+X
+W
+T
+′
+−1
+2
+′
+d (β̂) =
+ût (xt xt ) (X′ X)−1
+Var
+(X X)
+T−k
+t
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+11 / 12
+
+Teil 2:
+2–3
+
+Verallgemeinertes Lineares Modell
+Schätzung bei instabiler Modellstruktur
+
+Schätzung unter Verwendung von Dummy-Variablen
+
+1 für i = „ein spezielles Ereignis“
+dit =
+0 sonst
+X
+y=
+Xβi di + u
+i
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+12 / 12
+
+

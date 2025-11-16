@@ -1,0 +1,86 @@
+{
+  "test_results": {
+    "durbin_watson": {
+      "statistic": 0.6889993646594851,
+      "result": "FAIL",
+      "interpretation": "Positive autocorrelation detected",
+      "note": "dw \u2248 2 indicates no autocorrelation"
+    },
+    "breusch_pagan": {
+      "statistic": 117.5696063716123,
+      "p_value": 3.701633188013531e-05,
+      "result": "FAIL",
+      "interpretation": "Heteroscedastic",
+      "note": "Tests constant error variance"
+    },
+    "jarque_bera": {
+      "statistic": 3938662.8193652797,
+      "p_value": 0.0,
+      "skewness": 8.597378659604693,
+      "kurtosis": 114.70152770572739,
+      "result": "FAIL",
+      "interpretation": "Residuals deviate from normality",
+      "note": "Tests if residuals follow normal distribution"
+    },
+    "breusch_godfrey": {
+      "statistic": 4624.915559396052,
+      "p_value": 0.0,
+      "lags_tested": 5,
+      "result": "FAIL",
+      "interpretation": "Autocorrelation detected",
+      "note": "Tests autocorrelation up to lag 5"
+    },
+    "ljung_box": {
+      "statistic": 32006.699419979068,
+      "p_value": 0.0,
+      "lags_tested": 10,
+      "result": "FAIL",
+      "interpretation": "Autocorrelation detected",
+      "note": "Tests autocorrelation up to lag 10"
+    },
+    "hosmer_lemeshow": {
+      "statistic": 14.351259624208238,
+      "p_value": 0.07305703402827213,
+      "result": "PASS"
+    },
+    "multicollinearity": {
+      "condition_number": 2.6847768267500294e+17
+    },
+    "sample_size": {
+      "events": 217,
+      "predictors": 63,
+      "events_per_variable": 3.4444444444444446
+    },
+    "separation": {
+      "separation_ratio": 0.23696851094111368
+    },
+    "influential_observations": {
+      "avg_leverage": 0.018096181780001136,
+      "max_cooks_d": 0.1966614303558222,
+      "influential_count": 191,
+      "influential_pct": 3.3979718911225762
+    }
+  },
+  "overall_assessment": {
+    "autocorrelation": {
+      "durbin_watson": "FAIL",
+      "breusch_godfrey": "FAIL",
+      "ljung_box": "FAIL",
+      "overall": "FAIL"
+    },
+    "heteroscedasticity": {
+      "breusch_pagan": "FAIL"
+    },
+    "normality": {
+      "jarque_bera": "FAIL"
+    },
+    "multicollinearity": {
+      "condition_number": 2.6847768267500294e+17,
+      "severe": true
+    },
+    "sample_size": {
+      "epv": 3.4444444444444446,
+      "adequate": false
+    }
+  }
+}

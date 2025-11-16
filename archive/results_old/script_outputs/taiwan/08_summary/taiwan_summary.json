@@ -1,0 +1,19 @@
+{
+  "dataset": "Taiwan (TEJ)",
+  "total_samples": 6819,
+  "features": 95,
+  "bankruptcy_rate": 0.0323,
+  "scripts_completed": [
+    "01_data_cleaning",
+    "02_eda",
+    "03_baseline_models",
+    "04_advanced_models",
+    "05_calibration",
+    "06_feature_importance",
+    "07_robustness",
+    "08_summary"
+  ],
+  "best_auc": 0.946,
+  "best_model": "Random Forest",
+  "status": "Complete - All 8 scripts run successfully"
+}

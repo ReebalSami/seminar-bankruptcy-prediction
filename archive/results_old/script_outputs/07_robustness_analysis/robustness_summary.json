@@ -1,0 +1,9 @@
+{
+  "total_experiments": 25,
+  "horizons_tested": 5,
+  "avg_same_horizon_auc": 0.9101414481033085,
+  "avg_cross_horizon_auc": 0.8895440918683664,
+  "avg_degradation_pct": 2.0366291612363576,
+  "max_degradation_pct": 19.013575436431264,
+  "min_degradation_pct": -11.355894439950855
+}

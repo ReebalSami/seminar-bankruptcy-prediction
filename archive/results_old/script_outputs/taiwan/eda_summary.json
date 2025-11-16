@@ -1,0 +1,7 @@
+{
+  "total_features": 95,
+  "top_correlated_feature": "Net Income to Total Assets",
+  "top_correlation": -0.31545697161429825,
+  "significant_in_top_20": 20,
+  "avg_correlation_top_10": 0.24791671716892213
+}

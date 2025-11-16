@@ -1,0 +1,125 @@
+You are an academic and praxis expert data scientist helping me with my seminar project in my master Data Science and AI at FH-Wedel. The Topic is:
+Entwicklung eines Frühwarnsystems für Unternehmenskrisen mit Hilfe maschinellen Lernens
+Frühwarnindikatoren, Predictive Analytics, Random Forests / Logit-Modelle zur Vorhersage von Kriseneintritten auf Basis von Bilanzkennzahlen.
+
+i asked the professor:
+Bevor ich loslege, habe ich noch ein paar Fragen:
+Gibt es eine vorgegebene oder empfohlene Datenquelle für Bilanz- oder Unternehmenskennzahlen, oder soll ich selbst geeignete Daten finden?
+Zur Definition der Krise: Soll das Modell tatsächliche Insolvenzen prognostizieren, oder sollen auch andere Krisenphasen berücksichtigt werden? Wir haben in Organisationslehre die verschiedenen Phasen nach Greiner besprochen, daher wollte ich kurz nachfragen, worauf sich das Modell konkret beziehen soll.
+Wie umfangreich soll der schriftliche Bericht ungefähr sein, und gibt es bestimmte Formvorgaben oder Strukturhinweise neben dem technischen Notebook zur Modellentwicklung?
+
+she answered:
+zu 1: ich habe Sie dem Team, in dem die Nutzung der Eikon-Datenbank verwaltet wird, hinzugefügt. Sie finden da auch Anleitungen, wie Sie aus der DB Infos fischen können. Das wäre wohl die beste Quelle, die wir Ihnen kostenlos zur Verfügung stellen können.
+ 
+zu2: nehmen Sie nur die Insolvenz, da Sie zu anderen Krisenarten ja kaum Daten finden werden
+
+zu 3: Wenden Sie die Formvorschriften für Thesen an (finden Sie irgendwo auf der FH-Homepage...), Seitenumfang für die Master-Seminararbeit: ca. 30-40. 
+
+it was too difficult to use Eikon-Datenbank and i couldn't find anything interesting, 
+
+but i found these data sets:
+from kaggel: 
+https://www.kaggle.com/datasets/utkarshx27/american-companies-bankruptcy-prediction-dataset?resource=download
+this dataset is the most actual one, but it doesn't have a lot of data about bankrupted companies. only 7%. is it enough for training?
+
+from UCI Machine Learning Repository:
+https://archive.ics.uci.edu/dataset/572/taiwanese+bankruptcy+prediction
+this one is in taiwan i think and its old and ended with 2011 crises and it had the 2009 crises. Im not sure if taiwan was effected with those. 
+
+Polish Companies Bankruptcy:
+https://archive.ics.uci.edu/dataset/365/polish+companies+bankruptcy+data
+i noticed in the description of this dataset: The bankrupt companies were analysed in the period 2000-2012, while the still operating companies were evaluated from 2007 to 2013.
+is this a bad thing for our project or is it easy to handle without sacrificing any thing else?  
+
+do you have knowledge of better available datasets than these that fits better for this project?
+
+I did with this prof econometrics (see attachments) so its very important to test the datasets and deal with the problems properly as we learned with her.
+
+then lets figure out, witch dataset is the best to start with. Lets do EDA Notebooks to test and see the data. Then make a notebook to compare them.
+
+i made a repo and put the data there:
+seminar-bankruptcy-prediction/data on  main v1.0.0 via 🐍 v3.13.2 (seminar-bankruptcy-prediction) 
+❯ tree  -L 9
+.
+├── NYSE-and-NASDAQ-companies
+│   ├── about-american-bankruptcy.md
+│   ├── american-bankruptcy.csv
+│   └── american-metadata.json
+├── polish-companies-bankruptcy
+│   ├── about-polish-bunkruptcy.md
+│   ├── data-from-kaggel.csv
+│   ├── polish-metadata.json
+│   ├── polish+companies+bankruptcy+data
+│   │   ├── 1year.arff
+│   │   ├── 2year.arff
+│   │   ├── 3year.arff
+│   │   ├── 4year.arff
+│   │   └── 5year.arff
+│   └── polish+companies+bankruptcy+data.zip
+└── taiwan-economic-journal
+    ├── about-taiwan-bankruptcy.md
+    ├── taiwan-bankruptcy.csv
+    └── taiwanese+bankruptcy+prediction.zip
+
+5 directories, 15 files
+
+in the about .md files i just copied the about datasets from sources.
+
+to start i did a uv pyproject.toml:
+[project]
+name = "seminar-bankruptcy-prediction"
+version = "1.0.0"
+description = "Multi-Dataset Bankruptcy Prediction with Advanced ML Models and Econometric Analysis"
+readme = "README.md"
+requires-python = ">=3.13"
+authors = [
+    {name = "Reebal", email = "student@fh-wedel.de"}
+]
+
+dependencies = [
+  # Core scientific stack
+  "numpy>=2.0.0",
+  "pandas>=2.2.0",
+  "scipy>=1.16.2",
+  
+  # Machine Learning
+  "scikit-learn>=1.6.0",
+  "imbalanced-learn>=0.14.0",
+  "xgboost>=2.1.0",
+  "lightgbm>=4.5.0",
+  "catboost>=1.2.7",
+  
+  # Visualization
+  "matplotlib>=3.9.0",
+  "seaborn>=0.13.0",
+  
+  # Interpretability
+  "shap>=0.46.0",
+  
+  # Statistics & Econometrics
+  "statsmodels>=0.14.0",
+  
+  # Data handling
+  "pyarrow>=18.0.0",
+  "openpyxl>=3.1.0",
+  
+  # Jupyter (for potential interactive work)
+  "jupyter>=1.1.0",
+  "ipykernel>=6.29.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bankruptcy_prediction"]
+
+
+you can adjust it for the best, when needed
+
+when doing the notebooks. please step by step. I need a markdown cell before each code cell explaining what are we doing and why in short. Then after each code cell another markdown cell interpreting/discussing/explaining the results. i will provide you the result on each step. Please this is only after not self explaining results. so after importing the libraries no need for such interpretation cells.
+
+lets discuss shortly first before coding.
+
+be 100% honest, direct, and critical. All answers, comments and explanation in modern used english, simple to understand by non-nativ-speakers.

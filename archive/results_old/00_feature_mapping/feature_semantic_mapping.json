@@ -1,0 +1,443 @@
+{
+  "polish": {
+    "n_features": 65,
+    "features": [
+      "A1",
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "A6",
+      "A7",
+      "A8",
+      "A9",
+      "A10",
+      "A11",
+      "A12",
+      "A13",
+      "A14",
+      "A15",
+      "A16",
+      "A17",
+      "A18",
+      "A19",
+      "A20",
+      "A21",
+      "A22",
+      "A23",
+      "A24",
+      "A25",
+      "A26",
+      "A27",
+      "A28",
+      "A29",
+      "A30",
+      "A31",
+      "A32",
+      "A33",
+      "A34",
+      "A35",
+      "A36",
+      "A37",
+      "A38",
+      "A39",
+      "A40",
+      "A41",
+      "A42",
+      "A43",
+      "A44",
+      "A45",
+      "A46",
+      "A47",
+      "A48",
+      "A49",
+      "A50",
+      "A51",
+      "A52",
+      "A53",
+      "A54",
+      "A55",
+      "A56",
+      "A57",
+      "A58",
+      "A59",
+      "A60",
+      "A61",
+      "A62",
+      "A63",
+      "A64",
+      "year"
+    ],
+    "target": "class",
+    "sample_size": 43405
+  },
+  "american": {
+    "n_features": 18,
+    "features": [
+      "X1",
+      "X2",
+      "X3",
+      "X4",
+      "X5",
+      "X6",
+      "X7",
+      "X8",
+      "X9",
+      "X10",
+      "X11",
+      "X12",
+      "X13",
+      "X14",
+      "X15",
+      "X16",
+      "X17",
+      "X18"
+    ],
+    "target": "status_label",
+    "sample_size": 78682
+  },
+  "taiwan": {
+    "n_features": 95,
+    "features": [
+      " ROA(C) before interest and depreciation before interest",
+      " ROA(A) before interest and % after tax",
+      " ROA(B) before interest and depreciation after tax",
+      " Operating Gross Margin",
+      " Realized Sales Gross Margin",
+      " Operating Profit Rate",
+      " Pre-tax net Interest Rate",
+      " After-tax net Interest Rate",
+      " Non-industry income and expenditure/revenue",
+      " Continuous interest rate (after tax)",
+      " Operating Expense Rate",
+      " Research and development expense rate",
+      " Cash flow rate",
+      " Interest-bearing debt interest rate",
+      " Tax rate (A)",
+      " Net Value Per Share (B)",
+      " Net Value Per Share (A)",
+      " Net Value Per Share (C)",
+      " Persistent EPS in the Last Four Seasons",
+      " Cash Flow Per Share",
+      " Revenue Per Share (Yuan \u00a5)",
+      " Operating Profit Per Share (Yuan \u00a5)",
+      " Per Share Net profit before tax (Yuan \u00a5)",
+      " Realized Sales Gross Profit Growth Rate",
+      " Operating Profit Growth Rate",
+      " After-tax Net Profit Growth Rate",
+      " Regular Net Profit Growth Rate",
+      " Continuous Net Profit Growth Rate",
+      " Total Asset Growth Rate",
+      " Net Value Growth Rate",
+      " Total Asset Return Growth Rate Ratio",
+      " Cash Reinvestment %",
+      " Current Ratio",
+      " Quick Ratio",
+      " Interest Expense Ratio",
+      " Total debt/Total net worth",
+      " Debt ratio %",
+      " Net worth/Assets",
+      " Long-term fund suitability ratio (A)",
+      " Borrowing dependency",
+      " Contingent liabilities/Net worth",
+      " Operating profit/Paid-in capital",
+      " Net profit before tax/Paid-in capital",
+      " Inventory and accounts receivable/Net value",
+      " Total Asset Turnover",
+      " Accounts Receivable Turnover",
+      " Average Collection Days",
+      " Inventory Turnover Rate (times)",
+      " Fixed Assets Turnover Frequency",
+      " Net Worth Turnover Rate (times)",
+      " Revenue per person",
+      " Operating profit per person",
+      " Allocation rate per person",
+      " Working Capital to Total Assets",
+      " Quick Assets/Total Assets",
+      " Current Assets/Total Assets",
+      " Cash/Total Assets",
+      " Quick Assets/Current Liability",
+      " Cash/Current Liability",
+      " Current Liability to Assets",
+      " Operating Funds to Liability",
+      " Inventory/Working Capital",
+      " Inventory/Current Liability",
+      " Current Liabilities/Liability",
+      " Working Capital/Equity",
+      " Current Liabilities/Equity",
+      " Long-term Liability to Current Assets",
+      " Retained Earnings to Total Assets",
+      " Total income/Total expense",
+      " Total expense/Assets",
+      " Current Asset Turnover Rate",
+      " Quick Asset Turnover Rate",
+      " Working capitcal Turnover Rate",
+      " Cash Turnover Rate",
+      " Cash Flow to Sales",
+      " Fixed Assets to Assets",
+      " Current Liability to Liability",
+      " Current Liability to Equity",
+      " Equity to Long-term Liability",
+      " Cash Flow to Total Assets",
+      " Cash Flow to Liability",
+      " CFO to Assets",
+      " Cash Flow to Equity",
+      " Current Liability to Current Assets",
+      " Liability-Assets Flag",
+      " Net Income to Total Assets",
+      " Total assets to GNP price",
+      " No-credit Interval",
+      " Gross Profit to Sales",
+      " Net Income to Stockholder's Equity",
+      " Liability to Equity",
+      " Degree of Financial Leverage (DFL)",
+      " Interest Coverage Ratio (Interest expense to EBIT)",
+      " Net Income Flag",
+      " Equity to Liability"
+    ],
+    "target": "Bankrupt?",
+    "sample_size": 6819,
+    "categories": {
+      " ROA(C) before interest and depreciation before interest": "profitability",
+      " ROA(A) before interest and % after tax": "profitability",
+      " ROA(B) before interest and depreciation after tax": "profitability",
+      " Operating Gross Margin": "profitability",
+      " Realized Sales Gross Margin": "profitability",
+      " Operating Profit Rate": "profitability",
+      " Pre-tax net Interest Rate": "other",
+      " After-tax net Interest Rate": "other",
+      " Non-industry income and expenditure/revenue": "size",
+      " Continuous interest rate (after tax)": "other",
+      " Operating Expense Rate": "efficiency",
+      " Research and development expense rate": "efficiency",
+      " Cash flow rate": "liquidity",
+      " Interest-bearing debt interest rate": "leverage",
+      " Tax rate (A)": "other",
+      " Net Value Per Share (B)": "size",
+      " Net Value Per Share (A)": "size",
+      " Net Value Per Share (C)": "size",
+      " Persistent EPS in the Last Four Seasons": "other",
+      " Cash Flow Per Share": "liquidity",
+      " Revenue Per Share (Yuan \u00a5)": "size",
+      " Operating Profit Per Share (Yuan \u00a5)": "profitability",
+      " Per Share Net profit before tax (Yuan \u00a5)": "profitability",
+      " Realized Sales Gross Profit Growth Rate": "profitability",
+      " Operating Profit Growth Rate": "profitability",
+      " After-tax Net Profit Growth Rate": "profitability",
+      " Regular Net Profit Growth Rate": "profitability",
+      " Continuous Net Profit Growth Rate": "profitability",
+      " Total Asset Growth Rate": "size",
+      " Net Value Growth Rate": "growth",
+      " Total Asset Return Growth Rate Ratio": "size",
+      " Cash Reinvestment %": "other",
+      " Current Ratio": "liquidity",
+      " Quick Ratio": "liquidity",
+      " Interest Expense Ratio": "efficiency",
+      " Total debt/Total net worth": "leverage",
+      " Debt ratio %": "leverage",
+      " Net worth/Assets": "size",
+      " Long-term fund suitability ratio (A)": "other",
+      " Borrowing dependency": "leverage",
+      " Contingent liabilities/Net worth": "leverage",
+      " Operating profit/Paid-in capital": "profitability",
+      " Net profit before tax/Paid-in capital": "profitability",
+      " Inventory and accounts receivable/Net value": "activity",
+      " Total Asset Turnover": "activity",
+      " Accounts Receivable Turnover": "activity",
+      " Average Collection Days": "activity",
+      " Inventory Turnover Rate (times)": "activity",
+      " Fixed Assets Turnover Frequency": "activity",
+      " Net Worth Turnover Rate (times)": "activity",
+      " Revenue per person": "size",
+      " Operating profit per person": "profitability",
+      " Allocation rate per person": "other",
+      " Working Capital to Total Assets": "liquidity",
+      " Quick Assets/Total Assets": "liquidity",
+      " Current Assets/Total Assets": "liquidity",
+      " Cash/Total Assets": "size",
+      " Quick Assets/Current Liability": "leverage",
+      " Cash/Current Liability": "leverage",
+      " Current Liability to Assets": "leverage",
+      " Operating Funds to Liability": "leverage",
+      " Inventory/Working Capital": "liquidity",
+      " Inventory/Current Liability": "leverage",
+      " Current Liabilities/Liability": "leverage",
+      " Working Capital/Equity": "liquidity",
+      " Current Liabilities/Equity": "leverage",
+      " Long-term Liability to Current Assets": "leverage",
+      " Retained Earnings to Total Assets": "profitability",
+      " Total income/Total expense": "size",
+      " Total expense/Assets": "size",
+      " Current Asset Turnover Rate": "liquidity",
+      " Quick Asset Turnover Rate": "liquidity",
+      " Working capitcal Turnover Rate": "activity",
+      " Cash Turnover Rate": "activity",
+      " Cash Flow to Sales": "liquidity",
+      " Fixed Assets to Assets": "size",
+      " Current Liability to Liability": "leverage",
+      " Current Liability to Equity": "leverage",
+      " Equity to Long-term Liability": "leverage",
+      " Cash Flow to Total Assets": "liquidity",
+      " Cash Flow to Liability": "leverage",
+      " CFO to Assets": "size",
+      " Cash Flow to Equity": "liquidity",
+      " Current Liability to Current Assets": "leverage",
+      " Liability-Assets Flag": "leverage",
+      " Net Income to Total Assets": "size",
+      " Total assets to GNP price": "size",
+      " No-credit Interval": "other",
+      " Gross Profit to Sales": "profitability",
+      " Net Income to Stockholder's Equity": "other",
+      " Liability to Equity": "leverage",
+      " Degree of Financial Leverage (DFL)": "leverage",
+      " Interest Coverage Ratio (Interest expense to EBIT)": "profitability",
+      " Net Income Flag": "other",
+      " Equity to Liability": "leverage"
+    }
+  },
+  "semantic_mappings": {
+    "ROA": {
+      "polish": [
+        "Attr1",
+        "Attr7"
+      ],
+      "american": [
+        "X1"
+      ],
+      "taiwan": [
+        " ROA(C) before interest and depreciation before interest",
+        " ROA(A) before interest and % after tax",
+        " ROA(B) before interest and depreciation after tax"
+      ]
+    },
+    "Debt_Ratio": {
+      "polish": [
+        "Attr2",
+        "Attr27"
+      ],
+      "american": [
+        "X2"
+      ],
+      "taiwan": [
+        " Debt ratio %",
+        " Liability to Equity"
+      ]
+    },
+    "Current_Ratio": {
+      "polish": [
+        "Attr3",
+        "Attr10"
+      ],
+      "american": [
+        "X4"
+      ],
+      "taiwan": [
+        " Current Ratio",
+        " Quick Ratio"
+      ]
+    },
+    "Net_Profit_Margin": {
+      "polish": [
+        "Attr5",
+        "Attr21"
+      ],
+      "american": [
+        "X3"
+      ],
+      "taiwan": [
+        " Operating Profit Rate",
+        " Pre-tax net Interest Rate"
+      ]
+    },
+    "Asset_Turnover": {
+      "polish": [
+        "Attr9",
+        "Attr15"
+      ],
+      "american": [
+        "X5"
+      ],
+      "taiwan": [
+        " Total Asset Turnover",
+        " Fixed Assets Turnover Rate"
+      ]
+    },
+    "Working_Capital": {
+      "polish": [
+        "Attr6",
+        "Attr11"
+      ],
+      "american": [
+        "X6"
+      ],
+      "taiwan": [
+        " Working Capital to Total Assets",
+        " Cash Flow to Liability"
+      ]
+    },
+    "Equity_Ratio": {
+      "polish": [
+        "Attr8",
+        "Attr28"
+      ],
+      "american": [
+        "X7"
+      ],
+      "taiwan": [
+        " Equity to Liability",
+        " Net worth/Assets"
+      ]
+    },
+    "Operating_Margin": {
+      "polish": [
+        "Attr13",
+        "Attr20"
+      ],
+      "american": [
+        "X8"
+      ],
+      "taiwan": [
+        " Operating Gross Margin",
+        " Realized Sales Gross Margin"
+      ]
+    },
+    "Cash_Flow_Ratio": {
+      "polish": [
+        "Attr12",
+        "Attr18"
+      ],
+      "american": [
+        "X9"
+      ],
+      "taiwan": [
+        " Cash flow rate",
+        " Cash Flow to Sales"
+      ]
+    },
+    "Quick_Ratio": {
+      "polish": [
+        "Attr4",
+        "Attr14"
+      ],
+      "american": [
+        "X10"
+      ],
+      "taiwan": [
+        " Quick Ratio",
+        " Cash/Current Liability"
+      ]
+    }
+  },
+  "common_features": [
+    "ROA",
+    "Debt_Ratio",
+    "Current_Ratio",
+    "Net_Profit_Margin",
+    "Asset_Turnover",
+    "Working_Capital",
+    "Equity_Ratio",
+    "Operating_Margin",
+    "Cash_Flow_Ratio",
+    "Quick_Ratio"
+  ]
+}

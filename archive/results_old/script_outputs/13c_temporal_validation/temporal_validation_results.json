@@ -1,0 +1,99 @@
+{
+  "temporal_structure": "REPEATED_CROSS_SECTIONS",
+  "valid_method": "Temporal Holdout Validation",
+  "invalid_method": "Granger Causality (requires panel data)",
+  "temporal_holdout_results": [
+    {
+      "split_name": "Early\u2192Late",
+      "train_horizons": [
+        1,
+        2,
+        3
+      ],
+      "test_horizons": [
+        4,
+        5
+      ],
+      "train_samples": 27703,
+      "test_samples": 15702,
+      "train_bankrupt_rate": 0.042089304407464896,
+      "test_bankrupt_rate": 0.05890969303273468,
+      "lr_auc": 0.7736032439016808,
+      "rf_auc": 0.8859441901128305
+    },
+    {
+      "split_name": "H1-2\u2192H3-5",
+      "train_horizons": [
+        1,
+        2
+      ],
+      "test_horizons": [
+        3,
+        4,
+        5
+      ],
+      "train_samples": 17200,
+      "test_samples": 26205,
+      "train_bankrupt_rate": 0.039011627906976744,
+      "test_bankrupt_rate": 0.054188132035871014,
+      "lr_auc": 0.7448710743378973,
+      "rf_auc": 0.8785649259689668
+    },
+    {
+      "split_name": "H1\u2192Rest",
+      "train_horizons": [
+        1
+      ],
+      "test_horizons": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "train_samples": 7027,
+      "test_samples": 36378,
+      "train_bankrupt_rate": 0.03856553294435748,
+      "test_bankrupt_rate": 0.050030238055967895,
+      "lr_auc": 0.7262829999446702,
+      "rf_auc": 0.850433337424772
+    }
+  ],
+  "within_horizon_results": [
+    {
+      "horizon": 1,
+      "samples": 7027,
+      "lr_auc": 0.7928583168967784,
+      "rf_auc": 0.931226714880561
+    },
+    {
+      "horizon": 2,
+      "samples": 10173,
+      "lr_auc": 0.7322122762148338,
+      "rf_auc": 0.8335166240409208
+    },
+    {
+      "horizon": 3,
+      "samples": 10503,
+      "lr_auc": 0.7426613790250155,
+      "rf_auc": 0.8619965892693165
+    },
+    {
+      "horizon": 4,
+      "samples": 9792,
+      "lr_auc": 0.7274020756611984,
+      "rf_auc": 0.8449897472380316
+    },
+    {
+      "horizon": 5,
+      "samples": 5910,
+      "lr_auc": 0.8315410199556542,
+      "rf_auc": 0.9122394678492239
+    }
+  ],
+  "average_temporal_lr_auc": 0.7482524393947494,
+  "average_temporal_rf_auc": 0.8716474845021898,
+  "average_within_lr_auc": 0.765335013550696,
+  "average_within_rf_auc": 0.8767938286556107,
+  "performance_degradation_lr": 0.017082574155946606,
+  "performance_degradation_rf": 0.0051463441534209675
+}

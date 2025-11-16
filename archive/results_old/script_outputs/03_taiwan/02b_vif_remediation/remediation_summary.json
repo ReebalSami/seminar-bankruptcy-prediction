@@ -1,0 +1,55 @@
+{
+  "dataset": "Taiwan",
+  "total_features": 95,
+  "low_vif_count": 22,
+  "moderate_vif_count": 7,
+  "high_vif_count": 37,
+  "forward_selection_count": 5,
+  "total_samples": 6819,
+  "bankruptcy_events": 220,
+  "bankruptcy_rate": 0.03226279513125092,
+  "epv_vif": 10.0,
+  "epv_forward": 44.0,
+  "methods": {
+    "vif_selection": {
+      "threshold": 5.0,
+      "features": [
+        "F05",
+        "F06",
+        "F08",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F24",
+        "F90",
+        "F95",
+        "F96"
+      ],
+      "count": 22,
+      "epv": 10.0
+    },
+    "forward_selection": {
+      "features": [
+        "F20",
+        "F96",
+        "F14",
+        "F08",
+        "F95"
+      ],
+      "count": 5,
+      "epv": 44.0
+    }
+  }
+}

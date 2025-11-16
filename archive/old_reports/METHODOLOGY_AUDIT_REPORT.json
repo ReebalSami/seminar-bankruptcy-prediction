@@ -1,0 +1,176 @@
+{
+  "foundation": {
+    "script_00_mappings": "PASS",
+    "script_00": "PASS",
+    "script_00b": "PASS"
+  },
+  "polish": {
+    "01_data_understanding": {
+      "dependencies": {
+        "expected": [
+          "raw data"
+        ],
+        "actual": [
+          "DataLoader (raw)"
+        ]
+      }
+    },
+    "02_exploratory_analysis": {
+      "dependencies": {
+        "expected": [
+          "raw data"
+        ],
+        "actual": [
+          "DataLoader (raw)"
+        ]
+      }
+    },
+    "03_data_preparation": {
+      "dependencies": {
+        "expected": [
+          "raw data"
+        ],
+        "actual": [
+          "DataLoader (raw)"
+        ]
+      }
+    },
+    "04_baseline_models": {
+      "dependencies": {
+        "expected": [
+          "03_data_preparation output"
+        ],
+        "actual": [
+          "DataLoader (raw)"
+        ]
+      }
+    },
+    "05_advanced_models": {
+      "dependencies": {
+        "expected": [
+          "03_data_preparation output"
+        ],
+        "actual": [
+          "DataLoader (raw)"
+        ]
+      }
+    },
+    "06_model_calibration": {
+      "dependencies": {
+        "expected": [
+          "04 or 05 output"
+        ],
+        "actual": [
+          "DataLoader (raw)"
+        ]
+      }
+    },
+    "07_robustness_analysis": {
+      "dependencies": {
+        "expected": [
+          "03_data_preparation output"
+        ],
+        "actual": [
+          "DataLoader (raw)"
+        ]
+      }
+    },
+    "08_econometric_analysis": {
+      "dependencies": {
+        "expected": [
+          "03_data_preparation output"
+        ],
+        "actual": [
+          "DataLoader (raw)"
+        ]
+      }
+    },
+    "10c_glm_diagnostics": {
+      "dependencies": {
+        "expected": [
+          "raw data OR 03 output"
+        ],
+        "actual": [
+          "processed/poland_clean_full"
+        ]
+      }
+    },
+    "10d_remediation_save_datasets": {
+      "dependencies": {
+        "expected": [
+          "raw data"
+        ],
+        "actual": [
+          "10d output (VIF-selected)",
+          "processed/poland_clean_full"
+        ]
+      }
+    },
+    "11_temporal_holdout_validation": {
+      "dependencies": {
+        "expected": [
+          "10d output: poland_h1_vif_selected.parquet"
+        ],
+        "actual": [
+          "10d output (VIF-selected)",
+          "processed/poland_clean_full"
+        ]
+      }
+    },
+    "12_cross_dataset_transfer_SEMANTIC": {
+      "dependencies": {
+        "expected": [
+          "Script 00 outputs + processed data"
+        ],
+        "actual": [
+          "processed/poland_clean_full",
+          "processed/american",
+          "processed/taiwan",
+          "Script 00 output"
+        ]
+      }
+    },
+    "13c_temporal_validation": {
+      "dependencies": {
+        "expected": [
+          "10d output OR raw data"
+        ],
+        "actual": [
+          "10d output (VIF-selected)",
+          "processed/poland_clean_full"
+        ]
+      }
+    }
+  },
+  "critical_issues": [
+    "10c_glm_diagnostics.py: \u274c CRITICAL: Uses Durbin-Watson (OLS test) on logistic regression!",
+    "10c_glm_diagnostics.py: \u274c CRITICAL: Uses Jarque-Bera (OLS test) on logistic regression!",
+    "11_temporal_holdout_validation.py: \u274c CRITICAL: Granger causality invalid for repeated cross-sections!",
+    "13c_temporal_validation.py: \u274c CRITICAL: Granger causality invalid for repeated cross-sections!"
+  ],
+  "warnings": [
+    "Script 00: 2 hardcoded paths",
+    "01_data_understanding.py: Hardcoded paths found: [\".csv'\", \".csv'\"]",
+    "02_exploratory_analysis.py: Hardcoded paths found: [\".csv'\"]",
+    "04_baseline_models.py: Hardcoded paths found: [\".csv'\"]",
+    "04_baseline_models.py: Uses max_iter=10 (may not converge)",
+    "05_advanced_models.py: Hardcoded paths found: [\".csv'\"]",
+    "06_model_calibration.py: Uses max_iter=10 (may not converge)",
+    "07_robustness_analysis.py: Hardcoded paths found: [\".csv'\", \".csv'\"]",
+    "08_econometric_analysis.py: Hardcoded paths found: [\".csv'\", \".csv'\", \".csv'\"]",
+    "08_econometric_analysis.py: Uses .head() - may not analyze full data",
+    "08_econometric_analysis.py: Uses .sample() - subset analysis",
+    "08_econometric_analysis.py: Uses n_estimators=10 (too small for real analysis)",
+    "08_econometric_analysis.py: Uses max_iter=10 (may not converge)",
+    "10c_glm_diagnostics.py: Hardcoded paths found: [\".csv'\"]",
+    "10d_remediation_save_datasets.py: Hardcoded paths found: [\".parquet'\"]",
+    "10d_remediation_save_datasets.py: Uses max_iter=10 (may not converge)",
+    "11_temporal_holdout_validation.py: Hardcoded paths found: [\".csv'\", \".csv'\"]",
+    "11_temporal_holdout_validation.py: Uses max_iter=10 (may not converge)",
+    "12_cross_dataset_transfer_SEMANTIC.py: Hardcoded paths found: [\".csv'\"]"
+  ],
+  "passes": [
+    "03_data_preparation.py",
+    "Script 12 uses Script 00 (verified)"
+  ]
+}

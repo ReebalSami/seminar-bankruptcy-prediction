@@ -1,0 +1,30 @@
+Feature_1,Feature_2,Correlation,Name_1,Name_2
+Attr1,Attr7,0.9497984651450109,Net Profit / Assets,EBIT / Assets
+Attr1,Attr11,0.9346925861201505,Net Profit / Assets,Gross Profit + Extras / Assets
+Attr1,Attr14,0.9497984651450109,Net Profit / Assets,Gross Profit + Interest / Assets
+Attr1,Attr18,0.9497984651450109,Net Profit / Assets,Gross Profit / Assets
+Attr2,Attr10,-0.9784997191726521,Liabilities / Assets,Equity / Assets
+Attr4,Attr46,0.9551937921115342,Current Ratio,Quick Ratio
+Attr4,Attr50,0.9155830140744504,Current Ratio,Current Assets / Liabilities
+Attr7,Attr11,0.986722514208506,EBIT / Assets,Gross Profit + Extras / Assets
+Attr7,Attr14,1.0,EBIT / Assets,Gross Profit + Interest / Assets
+Attr7,Attr18,1.0,EBIT / Assets,Gross Profit / Assets
+Attr7,Attr22,0.912223486800671,EBIT / Assets,Operating Profit / Assets
+Attr8,Attr17,0.993102461246326,Equity / Liabilities,Asset to Liability Ratio
+Attr11,Attr14,0.986722514208506,Gross Profit + Extras / Assets,Gross Profit + Interest / Assets
+Attr11,Attr18,0.986722514208506,Gross Profit + Extras / Assets,Gross Profit / Assets
+Attr11,Attr22,0.9102762716001566,Gross Profit + Extras / Assets,Operating Profit / Assets
+Attr14,Attr18,1.0,Gross Profit + Interest / Assets,Gross Profit / Assets
+Attr14,Attr22,0.912223486800671,Gross Profit + Interest / Assets,Operating Profit / Assets
+Attr16,Attr26,0.994161625048025,GP + Depr. / Liabilities,NP + Depr. / Liabilities
+Attr18,Attr22,0.912223486800671,Gross Profit / Assets,Operating Profit / Assets
+Attr19,Attr23,0.9800741434949404,Gross Margin,Net Margin
+Attr19,Attr31,0.9600262810508984,Gross Margin,GP + Interest / Sales
+Attr22,Attr35,0.9321158756455421,Operating Profit / Assets,Profit on Sales / Assets
+Attr23,Attr31,0.9492126969450337,Net Margin,GP + Interest / Sales
+Attr32,Attr52,0.9706784954988797,Payables Days,Payables Days (COGS)
+Attr33,Attr63,0.9673848780775223,Op. Expenses / ST Liab.,Payables Turnover
+Attr38,Attr51,-0.9561041877049649,Constant Capital / Assets,ST Liabilities / Assets
+Attr39,Attr42,0.9182166024922178,Profit Margin,Operating Margin
+Attr53,Attr54,0.9903461424126516,Equity / Fixed Assets,Constant Capital / Fixed Assets
+Attr56,Attr58,-0.9552430969926303,Gross Margin (alt),Cost / Sales Ratio

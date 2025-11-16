@@ -1,0 +1,2 @@
+total_samples,companies,years,features,bankruptcy_rate,bankruptcies,modeling_samples,modeling_bankruptcies,modeling_rate
+78682,8971,1999-2018,18,0.06634300094049465,5220,3700,119,0.03216216216216216

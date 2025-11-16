@@ -1,0 +1,49 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Large data files (use Git LFS or keep only in local)
+data/processed/*.parquet
+data/processed/*.csv
+data/*/*.csv
+data/*/*.arff
+data/*/*.zip
+
+# LaTeX auxiliary files
+seminar-paper/*.aux
+seminar-paper/*.log
+seminar-paper/*.out
+seminar-paper/*.toc
+seminar-paper/*.lof
+seminar-paper/*.lot
+seminar-paper/*.bbl
+seminar-paper/*.blg
+seminar-paper/*.bcf
+seminar-paper/*.run.xml
+seminar-paper/*.fls
+seminar-paper/*.fdb_latexmk
+seminar-paper/*.synctex.gz
+seminar-paper/**/*.aux
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/*.log
+
+# Temporary files
+*.tmp
+*.bak

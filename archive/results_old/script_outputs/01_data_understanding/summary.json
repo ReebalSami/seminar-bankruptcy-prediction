@@ -1,0 +1,67 @@
+{
+  "data_loaded": true,
+  "full_shape": [
+    43405,
+    67
+  ],
+  "h1_shape": [
+    7027,
+    67
+  ],
+  "dataset_info": {
+    "n_samples": 7027,
+    "n_features": 66,
+    "bankruptcy_count": "271",
+    "bankruptcy_rate": 0.03856553294435748,
+    "missing_values": "0",
+    "memory_usage_mb": 3.645599365234375,
+    "horizons": [
+      "1"
+    ]
+  },
+  "horizon_stats": [
+    {
+      "Horizon": 1,
+      "Total_Samples": 7027,
+      "Bankruptcies": 271,
+      "Bankruptcy_Rate": 0.03856553294435748,
+      "Healthy": 6756
+    },
+    {
+      "Horizon": 2,
+      "Total_Samples": 10173,
+      "Bankruptcies": 400,
+      "Bankruptcy_Rate": 0.03931976801336872,
+      "Healthy": 9773
+    },
+    {
+      "Horizon": 3,
+      "Total_Samples": 10503,
+      "Bankruptcies": 495,
+      "Bankruptcy_Rate": 0.04712939160239932,
+      "Healthy": 10008
+    },
+    {
+      "Horizon": 4,
+      "Total_Samples": 9792,
+      "Bankruptcies": 515,
+      "Bankruptcy_Rate": 0.052593954248366014,
+      "Healthy": 9277
+    },
+    {
+      "Horizon": 5,
+      "Total_Samples": 5910,
+      "Bankruptcies": 410,
+      "Bankruptcy_Rate": 0.06937394247038917,
+      "Healthy": 5500
+    }
+  ],
+  "categories": {
+    "Profitability": 20,
+    "Liquidity": 10,
+    "Leverage": 17,
+    "Activity": 15,
+    "Size": 1,
+    "Other": 1
+  }
+}

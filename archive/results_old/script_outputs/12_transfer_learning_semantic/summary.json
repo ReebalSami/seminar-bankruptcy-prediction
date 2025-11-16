@@ -1,0 +1,78 @@
+{
+  "method": "Semantic Feature Alignment (Script 00)",
+  "common_features": [
+    "ROA",
+    "Debt_Ratio",
+    "Current_Ratio",
+    "Net_Profit_Margin",
+    "Asset_Turnover",
+    "Working_Capital",
+    "Equity_Ratio",
+    "Operating_Margin",
+    "Cash_Flow_Ratio",
+    "Quick_Ratio"
+  ],
+  "n_semantic_features": 10,
+  "n_experiments": 6,
+  "average_auc": 0.5071776601182126,
+  "std_auc": 0.1072890689800739,
+  "min_auc": 0.3528076177742238,
+  "max_auc": 0.6902583429350517,
+  "best_transfer": "Polish\u2192American",
+  "results": [
+    {
+      "source": "Polish",
+      "target": "American",
+      "direction": "Polish\u2192American",
+      "auc": 0.6902583429350517,
+      "pr_auc": 0.05722119611618973,
+      "n_train": 7027,
+      "n_test": 3700
+    },
+    {
+      "source": "Polish",
+      "target": "Taiwan",
+      "direction": "Polish\u2192Taiwan",
+      "auc": 0.5,
+      "pr_auc": 0.03226279513125092,
+      "n_train": 7027,
+      "n_test": 6819
+    },
+    {
+      "source": "American",
+      "target": "Polish",
+      "direction": "American\u2192Polish",
+      "auc": 0.3528076177742238,
+      "pr_auc": 0.029169117484445357,
+      "n_train": 3700,
+      "n_test": 7027
+    },
+    {
+      "source": "American",
+      "target": "Taiwan",
+      "direction": "American\u2192Taiwan",
+      "auc": 0.5,
+      "pr_auc": 0.03226279513125092,
+      "n_train": 3700,
+      "n_test": 6819
+    },
+    {
+      "source": "Taiwan",
+      "target": "Polish",
+      "direction": "Taiwan\u2192Polish",
+      "auc": 0.5,
+      "pr_auc": 0.03856553294435748,
+      "n_train": 6819,
+      "n_test": 7027
+    },
+    {
+      "source": "Taiwan",
+      "target": "American",
+      "direction": "Taiwan\u2192American",
+      "auc": 0.5,
+      "pr_auc": 0.03216216216216216,
+      "n_train": 6819,
+      "n_test": 3700
+    }
+  ]
+}

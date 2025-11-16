@@ -1,0 +1,31 @@
+{
+  "results": [
+    {
+      "model_name": "XGBoost",
+      "dataset": "American",
+      "roc_auc": 0.8353701117318436,
+      "pr_auc": 0.4402545314624643,
+      "brier_score": 0.03245960001894136,
+      "recall_1pct_fpr": 0.2916666666666667,
+      "recall_5pct_fpr": 0.4583333333333333
+    },
+    {
+      "model_name": "LightGBM",
+      "dataset": "American",
+      "roc_auc": 0.8379888268156425,
+      "pr_auc": 0.40548529764646973,
+      "brier_score": 0.03804579704130279,
+      "recall_1pct_fpr": 0.375,
+      "recall_5pct_fpr": 0.4583333333333333
+    },
+    {
+      "model_name": "CatBoost",
+      "dataset": "American",
+      "roc_auc": 0.8528864059590316,
+      "pr_auc": 0.46411847083702323,
+      "brier_score": 0.05469867799696652,
+      "recall_1pct_fpr": 0.375,
+      "recall_5pct_fpr": 0.5
+    }
+  ]
+}

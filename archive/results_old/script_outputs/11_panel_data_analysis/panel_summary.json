@@ -1,0 +1,18 @@
+{
+  "total_observations": 43405,
+  "horizons": 5,
+  "observations_per_horizon": {
+    "1": 7027,
+    "2": 10173,
+    "3": 10503,
+    "4": 9792,
+    "5": 5910
+  },
+  "temporal_validation_auc": 0.7689693076713445,
+  "within_horizon_avg_auc": 0.7509766050595107,
+  "cross_horizon_avg_auc": 0.7355186070752853,
+  "clustered_bootstrap_mean_auc": 0.7577317728511952,
+  "clustered_bootstrap_std_auc": 0.0388533862803853,
+  "clustered_bootstrap_ci_lower": 0.664958472946667,
+  "clustered_bootstrap_ci_upper": 0.8273860070331472
+}

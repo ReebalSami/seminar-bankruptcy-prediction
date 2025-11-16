@@ -1,0 +1,49 @@
+feature,readable_name,category,coefficient,abs_coefficient,direction
+Attr39,Profit Margin,Profitability,-1.4516210198419313,1.4516210198419313,Negative
+Attr27__isna,Op. Profit / Fin. Expenses (Missing),Profitability,1.08129036487427,1.08129036487427,Positive
+Attr34,Op. Expenses / Liabilities,Leverage,1.0621809160365727,1.0621809160365727,Positive
+Attr62,Payables Days (Sales),Activity,-1.0281523891386364,1.0281523891386364,Negative
+Attr49,EBITDA Margin,Profitability,0.9826253357962769,0.9826253357962769,Positive
+Attr50,Current Assets / Liabilities,Liquidity,-0.797676774396109,0.797676774396109,Negative
+Attr35,Profit on Sales / Assets,Profitability,0.7547336415992976,0.7547336415992976,Positive
+Attr13,Gross Margin + Depr.,Profitability,-0.6933489764665214,0.6933489764665214,Negative
+Attr40,Cash Ratio,Liquidity,0.6641408638011641,0.6641408638011641,Positive
+Attr42,Operating Margin,Profitability,0.651478653467571,0.651478653467571,Positive
+Attr47,Inventory Days (COGS),Activity,-0.6411974018009042,0.6411974018009042,Negative
+Attr20,Inventory Days,Activity,0.5727143269056391,0.5727143269056391,Positive
+Attr38,Constant Capital / Assets,Leverage,-0.5523118785269581,0.5523118785269581,Negative
+Attr17,Asset to Liability Ratio,Leverage,0.5273115307070022,0.5273115307070022,Positive
+Attr32,Payables Days,Activity,0.4951690525886271,0.4951690525886271,Positive
+Attr21__isna,Sales Growth (Missing),Activity,0.48464552554654966,0.48464552554654966,Positive
+Attr41,Debt Service Coverage,Leverage,-0.47226805478689116,0.47226805478689116,Negative
+Attr26,NP + Depr. / Liabilities,Leverage,-0.4654522869084795,0.4654522869084795,Negative
+Attr33,Op. Expenses / ST Liab.,Leverage,-0.4238382937682265,0.4238382937682265,Negative
+Attr30,Net Debt / Sales,Leverage,0.40515830636593286,0.40515830636593286,Positive
+Attr24,GP (3yr) / Assets,Profitability,-0.38650183198431587,0.38650183198431587,Negative
+Attr25,Retained Equity / Assets,Leverage,-0.360794593309215,0.360794593309215,Negative
+Attr58,Cost / Sales Ratio,Other,-0.3563523396439947,0.3563523396439947,Negative
+Attr21,Sales Growth,Activity,-0.29453951443005394,0.29453951443005394,Negative
+Attr31,GP + Interest / Sales,Profitability,-0.2843653753005349,0.2843653753005349,Negative
+Attr15,Liabilities Coverage (days),Leverage,0.25432906721602366,0.25432906721602366,Positive
+Attr48,EBITDA / Assets,Profitability,0.22892259118717204,0.22892259118717204,Positive
+Attr64,Fixed Asset Turnover,Activity,-0.2154508027881938,0.2154508027881938,Negative
+Attr61,Receivables Turnover,Activity,-0.1989775512409441,0.1989775512409441,Negative
+Attr57,Defensive Interval,Liquidity,-0.17150619587911053,0.17150619587911053,Negative
+Attr60,Inventory Turnover,Activity,-0.13640048847455988,0.13640048847455988,Negative
+Attr43,Operating Cycle (days),Activity,0.1319094846043413,0.1319094846043413,Positive
+Attr29,Log(Total Assets),Size,0.11621895469465865,0.11621895469465865,Positive
+Attr36,Sales / Assets,Activity,-0.11205562739534271,0.11205562739534271,Negative
+Attr5,Cash Cycle (days),Liquidity,0.1077355438760725,0.1077355438760725,Positive
+Attr12,Gross Profit / ST Liab.,Profitability,-0.10582320884383367,0.10582320884383367,Negative
+Attr9,Asset Turnover,Activity,-0.10140090826684874,0.10140090826684874,Negative
+Attr11,Gross Profit + Extras / Assets,Profitability,-0.06057886814566014,0.06057886814566014,Negative
+Attr2,Liabilities / Assets,Leverage,-0.05202876195351094,0.05202876195351094,Negative
+Attr3,Working Capital / Assets,Liquidity,-0.05111245735809067,0.05111245735809067,Negative
+Attr53,Equity / Fixed Assets,Leverage,0.04791063871845253,0.04791063871845253,Positive
+Attr55,Working Capital,Liquidity,-0.04730109218796005,0.04730109218796005,Negative
+Attr6,Retained Earnings / Assets,Profitability,-0.04559313016309131,0.04559313016309131,Negative
+Attr56,Gross Margin (alt),Profitability,0.041466196425188256,0.041466196425188256,Positive
+Attr27,Op. Profit / Fin. Expenses,Profitability,-0.035641730235627056,0.035641730235627056,Negative
+Attr45,Net Profit / Inventory,Activity,-0.031072683183142283,0.031072683183142283,Negative
+Attr44,Receivables Days,Activity,-0.018004606560888634,0.018004606560888634,Negative
+Attr59,LT Debt / Equity,Leverage,-0.010335906159868704,0.010335906159868704,Negative

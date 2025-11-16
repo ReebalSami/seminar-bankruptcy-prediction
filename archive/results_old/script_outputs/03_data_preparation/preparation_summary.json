@@ -1,0 +1,9 @@
+{
+  "total_samples": 7027,
+  "train_samples": 5621,
+  "test_samples": 1406,
+  "features_full": 65,
+  "features_reduced": 48,
+  "train_bankruptcy_rate": 0.038605230386052306,
+  "test_bankruptcy_rate": 0.03840682788051209
+}

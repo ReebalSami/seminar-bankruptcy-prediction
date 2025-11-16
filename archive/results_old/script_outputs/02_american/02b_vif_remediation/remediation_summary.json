@@ -1,0 +1,31 @@
+{
+  "dataset": "American",
+  "total_features": 18,
+  "low_vif_count": 2,
+  "moderate_vif_count": 3,
+  "high_vif_count": 13,
+  "forward_selection_count": 1,
+  "total_samples": 78682,
+  "bankruptcy_events": 5220,
+  "bankruptcy_rate": 0.06634300094049465,
+  "epv_vif": 2610.0,
+  "epv_forward": 5220.0,
+  "methods": {
+    "vif_selection": {
+      "threshold": 5.0,
+      "features": [
+        "X5",
+        "X15"
+      ],
+      "count": 2,
+      "epv": 2610.0
+    },
+    "forward_selection": {
+      "features": [
+        "X15"
+      ],
+      "count": 1,
+      "epv": 5220.0
+    }
+  }
+}

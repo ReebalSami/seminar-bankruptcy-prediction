@@ -1,0 +1,10 @@
+{
+  "total_features": 18,
+  "significant_features": 14,
+  "high_correlations": 128,
+  "top_discriminative_feature": "Market Value",
+  "top_discriminative_pvalue": 3.214983685995939e-51,
+  "top_correlated_feature": "Net Income",
+  "top_correlation": -0.11228435398194155,
+  "categories": 7
+}

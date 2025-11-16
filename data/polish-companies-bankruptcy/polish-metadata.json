@@ -1,0 +1,1187 @@
+{
+    "@context": {
+        "@language": "en",
+        "@vocab": "https://schema.org/",
+        "citeAs": "cr:citeAs",
+        "column": "cr:column",
+        "conformsTo": "dct:conformsTo",
+        "cr": "http://mlcommons.org/croissant/",
+        "data": {
+            "@id": "cr:data",
+            "@type": "@json"
+        },
+        "dataBiases": "cr:dataBiases",
+        "dataCollection": "cr:dataCollection",
+        "dataType": {
+            "@id": "cr:dataType",
+            "@type": "@vocab"
+        },
+        "dct": "http://purl.org/dc/terms/",
+        "extract": "cr:extract",
+        "field": "cr:field",
+        "fileProperty": "cr:fileProperty",
+        "fileObject": "cr:fileObject",
+        "fileSet": "cr:fileSet",
+        "format": "cr:format",
+        "includes": "cr:includes",
+        "isEnumeration": "cr:isEnumeration",
+        "isLiveDataset": "cr:isLiveDataset",
+        "jsonPath": "cr:jsonPath",
+        "key": "cr:key",
+        "md5": "cr:md5",
+        "parentField": "cr:parentField",
+        "path": "cr:path",
+        "personalSensitiveInformation": "cr:personalSensitiveInformation",
+        "recordSet": "cr:recordSet",
+        "references": "cr:references",
+        "regex": "cr:regex",
+        "repeated": "cr:repeated",
+        "replace": "cr:replace",
+        "sc": "https://schema.org/",
+        "separator": "cr:separator",
+        "source": "cr:source",
+        "subField": "cr:subField",
+        "transform": "cr:transform",
+        "wd": "https://www.wikidata.org/wiki/"
+    },
+    "alternateName": "Classification Dataset about Bankruptcy Prediction of Polish Companies",
+    "conformsTo": "http://mlcommons.org/croissant/1.0",
+    "license": {
+        "@type": "sc:CreativeWork",
+        "name": "Attribution 4.0 International (CC BY 4.0)",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "distribution": [
+        {
+            "contentUrl": "https://www.kaggle.com/api/v1/datasets/download/stealthtechnologies/predict-bankruptcy-in-poland?datasetVersionNumber=1",
+            "contentSize": "8.562 MB",
+            "md5": "I5sOeVq\u002B7zCNDYLJDX2WfA==",
+            "encodingFormat": "application/zip",
+            "@id": "archive.zip",
+            "@type": "cr:FileObject",
+            "name": "archive.zip",
+            "description": "Archive containing all the contents of the Predict Bankruptcy in Poland dataset"
+        },
+        {
+            "contentUrl": "data.csv",
+            "containedIn": {
+                "@id": "archive.zip"
+            },
+            "encodingFormat": "text/csv",
+            "@id": "data.csv_fileobject",
+            "@type": "cr:FileObject",
+            "name": "data.csv",
+            "description": "data to be used"
+        }
+    ],
+    "recordSet": [
+        {
+            "field": [
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A1"
+                        }
+                    },
+                    "@id": "data.csv/A1",
+                    "@type": "cr:Field",
+                    "name": "A1",
+                    "description": "a1"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A2"
+                        }
+                    },
+                    "@id": "data.csv/A2",
+                    "@type": "cr:Field",
+                    "name": "A2",
+                    "description": "a2"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A3"
+                        }
+                    },
+                    "@id": "data.csv/A3",
+                    "@type": "cr:Field",
+                    "name": "A3",
+                    "description": "a3"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A4"
+                        }
+                    },
+                    "@id": "data.csv/A4",
+                    "@type": "cr:Field",
+                    "name": "A4",
+                    "description": "a4"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A5"
+                        }
+                    },
+                    "@id": "data.csv/A5",
+                    "@type": "cr:Field",
+                    "name": "A5",
+                    "description": "a5"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A6"
+                        }
+                    },
+                    "@id": "data.csv/A6",
+                    "@type": "cr:Field",
+                    "name": "A6",
+                    "description": "a6"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A7"
+                        }
+                    },
+                    "@id": "data.csv/A7",
+                    "@type": "cr:Field",
+                    "name": "A7",
+                    "description": "a7"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A8"
+                        }
+                    },
+                    "@id": "data.csv/A8",
+                    "@type": "cr:Field",
+                    "name": "A8",
+                    "description": "a8"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A9"
+                        }
+                    },
+                    "@id": "data.csv/A9",
+                    "@type": "cr:Field",
+                    "name": "A9",
+                    "description": "a9"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A10"
+                        }
+                    },
+                    "@id": "data.csv/A10",
+                    "@type": "cr:Field",
+                    "name": "A10",
+                    "description": "a10"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A11"
+                        }
+                    },
+                    "@id": "data.csv/A11",
+                    "@type": "cr:Field",
+                    "name": "A11"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A12"
+                        }
+                    },
+                    "@id": "data.csv/A12",
+                    "@type": "cr:Field",
+                    "name": "A12"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A13"
+                        }
+                    },
+                    "@id": "data.csv/A13",
+                    "@type": "cr:Field",
+                    "name": "A13"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A14"
+                        }
+                    },
+                    "@id": "data.csv/A14",
+                    "@type": "cr:Field",
+                    "name": "A14"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A15"
+                        }
+                    },
+                    "@id": "data.csv/A15",
+                    "@type": "cr:Field",
+                    "name": "A15"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A16"
+                        }
+                    },
+                    "@id": "data.csv/A16",
+                    "@type": "cr:Field",
+                    "name": "A16"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A17"
+                        }
+                    },
+                    "@id": "data.csv/A17",
+                    "@type": "cr:Field",
+                    "name": "A17"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A18"
+                        }
+                    },
+                    "@id": "data.csv/A18",
+                    "@type": "cr:Field",
+                    "name": "A18"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A19"
+                        }
+                    },
+                    "@id": "data.csv/A19",
+                    "@type": "cr:Field",
+                    "name": "A19"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A20"
+                        }
+                    },
+                    "@id": "data.csv/A20",
+                    "@type": "cr:Field",
+                    "name": "A20"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A21"
+                        }
+                    },
+                    "@id": "data.csv/A21",
+                    "@type": "cr:Field",
+                    "name": "A21"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A22"
+                        }
+                    },
+                    "@id": "data.csv/A22",
+                    "@type": "cr:Field",
+                    "name": "A22"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A23"
+                        }
+                    },
+                    "@id": "data.csv/A23",
+                    "@type": "cr:Field",
+                    "name": "A23"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A24"
+                        }
+                    },
+                    "@id": "data.csv/A24",
+                    "@type": "cr:Field",
+                    "name": "A24"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A25"
+                        }
+                    },
+                    "@id": "data.csv/A25",
+                    "@type": "cr:Field",
+                    "name": "A25"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A26"
+                        }
+                    },
+                    "@id": "data.csv/A26",
+                    "@type": "cr:Field",
+                    "name": "A26"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A27"
+                        }
+                    },
+                    "@id": "data.csv/A27",
+                    "@type": "cr:Field",
+                    "name": "A27"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A28"
+                        }
+                    },
+                    "@id": "data.csv/A28",
+                    "@type": "cr:Field",
+                    "name": "A28"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A29"
+                        }
+                    },
+                    "@id": "data.csv/A29",
+                    "@type": "cr:Field",
+                    "name": "A29"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A30"
+                        }
+                    },
+                    "@id": "data.csv/A30",
+                    "@type": "cr:Field",
+                    "name": "A30"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A31"
+                        }
+                    },
+                    "@id": "data.csv/A31",
+                    "@type": "cr:Field",
+                    "name": "A31"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A32"
+                        }
+                    },
+                    "@id": "data.csv/A32",
+                    "@type": "cr:Field",
+                    "name": "A32"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A33"
+                        }
+                    },
+                    "@id": "data.csv/A33",
+                    "@type": "cr:Field",
+                    "name": "A33"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A34"
+                        }
+                    },
+                    "@id": "data.csv/A34",
+                    "@type": "cr:Field",
+                    "name": "A34"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A35"
+                        }
+                    },
+                    "@id": "data.csv/A35",
+                    "@type": "cr:Field",
+                    "name": "A35"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A36"
+                        }
+                    },
+                    "@id": "data.csv/A36",
+                    "@type": "cr:Field",
+                    "name": "A36"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A37"
+                        }
+                    },
+                    "@id": "data.csv/A37",
+                    "@type": "cr:Field",
+                    "name": "A37"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A38"
+                        }
+                    },
+                    "@id": "data.csv/A38",
+                    "@type": "cr:Field",
+                    "name": "A38"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A39"
+                        }
+                    },
+                    "@id": "data.csv/A39",
+                    "@type": "cr:Field",
+                    "name": "A39"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A40"
+                        }
+                    },
+                    "@id": "data.csv/A40",
+                    "@type": "cr:Field",
+                    "name": "A40"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A41"
+                        }
+                    },
+                    "@id": "data.csv/A41",
+                    "@type": "cr:Field",
+                    "name": "A41"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A42"
+                        }
+                    },
+                    "@id": "data.csv/A42",
+                    "@type": "cr:Field",
+                    "name": "A42"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A43"
+                        }
+                    },
+                    "@id": "data.csv/A43",
+                    "@type": "cr:Field",
+                    "name": "A43"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A44"
+                        }
+                    },
+                    "@id": "data.csv/A44",
+                    "@type": "cr:Field",
+                    "name": "A44"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A45"
+                        }
+                    },
+                    "@id": "data.csv/A45",
+                    "@type": "cr:Field",
+                    "name": "A45"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A46"
+                        }
+                    },
+                    "@id": "data.csv/A46",
+                    "@type": "cr:Field",
+                    "name": "A46"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A47"
+                        }
+                    },
+                    "@id": "data.csv/A47",
+                    "@type": "cr:Field",
+                    "name": "A47"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A48"
+                        }
+                    },
+                    "@id": "data.csv/A48",
+                    "@type": "cr:Field",
+                    "name": "A48"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A49"
+                        }
+                    },
+                    "@id": "data.csv/A49",
+                    "@type": "cr:Field",
+                    "name": "A49"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A50"
+                        }
+                    },
+                    "@id": "data.csv/A50",
+                    "@type": "cr:Field",
+                    "name": "A50"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A51"
+                        }
+                    },
+                    "@id": "data.csv/A51",
+                    "@type": "cr:Field",
+                    "name": "A51"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A52"
+                        }
+                    },
+                    "@id": "data.csv/A52",
+                    "@type": "cr:Field",
+                    "name": "A52"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A53"
+                        }
+                    },
+                    "@id": "data.csv/A53",
+                    "@type": "cr:Field",
+                    "name": "A53"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A54"
+                        }
+                    },
+                    "@id": "data.csv/A54",
+                    "@type": "cr:Field",
+                    "name": "A54"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A55"
+                        }
+                    },
+                    "@id": "data.csv/A55",
+                    "@type": "cr:Field",
+                    "name": "A55"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A56"
+                        }
+                    },
+                    "@id": "data.csv/A56",
+                    "@type": "cr:Field",
+                    "name": "A56"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A57"
+                        }
+                    },
+                    "@id": "data.csv/A57",
+                    "@type": "cr:Field",
+                    "name": "A57"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A58"
+                        }
+                    },
+                    "@id": "data.csv/A58",
+                    "@type": "cr:Field",
+                    "name": "A58"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A59"
+                        }
+                    },
+                    "@id": "data.csv/A59",
+                    "@type": "cr:Field",
+                    "name": "A59"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A60"
+                        }
+                    },
+                    "@id": "data.csv/A60",
+                    "@type": "cr:Field",
+                    "name": "A60"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A61"
+                        }
+                    },
+                    "@id": "data.csv/A61",
+                    "@type": "cr:Field",
+                    "name": "A61"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A62"
+                        }
+                    },
+                    "@id": "data.csv/A62",
+                    "@type": "cr:Field",
+                    "name": "A62"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A63"
+                        }
+                    },
+                    "@id": "data.csv/A63",
+                    "@type": "cr:Field",
+                    "name": "A63"
+                },
+                {
+                    "dataType": [
+                        "sc:Float"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "A64"
+                        }
+                    },
+                    "@id": "data.csv/A64",
+                    "@type": "cr:Field",
+                    "name": "A64"
+                },
+                {
+                    "dataType": [
+                        "sc:Integer"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "class"
+                        }
+                    },
+                    "@id": "data.csv/class",
+                    "@type": "cr:Field",
+                    "name": "class"
+                },
+                {
+                    "dataType": [
+                        "sc:Integer"
+                    ],
+                    "source": {
+                        "fileObject": {
+                            "@id": "data.csv_fileobject"
+                        },
+                        "extract": {
+                            "column": "year"
+                        }
+                    },
+                    "@id": "data.csv/year",
+                    "@type": "cr:Field",
+                    "name": "year"
+                }
+            ],
+            "@id": "data.csv",
+            "@type": "cr:RecordSet",
+            "name": "data.csv",
+            "description": "data to be used"
+        }
+    ],
+    "version": 1,
+    "keywords": [
+        "subject \u003E people and society \u003E business",
+        "subject \u003E people and society \u003E business \u003E finance",
+        "language \u003E polish",
+        "task \u003E classification",
+        "data type \u003E tabular",
+        "subject \u003E people and society \u003E business \u003E finance \u003E lending"
+    ],
+    "isAccessibleForFree": true,
+    "includedInDataCatalog": {
+        "@type": "sc:DataCatalog",
+        "name": "Kaggle",
+        "url": "https://www.kaggle.com"
+    },
+    "creator": {
+        "@type": "sc:Person",
+        "name": "Umair Zia",
+        "url": "/stealthtechnologies",
+        "image": "https://storage.googleapis.com/kaggle-avatars/thumbnails/16064013-kg.jpg"
+    },
+    "publisher": {
+        "@type": "sc:Organization",
+        "name": "Kaggle",
+        "url": "https://www.kaggle.com/organizations/kaggle",
+        "image": "https://storage.googleapis.com/kaggle-organizations/4/thumbnail.png"
+    },
+    "thumbnailUrl": "https://storage.googleapis.com/kaggle-datasets-images/5428010/9009433/b8075fd6ecec0402feca0b3ce44bd557/dataset-card.jpg?t=2024-07-22-11-23-24",
+    "dateModified": "2024-07-22T10:41:02.663",
+    "datePublished": "2024-07-22T11:26:02.5920662",
+    "@type": "sc:Dataset",
+    "name": "Predict Bankruptcy in Poland",
+    "url": "https://www.kaggle.com/datasets/stealthtechnologies/predict-bankruptcy-in-poland/versions/1",
+    "description": "### From UCI Machine Learning Repository: *[SOURCE](https://archive.ics.uci.edu/dataset/365/polish\u002Bcompanies\u002Bbankruptcy\u002Bdata)*\n\n\n##### Brief Introduction to Dataset\nThe dataset is about bankruptcy prediction of **Polish** companies.The bankrupt companies were analyzed in the period **2000-2012**, while the still operating companies were evaluated from **2007 to 2013.**\n\n### Overview:\nThe dataset consists of financial data used to predict bankruptcy among Polish companies. The data was collected from the Emerging Markets Information Service (EMIS, http://www.securities.com), focusing on the period from 2000 to 2013. The **original dataset** included five separate files, each corresponding to different **forecasting** periods. These periods reflect varying years of **financial data** and their corresponding **bankruptcy status.**\n\n~~___________________________________________________________________________________________________________________~~\n\n## Original Files and Forecasting Periods\n\n**1stYear.arff:** Contains financial data from the 1st year of the forecasting period with bankruptcy status after 5 years. It includes 7,027 instances (271 bankrupted, 6,756 non-bankrupted).\n\n**2ndYear.arff:** Contains financial data from the 2nd year with bankruptcy status after 4 years. It includes 10,173 instances (400 bankrupted, 9,773 non-bankrupted).\n\n**3rdYear.arff:** Contains financial data from the 3rd year with bankruptcy status after 3 years. It includes 10,503 instances (495 bankrupted, 10,008 non-bankrupted).\n\n**4thYear.arff:** Contains financial data from the 4th year with bankruptcy status after 2 years. It includes 9,792 instances (515 bankrupted, 9,277 non-bankrupted).\n\n**5thYear.arff:** Contains financial data from the 5th year with bankruptcy status after 1 year. It includes 5,910 instances (410 bankrupted, 5,500 non-bankrupted)."
+}

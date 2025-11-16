@@ -1,0 +1,24 @@
+feature,readable_name,category,interpretation,importance_sources
+Attr2,Liabilities / Assets,Leverage,Debt ratio. Higher values indicate higher financial leverage and risk.,High SHAP
+Attr43,Operating Cycle (days),Activity,Total operating cycle length. Lower is better.,High VIF
+Attr40,Cash Ratio,Liquidity,Most conservative liquidity ratio. Only cash and equivalents.,"High Coefficient, High SHAP"
+Attr31,GP + Interest / Sales,Profitability,Profitability before interest cost.,High VIF
+Attr62,Payables Days (Sales),Activity,Payables period based on sales.,"High VIF, High Coefficient"
+Attr17,Asset to Liability Ratio,Leverage,Asset coverage of liabilities. Values > 1 indicate positive equity.,High SHAP
+Attr32,Payables Days,Activity,Days payable outstanding. Payment cycle to suppliers.,High SHAP
+Attr27__isna,Op. Profit / Fin. Expenses (Missing),Profitability,Interest coverage ratio. Higher values indicate ability to service debt.,High Coefficient
+Attr38,Constant Capital / Assets,Leverage,Permanent capital proportion.,High SHAP
+Attr35,Profit on Sales / Assets,Profitability,Sales profitability relative to asset base.,High Coefficient
+Attr42,Operating Margin,Profitability,Operating profit margin. Core business profitability.,"High VIF, High Coefficient"
+Attr57,Defensive Interval,Liquidity,Days company can operate without additional cash inflow.,High SHAP
+Attr20,Inventory Days,Activity,Days inventory outstanding. Lower indicates faster turnover.,High VIF
+Attr44,Receivables Days,Activity,Days sales outstanding. Collection period.,High VIF
+Attr36,Sales / Assets,Activity,Asset turnover. Efficiency of asset utilization.,High SHAP
+Attr49,EBITDA Margin,Profitability,EBITDA margin. Cash operating profitability.,"High VIF, High Coefficient"
+Attr33,Op. Expenses / ST Liab.,Leverage,Operating expense burden relative to short-term debt.,High SHAP
+Attr34,Op. Expenses / Liabilities,Leverage,Operating expense burden relative to total debt.,High Coefficient
+Attr11,Gross Profit + Extras / Assets,Profitability,Adjusted profitability including non-operating items.,High VIF
+Attr50,Current Assets / Liabilities,Liquidity,Short-term assets coverage of all liabilities.,High Coefficient
+Attr13,Gross Margin + Depr.,Profitability,Gross margin adjusted for depreciation.,"High VIF, High Coefficient"
+Attr56,Gross Margin (alt),Profitability,Alternative calculation of gross margin.,"High VIF, High SHAP"
+Attr39,Profit Margin,Profitability,Operating profit margin.,"High Coefficient, High SHAP"

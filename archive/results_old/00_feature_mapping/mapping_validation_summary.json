@@ -1,0 +1,12 @@
+{
+  "total_features": 10,
+  "polish_mapped": 20,
+  "american_mapped": 10,
+  "taiwan_mapped": 21,
+  "polish_exist": 10,
+  "american_exist": 10,
+  "taiwan_exist": 0,
+  "critical_issue": "Taiwan uses F-codes in processed data but mapping uses descriptive names",
+  "impact": "Polish \u2194 American transfer works, but Taiwan transfer is broken",
+  "recommendation": "Remap Taiwan using F-codes instead of descriptive names"
+}

@@ -1,0 +1,129 @@
+feature_1,feature_2,correlation
+Net Sales,Total Revenue,1.0
+Total Revenue,Operating Expenses,0.9899242981305922
+Net Sales,Operating Expenses,0.9899242981305922
+Total Assets,Total Liabilities,0.9781320655610417
+Cost of Goods Sold,Operating Expenses,0.9774690739250602
+EBITDA,EBIT,0.9766008271588565
+Cost of Goods Sold,Net Sales,0.9578327462406527
+Cost of Goods Sold,Total Revenue,0.9578327462406527
+EBITDA,Gross Profit,0.9491990932785789
+Long-term Debt,Total Liabilities,0.947434244320197
+EBITDA,Total Assets,0.9422253128044475
+EBIT,Gross Profit,0.9349072841947234
+EBITDA,Total Liabilities,0.9265621399339945
+Current Assets,Current Liabilities,0.9264920786667241
+Current Assets,Total Receivables,0.9228887175352162
+Current Assets,Net Sales,0.9211803933953273
+Current Assets,Total Revenue,0.9211803933953273
+Total Assets,Long-term Debt,0.9202998455043303
+Current Liabilities,Total Liabilities,0.9179900283527347
+Depreciation & Amortization,Total Assets,0.9116833793807504
+Market Value,EBIT,0.9077730854816062
+Total Assets,Current Liabilities,0.9074026772769157
+Net Income,EBIT,0.9069008381314881
+Net Sales,Current Liabilities,0.9061112282953997
+Current Liabilities,Total Revenue,0.9061112282953997
+Gross Profit,Total Revenue,0.9037082504405962
+Net Sales,Gross Profit,0.9037082504405961
+Current Assets,Gross Profit,0.901323593377815
+Depreciation & Amortization,EBITDA,0.9012750314757738
+Total Assets,EBIT,0.9004920505511615
+Market Value,Gross Profit,0.9003584700564686
+Current Assets,Operating Expenses,0.8971694031668116
+Total Assets,Gross Profit,0.8951868247934258
+EBITDA,Market Value,0.8945788290317082
+Depreciation & Amortization,Total Liabilities,0.8912472546955373
+Total Receivables,Current Liabilities,0.8873529635859593
+EBIT,Total Liabilities,0.8866301135874228
+Gross Profit,Current Liabilities,0.8864809862202295
+Total Receivables,Total Revenue,0.881553901289675
+Total Receivables,Net Sales,0.881553901289675
+Current Liabilities,Operating Expenses,0.8806491258837463
+EBITDA,Long-term Debt,0.8798138034781359
+EBITDA,Total Revenue,0.8793272724448429
+EBITDA,Net Sales,0.8793272724448429
+Gross Profit,Total Liabilities,0.8792187490105043
+EBITDA,Current Liabilities,0.8764155074508482
+EBIT,Total Revenue,0.8751095017418095
+Net Sales,EBIT,0.8751095017418095
+Current Assets,EBIT,0.8717640661455568
+Depreciation & Amortization,Long-term Debt,0.8717497376511024
+Current Assets,EBITDA,0.8715323703974158
+Current Assets,Total Assets,0.867256636358764
+Total Receivables,Operating Expenses,0.8595386780585901
+Net Sales,Total Assets,0.8593590663836147
+Total Assets,Total Revenue,0.8593590663836147
+EBITDA,Net Income,0.8584578413395155
+Gross Profit,Operating Expenses,0.8575465446304495
+EBIT,Current Liabilities,0.85627977973687
+Current Assets,Total Liabilities,0.854217972351842
+Net Income,Market Value,0.8526910370101876
+Net Sales,Total Liabilities,0.8520650593907415
+Total Revenue,Total Liabilities,0.8520650593907415
+Market Value,Total Assets,0.8487777823205818
+Current Assets,Cost of Goods Sold,0.8430867010020723
+Depreciation & Amortization,Gross Profit,0.8426798334751154
+Total Receivables,Total Assets,0.8393454888132946
+Cost of Goods Sold,Current Liabilities,0.8374277943583387
+Current Assets,Market Value,0.8356984618696349
+Inventory,Operating Expenses,0.8354453270681218
+Long-term Debt,EBIT,0.833474998718013
+Inventory,Total Revenue,0.8310850162391008
+Inventory,Net Sales,0.8310850162391008
+Total Receivables,Gross Profit,0.8306253495651278
+EBITDA,Total Receivables,0.8302868653886087
+Total Receivables,Total Liabilities,0.8271910836450099
+Net Income,Gross Profit,0.8265598679098385
+Total Receivables,EBIT,0.823239637549695
+Market Value,Total Liabilities,0.8217357159118408
+Cost of Goods Sold,Total Receivables,0.8215994353829414
+EBIT,Operating Expenses,0.8177328986527246
+EBITDA,Operating Expenses,0.8176263043020406
+Depreciation & Amortization,EBIT,0.8158949104651414
+Depreciation & Amortization,Current Liabilities,0.8143007914789494
+Current Assets,Inventory,0.8132684159036215
+Long-term Debt,Gross Profit,0.8129539359496816
+Market Value,Current Liabilities,0.8120875985536904
+Cost of Goods Sold,Inventory,0.8086546110097119
+Total Assets,Operating Expenses,0.8078885339780769
+Total Liabilities,Operating Expenses,0.8053012364354583
+Long-term Debt,Current Liabilities,0.7994315325191107
+Depreciation & Amortization,Total Revenue,0.790583077450063
+Depreciation & Amortization,Net Sales,0.790583077450063
+Market Value,Net Sales,0.7895649589406128
+Market Value,Total Revenue,0.7895649589406128
+Cost of Goods Sold,Gross Profit,0.7756553650147691
+Net Income,Total Assets,0.7723756152126907
+Current Assets,Net Income,0.7708038564262321
+Cost of Goods Sold,Total Liabilities,0.7706777353536928
+Net Income,Retained Earnings,0.7703197833201699
+Current Assets,Depreciation & Amortization,0.7701458851861012
+Net Income,Total Revenue,0.7697944736142364
+Net Income,Net Sales,0.7697944736142364
+Cost of Goods Sold,EBITDA,0.7666358196087089
+Cost of Goods Sold,Total Assets,0.7665744521600574
+Cost of Goods Sold,EBIT,0.7659337116177515
+Net Sales,Long-term Debt,0.7643019456065858
+Long-term Debt,Total Revenue,0.7643019456065857
+Total Receivables,Market Value,0.7616241509466445
+Market Value,Long-term Debt,0.7592168761521856
+Depreciation & Amortization,Market Value,0.7584802752483809
+Inventory,Gross Profit,0.7534284148884901
+Current Assets,Long-term Debt,0.7496856544963147
+EBIT,Retained Earnings,0.7485866229513111
+Depreciation & Amortization,Total Receivables,0.7485618954294934
+Inventory,Current Liabilities,0.7459189186941692
+Net Income,Current Liabilities,0.7405832827554586
+Net Income,Total Liabilities,0.7392623659560803
+Depreciation & Amortization,Operating Expenses,0.7376300176050098
+Market Value,Operating Expenses,0.7345809379289625
+Total Receivables,Long-term Debt,0.7326719412485474
+EBITDA,Retained Earnings,0.7220884050748543
+Net Income,Total Receivables,0.7187054401397298
+Net Income,Operating Expenses,0.7180284929308246
+Gross Profit,Retained Earnings,0.7179524139692761
+Market Value,Retained Earnings,0.7173400103012151
+Long-term Debt,Operating Expenses,0.7130533159115017
+Inventory,Total Receivables,0.7095108498456771
+Inventory,EBIT,0.7073475575079484

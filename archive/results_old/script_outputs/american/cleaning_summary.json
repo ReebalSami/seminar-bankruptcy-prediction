@@ -1,0 +1,11 @@
+{
+  "total_samples": 78682,
+  "companies": 8971,
+  "years": "1999-2018",
+  "features": 18,
+  "bankruptcy_rate": 0.06634300094049465,
+  "bankruptcies": 5220,
+  "modeling_samples": 3700,
+  "modeling_bankruptcies": 119,
+  "modeling_rate": 0.03216216216216216
+}

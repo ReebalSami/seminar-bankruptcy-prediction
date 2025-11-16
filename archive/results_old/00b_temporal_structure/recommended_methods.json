@@ -1,0 +1,36 @@
+{
+  "polish": {
+    "valid_methods": [
+      "Temporal Holdout Validation",
+      "Train on early periods, test on later"
+    ],
+    "invalid_methods": [
+      "Panel VAR",
+      "Granger Causality",
+      "Lagged Features (no company tracking)"
+    ],
+    "warning": "CRITICAL: Cannot use panel methods! Different companies each period."
+  },
+  "american": {
+    "valid_methods": [
+      "Panel VAR",
+      "Granger Causality",
+      "ADF test",
+      "Temporal Holdout",
+      "Lagged Features"
+    ],
+    "invalid_methods": [],
+    "warning": null
+  },
+  "taiwan": {
+    "valid_methods": [
+      "Panel VAR (with gaps)",
+      "Temporal Holdout",
+      "Lagged Features"
+    ],
+    "invalid_methods": [
+      "Granger Causality (requires balanced panel)"
+    ],
+    "warning": "Panel VAR possible but handle missing periods carefully"
+  }
+}

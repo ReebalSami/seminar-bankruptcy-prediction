@@ -1,0 +1,10 @@
+{
+  "vif_high_count": 17,
+  "vif_moderate_count": 11,
+  "vif_low_count": 20,
+  "top_protective_feature": "Profit Margin",
+  "top_protective_coef": -1.4516210198419313,
+  "top_shap_feature": "Cash Ratio",
+  "top_shap_value": 0.03760969927343833,
+  "features_analyzed": 48
+}

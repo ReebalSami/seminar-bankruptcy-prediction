@@ -1,0 +1,224 @@
+{
+  "semantic_mappings": {
+    "ROA": {
+      "polish": [
+        "Attr1",
+        "Attr7"
+      ],
+      "american": [
+        "X1"
+      ],
+      "taiwan": [
+        "F02",
+        "F03",
+        "F04"
+      ]
+    },
+    "Debt_Ratio": {
+      "polish": [
+        "Attr2",
+        "Attr27"
+      ],
+      "american": [
+        "X2"
+      ],
+      "taiwan": [
+        "F38",
+        "F92"
+      ]
+    },
+    "Current_Ratio": {
+      "polish": [
+        "Attr3",
+        "Attr10"
+      ],
+      "american": [
+        "X4"
+      ],
+      "taiwan": [
+        "F34",
+        "F35"
+      ]
+    },
+    "Net_Profit_Margin": {
+      "polish": [
+        "Attr5",
+        "Attr21"
+      ],
+      "american": [
+        "X3"
+      ],
+      "taiwan": [
+        "F07",
+        "F08"
+      ]
+    },
+    "Asset_Turnover": {
+      "polish": [
+        "Attr9",
+        "Attr15"
+      ],
+      "american": [
+        "X5"
+      ],
+      "taiwan": [
+        "F46",
+        "F50"
+      ]
+    },
+    "Working_Capital": {
+      "polish": [
+        "Attr6",
+        "Attr11"
+      ],
+      "american": [
+        "X6"
+      ],
+      "taiwan": [
+        "F55",
+        "F82"
+      ]
+    },
+    "Equity_Ratio": {
+      "polish": [
+        "Attr8",
+        "Attr28"
+      ],
+      "american": [
+        "X7"
+      ],
+      "taiwan": [
+        "F96",
+        "F39"
+      ]
+    },
+    "Operating_Margin": {
+      "polish": [
+        "Attr13",
+        "Attr20"
+      ],
+      "american": [
+        "X8"
+      ],
+      "taiwan": [
+        "F05",
+        "F06"
+      ]
+    },
+    "Cash_Flow_Ratio": {
+      "polish": [
+        "Attr12",
+        "Attr18"
+      ],
+      "american": [
+        "X9"
+      ],
+      "taiwan": [
+        "F14",
+        "F76"
+      ]
+    },
+    "Quick_Ratio": {
+      "polish": [
+        "Attr4",
+        "Attr14"
+      ],
+      "american": [
+        "X10"
+      ],
+      "taiwan": [
+        "F35",
+        "F60"
+      ]
+    }
+  },
+  "common_features": [
+    "ROA",
+    "Debt_Ratio",
+    "Current_Ratio",
+    "Net_Profit_Margin",
+    "Asset_Turnover",
+    "Working_Capital",
+    "Equity_Ratio",
+    "Operating_Margin",
+    "Cash_Flow_Ratio",
+    "Quick_Ratio"
+  ],
+  "validation": {
+    "ROA": {
+      "polish_corr": 0.13585342915637028,
+      "american_corr": 0.040896660151636066,
+      "taiwan_corr": 0.22338743152496185,
+      "similarity": 0.18307502778534201
+    },
+    "Debt_Ratio": {
+      "polish_corr": 0.08541911592683665,
+      "american_corr": 0.01011604151182809,
+      "taiwan_corr": 0.20898200547776258,
+      "similarity": 0.048406280645363564
+    },
+    "Current_Ratio": {
+      "polish_corr": 0.11917679126708601,
+      "american_corr": 0.05316548904650818,
+      "taiwan_corr": 0.19579082753339022,
+      "similarity": 0.27154228719058415
+    },
+    "Net_Profit_Margin": {
+      "polish_corr": 0.07625821232794647,
+      "american_corr": 0.0022040028392740206,
+      "taiwan_corr": 0.20154309491868583,
+      "similarity": 0.010935641030369703
+    },
+    "Asset_Turnover": {
+      "polish_corr": 0.026930374556267005,
+      "american_corr": 0.012871016997556493,
+      "taiwan_corr": 0.06877577390623524,
+      "similarity": 0.18714463462657072
+    },
+    "Working_Capital": {
+      "polish_corr": 0.11595618635051018,
+      "american_corr": 0.11162407369954924,
+      "taiwan_corr": 0.12617709941090466,
+      "similarity": 0.884661909587661
+    },
+    "Equity_Ratio": {
+      "polish_corr": 0.11286960060848752,
+      "american_corr": 0.04111844094983885,
+      "taiwan_corr": 0.21723602845434475,
+      "similarity": 0.18928002561763135
+    },
+    "Operating_Margin": {
+      "polish_corr": 0.08420261922037134,
+      "american_corr": 0.06989116290251889,
+      "taiwan_corr": 0.14710593036314232,
+      "similarity": 0.47510771851601363
+    },
+    "Cash_Flow_Ratio": {
+      "polish_corr": 0.14148114595838937,
+      "american_corr": 0.022209622295575906,
+      "taiwan_corr": 0.11901222337271138,
+      "similarity": 0.15697937862625166
+    },
+    "Quick_Ratio": {
+      "polish_corr": 0.12832807493791784,
+      "american_corr": 0.016642995917643642,
+      "taiwan_corr": 0.17434499720493174,
+      "similarity": 0.09546012948415628
+    }
+  },
+  "fix_applied": "Taiwan features changed from descriptive names to F-codes",
+  "datasets": {
+    "polish": {
+      "n_features": 66,
+      "samples": 43405
+    },
+    "american": {
+      "n_features": 20,
+      "samples": 78682
+    },
+    "taiwan": {
+      "n_features": 95,
+      "samples": 6819
+    }
+  }
+}

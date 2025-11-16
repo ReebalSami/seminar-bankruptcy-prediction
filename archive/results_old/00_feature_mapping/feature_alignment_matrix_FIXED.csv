@@ -1,0 +1,43 @@
+semantic_feature,polish_feature,american_feature,taiwan_fcode,taiwan_description
+ROA,Attr1,X1,F02,ROA(C) before interest and depreciation before interest
+ROA,Attr1,X1,F03,ROA(A) before interest and % after tax
+ROA,Attr1,X1,F04,ROA(B) before interest and depreciation after tax
+ROA,Attr7,X1,F02,ROA(C) before interest and depreciation before interest
+ROA,Attr7,X1,F03,ROA(A) before interest and % after tax
+ROA,Attr7,X1,F04,ROA(B) before interest and depreciation after tax
+Debt_Ratio,Attr2,X2,F38,Debt ratio %
+Debt_Ratio,Attr2,X2,F92,Liability to Equity
+Debt_Ratio,Attr27,X2,F38,Debt ratio %
+Debt_Ratio,Attr27,X2,F92,Liability to Equity
+Current_Ratio,Attr3,X4,F34,Current Ratio
+Current_Ratio,Attr3,X4,F35,Quick Ratio
+Current_Ratio,Attr10,X4,F34,Current Ratio
+Current_Ratio,Attr10,X4,F35,Quick Ratio
+Net_Profit_Margin,Attr5,X3,F07,Operating Profit Rate
+Net_Profit_Margin,Attr5,X3,F08,Pre-tax net Interest Rate
+Net_Profit_Margin,Attr21,X3,F07,Operating Profit Rate
+Net_Profit_Margin,Attr21,X3,F08,Pre-tax net Interest Rate
+Asset_Turnover,Attr9,X5,F46,Total Asset Turnover
+Asset_Turnover,Attr9,X5,F50,Fixed Assets Turnover Frequency
+Asset_Turnover,Attr15,X5,F46,Total Asset Turnover
+Asset_Turnover,Attr15,X5,F50,Fixed Assets Turnover Frequency
+Working_Capital,Attr6,X6,F55,Working Capital to Total Assets
+Working_Capital,Attr6,X6,F82,Cash Flow to Liability
+Working_Capital,Attr11,X6,F55,Working Capital to Total Assets
+Working_Capital,Attr11,X6,F82,Cash Flow to Liability
+Equity_Ratio,Attr8,X7,F96,Equity to Liability
+Equity_Ratio,Attr8,X7,F39,Net worth/Assets
+Equity_Ratio,Attr28,X7,F96,Equity to Liability
+Equity_Ratio,Attr28,X7,F39,Net worth/Assets
+Operating_Margin,Attr13,X8,F05,Operating Gross Margin
+Operating_Margin,Attr13,X8,F06,Realized Sales Gross Margin
+Operating_Margin,Attr20,X8,F05,Operating Gross Margin
+Operating_Margin,Attr20,X8,F06,Realized Sales Gross Margin
+Cash_Flow_Ratio,Attr12,X9,F14,Cash flow rate
+Cash_Flow_Ratio,Attr12,X9,F76,Cash Flow to Sales
+Cash_Flow_Ratio,Attr18,X9,F14,Cash flow rate
+Cash_Flow_Ratio,Attr18,X9,F76,Cash Flow to Sales
+Quick_Ratio,Attr4,X10,F35,Quick Ratio
+Quick_Ratio,Attr4,X10,F60,Cash/Current Liability
+Quick_Ratio,Attr14,X10,F35,Quick Ratio
+Quick_Ratio,Attr14,X10,F60,Cash/Current Liability

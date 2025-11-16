@@ -1,0 +1,4 @@
+Dataset,Source,Companies,Features,Feature_Type,Bankruptcy_Rate_%,Bankruptcies,Horizons,Time_Period
+Polish,UCI ML Repository,43405,64,Financial Ratios,4.81741734823177,2091,5,2000-2013
+American,Kaggle (NYSE/NASDAQ),8971,18,Absolute Values,6.634300094049466,5220,1,1999-2018
+Taiwan,TEJ Database,6819,95,Financial Ratios,3.2262795131250916,220,1,1999-2009

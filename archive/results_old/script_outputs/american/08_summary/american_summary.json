@@ -1,0 +1,29 @@
+{
+  "dataset": "American (NYSE/NASDAQ)",
+  "total_samples": 78682,
+  "modeling_samples": 3700,
+  "features": 18,
+  "bankruptcy_rate": 0.0322,
+  "scripts_completed": [
+    "01_data_cleaning",
+    "02_eda",
+    "03_baseline_models",
+    "04_advanced_models",
+    "05_model_calibration",
+    "06_feature_importance",
+    "07_robustness_check",
+    "08_summary_report"
+  ],
+  "best_models": {
+    "baseline": {
+      "model": "Random Forest",
+      "auc": 0.8667
+    },
+    "advanced": {
+      "model": "CatBoost",
+      "auc": 0.8529
+    }
+  },
+  "calibration": "LR: +80.5%, RF: +46.4% Brier improvement",
+  "status": "Complete - All 8 scripts run successfully"
+}

@@ -1,0 +1,561 @@
+{
+  "dataset_info": {
+    "name": "Polish Companies Bankruptcy Prediction",
+    "source": "UCI Machine Learning Repository",
+    "url": "https://archive.ics.uci.edu/dataset/365/polish+companies+bankruptcy+data",
+    "period": {
+      "bankrupt_firms": "2000-2012",
+      "healthy_firms": "2007-2013"
+    },
+    "instances": 5910,
+    "bankrupt": 410,
+    "healthy": 5500,
+    "features": 64
+  },
+  "features": {
+    "A1": {
+      "name": "Net Profit / Total Assets",
+      "short_name": "Net Profit / Assets",
+      "category": "Profitability",
+      "formula": "net profit / total assets",
+      "interpretation": "Return on Assets (ROA). Higher values indicate better profitability."
+    },
+    "A2": {
+      "name": "Total Liabilities / Total Assets",
+      "short_name": "Liabilities / Assets",
+      "category": "Leverage",
+      "formula": "total liabilities / total assets",
+      "interpretation": "Debt ratio. Higher values indicate higher financial leverage and risk."
+    },
+    "A3": {
+      "name": "Working Capital / Total Assets",
+      "short_name": "Working Capital / Assets",
+      "category": "Liquidity",
+      "formula": "working capital / total assets",
+      "interpretation": "Proportion of assets in liquid form. Higher is better for short-term obligations."
+    },
+    "A4": {
+      "name": "Current Assets / Short-term Liabilities",
+      "short_name": "Current Ratio",
+      "category": "Liquidity",
+      "formula": "current assets / short-term liabilities",
+      "interpretation": "Current ratio. Values > 1 indicate ability to cover short-term debts."
+    },
+    "A5": {
+      "name": "[(Cash + Short-term Securities + Receivables - Short-term Liabilities) / (Operating Expenses - Depreciation)] * 365",
+      "short_name": "Cash Cycle (days)",
+      "category": "Liquidity",
+      "formula": "[(cash + short-term securities + receivables - short-term liabilities) / (operating expenses - depreciation)] * 365",
+      "interpretation": "Days of cash coverage. Negative values indicate immediate liquidity problems."
+    },
+    "A6": {
+      "name": "Retained Earnings / Total Assets",
+      "short_name": "Retained Earnings / Assets",
+      "category": "Profitability",
+      "formula": "retained earnings / total assets",
+      "interpretation": "Cumulative profitability. Part of Altman Z-Score."
+    },
+    "A7": {
+      "name": "EBIT / Total Assets",
+      "short_name": "EBIT / Assets",
+      "category": "Profitability",
+      "formula": "EBIT / total assets",
+      "interpretation": "Operating profitability. Key indicator of core business performance."
+    },
+    "A8": {
+      "name": "Book Value of Equity / Total Liabilities",
+      "short_name": "Equity / Liabilities",
+      "category": "Leverage",
+      "formula": "book value of equity / total liabilities",
+      "interpretation": "Equity cushion. Higher values indicate stronger solvency."
+    },
+    "A9": {
+      "name": "Sales / Total Assets",
+      "short_name": "Asset Turnover",
+      "category": "Activity",
+      "formula": "sales / total assets",
+      "interpretation": "Asset turnover efficiency. Higher values indicate better asset utilization."
+    },
+    "A10": {
+      "name": "Equity / Total Assets",
+      "short_name": "Equity / Assets",
+      "category": "Leverage",
+      "formula": "equity / total assets",
+      "interpretation": "Equity ratio. Complement of debt ratio."
+    },
+    "A11": {
+      "name": "(Gross Profit + Extraordinary Items + Financial Expenses) / Total Assets",
+      "short_name": "Gross Profit + Extras / Assets",
+      "category": "Profitability",
+      "formula": "(gross profit + extraordinary items + financial expenses) / total assets",
+      "interpretation": "Adjusted profitability including non-operating items."
+    },
+    "A12": {
+      "name": "Gross Profit / Short-term Liabilities",
+      "short_name": "Gross Profit / ST Liab.",
+      "category": "Profitability",
+      "formula": "gross profit / short-term liabilities",
+      "interpretation": "Ability to cover short-term debt with profits."
+    },
+    "A13": {
+      "name": "(Gross Profit + Depreciation) / Sales",
+      "short_name": "Gross Margin + Depr.",
+      "category": "Profitability",
+      "formula": "(gross profit + depreciation) / sales",
+      "interpretation": "Gross margin adjusted for depreciation."
+    },
+    "A14": {
+      "name": "(Gross Profit + Interest) / Total Assets",
+      "short_name": "Gross Profit + Interest / Assets",
+      "category": "Profitability",
+      "formula": "(gross profit + interest) / total assets",
+      "interpretation": "Profitability before interest expense."
+    },
+    "A15": {
+      "name": "(Total Liabilities * 365) / (Gross Profit + Depreciation)",
+      "short_name": "Liabilities Coverage (days)",
+      "category": "Leverage",
+      "formula": "(total liabilities * 365) / (gross profit + depreciation)",
+      "interpretation": "Days to repay all debt with operating cash. Lower is better."
+    },
+    "A16": {
+      "name": "(Gross Profit + Depreciation) / Total Liabilities",
+      "short_name": "GP + Depr. / Liabilities",
+      "category": "Leverage",
+      "formula": "(gross profit + depreciation) / total liabilities",
+      "interpretation": "Operating cash generation relative to debt."
+    },
+    "A17": {
+      "name": "Total Assets / Total Liabilities",
+      "short_name": "Asset to Liability Ratio",
+      "category": "Leverage",
+      "formula": "total assets / total liabilities",
+      "interpretation": "Asset coverage of liabilities. Values > 1 indicate positive equity."
+    },
+    "A18": {
+      "name": "Gross Profit / Total Assets",
+      "short_name": "Gross Profit / Assets",
+      "category": "Profitability",
+      "formula": "gross profit / total assets",
+      "interpretation": "Gross return on assets."
+    },
+    "A19": {
+      "name": "Gross Profit / Sales",
+      "short_name": "Gross Margin",
+      "category": "Profitability",
+      "formula": "gross profit / sales",
+      "interpretation": "Gross profit margin. Key profitability indicator."
+    },
+    "A20": {
+      "name": "(Inventory * 365) / Sales",
+      "short_name": "Inventory Days",
+      "category": "Activity",
+      "formula": "(inventory * 365) / sales",
+      "interpretation": "Days inventory outstanding. Lower indicates faster turnover."
+    },
+    "A21": {
+      "name": "Sales (n) / Sales (n-1)",
+      "short_name": "Sales Growth",
+      "category": "Activity",
+      "formula": "sales (n) / sales (n-1)",
+      "interpretation": "Year-over-year sales growth ratio."
+    },
+    "A22": {
+      "name": "Profit on Operating Activities / Total Assets",
+      "short_name": "Operating Profit / Assets",
+      "category": "Profitability",
+      "formula": "profit on operating activities / total assets",
+      "interpretation": "Operating return on assets."
+    },
+    "A23": {
+      "name": "Net Profit / Sales",
+      "short_name": "Net Margin",
+      "category": "Profitability",
+      "formula": "net profit / sales",
+      "interpretation": "Net profit margin. Bottom-line profitability."
+    },
+    "A24": {
+      "name": "Gross Profit (in 3 years) / Total Assets",
+      "short_name": "GP (3yr) / Assets",
+      "category": "Profitability",
+      "formula": "gross profit (in 3 years) / total assets",
+      "interpretation": "Multi-year cumulative profitability."
+    },
+    "A25": {
+      "name": "(Equity - Share Capital) / Total Assets",
+      "short_name": "Retained Equity / Assets",
+      "category": "Leverage",
+      "formula": "(equity - share capital) / total assets",
+      "interpretation": "Retained earnings as proportion of assets."
+    },
+    "A26": {
+      "name": "(Net Profit + Depreciation) / Total Liabilities",
+      "short_name": "NP + Depr. / Liabilities",
+      "category": "Leverage",
+      "formula": "(net profit + depreciation) / total liabilities",
+      "interpretation": "Cash generation relative to debt burden."
+    },
+    "A27": {
+      "name": "Profit on Operating Activities / Financial Expenses",
+      "short_name": "Op. Profit / Fin. Expenses",
+      "category": "Profitability",
+      "formula": "profit on operating activities / financial expenses",
+      "interpretation": "Interest coverage ratio. Higher values indicate ability to service debt."
+    },
+    "A28": {
+      "name": "Working Capital / Fixed Assets",
+      "short_name": "WC / Fixed Assets",
+      "category": "Liquidity",
+      "formula": "working capital / fixed assets",
+      "interpretation": "Liquidity relative to long-term assets."
+    },
+    "A29": {
+      "name": "Logarithm of Total Assets",
+      "short_name": "Log(Total Assets)",
+      "category": "Size",
+      "formula": "logarithm of total assets",
+      "interpretation": "Company size. Larger firms may have different risk profiles."
+    },
+    "A30": {
+      "name": "(Total Liabilities - Cash) / Sales",
+      "short_name": "Net Debt / Sales",
+      "category": "Leverage",
+      "formula": "(total liabilities - cash) / sales",
+      "interpretation": "Net debt burden relative to revenue."
+    },
+    "A31": {
+      "name": "(Gross Profit + Interest) / Sales",
+      "short_name": "GP + Interest / Sales",
+      "category": "Profitability",
+      "formula": "(gross profit + interest) / sales",
+      "interpretation": "Profitability before interest cost."
+    },
+    "A32": {
+      "name": "(Current Liabilities * 365) / Cost of Products Sold",
+      "short_name": "Payables Days",
+      "category": "Activity",
+      "formula": "(current liabilities * 365) / cost of products sold",
+      "interpretation": "Days payable outstanding. Payment cycle to suppliers."
+    },
+    "A33": {
+      "name": "Operating Expenses / Short-term Liabilities",
+      "short_name": "Op. Expenses / ST Liab.",
+      "category": "Leverage",
+      "formula": "operating expenses / short-term liabilities",
+      "interpretation": "Operating expense burden relative to short-term debt."
+    },
+    "A34": {
+      "name": "Operating Expenses / Total Liabilities",
+      "short_name": "Op. Expenses / Liabilities",
+      "category": "Leverage",
+      "formula": "operating expenses / total liabilities",
+      "interpretation": "Operating expense burden relative to total debt."
+    },
+    "A35": {
+      "name": "Profit on Sales / Total Assets",
+      "short_name": "Profit on Sales / Assets",
+      "category": "Profitability",
+      "formula": "profit on sales / total assets",
+      "interpretation": "Sales profitability relative to asset base."
+    },
+    "A36": {
+      "name": "Total Sales / Total Assets",
+      "short_name": "Sales / Assets",
+      "category": "Activity",
+      "formula": "total sales / total assets",
+      "interpretation": "Asset turnover. Efficiency of asset utilization."
+    },
+    "A37": {
+      "name": "(Current Assets - Inventories) / Long-term Liabilities",
+      "short_name": "Quick Assets / LT Liab.",
+      "category": "Liquidity",
+      "formula": "(current assets - inventories) / long-term liabilities",
+      "interpretation": "Quick assets coverage of long-term debt."
+    },
+    "A38": {
+      "name": "Constant Capital / Total Assets",
+      "short_name": "Constant Capital / Assets",
+      "category": "Leverage",
+      "formula": "constant capital / total assets",
+      "interpretation": "Permanent capital proportion."
+    },
+    "A39": {
+      "name": "Profit on Sales / Sales",
+      "short_name": "Profit Margin",
+      "category": "Profitability",
+      "formula": "profit on sales / sales",
+      "interpretation": "Operating profit margin."
+    },
+    "A40": {
+      "name": "(Current Assets - Inventory - Receivables) / Short-term Liabilities",
+      "short_name": "Cash Ratio",
+      "category": "Liquidity",
+      "formula": "(current assets - inventory - receivables) / short-term liabilities",
+      "interpretation": "Most conservative liquidity ratio. Only cash and equivalents."
+    },
+    "A41": {
+      "name": "Total Liabilities / ((Profit on Operating Activities + Depreciation) * (12/365))",
+      "short_name": "Debt Service Coverage",
+      "category": "Leverage",
+      "formula": "total liabilities / ((profit on operating activities + depreciation) * (12/365))",
+      "interpretation": "Months of operating cash needed to repay all debt."
+    },
+    "A42": {
+      "name": "Profit on Operating Activities / Sales",
+      "short_name": "Operating Margin",
+      "category": "Profitability",
+      "formula": "profit on operating activities / sales",
+      "interpretation": "Operating profit margin. Core business profitability."
+    },
+    "A43": {
+      "name": "Rotation Receivables + Inventory Turnover in Days",
+      "short_name": "Operating Cycle (days)",
+      "category": "Activity",
+      "formula": "rotation receivables + inventory turnover in days",
+      "interpretation": "Total operating cycle length. Lower is better."
+    },
+    "A44": {
+      "name": "(Receivables * 365) / Sales",
+      "short_name": "Receivables Days",
+      "category": "Activity",
+      "formula": "(receivables * 365) / sales",
+      "interpretation": "Days sales outstanding. Collection period."
+    },
+    "A45": {
+      "name": "Net Profit / Inventory",
+      "short_name": "Net Profit / Inventory",
+      "category": "Activity",
+      "formula": "net profit / inventory",
+      "interpretation": "Profitability per unit of inventory."
+    },
+    "A46": {
+      "name": "(Current Assets - Inventory) / Short-term Liabilities",
+      "short_name": "Quick Ratio",
+      "category": "Liquidity",
+      "formula": "(current assets - inventory) / short-term liabilities",
+      "interpretation": "Quick ratio. Liquidity without relying on inventory sales."
+    },
+    "A47": {
+      "name": "(Inventory * 365) / Cost of Products Sold",
+      "short_name": "Inventory Days (COGS)",
+      "category": "Activity",
+      "formula": "(inventory * 365) / cost of products sold",
+      "interpretation": "Days inventory outstanding based on COGS."
+    },
+    "A48": {
+      "name": "EBITDA (Profit on Operating Activities - Depreciation) / Total Assets",
+      "short_name": "EBITDA / Assets",
+      "category": "Profitability",
+      "formula": "EBITDA (profit on operating activities - depreciation) / total assets",
+      "interpretation": "EBITDA return on assets."
+    },
+    "A49": {
+      "name": "EBITDA (Profit on Operating Activities - Depreciation) / Sales",
+      "short_name": "EBITDA Margin",
+      "category": "Profitability",
+      "formula": "EBITDA (profit on operating activities - depreciation) / sales",
+      "interpretation": "EBITDA margin. Cash operating profitability."
+    },
+    "A50": {
+      "name": "Current Assets / Total Liabilities",
+      "short_name": "Current Assets / Liabilities",
+      "category": "Liquidity",
+      "formula": "current assets / total liabilities",
+      "interpretation": "Short-term assets coverage of all liabilities."
+    },
+    "A51": {
+      "name": "Short-term Liabilities / Total Assets",
+      "short_name": "ST Liabilities / Assets",
+      "category": "Leverage",
+      "formula": "short-term liabilities / total assets",
+      "interpretation": "Proportion of assets funded by short-term debt."
+    },
+    "A52": {
+      "name": "(Short-term Liabilities * 365) / Cost of Products Sold",
+      "short_name": "Payables Days (COGS)",
+      "category": "Activity",
+      "formula": "(short-term liabilities * 365) / cost of products sold",
+      "interpretation": "Payables period based on COGS."
+    },
+    "A53": {
+      "name": "Equity / Fixed Assets",
+      "short_name": "Equity / Fixed Assets",
+      "category": "Leverage",
+      "formula": "equity / fixed assets",
+      "interpretation": "Equity coverage of long-term assets."
+    },
+    "A54": {
+      "name": "Constant Capital / Fixed Assets",
+      "short_name": "Constant Capital / Fixed Assets",
+      "category": "Leverage",
+      "formula": "constant capital / fixed assets",
+      "interpretation": "Permanent capital funding of fixed assets."
+    },
+    "A55": {
+      "name": "Working Capital",
+      "short_name": "Working Capital",
+      "category": "Liquidity",
+      "formula": "working capital",
+      "interpretation": "Absolute working capital. Current assets minus current liabilities."
+    },
+    "A56": {
+      "name": "(Sales - Cost of Products Sold) / Sales",
+      "short_name": "Gross Margin (alt)",
+      "category": "Profitability",
+      "formula": "(sales - cost of products sold) / sales",
+      "interpretation": "Alternative calculation of gross margin."
+    },
+    "A57": {
+      "name": "(Current Assets - Inventory - Short-term Liabilities) / (Sales - Gross Profit - Depreciation)",
+      "short_name": "Defensive Interval",
+      "category": "Liquidity",
+      "formula": "(current assets - inventory - short-term liabilities) / (sales - gross profit - depreciation)",
+      "interpretation": "Days company can operate without additional cash inflow."
+    },
+    "A58": {
+      "name": "Total Costs / Total Sales",
+      "short_name": "Cost / Sales Ratio",
+      "category": "Other",
+      "formula": "total costs / total sales",
+      "interpretation": "Cost efficiency. Lower is better."
+    },
+    "A59": {
+      "name": "Long-term Liabilities / Equity",
+      "short_name": "LT Debt / Equity",
+      "category": "Leverage",
+      "formula": "long-term liabilities / equity",
+      "interpretation": "Long-term debt-to-equity ratio. Financial leverage."
+    },
+    "A60": {
+      "name": "Sales / Inventory",
+      "short_name": "Inventory Turnover",
+      "category": "Activity",
+      "formula": "sales / inventory",
+      "interpretation": "Inventory turnover ratio. Higher indicates faster movement."
+    },
+    "A61": {
+      "name": "Sales / Receivables",
+      "short_name": "Receivables Turnover",
+      "category": "Activity",
+      "formula": "sales / receivables",
+      "interpretation": "Receivables turnover. Higher indicates faster collection."
+    },
+    "A62": {
+      "name": "(Short-term Liabilities * 365) / Sales",
+      "short_name": "Payables Days (Sales)",
+      "category": "Activity",
+      "formula": "(short-term liabilities * 365) / sales",
+      "interpretation": "Payables period based on sales."
+    },
+    "A63": {
+      "name": "Sales / Short-term Liabilities",
+      "short_name": "Payables Turnover",
+      "category": "Activity",
+      "formula": "sales / short-term liabilities",
+      "interpretation": "Payables turnover rate."
+    },
+    "A64": {
+      "name": "Sales / Fixed Assets",
+      "short_name": "Fixed Asset Turnover",
+      "category": "Activity",
+      "formula": "sales / fixed assets",
+      "interpretation": "Fixed asset turnover. Efficiency of long-term assets."
+    }
+  },
+  "categories": {
+    "Profitability": {
+      "description": "Ratios measuring company's ability to generate profit",
+      "features": [
+        "A1",
+        "A6",
+        "A7",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "A18",
+        "A19",
+        "A22",
+        "A23",
+        "A24",
+        "A27",
+        "A31",
+        "A35",
+        "A39",
+        "A42",
+        "A48",
+        "A49",
+        "A56"
+      ]
+    },
+    "Liquidity": {
+      "description": "Ratios measuring company's ability to meet short-term obligations",
+      "features": [
+        "A3",
+        "A4",
+        "A5",
+        "A28",
+        "A37",
+        "A40",
+        "A46",
+        "A50",
+        "A55",
+        "A57"
+      ]
+    },
+    "Leverage": {
+      "description": "Ratios measuring company's debt and capital structure",
+      "features": [
+        "A2",
+        "A8",
+        "A10",
+        "A15",
+        "A16",
+        "A17",
+        "A25",
+        "A26",
+        "A30",
+        "A33",
+        "A34",
+        "A38",
+        "A41",
+        "A51",
+        "A53",
+        "A54",
+        "A59"
+      ]
+    },
+    "Activity": {
+      "description": "Ratios measuring company's operational efficiency",
+      "features": [
+        "A9",
+        "A20",
+        "A21",
+        "A32",
+        "A36",
+        "A43",
+        "A44",
+        "A45",
+        "A47",
+        "A52",
+        "A60",
+        "A61",
+        "A62",
+        "A63",
+        "A64"
+      ]
+    },
+    "Size": {
+      "description": "Company size indicator",
+      "features": [
+        "A29"
+      ]
+    },
+    "Other": {
+      "description": "Other specialized ratios",
+      "features": [
+        "A58"
+      ]
+    }
+  }
+}

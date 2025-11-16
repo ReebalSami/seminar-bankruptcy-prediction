@@ -1,0 +1,16 @@
+{
+  "dataset": "American",
+  "total_features": 18,
+  "low_vif_count": 2,
+  "vif_unchanged": true,
+  "max_vif_change": 0.0,
+  "models": [
+    {
+      "model": "Ridge (L2)",
+      "cv_auc_mean": 0.6789252813920739,
+      "cv_auc_std": 0.010207570797134389,
+      "test_auc": 0.678122847875275,
+      "coef_min": -0.0007100838280404801,
+      "coef_max": 0.0018077343654667045,
+      "coef_range": 0.0025178181935071845,
+      "non_zero_coef": 

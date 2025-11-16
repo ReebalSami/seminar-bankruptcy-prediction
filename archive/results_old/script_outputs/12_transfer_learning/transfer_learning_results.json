@@ -1,0 +1,82 @@
+{
+  "transfer_learning": [
+    {
+      "source": "Polish",
+      "target": "American",
+      "auc": 0.5531039622643281,
+      "n_features": 10,
+      "source_samples": 43073,
+      "target_samples": 78682
+    },
+    {
+      "source": "Polish",
+      "target": "Taiwan",
+      "auc": 0.8861742137238424,
+      "n_features": 10,
+      "source_samples": 43073,
+      "target_samples": 6819
+    },
+    {
+      "source": "American",
+      "target": "Polish",
+      "auc": 0.35427090055563365,
+      "n_features": 10,
+      "source_samples": 78682,
+      "target_samples": 43073
+    },
+    {
+      "source": "American",
+      "target": "Taiwan",
+      "auc": 0.7478736447671135,
+      "n_features": 10,
+      "source_samples": 78682,
+      "target_samples": 6819
+    },
+    {
+      "source": "Taiwan",
+      "target": "Polish",
+      "auc": 0.3705420479362069,
+      "n_features": 10,
+      "source_samples": 6819,
+      "target_samples": 43073
+    },
+    {
+      "source": "Taiwan",
+      "target": "American",
+      "auc": 0.5902716925820121,
+      "n_features": 10,
+      "source_samples": 6819,
+      "target_samples": 78682
+    }
+  ],
+  "within_dataset_baseline": [
+    {
+      "dataset": "Polish",
+      "auc": 0.7045668527769615,
+      "n_features": 10
+    },
+    {
+      "dataset": "American",
+      "auc": 0.6754041137737808,
+      "n_features": 10
+    },
+    {
+      "dataset": "Taiwan",
+      "auc": 0.9318353994490358,
+      "n_features": 10
+    }
+  ],
+  "semantic_features_used": [
+    "ROA",
+    "Debt_Ratio",
+    "Current_Ratio",
+    "Net_Profit_Margin",
+    "Asset_Turnover",
+    "Working_Capital",
+    "Equity_Ratio",
+    "Operating_Margin",
+    "Cash_Flow_Ratio",
+    "Quick_Ratio"
+  ],
+  "n_common_features": 10
+}

@@ -1,0 +1,97 @@
+{
+  "features": {
+    "X1": {
+      "name": "Current Assets",
+      "description": "Assets expected to be sold or used within next year",
+      "category": "Assets"
+    },
+    "X2": {
+      "name": "Cost of Goods Sold",
+      "description": "Direct costs related to sale of products",
+      "category": "Expenses"
+    },
+    "X3": {
+      "name": "Depreciation & Amortization",
+      "description": "Loss of value of tangible and intangible assets over time",
+      "category": "Expenses"
+    },
+    "X4": {
+      "name": "EBITDA",
+      "description": "Earnings before interest, taxes, depreciation, and amortization",
+      "category": "Profitability"
+    },
+    "X5": {
+      "name": "Inventory",
+      "description": "Items and raw materials in production or for sale",
+      "category": "Assets"
+    },
+    "X6": {
+      "name": "Net Income",
+      "description": "Overall profitability after all expenses deducted from revenue",
+      "category": "Profitability"
+    },
+    "X7": {
+      "name": "Total Receivables",
+      "description": "Money due from customers for goods/services delivered",
+      "category": "Assets"
+    },
+    "X8": {
+      "name": "Market Value",
+      "description": "Market capitalization of publicly traded company",
+      "category": "Valuation"
+    },
+    "X9": {
+      "name": "Net Sales",
+      "description": "Gross sales minus returns, allowances, and discounts",
+      "category": "Revenue"
+    },
+    "X10": {
+      "name": "Total Assets",
+      "description": "All assets or items of value the business owns",
+      "category": "Assets"
+    },
+    "X11": {
+      "name": "Long-term Debt",
+      "description": "Loans and liabilities not due within one year",
+      "category": "Liabilities"
+    },
+    "X12": {
+      "name": "EBIT",
+      "description": "Earnings before interest and taxes",
+      "category": "Profitability"
+    },
+    "X13": {
+      "name": "Gross Profit",
+      "description": "Profit after subtracting manufacturing and selling costs",
+      "category": "Profitability"
+    },
+    "X14": {
+      "name": "Current Liabilities",
+      "description": "Accounts payable, taxes, and short-term obligations",
+      "category": "Liabilities"
+    },
+    "X15": {
+      "name": "Retained Earnings",
+      "description": "Accumulated profits after paying dividends",
+      "category": "Equity"
+    },
+    "X16": {
+      "name": "Total Revenue",
+      "description": "All income before subtracting expenses",
+      "category": "Revenue"
+    },
+    "X17": {
+      "name": "Total Liabilities",
+      "description": "Combined debts and obligations owed to outside parties",
+      "category": "Liabilities"
+    },
+    "X18": {
+      "name": "Operating Expenses",
+      "description": "Expenses incurred through normal business operations",
+      "category": "Expenses"
+    }
+  },
+  "source": "NYSE and NASDAQ companies (1999-2018)",
+  "target": "bankrupt",
+  "target_description": "1 = Failed/Bankrupt, 0 = Alive/Active"
+}

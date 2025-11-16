@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bankruptcy Prediction - Analysis Report</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+        }
+        .section {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .metric {
+            display: inline-block;
+            margin: 10px 20px 10px 0;
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            min-width: 200px;
+        }
+        .metric-label {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .timestamp {
+            color: #95a5a6;
+            font-style: italic;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🎯 Bankruptcy Prediction Analysis Report</h1>
+<p class="timestamp">Generated: 2025-11-05 11:18:42</p>
+
+
+<div class="section">
+    <h2>📊 01. Data Understanding</h2>
+
+    <div class="metric">
+        <div class="metric-label">Total Samples</div>
+        <div class="metric-value">7,027</div>
+    </div>
+    <div class="metric">
+        <div class="metric-label">Features</div>
+        <div class="metric-value">66</div>
+    </div>
+    <div class="metric">
+        <div class="metric-label">Bankruptcy Rate</div>
+        <div class="metric-value">3.86%</div>
+    </div>
+<h3>Class Distribution by Horizon</h3><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Horizon</th>
+      <th>Total_Samples</th>
+      <th>Bankruptcies</th>
+      <th>Bankruptcy_Rate</th>
+      <th>Healthy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>7027</td>
+      <td>271</td>
+      <td>0.038566</td>
+      <td>6756</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>10173</td>
+      <td>400</td>
+      <td>0.039320</td>
+      <td>9773</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>10503</td>
+      <td>495</td>
+      <td>0.047129</td>
+      <td>10008</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>9792</td>
+      <td>515</td>
+      <td>0.052594</td>
+      <td>9277</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>5910</td>
+      <td>410</td>
+      <td>0.069374</td>
+      <td>5500</td>
+    </tr>
+  </tbody>
+</table><h3>Visualizations</h3><div class="grid"><img src="script_outputs/01_data_understanding/figures/class_distribution_by_horizon.png"><img src="script_outputs/01_data_understanding/figures/features_by_category.png"></div></div>
+<div class="section">
+    <h2>🔍 02. Exploratory Analysis</h2>
+<h3>Top 10 Most Discriminative Features</h3><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>readable_name</th>
+      <th>category</th>
+      <th>correlation</th>
+      <th>p_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GP (3yr) / Assets</td>
+      <td>Profitability</td>
+      <td>-0.124134</td>
+      <td>1.554537e-25</td>
+    </tr>
+    <tr>
+      <td>Retained Equity / Assets</td>
+      <td>Leverage</td>
+      <td>-0.123893</td>
+      <td>1.927450e-25</td>
+    </tr>
+    <tr>
+      <td>Net Margin</td>
+      <td>Profitability</td>
+      <td>-0.123339</td>
+      <td>3.155261e-25</td>
+    </tr>
+    <tr>
+      <td>Constant Capital / Assets</td>
+      <td>Leverage</td>
+      <td>-0.121202</td>
+      <td>2.070634e-24</td>
+    </tr>
+    <tr>
+      <td>Gross Margin</td>
+      <td>Profitability</td>
+      <td>-0.120137</td>
+      <td>5.221049e-24</td>
+    </tr>
+    <tr>
+      <td>Equity / Assets</td>
+      <td>Leverage</td>
+      <td>-0.117333</td>
+      <td>5.728918e-23</td>
+    </tr>
+    <tr>
+      <td>Gross Margin + Depr.</td>
+      <td>Profitability</td>
+      <td>-0.116420</td>
+      <td>1.234011e-22</td>
+    </tr>
+    <tr>
+      <td>GP + Interest / Sales</td>
+      <td>Profitability</td>
+      <td>-0.114234</td>
+      <td>7.565261e-22</td>
+    </tr>
+    <tr>
+      <td>Liabilities / Assets</td>
+      <td>Leverage</td>
+      <td>0.111181</td>
+      <td>8.991152e-21</td>
+    </tr>
+    <tr>
+      <td>Profit Margin</td>
+      <td>Profitability</td>
+      <td>-0.106503</td>
+      <td>3.499719e-19</td>
+    </tr>
+  </tbody>
+</table><h3>Visualizations</h3><div class="grid"><img src="script_outputs/02_exploratory_analysis/figures/correlation_heatmap.png"><img src="script_outputs/02_exploratory_analysis/figures/discriminative_power.png"></div></div>
+<div class="section">
+    <h2>🤖 04. Baseline Models</h2>
+<h3>Model Performance</h3>
+    <div class="metric">
+        <div class="metric-label">Logistic Regression - ROC-AUC</div>
+        <div class="metric-value">0.9243</div>
+    </div>
+    <div class="metric">
+        <div class="metric-label">Logistic Regression - Recall@1%FPR</div>
+        <div class="metric-value">27.8%</div>
+    </div>
+
+    <div class="metric">
+        <div class="metric-label">Random Forest - ROC-AUC</div>
+        <div class="metric-value">0.9607</div>
+    </div>
+    <div class="metric">
+        <div class="metric-label">Random Forest - Recall@1%FPR</div>
+        <div class="metric-value">61.1%</div>
+    </div>
+<h3>Detailed Results</h3><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>model_name</th>
+      <th>roc_auc</th>
+      <th>pr_auc</th>
+      <th>brier_score</th>
+      <th>recall_1pct_fpr</th>
+      <th>recall_5pct_fpr</th>
+      <th>horizon</th>
+      <th>timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Logistic Regression</td>
+      <td>0.9243</td>
+      <td>0.3856</td>
+      <td>0.1061</td>
+      <td>0.2778</td>
+      <td>0.6667</td>
+      <td>1</td>
+      <td>2025-10-27T10:05:42.673272</td>
+    </tr>
+    <tr>
+      <td>Random Forest</td>
+      <td>0.9607</td>
+      <td>0.7514</td>
+      <td>0.0199</td>
+      <td>0.6111</td>
+      <td>0.7963</td>
+      <td>1</td>
+      <td>2025-10-27T10:05:42.673293</td>
+    </tr>
+  </tbody>
+</table></div>
+<div class="section">
+    <h2>🎯 06. Model Calibration</h2>
+<h3>Calibration Improvements</h3>
+    <div class="metric">
+        <div class="metric-label">RF - Before Calibration</div>
+        <div class="metric-value">0.0199</div>
+    </div>
+    <div class="metric">
+        <div class="metric-label">RF - After Calibration</div>
+        <div class="metric-value">0.0194</div>
+    </div>
+    <div class="metric">
+        <div class="metric-label">Logistic - Before Calibration</div>
+        <div class="metric-value">0.1061</div>
+    </div>
+    <div class="metric">
+        <div class="metric-label">Logistic - After Calibration</div>
+        <div class="metric-value">0.0270</div>
+    </div>
+<h3>Calibration Curves</h3><img src="script_outputs/06_model_calibration/figures/calibration_comparison.png" style="max-width: 100%;"></div>
+<div class="section">
+    <h2>🔄 07. Cross-Horizon Robustness</h2>
+<h3>Performance Summary</h3>
+    <div class="metric">
+        <div class="metric-label">Same-Horizon Avg AUC</div>
+        <div class="metric-value">0.9101</div>
+    </div>
+    <div class="metric">
+        <div class="metric-label">Cross-Horizon Avg AUC</div>
+        <div class="metric-value">0.8895</div>
+    </div>
+    <div class="metric">
+        <div class="metric-label">Avg Performance Drop</div>
+        <div class="metric-value">2.04%</div>
+    </div>
+    <div class="metric">
+        <div class="metric-label">Horizons Tested</div>
+        <div class="metric-value">5</div>
+    </div>
+<h3>Cross-Horizon Performance Matrix (ROC-AUC)</h3><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>test_horizon</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+    <tr>
+      <th>train_horizon</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.9607</td>
+      <td>0.8911</td>
+      <td>0.8916</td>
+      <td>0.8814</td>
+      <td>0.9293</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.9490</td>
+      <td>0.8522</td>
+      <td>0.8881</td>
+      <td>0.8665</td>
+      <td>0.9075</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.9651</td>
+      <td>0.8687</td>
+      <td>0.8974</td>
+      <td>0.9103</td>
+      <td>0.9356</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.9064</td>
+      <td>0.7768</td>
+      <td>0.9056</td>
+      <td>0.8986</td>
+      <td>0.9580</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.8421</td>
+      <td>0.7627</td>
+      <td>0.8653</td>
+      <td>0.8899</td>
+      <td>0.9418</td>
+    </tr>
+  </tbody>
+</table><h3>Performance Heatmap</h3><img src="script_outputs/07_robustness_analysis/figures/cross_horizon_heatmap.png" style="max-width: 100%;"></div>
+<div class="section">
+    <h2>📊 08. Econometric Analysis & Interpretability</h2>
+<h3>Statistical Diagnostics</h3>
+    <div class="metric">
+        <div class="metric-label">VIF - High Multicollinearity</div>
+        <div class="metric-value">17 features</div>
+    </div>
+    <div class="metric">
+        <div class="metric-label">VIF - Low Multicollinearity</div>
+        <div class="metric-value">20 features</div>
+    </div>
+    <div class="metric">
+        <div class="metric-label">Top Protective Factor</div>
+        <div class="metric-value">Profit Margin</div>
+    </div>
+    <div class="metric">
+        <div class="metric-label">Top SHAP Feature</div>
+        <div class="metric-value">Cash Ratio</div>
+    </div>
+<h3>Top 10 Features by VIF (Multicollinearity)</h3><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>readable_name</th>
+      <th>category</th>
+      <th>vif</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Operating Cycle (days)</td>
+      <td>Activity</td>
+      <td>36.18</td>
+    </tr>
+    <tr>
+      <td>Operating Margin</td>
+      <td>Profitability</td>
+      <td>36.14</td>
+    </tr>
+    <tr>
+      <td>EBITDA Margin</td>
+      <td>Profitability</td>
+      <td>33.00</td>
+    </tr>
+    <tr>
+      <td>Gross Margin + Depr.</td>
+      <td>Profitability</td>
+      <td>25.44</td>
+    </tr>
+    <tr>
+      <td>Inventory Days</td>
+      <td>Activity</td>
+      <td>19.26</td>
+    </tr>
+    <tr>
+      <td>Receivables Days</td>
+      <td>Activity</td>
+      <td>17.45</td>
+    </tr>
+    <tr>
+      <td>Payables Days (Sales)</td>
+      <td>Activity</td>
+      <td>17.11</td>
+    </tr>
+    <tr>
+      <td>GP + Interest / Sales</td>
+      <td>Profitability</td>
+      <td>16.70</td>
+    </tr>
+    <tr>
+      <td>Gross Margin (alt)</td>
+      <td>Profitability</td>
+      <td>16.51</td>
+    </tr>
+    <tr>
+      <td>Gross Profit + Extras / Assets</td>
+      <td>Profitability</td>
+      <td>15.99</td>
+    </tr>
+  </tbody>
+</table><h3>Top 10 Logistic Regression Coefficients</h3><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>readable_name</th>
+      <th>category</th>
+      <th>coefficient</th>
+      <th>direction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Profit Margin</td>
+      <td>Profitability</td>
+      <td>-1.4516</td>
+      <td>Negative</td>
+    </tr>
+    <tr>
+      <td>Op. Profit / Fin. Expenses (Missing)</td>
+      <td>Profitability</td>
+      <td>1.0813</td>
+      <td>Positive</td>
+    </tr>
+    <tr>
+      <td>Op. Expenses / Liabilities</td>
+      <td>Leverage</td>
+      <td>1.0622</td>
+      <td>Positive</td>
+    </tr>
+    <tr>
+      <td>Payables Days (Sales)</td>
+      <td>Activity</td>
+      <td>-1.0282</td>
+      <td>Negative</td>
+    </tr>
+    <tr>
+      <td>EBITDA Margin</td>
+      <td>Profitability</td>
+      <td>0.9826</td>
+      <td>Positive</td>
+    </tr>
+    <tr>
+      <td>Current Assets / Liabilities</td>
+      <td>Liquidity</td>
+      <td>-0.7977</td>
+      <td>Negative</td>
+    </tr>
+    <tr>
+      <td>Profit on Sales / Assets</td>
+      <td>Profitability</td>
+      <td>0.7547</td>
+      <td>Positive</td>
+    </tr>
+    <tr>
+      <td>Gross Margin + Depr.</td>
+      <td>Profitability</td>
+      <td>-0.6933</td>
+      <td>Negative</td>
+    </tr>
+    <tr>
+      <td>Cash Ratio</td>
+      <td>Liquidity</td>
+      <td>0.6641</td>
+      <td>Positive</td>
+    </tr>
+    <tr>
+      <td>Operating Margin</td>
+      <td>Profitability</td>
+      <td>0.6515</td>
+      <td>Positive</td>
+    </tr>
+  </tbody>
+</table><h3>Top 10 SHAP Feature Importance</h3><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>readable_name</th>
+      <th>mean_abs_shap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cash Ratio</td>
+      <td>0.0376</td>
+    </tr>
+    <tr>
+      <td>Profit Margin</td>
+      <td>0.0376</td>
+    </tr>
+    <tr>
+      <td>Liabilities / Assets</td>
+      <td>0.0321</td>
+    </tr>
+    <tr>
+      <td>Asset to Liability Ratio</td>
+      <td>0.0321</td>
+    </tr>
+    <tr>
+      <td>Op. Expenses / ST Liab.</td>
+      <td>0.0302</td>
+    </tr>
+    <tr>
+      <td>Payables Days</td>
+      <td>0.0302</td>
+    </tr>
+    <tr>
+      <td>Defensive Interval</td>
+      <td>0.0215</td>
+    </tr>
+    <tr>
+      <td>Gross Margin (alt)</td>
+      <td>0.0215</td>
+    </tr>
+    <tr>
+      <td>Constant Capital / Assets</td>
+      <td>0.0198</td>
+    </tr>
+    <tr>
+      <td>Sales / Assets</td>
+      <td>0.0198</td>
+    </tr>
+  </tbody>
+</table><h3>Visualizations</h3><div class="grid"><img src="script_outputs/08_econometric_analysis/figures/vif_analysis.png" style="max-width: 100%;"><img src="script_outputs/08_econometric_analysis/figures/logistic_coefficients.png" style="max-width: 100%;"><img src="script_outputs/08_econometric_analysis/figures/shap_importance.png" style="max-width: 100%;"></div></div>
+<div class="section">
+    <h2>📈 All Model Results</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>model_name</th>
+      <th>horizon</th>
+      <th>roc_auc</th>
+      <th>pr_auc</th>
+      <th>recall_1pct_fpr</th>
+      <th>recall_5pct_fpr</th>
+      <th>brier_score</th>
+      <th>timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Logistic Regression</td>
+      <td>1</td>
+      <td>0.8700</td>
+      <td>0.5800</td>
+      <td>0.5000</td>
+      <td>0.7200</td>
+      <td>0.0450</td>
+      <td>2025-10-27T09:00:14.622377</td>
+    </tr>
+    <tr>
+      <td>Random Forest</td>
+      <td>1</td>
+      <td>0.9000</td>
+      <td>0.6500</td>
+      <td>0.5740</td>
+      <td>0.8000</td>
+      <td>0.0380</td>
+      <td>2025-10-27T09:00:14.622392</td>
+    </tr>
+    <tr>
+      <td>Logistic Regression</td>
+      <td>1</td>
+      <td>0.8700</td>
+      <td>0.5800</td>
+      <td>0.5000</td>
+      <td>0.7200</td>
+      <td>0.0450</td>
+      <td>2025-10-27T09:02:30.748541</td>
+    </tr>
+    <tr>
+      <td>Random Forest</td>
+      <td>1</td>
+      <td>0.9000</td>
+      <td>0.6500</td>
+      <td>0.5740</td>
+      <td>0.8000</td>
+      <td>0.0380</td>
+      <td>2025-10-27T09:02:30.748556</td>
+    </tr>
+    <tr>
+      <td>Logistic Regression</td>
+      <td>1</td>
+      <td>0.9243</td>
+      <td>0.3856</td>
+      <td>0.2778</td>
+      <td>0.6667</td>
+      <td>0.1061</td>
+      <td>2025-10-27T10:05:42.673272</td>
+    </tr>
+    <tr>
+      <td>Random Forest</td>
+      <td>1</td>
+      <td>0.9607</td>
+      <td>0.7514</td>
+      <td>0.6111</td>
+      <td>0.7963</td>
+      <td>0.0199</td>
+      <td>2025-10-27T10:05:42.673293</td>
+    </tr>
+    <tr>
+      <td>CatBoost</td>
+      <td>1</td>
+      <td>0.9812</td>
+      <td>0.8477</td>
+      <td>0.7778</td>
+      <td>0.8519</td>
+      <td>0.0136</td>
+      <td>2025-11-05T11:06:23.512225</td>
+    </tr>
+    <tr>
+      <td>CatBoost</td>
+      <td>1</td>
+      <td>0.9812</td>
+      <td>0.8477</td>
+      <td>0.7778</td>
+      <td>0.8519</td>
+      <td>0.0136</td>
+      <td>2025-11-05T11:12:39.948344</td>
+    </tr>
+    <tr>
+      <td>XGBoost</td>
+      <td>1</td>
+      <td>0.9810</td>
+      <td>0.8339</td>
+      <td>0.7407</td>
+      <td>0.8519</td>
+      <td>0.0126</td>
+      <td>2025-11-05T11:14:34.813824</td>
+    </tr>
+    <tr>
+      <td>LightGBM</td>
+      <td>1</td>
+      <td>0.9782</td>
+      <td>0.8322</td>
+      <td>0.7407</td>
+      <td>0.8333</td>
+      <td>0.0125</td>
+      <td>2025-11-05T11:14:34.813841</td>
+    </tr>
+    <tr>
+      <td>CatBoost</td>
+      <td>1</td>
+      <td>0.9812</td>
+      <td>0.8477</td>
+      <td>0.7778</td>
+      <td>0.8519</td>
+      <td>0.0136</td>
+      <td>2025-11-05T11:14:34.813846</td>
+    </tr>
+  </tbody>
+</table></div>
+<div class="section">
+    <h2>✅ Summary</h2>
+    <p class="success">✓ Analysis scripts executed successfully</p>
+    <p class="success">✓ Models trained and evaluated</p>
+    <p class="success">✓ Results saved and visualized</p>
+    
+    <h3>Next Steps:</h3>
+    <ul>
+        <li>Review model performance metrics</li>
+        <li>Examine feature importance</li>
+        <li>Analyze cross-horizon robustness</li>
+        <li>Prepare thesis chapters</li>
+    </ul>
+</div>
+
+</body>
+</html>

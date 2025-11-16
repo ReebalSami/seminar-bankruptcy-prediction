@@ -1,0 +1,11 @@
+Feature,Polish_VIF,Polish_Status,American_VIF,American_Status,Taiwan_VIF,Taiwan_Status
+ROA,4.16,LOW,15.7,HIGH,1.29,LOW
+Debt_Ratio,1.08,LOW,23.99,HIGH,4.78,LOW
+Current_Ratio,2.47,LOW,24.75,HIGH,1.4,LOW
+Net_Profit_Margin,1.07,LOW,8.51,MODERATE,1.01,LOW
+Asset_Turnover,1.04,LOW,4.22,LOW,1.1,LOW
+Working_Capital,2.63,LOW,6.03,MODERATE,1.51,LOW
+Equity_Ratio,1.83,LOW,7.67,MODERATE,4.82,LOW
+Operating_Margin,1.09,LOW,7.18,MODERATE,1.21,LOW
+Cash_Flow_Ratio,5.01,MODERATE,46.01,HIGH,1.25,LOW
+Quick_Ratio,4.23,LOW,14.33,HIGH,1.41,LOW

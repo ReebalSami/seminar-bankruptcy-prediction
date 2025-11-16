@@ -1,0 +1,2 @@
+n_samples,n_features,bankruptcy_count,bankruptcy_rate,missing_values,memory_usage_mb,horizons
+7027,66,271,0.03856553294435748,0,3.645599365234375,[np.int64(1)]

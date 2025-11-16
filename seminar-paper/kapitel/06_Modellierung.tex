@@ -1,0 +1,86 @@
+\chapter{Modellierung und Evaluation}
+
+% TODO: Wird nach Phase 05 geschrieben
+% Dokumentiert alle ML-Modelle und deren Evaluation
+
+\section{Modellarchitekturen}
+
+\subsection{Baseline: Logistische Regression}
+% - GLM mit Logit-Link (NICHT OLS!)
+% - Regularisierung: L2 (Ridge)
+% - Hyperparameter: C (Inverse Regularisierungsstärke)
+% - Begründung: Interpretierbare Koeffizienten
+
+\subsection{Random Forest}
+% - Ensemble-Methode: Bagging + Random Feature Selection
+% - Hyperparameter: n\_estimators, max\_depth, min\_samples\_split
+% - Vorteil: Robust gegen Multikollinearität
+% - Feature Importance verfügbar
+
+\subsection{XGBoost}
+% - Gradient Boosting mit Regularisierung
+% - Hyperparameter: learning\_rate, n\_estimators, max\_depth, subsample
+% - Vorteil: State-of-the-art Performance
+% - Frühe Stoppung zur Vermeidung von Overfitting
+
+
+\section{Hyperparameter-Tuning}
+
+\subsection{Grid Search mit Cross-Validation}
+% - 5-Fold Stratified CV
+% - Suchraum je Modell definiert
+% - Optimierung auf ROC-AUC
+
+\subsection{Horizontspezifisches Tuning}
+% - Jeder Horizont hat eigene optimale Parameter
+% - Dokumentation aller gewählten Werte
+
+
+\section{Behandlung der Klassenimbalance}
+
+\subsection{Class Weights}
+% - Inverse Häufigkeit als Gewicht
+% - Implementierung in allen Modellen
+% - Alternative: SMOTE (synthetische Samples)
+
+\subsection{Threshold-Optimierung}
+% - Standard: 0.5
+% - Optimierung auf F1-Score oder Precision-Recall
+% - Horizontspezifische Schwellenwerte
+
+
+\section{Evaluation Metrics}
+
+\subsection{Klassifikations-Metriken}
+% - Accuracy (wenig aussagekräftig bei Imbalance!)
+% - Precision, Recall, F1-Score
+% - ROC-AUC (Hauptmetrik)
+% - Precision-Recall AUC
+
+\subsection{Kalibrierung}
+% - Calibration Plots (Reliability Diagrams)
+% - Brier Score
+% - Platt Scaling falls nötig
+
+\subsection{Konfusionsmatrizen}
+% - True Positives, False Positives
+% - True Negatives, False Negatives
+% - Ökonomische Interpretation (Typ I vs Typ II Fehler)
+
+
+\section{Modellvergleich}
+
+\subsection{Performance je Horizont}
+% - Tabelle: Modell × Horizont × Metrik
+% - Bester Modelltyp je Horizont
+% - Statistische Signifikanz (McNemar Test)
+
+\subsection{Feature Importance Analyse}
+% - Top 10 Features je Modell und Horizont
+% - Konsistenz über Modelle
+% - Ökonomische Interpretierbarkeit
+
+\subsection{SHAP Values für Interpretierbarkeit}
+% - Shapley Additive Explanations
+% - Global Importance
+% - Lokale Erklärungen (Einzelvorhersagen)

@@ -1,0 +1,8 @@
+{
+  "rf_brier_before": 0.0198571422699289,
+  "rf_brier_after": 0.01942187889508482,
+  "rf_improvement": 0.0004352633748440811,
+  "logit_brier_before": 0.10614477833025765,
+  "logit_brier_after": 0.026988758080015617,
+  "logit_improvement": 0.07915602025024203
+}

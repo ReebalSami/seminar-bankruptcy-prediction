@@ -1,0 +1,7 @@
+source,target,direction,auc,pr_auc,n_train,n_test
+Polish,American,Polish→American,0.6902583429350517,0.05722119611618973,7027,3700
+Polish,Taiwan,Polish→Taiwan,0.5,0.03226279513125092,7027,6819
+American,Polish,American→Polish,0.3528076177742238,0.029169117484445357,3700,7027
+American,Taiwan,American→Taiwan,0.5,0.03226279513125092,3700,6819
+Taiwan,Polish,Taiwan→Polish,0.5,0.03856553294435748,6819,7027
+Taiwan,American,Taiwan→American,0.5,0.03216216216216216,6819,3700

@@ -1,0 +1,382 @@
+{
+  "F02": {
+    "original_name": "ROA(C) before interest and depreciation before interest",
+    "index": 1
+  },
+  "F03": {
+    "original_name": "ROA(A) before interest and % after tax",
+    "index": 2
+  },
+  "F04": {
+    "original_name": "ROA(B) before interest and depreciation after tax",
+    "index": 3
+  },
+  "F05": {
+    "original_name": "Operating Gross Margin",
+    "index": 4
+  },
+  "F06": {
+    "original_name": "Realized Sales Gross Margin",
+    "index": 5
+  },
+  "F07": {
+    "original_name": "Operating Profit Rate",
+    "index": 6
+  },
+  "F08": {
+    "original_name": "Pre-tax net Interest Rate",
+    "index": 7
+  },
+  "F09": {
+    "original_name": "After-tax net Interest Rate",
+    "index": 8
+  },
+  "F10": {
+    "original_name": "Non-industry income and expenditure/revenue",
+    "index": 9
+  },
+  "F11": {
+    "original_name": "Continuous interest rate (after tax)",
+    "index": 10
+  },
+  "F12": {
+    "original_name": "Operating Expense Rate",
+    "index": 11
+  },
+  "F13": {
+    "original_name": "Research and development expense rate",
+    "index": 12
+  },
+  "F14": {
+    "original_name": "Cash flow rate",
+    "index": 13
+  },
+  "F15": {
+    "original_name": "Interest-bearing debt interest rate",
+    "index": 14
+  },
+  "F16": {
+    "original_name": "Tax rate (A)",
+    "index": 15
+  },
+  "F17": {
+    "original_name": "Net Value Per Share (B)",
+    "index": 16
+  },
+  "F18": {
+    "original_name": "Net Value Per Share (A)",
+    "index": 17
+  },
+  "F19": {
+    "original_name": "Net Value Per Share (C)",
+    "index": 18
+  },
+  "F20": {
+    "original_name": "Persistent EPS in the Last Four Seasons",
+    "index": 19
+  },
+  "F21": {
+    "original_name": "Cash Flow Per Share",
+    "index": 20
+  },
+  "F22": {
+    "original_name": "Revenue Per Share (Yuan \u00a5)",
+    "index": 21
+  },
+  "F23": {
+    "original_name": "Operating Profit Per Share (Yuan \u00a5)",
+    "index": 22
+  },
+  "F24": {
+    "original_name": "Per Share Net profit before tax (Yuan \u00a5)",
+    "index": 23
+  },
+  "F25": {
+    "original_name": "Realized Sales Gross Profit Growth Rate",
+    "index": 24
+  },
+  "F26": {
+    "original_name": "Operating Profit Growth Rate",
+    "index": 25
+  },
+  "F27": {
+    "original_name": "After-tax Net Profit Growth Rate",
+    "index": 26
+  },
+  "F28": {
+    "original_name": "Regular Net Profit Growth Rate",
+    "index": 27
+  },
+  "F29": {
+    "original_name": "Continuous Net Profit Growth Rate",
+    "index": 28
+  },
+  "F30": {
+    "original_name": "Total Asset Growth Rate",
+    "index": 29
+  },
+  "F31": {
+    "original_name": "Net Value Growth Rate",
+    "index": 30
+  },
+  "F32": {
+    "original_name": "Total Asset Return Growth Rate Ratio",
+    "index": 31
+  },
+  "F33": {
+    "original_name": "Cash Reinvestment %",
+    "index": 32
+  },
+  "F34": {
+    "original_name": "Current Ratio",
+    "index": 33
+  },
+  "F35": {
+    "original_name": "Quick Ratio",
+    "index": 34
+  },
+  "F36": {
+    "original_name": "Interest Expense Ratio",
+    "index": 35
+  },
+  "F37": {
+    "original_name": "Total debt/Total net worth",
+    "index": 36
+  },
+  "F38": {
+    "original_name": "Debt ratio %",
+    "index": 37
+  },
+  "F39": {
+    "original_name": "Net worth/Assets",
+    "index": 38
+  },
+  "F40": {
+    "original_name": "Long-term fund suitability ratio (A)",
+    "index": 39
+  },
+  "F41": {
+    "original_name": "Borrowing dependency",
+    "index": 40
+  },
+  "F42": {
+    "original_name": "Contingent liabilities/Net worth",
+    "index": 41
+  },
+  "F43": {
+    "original_name": "Operating profit/Paid-in capital",
+    "index": 42
+  },
+  "F44": {
+    "original_name": "Net profit before tax/Paid-in capital",
+    "index": 43
+  },
+  "F45": {
+    "original_name": "Inventory and accounts receivable/Net value",
+    "index": 44
+  },
+  "F46": {
+    "original_name": "Total Asset Turnover",
+    "index": 45
+  },
+  "F47": {
+    "original_name": "Accounts Receivable Turnover",
+    "index": 46
+  },
+  "F48": {
+    "original_name": "Average Collection Days",
+    "index": 47
+  },
+  "F49": {
+    "original_name": "Inventory Turnover Rate (times)",
+    "index": 48
+  },
+  "F50": {
+    "original_name": "Fixed Assets Turnover Frequency",
+    "index": 49
+  },
+  "F51": {
+    "original_name": "Net Worth Turnover Rate (times)",
+    "index": 50
+  },
+  "F52": {
+    "original_name": "Revenue per person",
+    "index": 51
+  },
+  "F53": {
+    "original_name": "Operating profit per person",
+    "index": 52
+  },
+  "F54": {
+    "original_name": "Allocation rate per person",
+    "index": 53
+  },
+  "F55": {
+    "original_name": "Working Capital to Total Assets",
+    "index": 54
+  },
+  "F56": {
+    "original_name": "Quick Assets/Total Assets",
+    "index": 55
+  },
+  "F57": {
+    "original_name": "Current Assets/Total Assets",
+    "index": 56
+  },
+  "F58": {
+    "original_name": "Cash/Total Assets",
+    "index": 57
+  },
+  "F59": {
+    "original_name": "Quick Assets/Current Liability",
+    "index": 58
+  },
+  "F60": {
+    "original_name": "Cash/Current Liability",
+    "index": 59
+  },
+  "F61": {
+    "original_name": "Current Liability to Assets",
+    "index": 60
+  },
+  "F62": {
+    "original_name": "Operating Funds to Liability",
+    "index": 61
+  },
+  "F63": {
+    "original_name": "Inventory/Working Capital",
+    "index": 62
+  },
+  "F64": {
+    "original_name": "Inventory/Current Liability",
+    "index": 63
+  },
+  "F65": {
+    "original_name": "Current Liabilities/Liability",
+    "index": 64
+  },
+  "F66": {
+    "original_name": "Working Capital/Equity",
+    "index": 65
+  },
+  "F67": {
+    "original_name": "Current Liabilities/Equity",
+    "index": 66
+  },
+  "F68": {
+    "original_name": "Long-term Liability to Current Assets",
+    "index": 67
+  },
+  "F69": {
+    "original_name": "Retained Earnings to Total Assets",
+    "index": 68
+  },
+  "F70": {
+    "original_name": "Total income/Total expense",
+    "index": 69
+  },
+  "F71": {
+    "original_name": "Total expense/Assets",
+    "index": 70
+  },
+  "F72": {
+    "original_name": "Current Asset Turnover Rate",
+    "index": 71
+  },
+  "F73": {
+    "original_name": "Quick Asset Turnover Rate",
+    "index": 72
+  },
+  "F74": {
+    "original_name": "Working capitcal Turnover Rate",
+    "index": 73
+  },
+  "F75": {
+    "original_name": "Cash Turnover Rate",
+    "index": 74
+  },
+  "F76": {
+    "original_name": "Cash Flow to Sales",
+    "index": 75
+  },
+  "F77": {
+    "original_name": "Fixed Assets to Assets",
+    "index": 76
+  },
+  "F78": {
+    "original_name": "Current Liability to Liability",
+    "index": 77
+  },
+  "F79": {
+    "original_name": "Current Liability to Equity",
+    "index": 78
+  },
+  "F80": {
+    "original_name": "Equity to Long-term Liability",
+    "index": 79
+  },
+  "F81": {
+    "original_name": "Cash Flow to Total Assets",
+    "index": 80
+  },
+  "F82": {
+    "original_name": "Cash Flow to Liability",
+    "index": 81
+  },
+  "F83": {
+    "original_name": "CFO to Assets",
+    "index": 82
+  },
+  "F84": {
+    "original_name": "Cash Flow to Equity",
+    "index": 83
+  },
+  "F85": {
+    "original_name": "Current Liability to Current Assets",
+    "index": 84
+  },
+  "F86": {
+    "original_name": "Liability-Assets Flag",
+    "index": 85
+  },
+  "F87": {
+    "original_name": "Net Income to Total Assets",
+    "index": 86
+  },
+  "F88": {
+    "original_name": "Total assets to GNP price",
+    "index": 87
+  },
+  "F89": {
+    "original_name": "No-credit Interval",
+    "index": 88
+  },
+  "F90": {
+    "original_name": "Gross Profit to Sales",
+    "index": 89
+  },
+  "F91": {
+    "original_name": "Net Income to Stockholder's Equity",
+    "index": 90
+  },
+  "F92": {
+    "original_name": "Liability to Equity",
+    "index": 91
+  },
+  "F93": {
+    "original_name": "Degree of Financial Leverage (DFL)",
+    "index": 92
+  },
+  "F94": {
+    "original_name": "Interest Coverage Ratio (Interest expense to EBIT)",
+    "index": 93
+  },
+  "F95": {
+    "original_name": "Net Income Flag",
+    "index": 94
+  },
+  "F96": {
+    "original_name": "Equity to Liability",
+    "index": 95
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "last_updated": "2025-11-12T23:33:59.719665",
+  "total_results": 28,
+  "models": [
+    "CatBoost",
+    "LightGBM",
+    "Logistic Regression",
+    "Random Forest",
+    "XGBoost"
+  ],
+  "horizons": [
+    1
+  ]
+}

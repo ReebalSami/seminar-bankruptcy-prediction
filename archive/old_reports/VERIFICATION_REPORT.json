@@ -1,0 +1,50 @@
+{
+  "foundation": {
+    "script_00": "PASS",
+    "script_00b": "PASS"
+  },
+  "polish": {
+    "01_data_understanding": "PASS",
+    "02_exploratory_analysis": "PASS",
+    "03_data_preparation": "PASS",
+    "04_baseline_models": "PASS",
+    "05_advanced_models": "PASS",
+    "06_model_calibration": "PASS",
+    "07_robustness_analysis": "PASS",
+    "08_econometric_analysis": "PASS",
+    "10c_glm_diagnostics": "FAIL",
+    "10d_remediation_save": "PASS",
+    "11_temporal_holdout_validation": "PASS",
+    "12_transfer_learning_semantic": "PASS",
+    "13c_temporal_validation": "FAIL"
+  },
+  "american": {},
+  "taiwan": {},
+  "issues": [
+    "10c_glm_diagnostics: Missing glm_diagnostics.json",
+    "13c_temporal_validation: Missing temporal_summary.json",
+    "Log 10c_glm_diagnostics.log: Contains errors"
+  ],
+  "warnings": [
+    "transfer_learning_results.csv: All AUC < 0.5 in pr_auc (worse than random)"
+  ],
+  "visualizations": [
+    "results/script_outputs/01_data_understanding/figures/features_by_category.png",
+    "results/script_outputs/01_data_understanding/figures/class_distribution_by_horizon.png",
+    "results/script_outputs/02_exploratory_analysis/figures/discriminative_power.png",
+    "results/script_outputs/02_exploratory_analysis/figures/correlation_heatmap.png",
+    "results/script_outputs/06_model_calibration/figures/calibration_comparison.png",
+    "results/script_outputs/07_robustness_analysis/figures/cross_horizon_heatmap.png",
+    "results/script_outputs/08_econometric_analysis/figures/logistic_coefficients.png",
+    "results/script_outputs/08_econometric_analysis/figures/vif_analysis.png",
+    "results/script_outputs/08_econometric_analysis/figures/shap_importance.png",
+    "results/script_outputs/10c_glm_diagnostics/figures/glm_diagnostics.png",
+    "results/script_outputs/10d_remediation_save/figures/method_comparison.png",
+    "results/script_outputs/11_temporal_holdout_validation/figures/bankruptcy_by_horizon.png",
+    "results/script_outputs/11_temporal_holdout_validation/figures/clustered_bootstrap.png",
+    "results/script_outputs/11_temporal_holdout_validation/figures/within_vs_cross_horizon.png",
+    "results/script_outputs/12_transfer_learning_semantic/figures/transfer_learning_matrix.png",
+    "results/script_outputs/13c_temporal_validation/figures/temporal_validation_comparison.png",
+    "results/script_outputs/13c_temporal_validation/figures/temporal_roc_curves.png"
+  ]
+}

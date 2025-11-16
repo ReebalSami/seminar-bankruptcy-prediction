@@ -1,0 +1,39 @@
+{
+  "hosmer_lemeshow": {
+    "statistic": 14.351259624208238,
+    "p_value": 0.07305703402827213,
+    "result": "PASS"
+  },
+  "residuals": {
+    "pearson_mean": 0.020655779088343852,
+    "pearson_std": 1.0834504001956176,
+    "deviance_mean": -0.1338294794864112,
+    "deviance_std": 0.5189685511572475,
+    "large_pearson_count": 42,
+    "large_deviance_count": 4
+  },
+  "influential_observations": {
+    "avg_leverage": 0.018096181780001136,
+    "max_cooks_d": 0.1966614303558222,
+    "influential_count": 191,
+    "influential_pct": 3.3979718911225762
+  },
+  "specification": {
+    "ll_original": -739.1119185631458,
+    "ll_augmented": -738.9509377962994,
+    "lr_statistic": 0.32196153369272906,
+    "p_value": 0.851308444295797,
+    "result": "PASS"
+  },
+  "multicollinearity": {
+    "condition_number": 2.6847768267500294e+17
+  },
+  "sample_size": {
+    "events": 217,
+    "predictors": 63,
+    "events_per_variable": 3.4444444444444446
+  },
+  "separation": {
+    "separation_ratio": 0.23696851094111368
+  }
+}

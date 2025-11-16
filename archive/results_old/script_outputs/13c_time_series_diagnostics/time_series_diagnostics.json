@@ -1,0 +1,63 @@
+{
+  "stationarity_tests": {
+    "X1": {
+      "adf_statistic": -22.03880616288158,
+      "p_value": 0.0,
+      "is_stationary": true,
+      "integration_order": "I(0)"
+    },
+    "X2": {
+      "adf_statistic": -18.072486900157717,
+      "p_value": 2.601581389014576e-30,
+      "is_stationary": true,
+      "integration_order": "I(0)"
+    },
+    "X3": {
+      "adf_statistic": -21.194210414866685,
+      "p_value": 0.0,
+      "is_stationary": true,
+      "integration_order": "I(0)"
+    },
+    "X4": {
+      "adf_statistic": -19.964557081057276,
+      "p_value": 0.0,
+      "is_stationary": true,
+      "integration_order": "I(0)"
+    },
+    "X5": {
+      "adf_statistic": -20.40000377514693,
+      "p_value": 0.0,
+      "is_stationary": true,
+      "integration_order": "I(0)"
+    }
+  },
+  "cointegration_tests": {},
+  "granger_causality": {
+    "X1": {
+      "min_p_value": 0.0021354324279469084,
+      "granger_causes": true,
+      "lags_tested": 4
+    },
+    "X2": {
+      "min_p_value": 0.0022472512141106186,
+      "granger_causes": true,
+      "lags_tested": 4
+    },
+    "X3": {
+      "min_p_value": 0.16949645418926856,
+      "granger_causes": false,
+      "lags_tested": 4
+    },
+    "X4": {
+      "min_p_value": 0.003640084752486568,
+      "granger_causes": true,
+      "lags_tested": 4
+    },
+    "X5": {
+      "min_p_value": 0.00034673531531192965,
+      "granger_causes": true,
+      "lags_tested": 4
+    }
+  },
+  "ecm_results": {}
+}

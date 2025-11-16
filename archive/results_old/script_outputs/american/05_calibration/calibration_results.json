@@ -1,0 +1,12 @@
+{
+  "logistic_regression": {
+    "brier_uncalibrated": 0.14450601559639767,
+    "brier_calibrated": 0.02819843485366534,
+    "improvement_pct": 80.48632457459557
+  },
+  "random_forest": {
+    "brier_uncalibrated": 0.04383601343318142,
+    "brier_calibrated": 0.023474404723799677,
+    "improvement_pct": 46.4494992009678
+  }
+}

@@ -1,0 +1,49 @@
+feature,readable_name,category,vif
+Attr43,Operating Cycle (days),Activity,36.17631688380226
+Attr42,Operating Margin,Profitability,36.14448922468304
+Attr49,EBITDA Margin,Profitability,32.99590778426882
+Attr13,Gross Margin + Depr.,Profitability,25.442210950053877
+Attr20,Inventory Days,Activity,19.264187920567625
+Attr44,Receivables Days,Activity,17.44871886520756
+Attr62,Payables Days (Sales),Activity,17.108008585313165
+Attr31,GP + Interest / Sales,Profitability,16.69916595798801
+Attr56,Gross Margin (alt),Profitability,16.50953040326037
+Attr11,Gross Profit + Extras / Assets,Profitability,15.991878820446003
+Attr39,Profit Margin,Profitability,15.915120942758223
+Attr35,Profit on Sales / Assets,Profitability,14.87332318046366
+Attr58,Cost / Sales Ratio,Other,14.436829758671012
+Attr32,Payables Days,Activity,12.809663594774793
+Attr47,Inventory Days (COGS),Activity,11.620024068548576
+Attr50,Current Assets / Liabilities,Liquidity,11.578627777256166
+Attr2,Liabilities / Assets,Leverage,11.164504163409186
+Attr12,Gross Profit / ST Liab.,Profitability,9.925769990389412
+Attr26,NP + Depr. / Liabilities,Leverage,9.916128436509693
+Attr48,EBITDA / Assets,Profitability,9.877010217135675
+Attr17,Asset to Liability Ratio,Leverage,8.760233366235987
+Attr38,Constant Capital / Assets,Leverage,7.967791521133001
+Attr30,Net Debt / Sales,Leverage,6.5812559711090515
+Attr36,Sales / Assets,Activity,6.515489658680024
+Attr33,Op. Expenses / ST Liab.,Leverage,5.717437831345047
+Attr24,GP (3yr) / Assets,Profitability,5.7048424461900415
+Attr9,Asset Turnover,Activity,5.1999490358140985
+Attr3,Working Capital / Assets,Liquidity,5.033365137013906
+Attr34,Op. Expenses / Liabilities,Leverage,4.592527585678891
+Attr40,Cash Ratio,Liquidity,4.369086048360515
+Attr53,Equity / Fixed Assets,Leverage,4.308569561553051
+Attr64,Fixed Asset Turnover,Activity,4.250319018477779
+Attr25,Retained Equity / Assets,Leverage,3.8851385480560885
+Attr45,Net Profit / Inventory,Activity,3.397941351476165
+Attr60,Inventory Turnover,Activity,3.12860585876641
+Attr6,Retained Earnings / Assets,Profitability,2.538006629583556
+Attr29,Log(Total Assets),Size,2.527186173024412
+Attr61,Receivables Turnover,Activity,1.7844013896265818
+Attr59,LT Debt / Equity,Leverage,1.7096641234953731
+Attr55,Working Capital,Liquidity,1.688647324638824
+Attr57,Defensive Interval,Liquidity,1.6841306439230923
+Attr21__isna,Sales Growth (Missing),Activity,1.382486041356836
+Attr41,Debt Service Coverage,Leverage,1.1794279616837748
+Attr5,Cash Cycle (days),Liquidity,1.1451379330038705
+Attr15,Liabilities Coverage (days),Leverage,1.1391833541756373
+Attr27,Op. Profit / Fin. Expenses,Profitability,1.134562427152972
+Attr21,Sales Growth,Activity,1.1182146862876192
+Attr27__isna,Op. Profit / Fin. Expenses (Missing),Profitability,1.0599167356621495

@@ -1,0 +1,31 @@
+{
+  "model_1_current_only": {
+    "features": 5,
+    "auc": 0.6478525282376457,
+    "description": "Baseline - current year only"
+  },
+  "model_2_with_lag1": {
+    "features": 10,
+    "auc": 0.6507610236804101,
+    "improvement_%": 0.44894405995086206,
+    "description": "Current + 1-year lag"
+  },
+  "model_3_with_lag2": {
+    "features": 15,
+    "auc": 0.6553774364234546,
+    "improvement_%": 1.1615156008233671,
+    "description": "Current + 2-year lags"
+  },
+  "model_4_all_with_deltas": {
+    "features": 26,
+    "auc": 0.6552604271272678,
+    "improvement_%": 1.1434545003280054,
+    "description": "All features + change deltas"
+  },
+  "feature_importance_by_category": {
+    "Delta (Change)": 0.342148213706499,
+    "Current (t)": 0.24284265025274576,
+    "Lag-1 (t-1)": 0.212599201503397,
+    "Lag-2 (t-2)": 0.20240993453735834
+  }
+}

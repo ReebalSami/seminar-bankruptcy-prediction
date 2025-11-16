@@ -1,0 +1,82 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Main document file  — Scientific IMRaD flow + tight spacing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[
+  12pt,
+  oneside,             % cleaner for PDF reading; use 'twoside' if printing
+  openany,             % start chapters on any page (scientific theses often do)
+  listof=totoc,        % include lists in ToC
+  bibliography=totoc,  % include bibliography in ToC
+  parskip=half         % modest paragraph skip (less airy than 'full')
+]{scrreprt}
+
+% --------------------------------------------------------------------
+% Shared header (packages, fonts, biblatex, etc.)
+% --------------------------------------------------------------------
+\input{stuff/header}
+\DefineBibliographyStrings{english}{andothers = {et al.}}
+% ------- Global spacing fixes for a more scientific look -------------
+% (Keep here so they apply even if header changes)
+\KOMAoptions{parskip=half}            % compact paragraph spacing
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}              % sections + subsections in ToC
+
+% Tighter section spacing (KOMA-friendly)
+\RedeclareSectionCommand[
+  beforeskip=1.0\baselineskip,
+  afterskip=0.4\baselineskip
+]{chapter}
+\RedeclareSectionCommand[
+  beforeskip=0.9\baselineskip,
+  afterskip=0.3\baselineskip
+]{section}
+\RedeclareSectionCommand[
+  beforeskip=0.7\baselineskip,
+  afterskip=0.2\baselineskip
+]{subsection}
+
+% List spacing (fixes “huge distances between bullet points”)
+\usepackage{enumitem}
+\setlist{itemsep=0.2\baselineskip, topsep=0.4\baselineskip, parsep=0pt}
+% For super-tight lists in certain places, use:
+% \begin{itemize}[itemsep=0.1\baselineskip, topsep=0.2\baselineskip]
+
+\begin{document}
+\selectlanguage{english}
+
+% ------------------------ Front matter -----------------------------
+\pagenumbering{Roman}
+
+% Title page
+\newgeometry{left=3cm,right=2cm,top=2.0cm,bottom=2.0cm}
+\include{stuff/Titelseite}
+\restoregeometry
+
+% ToC and lists
+\tableofcontents
+\listoffigures
+\listoftables
+\cleardoublepage
+
+% ------------------------ Main matter ------------------------------
+\pagenumbering{arabic}
+\onehalfspacing
+
+% IMPORTANT: \include paths must NOT have spaces or & characters.
+% Use simple ASCII file names like below (no .tex extension in \include).
+\include{kapitel/01_Einleitung}
+\include{kapitel/02_Literaturuebersicht}
+\include{kapitel/03_Daten_und_Methodik}
+\include{kapitel/04_Datenaufbereitung}
+\include{kapitel/05_Feature_Engineering}
+\include{kapitel/06_Modellierung}
+
+% Bibliography
+\printbibliography
+
+% ------------------------ Back matter ------------------------------
+% (footer if you have one)
+% \include{stuff/footer}
+
+\end{document}
+

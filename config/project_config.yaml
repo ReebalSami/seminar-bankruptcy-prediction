@@ -1,0 +1,124 @@
+# ============================================================================
+# CLEAN PROJECT CONFIGURATION
+# Single source of truth for all parameters
+# ============================================================================
+
+# Dataset Configuration
+datasets:
+  polish:
+    name: "Polish Companies Bankruptcy"
+    raw_path: "data/polish-companies-bankruptcy/data-from-kaggel.csv"
+    metadata_path: "data/polish-companies-bankruptcy/feature_descriptions.json"
+    feature_pattern: "A"  # A1-A64
+    feature_count: 64
+    feature_range: [1, 64]
+    target_column: "class"
+    horizons: [1, 2, 3, 4, 5]
+    has_temporal: true
+    source: "Kaggle (UCI Machine Learning Repository)"
+    
+  american:
+    name: "American Bankruptcy"
+    raw_path: "data/NYSE-and-NASDAQ-companies/american-bankruptcy.csv"
+    metadata_path: "data/NYSE-and-NASDAQ-companies/american-metadata.json"
+    feature_pattern: "X"  # X1-X18
+    feature_count: 18
+    feature_range: [1, 18]
+    target_column: "label"
+    horizons: null
+    has_temporal: false
+    source: "UCI Machine Learning Repository"
+    
+  taiwan:
+    name: "Taiwan Economic Journal Bankruptcy"
+    raw_path: "data/taiwan-economic-journal/taiwan-bankruptcy.csv"
+    metadata_path: null
+    feature_pattern: "descriptive"  # Long descriptive names
+    feature_count: 95
+    feature_range: [1, 95]
+    target_column: "Bankrupt?"
+    horizons: null
+    has_temporal: false
+    source: "Taiwan Economic Journal"
+
+# Analysis Parameters
+analysis:
+  # Random state for reproducibility
+  random_state: 42
+  
+  # Train/test split
+  test_size: 0.2
+  validation_size: 0.2  # From remaining after test split
+  
+  # VIF thresholds
+  vif_threshold_high: 10
+  vif_threshold_moderate: 5
+  
+  # Correlation thresholds
+  correlation_threshold: 0.9
+  
+  # Model parameters
+  max_iter: 1000
+  n_estimators: 100
+  
+  # Feature selection
+  min_features: 5
+  max_features: 30
+  
+  # Events per variable (EPV) for logistic regression
+  min_epv: 10
+
+# Paths
+paths:
+  data: "data"
+  results: "results"
+  docs: "docs"
+  logs: "logs"
+  archive: "archive"
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+
+# Semantic Feature Categories (for cross-dataset mapping)
+semantic_categories:
+  profitability:
+    description: "Measures of profit generation relative to assets, equity, or sales"
+    keywords: ["profit", "ROA", "ROE", "margin", "earnings"]
+    
+  liquidity:
+    description: "Ability to meet short-term obligations"
+    keywords: ["current ratio", "quick ratio", "working capital", "cash"]
+    
+  leverage:
+    description: "Debt levels and financial structure"
+    keywords: ["debt", "liability", "equity", "leverage", "gearing"]
+    
+  efficiency:
+    description: "Asset utilization and turnover"
+    keywords: ["turnover", "days", "receivables", "inventory", "sales"]
+    
+  solvency:
+    description: "Long-term financial stability"
+    keywords: ["total assets", "total debt", "interest coverage", "equity"]
+    
+  activity:
+    description: "Operating cycle and cash conversion"
+    keywords: ["cycle", "conversion", "operating"]
+
+# Output Settings
+output:
+  figure_format: "png"
+  figure_dpi: 300
+  excel_engine: "openpyxl"
+  save_intermediate: true
+  
+# Visualization Settings
+visualization:
+  style: "seaborn-v0_8-darkgrid"
+  palette: "Set2"
+  figure_size: [12, 8]
+  font_size: 10
+  title_font_size: 14

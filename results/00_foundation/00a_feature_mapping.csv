@@ -1,0 +1,65 @@
+Feature_Code,Readable_Name,Full_Name,Short_Name,Category,Formula,Interpretation
+A1,net_profit_assets,Net Profit / Total Assets,Net Profit / Assets,Profitability,net profit / total assets,Return on Assets (ROA). Higher values indicate better profitability.
+A2,liabilities_assets,Total Liabilities / Total Assets,Liabilities / Assets,Leverage,total liabilities / total assets,Debt ratio. Higher values indicate higher financial leverage and risk.
+A3,working_capital_assets,Working Capital / Total Assets,Working Capital / Assets,Liquidity,working capital / total assets,Proportion of assets in liquid form. Higher is better for short-term obligations.
+A4,current_ratio,Current Assets / Short-term Liabilities,Current Ratio,Liquidity,current assets / short-term liabilities,Current ratio. Values > 1 indicate ability to cover short-term debts.
+A5,cash_cycle_days,[(Cash + Short-term Securities + Receivables - Short-term Liabilities) / (Operating Expenses - Depreciation)] * 365,Cash Cycle (days),Liquidity,[(cash + short-term securities + receivables - short-term liabilities) / (operating expenses - depreciation)] * 365,Days of cash coverage. Negative values indicate immediate liquidity problems.
+A6,retained_earnings_assets,Retained Earnings / Total Assets,Retained Earnings / Assets,Profitability,retained earnings / total assets,Cumulative profitability. Part of Altman Z-Score.
+A7,ebit_assets,EBIT / Total Assets,EBIT / Assets,Profitability,EBIT / total assets,Operating profitability. Key indicator of core business performance.
+A8,equity_liabilities,Book Value of Equity / Total Liabilities,Equity / Liabilities,Leverage,book value of equity / total liabilities,Equity cushion. Higher values indicate stronger solvency.
+A9,asset_turnover,Sales / Total Assets,Asset Turnover,Activity,sales / total assets,Asset turnover efficiency. Higher values indicate better asset utilization.
+A10,equity_assets,Equity / Total Assets,Equity / Assets,Leverage,equity / total assets,Equity ratio. Complement of debt ratio.
+A11,gross_profit_+_extras_assets,(Gross Profit + Extraordinary Items + Financial Expenses) / Total Assets,Gross Profit + Extras / Assets,Profitability,(gross profit + extraordinary items + financial expenses) / total assets,Adjusted profitability including non-operating items.
+A12,gross_profit_st_liab,Gross Profit / Short-term Liabilities,Gross Profit / ST Liab.,Profitability,gross profit / short-term liabilities,Ability to cover short-term debt with profits.
+A13,gross_margin_+_depr,(Gross Profit + Depreciation) / Sales,Gross Margin + Depr.,Profitability,(gross profit + depreciation) / sales,Gross margin adjusted for depreciation.
+A14,gross_profit_+_interest_assets,(Gross Profit + Interest) / Total Assets,Gross Profit + Interest / Assets,Profitability,(gross profit + interest) / total assets,Profitability before interest expense.
+A15,liabilities_coverage_days,(Total Liabilities * 365) / (Gross Profit + Depreciation),Liabilities Coverage (days),Leverage,(total liabilities * 365) / (gross profit + depreciation),Days to repay all debt with operating cash. Lower is better.
+A16,gp_+_depr_liabilities,(Gross Profit + Depreciation) / Total Liabilities,GP + Depr. / Liabilities,Leverage,(gross profit + depreciation) / total liabilities,Operating cash generation relative to debt.
+A17,asset_to_liability_ratio,Total Assets / Total Liabilities,Asset to Liability Ratio,Leverage,total assets / total liabilities,Asset coverage of liabilities. Values > 1 indicate positive equity.
+A18,gross_profit_assets,Gross Profit / Total Assets,Gross Profit / Assets,Profitability,gross profit / total assets,Gross return on assets.
+A19,gross_margin,Gross Profit / Sales,Gross Margin,Profitability,gross profit / sales,Gross profit margin. Key profitability indicator.
+A20,inventory_days,(Inventory * 365) / Sales,Inventory Days,Activity,(inventory * 365) / sales,Days inventory outstanding. Lower indicates faster turnover.
+A21,sales_growth,Sales (n) / Sales (n-1),Sales Growth,Activity,sales (n) / sales (n-1),Year-over-year sales growth ratio.
+A22,operating_profit_assets,Profit on Operating Activities / Total Assets,Operating Profit / Assets,Profitability,profit on operating activities / total assets,Operating return on assets.
+A23,net_margin,Net Profit / Sales,Net Margin,Profitability,net profit / sales,Net profit margin. Bottom-line profitability.
+A24,gp_3yr_assets,Gross Profit (in 3 years) / Total Assets,GP (3yr) / Assets,Profitability,gross profit (in 3 years) / total assets,Multi-year cumulative profitability.
+A25,retained_equity_assets,(Equity - Share Capital) / Total Assets,Retained Equity / Assets,Leverage,(equity - share capital) / total assets,Retained earnings as proportion of assets.
+A26,np_+_depr_liabilities,(Net Profit + Depreciation) / Total Liabilities,NP + Depr. / Liabilities,Leverage,(net profit + depreciation) / total liabilities,Cash generation relative to debt burden.
+A27,op_profit_fin_expenses,Profit on Operating Activities / Financial Expenses,Op. Profit / Fin. Expenses,Profitability,profit on operating activities / financial expenses,Interest coverage ratio. Higher values indicate ability to service debt.
+A28,wc_fixed_assets,Working Capital / Fixed Assets,WC / Fixed Assets,Liquidity,working capital / fixed assets,Liquidity relative to long-term assets.
+A29,logtotal_assets,Logarithm of Total Assets,Log(Total Assets),Size,logarithm of total assets,Company size. Larger firms may have different risk profiles.
+A30,net_debt_sales,(Total Liabilities - Cash) / Sales,Net Debt / Sales,Leverage,(total liabilities - cash) / sales,Net debt burden relative to revenue.
+A31,gp_+_interest_sales,(Gross Profit + Interest) / Sales,GP + Interest / Sales,Profitability,(gross profit + interest) / sales,Profitability before interest cost.
+A32,payables_days,(Current Liabilities * 365) / Cost of Products Sold,Payables Days,Activity,(current liabilities * 365) / cost of products sold,Days payable outstanding. Payment cycle to suppliers.
+A33,op_expenses_st_liab,Operating Expenses / Short-term Liabilities,Op. Expenses / ST Liab.,Leverage,operating expenses / short-term liabilities,Operating expense burden relative to short-term debt.
+A34,op_expenses_liabilities,Operating Expenses / Total Liabilities,Op. Expenses / Liabilities,Leverage,operating expenses / total liabilities,Operating expense burden relative to total debt.
+A35,profit_on_sales_assets,Profit on Sales / Total Assets,Profit on Sales / Assets,Profitability,profit on sales / total assets,Sales profitability relative to asset base.
+A36,sales_assets,Total Sales / Total Assets,Sales / Assets,Activity,total sales / total assets,Asset turnover. Efficiency of asset utilization.
+A37,quick_assets_lt_liab,(Current Assets - Inventories) / Long-term Liabilities,Quick Assets / LT Liab.,Liquidity,(current assets - inventories) / long-term liabilities,Quick assets coverage of long-term debt.
+A38,constant_capital_assets,Constant Capital / Total Assets,Constant Capital / Assets,Leverage,constant capital / total assets,Permanent capital proportion.
+A39,profit_margin,Profit on Sales / Sales,Profit Margin,Profitability,profit on sales / sales,Operating profit margin.
+A40,cash_ratio,(Current Assets - Inventory - Receivables) / Short-term Liabilities,Cash Ratio,Liquidity,(current assets - inventory - receivables) / short-term liabilities,Most conservative liquidity ratio. Only cash and equivalents.
+A41,debt_service_coverage,Total Liabilities / ((Profit on Operating Activities + Depreciation) * (12/365)),Debt Service Coverage,Leverage,total liabilities / ((profit on operating activities + depreciation) * (12/365)),Months of operating cash needed to repay all debt.
+A42,operating_margin,Profit on Operating Activities / Sales,Operating Margin,Profitability,profit on operating activities / sales,Operating profit margin. Core business profitability.
+A43,operating_cycle_days,Rotation Receivables + Inventory Turnover in Days,Operating Cycle (days),Activity,rotation receivables + inventory turnover in days,Total operating cycle length. Lower is better.
+A44,receivables_days,(Receivables * 365) / Sales,Receivables Days,Activity,(receivables * 365) / sales,Days sales outstanding. Collection period.
+A45,net_profit_inventory,Net Profit / Inventory,Net Profit / Inventory,Activity,net profit / inventory,Profitability per unit of inventory.
+A46,quick_ratio,(Current Assets - Inventory) / Short-term Liabilities,Quick Ratio,Liquidity,(current assets - inventory) / short-term liabilities,Quick ratio. Liquidity without relying on inventory sales.
+A47,inventory_days_cogs,(Inventory * 365) / Cost of Products Sold,Inventory Days (COGS),Activity,(inventory * 365) / cost of products sold,Days inventory outstanding based on COGS.
+A48,ebitda_assets,EBITDA (Profit on Operating Activities - Depreciation) / Total Assets,EBITDA / Assets,Profitability,EBITDA (profit on operating activities - depreciation) / total assets,EBITDA return on assets.
+A49,ebitda_margin,EBITDA (Profit on Operating Activities - Depreciation) / Sales,EBITDA Margin,Profitability,EBITDA (profit on operating activities - depreciation) / sales,EBITDA margin. Cash operating profitability.
+A50,current_assets_liabilities,Current Assets / Total Liabilities,Current Assets / Liabilities,Liquidity,current assets / total liabilities,Short-term assets coverage of all liabilities.
+A51,st_liabilities_assets,Short-term Liabilities / Total Assets,ST Liabilities / Assets,Leverage,short-term liabilities / total assets,Proportion of assets funded by short-term debt.
+A52,payables_days_cogs,(Short-term Liabilities * 365) / Cost of Products Sold,Payables Days (COGS),Activity,(short-term liabilities * 365) / cost of products sold,Payables period based on COGS.
+A53,equity_fixed_assets,Equity / Fixed Assets,Equity / Fixed Assets,Leverage,equity / fixed assets,Equity coverage of long-term assets.
+A54,constant_capital_fixed_assets,Constant Capital / Fixed Assets,Constant Capital / Fixed Assets,Leverage,constant capital / fixed assets,Permanent capital funding of fixed assets.
+A55,working_capital,Working Capital,Working Capital,Liquidity,working capital,Absolute working capital. Current assets minus current liabilities.
+A56,gross_margin_alt,(Sales - Cost of Products Sold) / Sales,Gross Margin (alt),Profitability,(sales - cost of products sold) / sales,Alternative calculation of gross margin.
+A57,defensive_interval,(Current Assets - Inventory - Short-term Liabilities) / (Sales - Gross Profit - Depreciation),Defensive Interval,Liquidity,(current assets - inventory - short-term liabilities) / (sales - gross profit - depreciation),Days company can operate without additional cash inflow.
+A58,cost_sales_ratio,Total Costs / Total Sales,Cost / Sales Ratio,Other,total costs / total sales,Cost efficiency. Lower is better.
+A59,lt_debt_equity,Long-term Liabilities / Equity,LT Debt / Equity,Leverage,long-term liabilities / equity,Long-term debt-to-equity ratio. Financial leverage.
+A60,inventory_turnover,Sales / Inventory,Inventory Turnover,Activity,sales / inventory,Inventory turnover ratio. Higher indicates faster movement.
+A61,receivables_turnover,Sales / Receivables,Receivables Turnover,Activity,sales / receivables,Receivables turnover. Higher indicates faster collection.
+A62,payables_days_sales,(Short-term Liabilities * 365) / Sales,Payables Days (Sales),Activity,(short-term liabilities * 365) / sales,Payables period based on sales.
+A63,payables_turnover,Sales / Short-term Liabilities,Payables Turnover,Activity,sales / short-term liabilities,Payables turnover rate.
+A64,fixed_asset_turnover,Sales / Fixed Assets,Fixed Asset Turnover,Activity,sales / fixed assets,Fixed asset turnover. Efficiency of long-term assets.

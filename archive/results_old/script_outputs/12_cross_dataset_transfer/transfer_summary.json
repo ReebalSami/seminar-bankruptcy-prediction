@@ -1,0 +1,15 @@
+{
+  "total_experiments": 6,
+  "avg_transfer_auc": 0.577061613251079,
+  "avg_degradation_%": 36.302133966551146,
+  "best_transfer": {
+    "from": "American",
+    "to": "Taiwan",
+    "auc": 0.883625962611415
+  },
+  "baselines": {
+    "Polish": 0.9439992877492877,
+    "American": 0.8460777467411544,
+    "Taiwan": 0.9300275482093665
+  }
+}

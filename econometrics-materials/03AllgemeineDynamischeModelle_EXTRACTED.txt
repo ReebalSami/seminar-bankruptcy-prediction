@@ -1,0 +1,632 @@
+Ökonometrie
+Prof. Dr. Franziska Bönte
+FH Wedel
+
+Sommersemester 2024
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+1 / 27
+
+Gliederung des Moduls Ökonometrie
+1
+
+2
+
+3
+
+Schätz- und Testverfahren im linearen Modell nach der kleinsten
+Quadrate-Methode
+Schätzung verallgemeinerter linearer Modelle insbesondere Schätzen
+bei Autokorrelation der Störgröße (Aitken-Schätzung)
+Allgemeine dynamische Modelle
+Zeitreihen und Zeitreihenmodell
+KQ-Schätzer dynamischer Gleichungen
+Test auf Integration, Cointegration und schwacher Exogenität
+
+4
+
+Ökonometrische Mehrgleichungsmodelle
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+2 / 27
+
+Teil 3:
+3–1
+
+Allgemeine dynamische Modelle
+Zeitreihen und Zeitreihenmodelle
+
+Zeitreihe
+Eine Folge von zeitlich aufeinander folgenden Beobachtungen einer Zufallsvariable Y:
+Y1 , Y2 , . . . YT
+Ausschnitt einer unendliche Folge von Zufallsvariablen, die einen stochastischen Prozess repräsentieren
+{Yt , t = −∞, . . . , ∞}
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+3 / 27
+
+Teil 3:
+3–1
+
+Allgemeine dynamische Modelle
+Zeitreihen und Zeitreihenmodelle
+
+(Schwache) Stationarität
+Varianz-Kovarianz-Matrix:
+Cov(Yt ; Yt+k ) = γt,k für k = 0; ±1, . . .
+Bedingungen für schwache Stationarität
+E(Yt ) = µ für alle t
+Cov(Yt , Yt+k ) = γk für alle t und k
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+4 / 27
+
+Teil 3:
+3–1
+
+Allgemeine dynamische Modelle
+Zeitreihen und Zeitreihenmodelle
+
+Autokorrelationsfunktion
+Cov(yt , yt−k )
+√
+ρk = √
+Var(yt ) · Var(yt−1 )
+partielle Autokorrelationsfunktion
+yt = ϕk0 + ϕk1 yt−1 + . . . , ϕkk yt−k + ut
+PAC = ϕkk = Corr(yt−k | yt−1 , . . . , yt−k+1 )
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+5 / 27
+
+Teil 3:
+3–1
+
+Allgemeine dynamische Modelle
+Zeitreihen und Zeitreihenmodelle
+
+Autoregressive Prozesse: AR(p)
+Autoregressive Prozesse p-ter Ordnung
+AR(1) : ut = ρ1 ut−1 + ϵt
+AR(2) : ut = ρ1 ut−1 + ρ2 ut−2 + ϵt
+..
+.
+p
+∑
+AR(p) : ut =
+ρi ut−i + ϵt
+i=1
+
+mit
+
+−1 > ρi < 1 für alle i = 1, . . . , p
+ϵt ∼ FNV (0, σϵ2 )
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+6 / 27
+
+Teil 3:
+3–1
+
+Allgemeine dynamische Modelle
+Zeitreihen und Zeitreihenmodelle
+
+AR(1): Schätzer für ρ : ρ̂
+ût = ρût−1 + ϵ∗t
+∑T
+ρ̂ =
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Sût−1 ût
+t=2 ût−1 ût
+=
+2
+Sût−1 ût−1
+t=2 ût
+
+∑T
+
+Ökonometrie
+
+Sommersemester 2024
+
+7 / 27
+
+Teil 3:
+3–1
+
+Allgemeine dynamische Modelle
+Zeitreihen und Zeitreihenmodelle
+
+Moving Average Prozesse: MA(q))
+MA(1) : yt = β0 + ut − ρ1 ut−1
+..
+.
+MA(q) : yt = β0 + ut − ρ1 ut−1 − . . . , ρq ut−q
+mit ut ∼ FNV (0; σ 2 )
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+8 / 27
+
+Teil 3:
+3–1
+
+Allgemeine dynamische Modelle
+Zeitreihen und Zeitreihenmodelle
+
+ARMA(p, q))
+MA(q) : yt = β0 + ϕ1 yt−1 + . . . , + ϕq yt−q + ut
+AR(p) : ut = ρ1 ϵt−1 + . . . , + ρp ϵt−p + ϵt
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+9 / 27
+
+Teil 3:
+3–1
+
+Allgemeine dynamische Modelle
+Zeitreihen und Zeitreihenmodelle
+
+Deterministischer Trend
+yt = f(t) + ut mit ut : weißes Rauschen
+z.B.
+= β0 + β1 t + ut
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+10 / 27
+
+Teil 3:
+3–1
+
+Allgemeine dynamische Modelle
+Zeitreihen und Zeitreihenmodelle
+
+Stochastischer Trend: Random Walk
+yt = µ + yt−1 + ut
+∆yt = µ + ut mit ut : weißes Rauschen
+Der stochastische Trend beschreibt zufälliges Flukturieren um den Erwartungswert µ:
+µ ̸= 0: Random Walk mit Trend (oder auch Drift genannt)
+µ = 0: Random Walk ohne Drift
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+11 / 27
+
+Teil 3:
+3–1
+
+Allgemeine dynamische Modelle
+Zeitreihen und Zeitreihenmodelle
+
+Eigenschaften des Random Walks
+Erwartungswert: E[yt ] = y0 + µt
+Varianz: Var(Yt ) = Var(ut ) = µ2 t2 + σ 2 t
+Korrelation zwischen yt und y√
+t−k :
+√
+t−k
+k
+ρt, k = Corr(yt ; y − t − k) =
+= 1−
+t
+t
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+12 / 27
+
+Teil 3:
+3–1
+
+Allgemeine dynamische Modelle
+Zeitreihen und Zeitreihenmodelle
+
+Ingegriertheit von Variablen: I(.)
+Die Annahme eines Random Walk bedeutet, dass die differenzierte Variable
+∆yt stationär ist.
+Man bezeichnet yt als integriert von Grade 1 – I(1), d.h. yt muss einmal
+differenziert werden, um stationär zu werden.
+Die Differenzierung kann auf zweierlei Art geschehen:
+differenz-stationärer Prozess: durch einfache Bildung erster
+Differenzen kann der stationäre Prozess abgeleitet werden.
+trend-stationärer Prozess: durch Subtrahieren eines deterministischen
+Trends kann Stationarität erzeugt werden.
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+13 / 27
+
+Teil 3:
+3–1
+
+Allgemeine dynamische Modelle
+Zeitreihen und Zeitreihenmodelle
+
+ARIMA-Modelle
+Unter einem ARIMA(p, d, q) - Modell versteht man einen Prozesse, dessen
+d-te Differenzen ein ARMA(p, q) - Modell ergeben.
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+14 / 27
+
+Teil 3:
+3–2
+
+Allgemeine dynamische Modelle
+KQ-Schätzer dynamischer Modelle
+
+IV-Schätzung
+Einen konsistenten Schätzer erhält man, wenn man statt der bisherigen
+Orthogonalitätsbedingung X′ û = 0 die neue Orthogonalitätsbedingung
+Z′ û = 0 verwendet.
+Wähle die Variablen in Z so, dass sie nicht mit der (autokorrelierten) Störgröße korrelieren.
+Instrumentvariable:
+Instrumentvariablen-Schätzer:
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Z
+β̂IV = (Z′ X)−1 Z′ y
+
+Sommersemester 2024
+
+15 / 27
+
+Teil 3:
+3–2
+
+Allgemeine dynamische Modelle
+KQ-Schätzer dynamischer Modelle
+
+Superkonsistenz
+Sei xt : Random Walk ohne drift, also eine I(1)-Variable und ut stationär, so
+konvergieren:
+[
+]
+[
+]
+1 ′ −1
+1 1 ′ −1
+Xu
+XX
+·
+→0
+β̂ − β =
+T T
+T2
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+16 / 27
+
+Teil 3:
+3–2
+
+Allgemeine dynamische Modelle
+KQ-Schätzer dynamischer Modelle
+
+Cointegration
+Zwei integrierte Variablen yt und xt heißen cointegriert, wenn eine Linearkombination yt − xt β einen niedrigeren Integrationsgrad besitzt.
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+17 / 27
+
+Teil 3:
+3–2
+
+Allgemeine dynamische Modelle
+KQ-Schätzer dynamischer Modelle
+
+Test auf Granger Kausalität
+Test auf strikte Exogenität, d.h. es wird getestet
+H0 :
+
+d0 = d1 = . . . = dq−1 = 0 und aj ̸= 0 für mind. ein j
+
+H1 :
+
+a0 = a1 = . . . = aq−1 = 0 und dj ̸= 0 für mind. ein j
+
+feedback:
+
+weder gilt d0 = d1 = . . . = dq−1 = 0
+noch a0 = a1 = . . . = aq−1 = 0
+
+xt ist Granger kausal zu yt , wenn H0 gilt
+yt ist Granger kausal zu xt , wenn H1 gilt
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+18 / 27
+
+Teil 3:
+3–3
+
+Allgemeine dynamische Modelle
+dynamische Modelle der Wirtschaftstheorie
+
+Test auf Integrationsgrad: Augmented Dickey-Fuller-Test
+yt
+
+=
+
+φ1 yt−1 + . . . + φp yt−p + ut
+
+∆yt
+
+=
+
+δyt−1 + β1 ∆yt−1 + . . . + βp ∆yt−p + ut
+
+mit
+
+δ = (φ1 + . . . φp − 1)
+
+H0 : δ = 0 ↔ H1 : δ ̸= 0
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+19 / 27
+
+Teil 3:
+3–4
+
+Allgemeine dynamische Modelle
+dynamische Modelle der Wirtschaftstheorie
+
+Test auf Cointegration: Engle-Granger-Verfahren
+Seien yt und xt jeweils integriert vom Grade 1 (also I(1)-Variablen).
+Schätzung der Gleichung: yt = βxt + vt
+yt und xt sind cointegriert, wenn die Residuen v̂t einer Linearkombination
+von y und x stationär (also (I(0)) sind.
+⇒ Anwendung eines augmented Dickey-Fuller-Test auf die Residuen der
+Schätzung v̂t .
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+20 / 27
+
+Teil 3:
+3–5
+
+Allgemeine dynamische Modelle
+dynamische Modelle der Wirtschaftstheorie
+
+Test auf schwache Exogenität
+Ausgangspunkt: ECM:
+∆yt = (b1 + b2 − 1)yt−1 + (a0 + a1 + a2 )xt−1
+−b2 ∆yt−1 + a0 ∆xt − a2 ∆xt−1 + ut
+Prüfung anhand eines approximativen F-Tests, ob die stationäre Linearkombination der Niveauvariablen
+ˆ − 1)y
+v̂t = (b
+0
+t−1 + â0 xt−1
+aus dem ECM für y einen Einfluss auf ∆x hat
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+21 / 27
+
+Teil 3:
+3–6
+
+Allgemeine dynamische Modelle
+dynamische Modelle der Wirtschaftstheorie
+
+Modelle der partiellen Anpassung
+Adaptive Erwartungen
+Partielle Anpassung an langfristige Erwartungen
+Lag-Modelle
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+22 / 27
+
+Teil 3:
+3–6
+
+Allgemeine dynamische Modelle
+dynamische Modelle der Wirtschaftstheorie
+
+Modelle der partiellen Anpassung
+Die Anpassung erfolgt erst nur teilweise, d.h. es gibt
+einen kurzfristigen Effekt und
+eine langfristige Reaktion
+auf Veränderungen der exogenen Variablen.
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+23 / 27
+
+Teil 3:
+3–6
+
+Allgemeine dynamische Modelle
+dynamische Modelle der Wirtschaftstheorie
+
+Modelle der adaptiven Erwartungen
+Auch ein Modell der verzögerten Anpassungen.
+yt = β0 + β1 xet + ut mit xet Erwartungen bzgl. xt
+..
+.
+β1 λL
+yt = β0 +
+xt + ut
+(1 − (1 − λ)L)
+Falsche Erwartungen in der Vorperiode (xt−1 ) bewirken eine teilweise Änderung der Erwartungen in der laufenden Periode.
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+24 / 27
+
+Teil 3:
+3–6
+
+Allgemeine dynamische Modelle
+dynamische Modelle der Wirtschaftstheorie
+
+Partielle Anpassungen an langfristige Erwartungen
+Die Wirtschaftsubjekte minimieren den Gegenwartswert der quadratischen
+Einperiodenverluste:
+Lt =
+
+∞
+∑
+
+[
+]
+δ i λ(yi − y∗i )2 + ∆y2i
+
+i=1
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+25 / 27
+
+Teil 3:
+3–6
+
+Allgemeine dynamische Modelle
+dynamische Modelle der Wirtschaftstheorie
+
+Rationale Lag-Verteilung
+[
+
+]
+[
+]
+1 − b1 L − b2 L2 − . . . , bq Lq yt = a0 + a1 L1 + . . . , ap Lp xt + ut
+B(L)yt = A(L)xt + ut
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+26 / 27
+
+Teil 3:
+3–6
+
+Allgemeine dynamische Modelle
+dynamische Modelle der Wirtschaftstheorie
+
+Stabilität
+Die endogene Variable yt nähert sich im Zeitablauf dem langfristigen Gleichgewicht y∗t an, wenn keine neuen exogenen Einflüsse auftreten, d.h. ∆xt = 0.
+
+Prof. Dr. Franziska Bönte (FH Wedel)
+
+Ökonometrie
+
+Sommersemester 2024
+
+27 / 27
+
+
