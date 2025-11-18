@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>02c H2 Correlation Analysis</title>
+<style>
+body {font-family: Arial; margin: 20px; background: #f5f5f5;}
+.container {max-width: 1400px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px;}
+h1 {color: #2c3e50; border-bottom: 3px solid #9b59b6;}
+.metric {display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+color: white; padding: 20px; margin: 10px; border-radius: 8px; min-width: 200px; text-align: center;}
+table {width: 100%; border-collapse: collapse; margin: 20px 0;}
+th, td {border: 1px solid #ddd; padding: 12px; text-align: left;}
+th {background: #9b59b6; color: white;}
+tr:nth-child(even) {background: #f2f2f2;}
+.info {background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 20px 0;}
+.warning {background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0;}
+img {max-width: 100%; margin: 20px 0; border: 1px solid #ddd;}
+</style></head><body><div class="container">
+<h1>📊 Phase 02c: Correlation Analysis - Horizon 2</h1>
+
+<div class="info">
+<strong>Purpose:</strong> Identify multicollinearity patterns and validate economic plausibility
+<ul><li>High correlations (|r| > 0.8) → Candidates for removal in Phase 03</li>
+<li>Economic validation → Ensure features behave as expected</li></ul>
+</div>
+
+<div>
+<div class="metric"><div>High Correlations</div><div style="font-size:28px; font-weight:bold;">70</div></div>
+<div class="metric"><div>Economically Plausible</div><div style="font-size:28px; font-weight:bold;">41/64</div></div>
+</div>
+
+<h2>Correlation Heatmap</h2>
+<img src="02c_H2_correlation_heatmap.png" alt="Correlation Heatmap">
+
+<h2>High Correlations (|r| > 0.8) - Top 20</h2>
+<div class="warning">
+<strong>Multicollinearity Alert:</strong> These feature pairs are highly correlated and may cause issues in modeling.
+Phase 03 will use VIF analysis to systematically remove redundant features.
+</div>
+<table><tr><th>Feature 1</th><th>Feature 2</th><th>Correlation</th></tr><tr><td>A7</td><td>A14</td><td>1.000</td></tr><tr><td>A14</td><td>A18</td><td>1.000</td></tr><tr><td>A7</td><td>A18</td><td>0.999</td></tr><tr><td>A8</td><td>A17</td><td>0.997</td></tr><tr><td>A32</td><td>A52</td><td>0.996</td></tr><tr><td>A16</td><td>A26</td><td>0.995</td></tr><tr><td>A19</td><td>A23</td><td>0.990</td></tr><tr><td>A1</td><td>A7</td><td>0.989</td></tr><tr><td>A1</td><td>A14</td><td>0.989</td></tr><tr><td>A2</td><td>A10</td><td>-0.988</td></tr><tr><td>A1</td><td>A18</td><td>0.988</td></tr><tr><td>A28</td><td>A54</td><td>0.987</td></tr><tr><td>A53</td><td>A54</td><td>0.969</td></tr><tr><td>A19</td><td>A31</td><td>0.967</td></tr><tr><td>A7</td><td>A11</td><td>0.966</td></tr><tr><td>A11</td><td>A14</td><td>0.966</td></tr><tr><td>A11</td><td>A18</td><td>0.966</td></tr><tr><td>A38</td><td>A51</td><td>-0.964</td></tr><tr><td>A23</td><td>A31</td><td>0.961</td></tr><tr><td>A4</td><td>A46</td><td>0.959</td></tr></table>
+
+<h2>Economic Plausibility - Top 10 by Correlation with Bankruptcy</h2>
+<table><tr><th>Feature</th><th>Category</th><th>Correlation</th><th>Expected</th><th>Observed</th><th>Plausible?</th></tr><tr><td><strong>A38</strong></td><td>Leverage</td>
+<td>-0.106</td><td>positive</td>
+<td>negative</td><td>❌</td></tr><tr><td><strong>A51</strong></td><td>Leverage</td>
+<td>0.098</td><td>positive</td>
+<td>positive</td><td>✅</td></tr><tr><td><strong>A10</strong></td><td>Leverage</td>
+<td>-0.093</td><td>positive</td>
+<td>negative</td><td>❌</td></tr><tr><td><strong>A39</strong></td><td>Profitability</td>
+<td>-0.092</td><td>negative</td>
+<td>negative</td><td>✅</td></tr><tr><td><strong>A25</strong></td><td>Leverage</td>
+<td>-0.091</td><td>positive</td>
+<td>negative</td><td>❌</td></tr><tr><td><strong>A2</strong></td><td>Leverage</td>
+<td>0.091</td><td>positive</td>
+<td>positive</td><td>✅</td></tr><tr><td><strong>A24</strong></td><td>Profitability</td>
+<td>-0.091</td><td>negative</td>
+<td>negative</td><td>✅</td></tr><tr><td><strong>A3</strong></td><td>Liquidity</td>
+<td>-0.090</td><td>negative</td>
+<td>negative</td><td>✅</td></tr><tr><td><strong>A35</strong></td><td>Profitability</td>
+<td>-0.082</td><td>negative</td>
+<td>negative</td><td>✅</td></tr><tr><td><strong>A6</strong></td><td>Profitability</td>
+<td>-0.070</td><td>negative</td>
+<td>negative</td><td>✅</td></tr></table>
+
+<div class="info">
+<h3>Next Steps</h3>
+<ul><li><strong>Phase 03:</strong> VIF analysis to remove multicollinear features</li>
+<li><strong>Target:</strong> VIF < 10 for all retained features</li>
+<li><strong>Method:</strong> Iterative removal starting with highest VIF</li></ul>
+</div>
+
+<p style="text-align:center; color:#666; margin-top:40px;">
+Generated: 2025-11-18 12:22:29<br>
+Phase 02c: Correlation Analysis - Horizon 2</p>
+</div></body></html>

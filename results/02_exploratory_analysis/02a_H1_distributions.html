@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>02a H1 Distribution Analysis</title>
+<style>
+body {font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5;}
+.container {max-width: 1400px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
+h1 {color: #2c3e50; border-bottom: 3px solid #e74c3c; padding-bottom: 10px;}
+h2 {color: #34495e; margin-top: 30px; border-left: 4px solid #e74c3c; padding-left: 10px;}
+.metric {display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; margin: 10px; border-radius: 8px; min-width: 200px; text-align: center;}
+.metric-label {font-size: 14px; opacity: 0.9;}
+.metric-value {font-size: 28px; font-weight: bold; margin-top: 5px;}
+table {width: 100%; border-collapse: collapse; margin: 20px 0;}
+th, td {border: 1px solid #ddd; padding: 12px; text-align: left;}
+th {background: #e74c3c; color: white;}
+tr:nth-child(even) {background: #f2f2f2;}
+.info {background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 20px 0;}
+.warning {background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0;}
+img {max-width: 100%; height: auto; margin: 20px 0; border: 1px solid #ddd; border-radius: 4px;}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>📊 Phase 02a: Distribution Analysis - Horizon 1</h1>
+
+<div class="info">
+<strong>Purpose:</strong> Understand feature distributions to:
+<ul>
+<li>Identify class separation patterns (bankrupt vs non-bankrupt)</li>
+<li>Detect normality violations for test selection in Phase 02b</li>
+<li>Inform transformation decisions for modeling</li>
+</ul>
+</div>
+
+<h2>Dataset Overview</h2>
+<div>
+<div class="metric">
+<div class="metric-label">Total Observations</div>
+<div class="metric-value">6,945</div>
+</div>
+<div class="metric">
+<div class="metric-label">Bankrupt Firms</div>
+<div class="metric-value">271</div>
+</div>
+<div class="metric">
+<div class="metric-label">Bankruptcy Rate</div>
+<div class="metric-value">3.90%</div>
+</div>
+<div class="metric">
+<div class="metric-label">Highly Skewed</div>
+<div class="metric-value">35/64</div>
+</div>
+</div>
+
+<h2>Top 10 Discriminatory Features</h2>
+<p>Features ranked by absolute mean difference between bankrupt and non-bankrupt firms.</p>
+<table>
+<tr><th>Rank</th><th>Feature</th><th>Bankrupt Mean</th><th>Non-Bankrupt Mean</th><th>Difference</th></tr><tr><td>1</td><td><strong>A55</strong></td>
+<td>712.0268</td><td>7238.6231</td><td>-6526.5963</td></tr><tr><td>2</td><td><strong>A15</strong></td>
+<td>2726.0822</td><td>1631.0089</td><td>1095.0733</td></tr><tr><td>3</td><td><strong>A5</strong></td>
+<td>-51.8950</td><td>-8.1382</td><td>-43.7568</td></tr><tr><td>4</td><td><strong>A62</strong></td>
+<td>133.3025</td><td>90.6468</td><td>42.6557</td></tr><tr><td>5</td><td><strong>A32</strong></td>
+<td>138.8141</td><td>105.5561</td><td>33.2580</td></tr><tr><td>6</td><td><strong>A27</strong></td>
+<td>74.3883</td><td>98.4520</td><td>-24.0637</td></tr><tr><td>7</td><td><strong>A37</strong></td>
+<td>47.0156</td><td>54.1039</td><td>-7.0884</td></tr><tr><td>8</td><td><strong>A47</strong></td>
+<td>47.9548</td><td>53.6671</td><td>-5.7123</td></tr><tr><td>9</td><td><strong>A20</strong></td>
+<td>47.8723</td><td>45.4948</td><td>2.3775</td></tr><tr><td>10</td><td><strong>A64</strong></td>
+<td>19.6027</td><td>17.2848</td><td>2.3179</td></tr></table>
+
+<h2>Visualizations</h2>
+<h3>Distribution Comparison: Top 9 Features</h3>
+<div class="info">
+<strong>Interpretation:</strong> Histograms show density distributions. Blue = non-bankrupt, Red = bankrupt. 
+Dashed lines = means. Non-overlapping distributions indicate strong discrimination.
+</div>
+<img src="02a_H1_top9_distributions.png" alt="Top 9 Distributions">
+
+<h3>Box Plot Comparison: Top 12 Features</h3>
+<div class="info">
+<strong>Interpretation:</strong> Box plots show median (line), quartiles (box), and outliers. 
+Lower overlap between classes = better feature for prediction.
+</div>
+<img src="02a_H1_top12_boxplots.png" alt="Top 12 Boxplots">
+
+<h3>Skewness Overview</h3>
+<div class="warning">
+<strong>Methodological Note:</strong> Red bars (|skew| > 2) violate normality assumptions. 
+In Phase 02b, these will require non-parametric Mann-Whitney U tests instead of t-tests.
+</div>
+<img src="02a_H1_skewness_overview.png" alt="Skewness Overview">
+
+<h2>Highly Skewed Features (35/64)</h2>
+<table>
+<tr><th>Feature</th><th>Skewness</th><th>Kurtosis</th><th>Mean</th><th>Std</th></tr><tr><td><strong>A55</strong></td><td>4.20</td>
+<td>22.16</td><td>6983.9496</td><td>22658.8384</td></tr><tr><td><strong>A62</strong></td><td>4.96</td>
+<td>32.53</td><td>92.3113</td><td>102.3585</td></tr><tr><td><strong>A32</strong></td><td>5.09</td>
+<td>33.24</td><td>106.8538</td><td>126.9352</td></tr><tr><td><strong>A27</strong></td><td>9.23</td>
+<td>87.68</td><td>97.5130</td><td>682.2566</td></tr><tr><td><strong>A37</strong></td><td>4.99</td>
+<td>33.92</td><td>53.8273</td><td>105.2642</td></tr><tr><td><strong>A47</strong></td><td>2.73</td>
+<td>10.70</td><td>53.4442</td><td>55.1670</td></tr><tr><td><strong>A20</strong></td><td>2.20</td>
+<td>7.12</td><td>45.5875</td><td>42.2447</td></tr><tr><td><strong>A64</strong></td><td>6.28</td>
+<td>42.35</td><td>17.3752</td><td>53.2268</td></tr><tr><td><strong>A63</strong></td><td>3.81</td>
+<td>18.50</td><td>7.4655</td><td>7.8564</td></tr><tr><td><strong>A53</strong></td><td>6.94</td>
+<td>52.99</td><td>2.7014</td><td>7.2759</td></tr><tr><td><strong>A54</strong></td><td>7.03</td>
+<td>54.05</td><td>2.9594</td><td>7.5192</td></tr><tr><td><strong>A61</strong></td><td>4.56</td>
+<td>24.64</td><td>10.3759</td><td>12.5549</td></tr><tr><td><strong>A43</strong></td><td>3.50</td>
+<td>20.06</td><td>107.6396</td><td>74.9045</td></tr><tr><td><strong>A33</strong></td><td>3.91</td>
+<td>20.20</td><td>6.5895</td><td>6.8647</td></tr><tr><td><strong>A28</strong></td><td>7.15</td>
+<td>58.29</td><td>1.9512</td><td>6.7986</td></tr><tr><td><strong>A60</strong></td><td>6.58</td>
+<td>47.86</td><td>33.2820</td><td>94.9501</td></tr><tr><td><strong>A8</strong></td><td>5.34</td>
+<td>35.99</td><td>2.2912</td><td>4.4222</td></tr><tr><td><strong>A17</strong></td><td>5.26</td>
+<td>34.72</td><td>3.3891</td><td>4.5724</td></tr><tr><td><strong>A45</strong></td><td>6.03</td>
+<td>40.60</td><td>1.9362</td><td>6.5993</td></tr><tr><td><strong>A44</strong></td><td>3.90</td>
+<td>23.85</td><td>61.3263</td><td>49.5628</td></tr></table>
+
+<h2>Key Findings</h2>
+<div class="info">
+<ul>
+<li><strong>Bankruptcy rate:</strong> 3.90% (H1: ~3.9% → H5: ~7.0%)</li>
+<li><strong>Normality violations:</strong> 35/64 features highly skewed</li>
+<li><strong>Class separation:</strong> Top features show clear discrimination</li>
+<li><strong>Next step:</strong> Phase 02b will use appropriate statistical tests based on these distributions</li>
+</ul>
+</div>
+
+<p style="text-align: center; color: #666; font-size: 14px; margin-top: 40px;">
+Generated: 2025-11-17 14:21:05<br>
+Phase 02a: Distribution Analysis - Horizon 1
+</p>
+</div></body></html>

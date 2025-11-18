@@ -50,12 +50,26 @@ analysis:
   test_size: 0.2
   validation_size: 0.2  # From remaining after test split
   
-  # VIF thresholds
-  vif_threshold_high: 10
-  vif_threshold_moderate: 5
+  # VIF thresholds (Penn State STAT 462, O'Brien 2007)
+  vif_threshold_high: 10      # Serious multicollinearity requiring correction
+  vif_threshold_moderate: 5   # Moderate multicollinearity warranting investigation
+  vif_max_iterations: 100     # Maximum iterations for VIF pruning
   
-  # Correlation thresholds
-  correlation_threshold: 0.9
+  # Correlation thresholds (PMC Epidemiology 2016, standard practice)
+  correlation_threshold: 0.8  # High correlation indicating multicollinearity (|r| > 0.8)
+  
+  # Statistical testing
+  alpha: 0.05                 # Significance level for hypothesis tests
+  fdr_method: 'fdr_bh'        # Benjamini-Hochberg FDR correction
+  
+  # Outlier treatment (Coats & Fant 1993)
+  winsorize_lower: 0.01       # 1st percentile
+  winsorize_upper: 0.99       # 99th percentile
+  
+  # Missing value imputation (van Buuren 2011)
+  imputation_method: 'mice'   # Multiple imputation by chained equations
+  imputation_estimator: 'BayesianRidge'
+  imputation_max_iter: 10
   
   # Model parameters
   max_iter: 1000

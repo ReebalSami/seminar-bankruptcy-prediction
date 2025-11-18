@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>03a VIF Analysis - All Horizons</title>
+<style>
+body {font-family: Arial; margin: 20px; background: #f5f5f5;}
+.container {max-width: 1400px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px;}
+h1 {color: #2c3e50; border-bottom: 3px solid #3498db;}
+table {width: 100%; border-collapse: collapse; margin: 20px 0;}
+th, td {border: 1px solid #ddd; padding: 12px; text-align: center;}
+th {background: #3498db; color: white;}
+tr:nth-child(even) {background: #f2f2f2;}
+.info {background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 20px 0;}
+.metric {display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+color: white; padding: 20px; margin: 10px; border-radius: 8px; min-width: 200px; text-align: center;}
+.metric-value {font-size: 28px; font-weight: bold;}
+</style></head><body><div class="container">
+<h1>🔍 Phase 03a: VIF Analysis - All Horizons</h1>
+
+<div class="info">
+<strong>Objective:</strong> Remove multicollinear features using iterative VIF pruning (threshold = 10)
+<br><strong>Status:</strong> ✅ Complete for all 5 horizons
+</div>
+
+<h2>📊 Summary Statistics</h2>
+<div>
+<div class="metric">
+<div>Total Removed</div>
+<div class="metric-value">113</div>
+</div>
+<div class="metric">
+<div>Avg Iterations</div>
+<div class="metric-value">23.6</div>
+</div>
+<div class="metric">
+<div>Max Final VIF</div>
+<div class="metric-value">9.99</div>
+</div>
+</div>
+
+<h2>Per-Horizon Summary</h2>
+<table>
+<tr><th>Horizon</th><th>Initial</th><th>Final</th><th>Removed</th><th>Iterations</th><th>Max Final VIF</th></tr>
+<tr><td>H1</td><td>64</td><td>40</td>
+<td>24</td><td>25</td><td>8.91</td></tr>
+<tr><td>H2</td><td>64</td><td>41</td>
+<td>23</td><td>24</td><td>9.87</td></tr>
+<tr><td>H3</td><td>64</td><td>42</td>
+<td>22</td><td>23</td><td>9.99</td></tr>
+<tr><td>H4</td><td>64</td><td>43</td>
+<td>21</td><td>22</td><td>9.87</td></tr>
+<tr><td>H5</td><td>64</td><td>41</td>
+<td>23</td><td>24</td><td>8.53</td></tr></table>
+
+<div class="info">
+<h3>Key Findings</h3>
+<ul>
+<li><strong>Initial features:</strong> 64 (A1-A64)</li>
+<li><strong>Total removed across all horizons:</strong> 113 feature-horizon instances</li>
+<li><strong>Average iterations per horizon:</strong> 23.6</li>
+<li><strong>All final VIF values:</strong> ≤ 9.99 (target: ≤ 10)</li>
+</ul>
+</div>
+
+<div class="info">
+<h3>Methodology Validation</h3>
+<ul>
+<li>✅ <strong>Threshold justified:</strong> VIF > 10 standard in econometrics (Penn State STAT 462, O'Brien 2007)</li>
+<li>✅ <strong>Algorithm deterministic:</strong> Same data produces same results (VIF computation is deterministic)</li>
+<li>✅ <strong>Defensive programming:</strong> Pre-checks for zero variance, NaN, Inf</li>
+<li>✅ <strong>Graceful stopping:</strong> Converges or stops at 2 features minimum</li>
+</ul>
+</div>
+
+<p style="text-align:center; color:#666; margin-top:40px;">
+Generated: 2025-11-18 12:22:06<br>
+Phase 03a: VIF Analysis - All Horizons<br>
+Script: scripts/03_multicollinearity/03a_vif_analysis.py</p>
+</div></body></html>

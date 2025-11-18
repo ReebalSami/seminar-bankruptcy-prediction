@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>02a Distribution Analysis - All Horizons</title>
+<style>
+body {font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5;}
+.container {max-width: 1600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px;}
+h1 {color: #2c3e50; border-bottom: 3px solid #e74c3c; padding-bottom: 10px;}
+h2 {color: #34495e; margin-top: 30px; border-left: 4px solid #e74c3c; padding-left: 10px;}
+.metric-grid {display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; margin: 20px 0;}
+.metric-box {background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; text-align: center;}
+.metric-label {font-size: 14px; opacity: 0.9;}
+.metric-value {font-size: 24px; font-weight: bold; margin-top: 5px;}
+table {width: 100%; border-collapse: collapse; margin: 20px 0;}
+th, td {border: 1px solid #ddd; padding: 12px; text-align: left;}
+th {background: #e74c3c; color: white;}
+tr:nth-child(even) {background: #f2f2f2;}
+.info {background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 20px 0;}
+.horizon-section {margin: 30px 0; padding: 20px; background: #f9f9f9; border-radius: 8px;}
+img {max-width: 100%; height: auto; margin: 10px 0; border: 1px solid #ddd;}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>📊 Phase 02a: Distribution Analysis - All Horizons (H1-H5)</h1>
+
+<div class="info">
+<strong>Purpose:</strong> This consolidated report shows distribution patterns across all prediction horizons.
+Each horizon is analyzed separately to respect temporal heterogeneity (79% bankruptcy rate increase from H1 to H5).
+</div>
+
+<h2>Overview: Bankruptcy Rates Across Horizons</h2>
+<div class="metric-grid">
+<div class="metric-box">
+<div class="metric-label">Horizon 1</div>
+<div class="metric-value">3.90%</div>
+<div class="metric-label" style="font-size: 12px; margin-top: 5px;">
+271/6,945</div>
+</div>
+<div class="metric-box">
+<div class="metric-label">Horizon 2</div>
+<div class="metric-value">3.95%</div>
+<div class="metric-label" style="font-size: 12px; margin-top: 5px;">
+398/10,083</div>
+</div>
+<div class="metric-box">
+<div class="metric-label">Horizon 3</div>
+<div class="metric-value">4.73%</div>
+<div class="metric-label" style="font-size: 12px; margin-top: 5px;">
+493/10,416</div>
+</div>
+<div class="metric-box">
+<div class="metric-label">Horizon 4</div>
+<div class="metric-value">5.28%</div>
+<div class="metric-label" style="font-size: 12px; margin-top: 5px;">
+513/9,710</div>
+</div>
+<div class="metric-box">
+<div class="metric-label">Horizon 5</div>
+<div class="metric-value">6.97%</div>
+<div class="metric-label" style="font-size: 12px; margin-top: 5px;">
+408/5,850</div>
+</div>
+</div>
+
+<div class="info">
+<strong>Key Finding:</strong> Bankruptcy rate increases from H1 (3.90%) to H5 (6.97%), a 79% increase,
+confirming the need for horizon-specific modeling.
+</div>
+
+<h2>Individual Horizon Reports</h2>
+<div class="horizon-section">
+<h3>Horizon 1 (H1)</h3>
+<p><strong>Observations:</strong> 6,945 | <strong>Bankrupt:</strong> 271 (3.90%)</p>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+<img src="02a_H1_top9_distributions.png" alt="H1 Distributions">
+<img src="02a_H1_top12_boxplots.png" alt="H1 Boxplots">
+<img src="02a_H1_skewness_overview.png" alt="H1 Skewness">
+</div>
+<p style="text-align: center; margin-top: 10px;">
+<a href="02a_H1_distributions.html" style="color: #e74c3c; font-weight: bold;">
+→ View Detailed H1 Report</a>
+</p>
+</div>
+<div class="horizon-section">
+<h3>Horizon 2 (H2)</h3>
+<p><strong>Observations:</strong> 10,083 | <strong>Bankrupt:</strong> 398 (3.95%)</p>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+<img src="02a_H2_top9_distributions.png" alt="H2 Distributions">
+<img src="02a_H2_top12_boxplots.png" alt="H2 Boxplots">
+<img src="02a_H2_skewness_overview.png" alt="H2 Skewness">
+</div>
+<p style="text-align: center; margin-top: 10px;">
+<a href="02a_H2_distributions.html" style="color: #e74c3c; font-weight: bold;">
+→ View Detailed H2 Report</a>
+</p>
+</div>
+<div class="horizon-section">
+<h3>Horizon 3 (H3)</h3>
+<p><strong>Observations:</strong> 10,416 | <strong>Bankrupt:</strong> 493 (4.73%)</p>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+<img src="02a_H3_top9_distributions.png" alt="H3 Distributions">
+<img src="02a_H3_top12_boxplots.png" alt="H3 Boxplots">
+<img src="02a_H3_skewness_overview.png" alt="H3 Skewness">
+</div>
+<p style="text-align: center; margin-top: 10px;">
+<a href="02a_H3_distributions.html" style="color: #e74c3c; font-weight: bold;">
+→ View Detailed H3 Report</a>
+</p>
+</div>
+<div class="horizon-section">
+<h3>Horizon 4 (H4)</h3>
+<p><strong>Observations:</strong> 9,710 | <strong>Bankrupt:</strong> 513 (5.28%)</p>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+<img src="02a_H4_top9_distributions.png" alt="H4 Distributions">
+<img src="02a_H4_top12_boxplots.png" alt="H4 Boxplots">
+<img src="02a_H4_skewness_overview.png" alt="H4 Skewness">
+</div>
+<p style="text-align: center; margin-top: 10px;">
+<a href="02a_H4_distributions.html" style="color: #e74c3c; font-weight: bold;">
+→ View Detailed H4 Report</a>
+</p>
+</div>
+<div class="horizon-section">
+<h3>Horizon 5 (H5)</h3>
+<p><strong>Observations:</strong> 5,850 | <strong>Bankrupt:</strong> 408 (6.97%)</p>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+<img src="02a_H5_top9_distributions.png" alt="H5 Distributions">
+<img src="02a_H5_top12_boxplots.png" alt="H5 Boxplots">
+<img src="02a_H5_skewness_overview.png" alt="H5 Skewness">
+</div>
+<p style="text-align: center; margin-top: 10px;">
+<a href="02a_H5_distributions.html" style="color: #e74c3c; font-weight: bold;">
+→ View Detailed H5 Report</a>
+</p>
+</div>
+<h2>Cross-Horizon Comparison</h2>
+<table>
+<tr><th>Metric</th><th>H1</th><th>H2</th><th>H3</th><th>H4</th><th>H5</th><th>Trend</th></tr>
+<tr><td><strong>Bankruptcy Rate</strong></td><td>3.90%</td><td>3.95%</td><td>4.73%</td><td>5.28%</td><td>6.97%</td><td>↗ +79%</td></tr></table>
+
+<div class="info">
+<h3>Key Implications for Analysis</h3>
+<ul>
+<li><strong>Normality violations:</strong> 35-40 features per horizon show |skewness| > 2</li>
+<li><strong>Justification:</strong> Non-parametric tests required in Phase 02b</li>
+<li><strong>Class separation:</strong> Top features show clear discrimination power</li>
+<li><strong>Horizon heterogeneity:</strong> Confirms need for separate modeling per horizon</li>
+</ul>
+</div>
+
+<h2>Navigation</h2>
+<ul>
+<li><strong>Excel Report:</strong> 02a_ALL_distributions.xlsx</li>
+<li><strong>Individual Reports:</strong> 02a_H1_distributions.html, ... 02a_H5_distributions.html</li>
+<li><strong>Next Phase:</strong> <a href="02b_ALL_univariate_tests.html">Phase 02b - Univariate Statistical Tests</a></li>
+</ul>
+
+<p style="text-align: center; color: #666; font-size: 14px; margin-top: 40px;">
+Generated: 2025-11-17 14:21:14<br>
+Phase 02a: Distribution Analysis - Consolidated Report
+</p>
+</div></body></html>

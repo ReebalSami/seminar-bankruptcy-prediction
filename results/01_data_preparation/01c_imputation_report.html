@@ -1,0 +1,149 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>01c: Missing Value Imputation Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; background-color: #f5f5f5; }
+            h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+            h2 { color: #34495e; margin-top: 30px; }
+            .summary { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+            .metric { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #ecf0f1; }
+            .metric-name { font-weight: bold; color: #555; }
+            .metric-value { color: #2c3e50; font-weight: bold; }
+            .success { color: #27ae60; }
+            .warning { color: #e67e22; }
+            .danger { color: #e74c3c; }
+            table { width: 100%; border-collapse: collapse; background-color: white; margin-top: 20px; }
+            th { background-color: #3498db; color: white; padding: 12px; text-align: left; }
+            td { padding: 10px; border-bottom: 1px solid #ecf0f1; }
+            tr:hover { background-color: #f8f9fa; }
+        </style>
+    </head>
+    <body>
+        <h1>Phase 01 - Script 01c: Missing Value Imputation</h1>
+        
+        <div class="summary">
+            <h2>Summary Statistics</h2>
+            <div class="metric">
+                <span class="metric-name">Total Observations:</span>
+                <span class="metric-value">43,004</span>
+            </div>
+            <div class="metric">
+                <span class="metric-name">Features Imputed:</span>
+                <span class="metric-value success">64/64</span>
+            </div>
+            <div class="metric">
+                <span class="metric-name">Method:</span>
+                <span class="metric-value">IterativeImputer (MICE) with BayesianRidge</span>
+            </div>
+            <div class="metric">
+                <span class="metric-name">Missing Values (Before):</span>
+                <span class="metric-value warning">41,037</span>
+            </div>
+            <div class="metric">
+                <span class="metric-name">Missing Values (After):</span>
+                <span class="metric-value success">0</span>
+            </div>
+            <div class="metric">
+                <span class="metric-name">Average Quality Score:</span>
+                <span class="metric-value">98.2/100</span>
+            </div>
+        </div>
+        
+        <h2>Top 10 Worst Quality Scores</h2>
+        <table border="1" class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Feature</th>
+      <th>Missing_Pct</th>
+      <th>Quality_Score</th>
+      <th>Rating</th>
+      <th>Warnings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A37</td>
+      <td>43.800577</td>
+      <td>25.0</td>
+      <td>Very Poor</td>
+      <td>High missing rate: 43.8%; Large mean shift: 27.0600; Distribution changed (KS=0.316)</td>
+    </tr>
+    <tr>
+      <td>A60</td>
+      <td>4.971631</td>
+      <td>80.0</td>
+      <td>Good</td>
+      <td>Large mean shift: 3.3507</td>
+    </tr>
+    <tr>
+      <td>A45</td>
+      <td>4.960004</td>
+      <td>80.0</td>
+      <td>Good</td>
+      <td>Large mean shift: 0.1779</td>
+    </tr>
+    <tr>
+      <td>A1</td>
+      <td>0.018603</td>
+      <td>100.0</td>
+      <td>Excellent</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>A35</td>
+      <td>0.018603</td>
+      <td>100.0</td>
+      <td>Excellent</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>A36</td>
+      <td>0.018603</td>
+      <td>100.0</td>
+      <td>Excellent</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>A38</td>
+      <td>0.018603</td>
+      <td>100.0</td>
+      <td>Excellent</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>A39</td>
+      <td>0.290671</td>
+      <td>100.0</td>
+      <td>Excellent</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>A40</td>
+      <td>0.309274</td>
+      <td>100.0</td>
+      <td>Excellent</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>A41</td>
+      <td>1.753325</td>
+      <td>100.0</td>
+      <td>Excellent</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+        
+        <h2>Verification</h2>
+        <p><strong class="success">✓ All missing values imputed</strong></p>
+        <p><strong class="success">✓ Sample size preserved: 43,004 observations</strong></p>
+        <p><strong class="success">✓ No infinite values</strong></p>
+        <p><strong class="success">✓ Ready for horizon splitting</strong></p>
+        
+        <h2>Quality Assessment Image</h2>
+        <img src="01c_imputation_quality.png" alt="Imputation Quality" style="max-width: 100%;">
+    </body>
+    </html>
+    

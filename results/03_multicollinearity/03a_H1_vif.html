@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>03a H1 VIF Analysis</title>
+<style>
+body {font-family: Arial; margin: 20px; background: #f5f5f5;}
+.container {max-width: 1400px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px;}
+h1 {color: #2c3e50; border-bottom: 3px solid #3498db;}
+h2 {color: #34495e; margin-top: 30px;}
+.metric {display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+color: white; padding: 20px; margin: 10px; border-radius: 8px; min-width: 180px; text-align: center;}
+.metric-value {font-size: 32px; font-weight: bold; margin: 5px 0;}
+table {width: 100%; border-collapse: collapse; margin: 20px 0;}
+th, td {border: 1px solid #ddd; padding: 12px; text-align: left;}
+th {background: #3498db; color: white;}
+tr:nth-child(even) {background: #f2f2f2;}
+.info {background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 20px 0;}
+.warning {background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0;}
+.success {background: #d4edda; border-left: 4px solid #28a745; padding: 15px; margin: 20px 0;}
+code {background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-family: monospace;}
+</style></head><body><div class="container">
+<h1>🔍 Phase 03a: VIF Analysis - Horizon 1</h1>
+
+<div class="info">
+<strong>Status:</strong> ✅ Converged: max(VIF) ≤ 10
+</div>
+
+<div class="info">
+<strong>Methodology:</strong> Iterative VIF Pruning
+<ul>
+<li><strong>Threshold:</strong> VIF &gt; 10 indicates serious multicollinearity (Penn State STAT 462, O'Brien 2007)</li>
+<li><strong>Algorithm:</strong> Remove feature with highest VIF, recompute, repeat until max(VIF) ≤ 10</li>
+<li><strong>VIF Formula:</strong> <code>VIF = 1 / (1 - R²)</code> where R² is from auxiliary regression</li>
+<li><strong>Interpretation:</strong> VIF quantifies how much variance is inflated due to collinearity</li>
+</ul>
+</div>
+
+<h2>📊 Summary Statistics</h2>
+<div>
+<div class="metric">
+<div>Initial Features</div>
+<div class="metric-value">64</div>
+</div>
+<div class="metric">
+<div>Final Features</div>
+<div class="metric-value">40</div>
+</div>
+<div class="metric">
+<div>Removed</div>
+<div class="metric-value">24</div>
+</div>
+<div class="metric">
+<div>Iterations</div>
+<div class="metric-value">25</div>
+</div>
+<div class="metric">
+<div>Max Final VIF</div>
+<div class="metric-value">8.91</div>
+</div>
+</div>
+
+<h2>🔄 Iteration Log</h2>
+<table>
+<tr><th>Iteration</th><th>Features Remaining</th><th>Max VIF</th><th>Removed Feature</th><th>Removed VIF</th><th>Reason</th></tr>
+<tr><td>1</td><td>64</td><td>1808694887.88</td>
+<td>A14</td><td>1808694887.88</td><td>max_vif</td></tr>
+<tr><td>2</td><td>63</td><td>1757227.13</td>
+<td>A7</td><td>1757227.13</td><td>max_vif</td></tr>
+<tr><td>3</td><td>62</td><td>226.61</td>
+<td>A16</td><td>226.61</td><td>max_vif</td></tr>
+<tr><td>4</td><td>61</td><td>170.95</td>
+<td>A32</td><td>170.95</td><td>max_vif</td></tr>
+<tr><td>5</td><td>60</td><td>137.57</td>
+<td>A8</td><td>137.57</td><td>max_vif</td></tr>
+<tr><td>6</td><td>59</td><td>128.06</td>
+<td>A19</td><td>128.06</td><td>max_vif</td></tr>
+<tr><td>7</td><td>58</td><td>79.11</td>
+<td>A18</td><td>79.11</td><td>max_vif</td></tr>
+<tr><td>8</td><td>57</td><td>71.94</td>
+<td>A54</td><td>71.94</td><td>max_vif</td></tr>
+<tr><td>9</td><td>56</td><td>56.72</td>
+<td>A10</td><td>56.72</td><td>max_vif</td></tr>
+<tr><td>10</td><td>55</td><td>48.85</td>
+<td>A22</td><td>48.85</td><td>max_vif</td></tr>
+<tr><td>11</td><td>54</td><td>46.94</td>
+<td>A63</td><td>46.94</td><td>max_vif</td></tr>
+<tr><td>12</td><td>53</td><td>43.57</td>
+<td>A43</td><td>43.57</td><td>max_vif</td></tr>
+<tr><td>13</td><td>52</td><td>38.42</td>
+<td>A49</td><td>38.42</td><td>max_vif</td></tr>
+<tr><td>14</td><td>51</td><td>33.00</td>
+<td>A46</td><td>33.00</td><td>max_vif</td></tr>
+<tr><td>15</td><td>50</td><td>29.29</td>
+<td>A23</td><td>29.29</td><td>max_vif</td></tr>
+<tr><td>16</td><td>49</td><td>22.46</td>
+<td>A11</td><td>22.46</td><td>max_vif</td></tr>
+<tr><td>17</td><td>48</td><td>20.33</td>
+<td>A51</td><td>20.33</td><td>max_vif</td></tr>
+<tr><td>18</td><td>47</td><td>18.01</td>
+<td>A50</td><td>18.01</td><td>max_vif</td></tr>
+<tr><td>19</td><td>46</td><td>16.47</td>
+<td>A56</td><td>16.47</td><td>max_vif</td></tr>
+<tr><td>20</td><td>45</td><td>13.80</td>
+<td>A47</td><td>13.80</td><td>max_vif</td></tr>
+<tr><td>21</td><td>44</td><td>13.07</td>
+<td>A42</td><td>13.07</td><td>max_vif</td></tr>
+<tr><td>22</td><td>43</td><td>10.88</td>
+<td>A26</td><td>10.88</td><td>max_vif</td></tr>
+<tr><td>23</td><td>42</td><td>10.81</td>
+<td>A62</td><td>10.81</td><td>max_vif</td></tr>
+<tr><td>24</td><td>41</td><td>10.14</td>
+<td>A4</td><td>10.14</td><td>max_vif</td></tr>
+<tr><td>25</td><td>40</td><td>8.91</td>
+<td>—</td><td>—</td><td>converged</td></tr></table>
+
+<h2>✅ Final VIF Values (Top 20)</h2>
+<div class="success">
+All retained features have VIF ≤ 10, indicating acceptable multicollinearity levels for regression modeling.
+</div>
+<table>
+<tr><th>Rank</th><th>Feature</th><th>VIF</th><th>Tolerance</th><th>Status</th></tr>
+<tr><td>1</td><td><strong>A2</strong></td><td>8.915</td>
+<td>0.1122</td><td>✅ OK</td></tr>
+<tr><td>2</td><td><strong>A1</strong></td><td>8.726</td>
+<td>0.1146</td><td>✅ OK</td></tr>
+<tr><td>3</td><td><strong>A35</strong></td><td>8.462</td>
+<td>0.1182</td><td>✅ OK</td></tr>
+<tr><td>4</td><td><strong>A53</strong></td><td>8.401</td>
+<td>0.1190</td><td>✅ OK</td></tr>
+<tr><td>5</td><td><strong>A31</strong></td><td>8.194</td>
+<td>0.1220</td><td>✅ OK</td></tr>
+<tr><td>6</td><td><strong>A13</strong></td><td>7.393</td>
+<td>0.1353</td><td>✅ OK</td></tr>
+<tr><td>7</td><td><strong>A38</strong></td><td>6.562</td>
+<td>0.1524</td><td>✅ OK</td></tr>
+<tr><td>8</td><td><strong>A28</strong></td><td>6.271</td>
+<td>0.1595</td><td>✅ OK</td></tr>
+<tr><td>9</td><td><strong>A36</strong></td><td>5.978</td>
+<td>0.1673</td><td>✅ OK</td></tr>
+<tr><td>10</td><td><strong>A48</strong></td><td>5.224</td>
+<td>0.1914</td><td>✅ OK</td></tr>
+<tr><td>11</td><td><strong>A39</strong></td><td>5.150</td>
+<td>0.1942</td><td>✅ OK</td></tr>
+<tr><td>12</td><td><strong>A33</strong></td><td>5.036</td>
+<td>0.1986</td><td>✅ OK</td></tr>
+<tr><td>13</td><td><strong>A3</strong></td><td>4.938</td>
+<td>0.2025</td><td>✅ OK</td></tr>
+<tr><td>14</td><td><strong>A12</strong></td><td>4.837</td>
+<td>0.2067</td><td>✅ OK</td></tr>
+<tr><td>15</td><td><strong>A24</strong></td><td>4.822</td>
+<td>0.2074</td><td>✅ OK</td></tr>
+<tr><td>16</td><td><strong>A9</strong></td><td>4.819</td>
+<td>0.2075</td><td>✅ OK</td></tr>
+<tr><td>17</td><td><strong>A17</strong></td><td>4.496</td>
+<td>0.2224</td><td>✅ OK</td></tr>
+<tr><td>18</td><td><strong>A34</strong></td><td>4.444</td>
+<td>0.2250</td><td>✅ OK</td></tr>
+<tr><td>19</td><td><strong>A30</strong></td><td>4.322</td>
+<td>0.2314</td><td>✅ OK</td></tr>
+<tr><td>20</td><td><strong>A64</strong></td><td>4.205</td>
+<td>0.2378</td><td>✅ OK</td></tr></table>
+<h2>🗑️ Removed Features (24)</h2>
+<table>
+<tr><th>Feature</th><th>VIF at Removal</th><th>Iteration</th><th>Reason</th></tr>
+<tr><td><strong>A14</strong></td><td>1808694887.88</td><td>1</td><td>max_vif</td></tr>
+<tr><td><strong>A7</strong></td><td>1757227.13</td><td>2</td><td>max_vif</td></tr>
+<tr><td><strong>A16</strong></td><td>226.61</td><td>3</td><td>max_vif</td></tr>
+<tr><td><strong>A32</strong></td><td>170.95</td><td>4</td><td>max_vif</td></tr>
+<tr><td><strong>A8</strong></td><td>137.57</td><td>5</td><td>max_vif</td></tr>
+<tr><td><strong>A19</strong></td><td>128.06</td><td>6</td><td>max_vif</td></tr>
+<tr><td><strong>A18</strong></td><td>79.11</td><td>7</td><td>max_vif</td></tr>
+<tr><td><strong>A54</strong></td><td>71.94</td><td>8</td><td>max_vif</td></tr>
+<tr><td><strong>A10</strong></td><td>56.72</td><td>9</td><td>max_vif</td></tr>
+<tr><td><strong>A22</strong></td><td>48.85</td><td>10</td><td>max_vif</td></tr>
+<tr><td><strong>A63</strong></td><td>46.94</td><td>11</td><td>max_vif</td></tr>
+<tr><td><strong>A43</strong></td><td>43.57</td><td>12</td><td>max_vif</td></tr>
+<tr><td><strong>A49</strong></td><td>38.42</td><td>13</td><td>max_vif</td></tr>
+<tr><td><strong>A46</strong></td><td>33.00</td><td>14</td><td>max_vif</td></tr>
+<tr><td><strong>A23</strong></td><td>29.29</td><td>15</td><td>max_vif</td></tr>
+<tr><td><strong>A11</strong></td><td>22.46</td><td>16</td><td>max_vif</td></tr>
+<tr><td><strong>A51</strong></td><td>20.33</td><td>17</td><td>max_vif</td></tr>
+<tr><td><strong>A50</strong></td><td>18.01</td><td>18</td><td>max_vif</td></tr>
+<tr><td><strong>A56</strong></td><td>16.47</td><td>19</td><td>max_vif</td></tr>
+<tr><td><strong>A47</strong></td><td>13.80</td><td>20</td><td>max_vif</td></tr>
+<tr><td><strong>A42</strong></td><td>13.07</td><td>21</td><td>max_vif</td></tr>
+<tr><td><strong>A26</strong></td><td>10.88</td><td>22</td><td>max_vif</td></tr>
+<tr><td><strong>A62</strong></td><td>10.81</td><td>23</td><td>max_vif</td></tr>
+<tr><td><strong>A4</strong></td><td>10.14</td><td>24</td><td>max_vif</td></tr></table>
+<div class="info">
+<h3>📚 References</h3>
+<ul>
+<li>Penn State STAT 462 (online.stat.psu.edu): "VIFs exceeding 10 are signs of serious multicollinearity requiring correction"</li>
+<li>O'Brien (2007): "A Caution Regarding Rules of Thumb for Variance Inflation Factors", Quality & Quantity</li>
+<li>Menard (1995): "A tolerance of less than 0.10 almost certainly indicates a serious collinearity problem"</li>
+</ul>
+</div>
+
+<div class="info">
+<h3>Next Steps</h3>
+<ul>
+<li><strong>Phase 04:</strong> Feature selection using statistical tests and economic criteria</li>
+<li><strong>Phase 05:</strong> Model training with cleaned feature set</li>
+<li><strong>Features retained:</strong> 40 features ready for modeling</li>
+</ul>
+</div>
+
+<p style="text-align:center; color:#666; margin-top:40px;">
+Generated: 2025-11-18 12:20:50<br>
+Phase 03a: VIF Analysis - Horizon 1<br>
+Script: scripts/03_multicollinearity/03a_vif_analysis.py</p>
+</div></body></html>

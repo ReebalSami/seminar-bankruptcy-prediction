@@ -1,0 +1,237 @@
+{
+  "02a": {
+    "sample_sizes": [
+      {
+        "horizon": 1,
+        "total": 6945,
+        "bankrupt": 271,
+        "non_bankrupt": 6674,
+        "bankruptcy_rate": "3.90%",
+        "highly_skewed": 35
+      },
+      {
+        "horizon": 2,
+        "total": 10083,
+        "bankrupt": 398,
+        "non_bankrupt": 9685,
+        "bankruptcy_rate": "3.95%",
+        "highly_skewed": 37
+      },
+      {
+        "horizon": 3,
+        "total": 10416,
+        "bankrupt": 493,
+        "non_bankrupt": 9923,
+        "bankruptcy_rate": "4.73%",
+        "highly_skewed": 37
+      },
+      {
+        "horizon": 4,
+        "total": 9710,
+        "bankrupt": 513,
+        "non_bankrupt": 9197,
+        "bankruptcy_rate": "5.28%",
+        "highly_skewed": 38
+      },
+      {
+        "horizon": 5,
+        "total": 5850,
+        "bankrupt": 408,
+        "non_bankrupt": 5442,
+        "bankruptcy_rate": "6.97%",
+        "highly_skewed": 40
+      }
+    ],
+    "h1_extreme_skew": 35,
+    "h1_mean_skew": 3.1350335952178154,
+    "h1_max_skew": 9.233981190348016
+  },
+  "02b": {
+    "per_horizon": [
+      {
+        "horizon": 1,
+        "total_features": 64,
+        "significant_p05": 53,
+        "significant_fdr_q05": 53,
+        "lost_after_fdr": 0,
+        "parametric_tests": 0,
+        "nonparametric_tests": 64,
+        "bankrupt_n": 271,
+        "non_bankrupt_n": 6674
+      },
+      {
+        "horizon": 2,
+        "total_features": 64,
+        "significant_p05": 52,
+        "significant_fdr_q05": 50,
+        "lost_after_fdr": 2,
+        "parametric_tests": 0,
+        "nonparametric_tests": 64,
+        "bankrupt_n": 398,
+        "non_bankrupt_n": 9685
+      },
+      {
+        "horizon": 3,
+        "total_features": 64,
+        "significant_p05": 54,
+        "significant_fdr_q05": 54,
+        "lost_after_fdr": 0,
+        "parametric_tests": 1,
+        "nonparametric_tests": 63,
+        "bankrupt_n": 493,
+        "non_bankrupt_n": 9923
+      },
+      {
+        "horizon": 4,
+        "total_features": 64,
+        "significant_p05": 58,
+        "significant_fdr_q05": 58,
+        "lost_after_fdr": 0,
+        "parametric_tests": 0,
+        "nonparametric_tests": 64,
+        "bankrupt_n": 513,
+        "non_bankrupt_n": 9197
+      },
+      {
+        "horizon": 5,
+        "total_features": 64,
+        "significant_p05": 57,
+        "significant_fdr_q05": 57,
+        "lost_after_fdr": 0,
+        "parametric_tests": 0,
+        "nonparametric_tests": 64,
+        "bankrupt_n": 408,
+        "non_bankrupt_n": 5442
+      }
+    ],
+    "overall": {
+      "total_tests": 320,
+      "total_significant_p05": 274,
+      "total_significant_fdr_q05": 272,
+      "total_lost_after_fdr": 2,
+      "percent_sig_p05": 85.6,
+      "percent_sig_fdr_q05": 85.0
+    },
+    "h1_top_features": [
+      {
+        "feature": "A24",
+        "test": "Mann-Whitney U",
+        "p_value": 3.936217898445974e-37,
+        "q_value_fdr": 2.519179455005423e-35,
+        "effect_size": 0.4555326778919572,
+        "effect_type": "Rank-biserial r",
+        "effect_interp": "medium"
+      },
+      {
+        "feature": "A13",
+        "test": "Mann-Whitney U",
+        "p_value": 1.179549393947827e-32,
+        "q_value_fdr": 3.774558060633045e-31,
+        "effect_size": 0.4257812715975526,
+        "effect_type": "Rank-biserial r",
+        "effect_interp": "medium"
+      },
+      {
+        "feature": "A26",
+        "test": "Mann-Whitney U",
+        "p_value": 9.054262424654514e-32,
+        "q_value_fdr": 1.931575983926296e-30,
+        "effect_size": 0.4196524044952766,
+        "effect_type": "Rank-biserial r",
+        "effect_interp": "medium"
+      },
+      {
+        "feature": "A16",
+        "test": "Mann-Whitney U",
+        "p_value": 1.68164667052867e-30,
+        "q_value_fdr": 2.690634672845872e-29,
+        "effect_size": 0.4107092898918201,
+        "effect_type": "Rank-biserial r",
+        "effect_interp": "medium"
+      },
+      {
+        "feature": "A23",
+        "test": "Mann-Whitney U",
+        "p_value": 2.16056245156459e-28,
+        "q_value_fdr": 2.765519938002675e-27,
+        "effect_size": 0.3954056441972871,
+        "effect_type": "Rank-biserial r",
+        "effect_interp": "medium"
+      }
+    ]
+  },
+  "02c": {
+    "per_horizon": [
+      {
+        "horizon": 1,
+        "high_correlations": 113,
+        "economically_plausible": 42,
+        "economically_implausible": 22
+      },
+      {
+        "horizon": 2,
+        "high_correlations": 115,
+        "economically_plausible": 41,
+        "economically_implausible": 23
+      },
+      {
+        "horizon": 3,
+        "high_correlations": 119,
+        "economically_plausible": 40,
+        "economically_implausible": 24
+      },
+      {
+        "horizon": 4,
+        "high_correlations": 113,
+        "economically_plausible": 43,
+        "economically_implausible": 21
+      },
+      {
+        "horizon": 5,
+        "high_correlations": 120,
+        "economically_plausible": 41,
+        "economically_implausible": 23
+      }
+    ],
+    "h1_category_distribution": {
+      "Profitability": 20,
+      "Leverage": 17,
+      "Activity": 15,
+      "Liquidity": 10,
+      "Other": 1,
+      "Size": 1
+    },
+    "h1_top_implausible": [
+      {
+        "feature": "A38",
+        "category": "Leverage",
+        "correlation": -0.1316181723676399,
+        "expected_direction": "positive"
+      },
+      {
+        "feature": "A25",
+        "category": "Leverage",
+        "correlation": -0.1311157350004342,
+        "expected_direction": "positive"
+      },
+      {
+        "feature": "A10",
+        "category": "Leverage",
+        "correlation": -0.1307635239663532,
+        "expected_direction": "positive"
+      },
+      {
+        "feature": "A62",
+        "category": "Activity",
+        "correlation": 0.08070301411554466,
+        "expected_direction": "negative"
+      },
+      {
+        "feature": "A26",
+        "category": "Leverage",
+        "correlation": -0.05456156203773266,
+        "expected_direction": "positive"
+      }
+    ]
+  }
+}

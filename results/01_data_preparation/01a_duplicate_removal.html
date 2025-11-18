@@ -1,0 +1,105 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>01a: Duplicate Removal Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; background-color: #f5f5f5; }
+            h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+            h2 { color: #34495e; margin-top: 30px; }
+            .summary { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+            .metric { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #ecf0f1; }
+            .metric-name { font-weight: bold; color: #555; }
+            .metric-value { color: #2c3e50; font-weight: bold; }
+            .success { color: #27ae60; }
+            .warning { color: #e67e22; }
+            table { width: 100%; border-collapse: collapse; background-color: white; margin-top: 20px; }
+            th { background-color: #3498db; color: white; padding: 12px; text-align: left; }
+            td { padding: 10px; border-bottom: 1px solid #ecf0f1; }
+            tr:hover { background-color: #f8f9fa; }
+        </style>
+    </head>
+    <body>
+        <h1>Phase 01 - Script 01a: Duplicate Removal</h1>
+        
+        <div class="summary">
+            <h2>Summary Statistics</h2>
+            <div class="metric">
+                <span class="metric-name">Original Observations:</span>
+                <span class="metric-value">43,405</span>
+            </div>
+            <div class="metric">
+                <span class="metric-name">After Removal:</span>
+                <span class="metric-value success">43,004</span>
+            </div>
+            <div class="metric">
+                <span class="metric-name">Duplicates Removed:</span>
+                <span class="metric-value warning">401 (0.92%)</span>
+            </div>
+            <div class="metric">
+                <span class="metric-name">Original Bankruptcy Rate:</span>
+                <span class="metric-value">4.82%</span>
+            </div>
+            <div class="metric">
+                <span class="metric-name">After Removal Rate:</span>
+                <span class="metric-value">4.84%</span>
+            </div>
+            <div class="metric">
+                <span class="metric-name">Rate Change:</span>
+                <span class="metric-value">+0.0263 pp</span>
+            </div>
+        </div>
+        
+        <h2>Distribution by Horizon</h2>
+        <table border="1" class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Horizon</th>
+      <th>Total</th>
+      <th>Bankruptcies</th>
+      <th>Rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>6945</td>
+      <td>271</td>
+      <td>3.902088</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>10083</td>
+      <td>398</td>
+      <td>3.947238</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>10416</td>
+      <td>493</td>
+      <td>4.733103</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>9710</td>
+      <td>513</td>
+      <td>5.283213</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>5850</td>
+      <td>408</td>
+      <td>6.974359</td>
+    </tr>
+  </tbody>
+</table>
+        
+        <h2>Verification</h2>
+        <p><strong>Expected:</strong> Remove 401 duplicates → 43,004 observations</p>
+        <p><strong>Actual:</strong> Removed 401 → 43,004 observations</p>
+        <p><strong>Status:</strong> <span class="success">
+            ✓ CORRECT
+        </span></p>
+    </body>
+    </html>
+    

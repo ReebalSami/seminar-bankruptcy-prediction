@@ -1,0 +1,164 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>01b: Outlier Treatment Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; background-color: #f5f5f5; }
+            h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+            h2 { color: #34495e; margin-top: 30px; }
+            .summary { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+            .metric { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #ecf0f1; }
+            .metric-name { font-weight: bold; color: #555; }
+            .metric-value { color: #2c3e50; font-weight: bold; }
+            .success { color: #27ae60; }
+            .warning { color: #e67e22; }
+            table { width: 100%; border-collapse: collapse; background-color: white; margin-top: 20px; }
+            th { background-color: #3498db; color: white; padding: 12px; text-align: left; }
+            td { padding: 10px; border-bottom: 1px solid #ecf0f1; }
+            tr:hover { background-color: #f8f9fa; }
+            .highlight { background-color: #fff3cd; }
+        </style>
+    </head>
+    <body>
+        <h1>Phase 01 - Script 01b: Outlier Treatment (Winsorization)</h1>
+        
+        <div class="summary">
+            <h2>Summary Statistics</h2>
+            <div class="metric">
+                <span class="metric-name">Total Observations:</span>
+                <span class="metric-value">43,004</span>
+            </div>
+            <div class="metric">
+                <span class="metric-name">Features Winsorized:</span>
+                <span class="metric-value success">64/64</span>
+            </div>
+            <div class="metric">
+                <span class="metric-name">Method:</span>
+                <span class="metric-value">Winsorization at 1st/99th percentiles</span>
+            </div>
+            <div class="metric">
+                <span class="metric-name">Total Values Capped:</span>
+                <span class="metric-value warning">53,427</span>
+            </div>
+            <div class="metric">
+                <span class="metric-name">Avg % Affected per Feature:</span>
+                <span class="metric-value">1.94%</span>
+            </div>
+        </div>
+        
+        <h2>Top 10 Most Affected Features</h2>
+        <table border="1" class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Feature</th>
+      <th>N_Affected</th>
+      <th>Pct_Affected</th>
+      <th>Original_Min</th>
+      <th>Original_Max</th>
+      <th>New_Min</th>
+      <th>New_Max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A55</td>
+      <td>862</td>
+      <td>2.004465</td>
+      <td>-1.805200e+06</td>
+      <td>6123700.0000</td>
+      <td>-40383.360000</td>
+      <td>151288.000000</td>
+    </tr>
+    <tr>
+      <td>A1</td>
+      <td>860</td>
+      <td>1.999814</td>
+      <td>-4.638900e+02</td>
+      <td>94.2800</td>
+      <td>-0.577037</td>
+      <td>0.606009</td>
+    </tr>
+    <tr>
+      <td>A18</td>
+      <td>860</td>
+      <td>1.999814</td>
+      <td>-5.174800e+02</td>
+      <td>649.2300</td>
+      <td>-0.574087</td>
+      <td>0.692796</td>
+    </tr>
+    <tr>
+      <td>A38</td>
+      <td>860</td>
+      <td>1.999814</td>
+      <td>-4.799100e+02</td>
+      <td>1099.5000</td>
+      <td>-0.714630</td>
+      <td>0.984282</td>
+    </tr>
+    <tr>
+      <td>A36</td>
+      <td>860</td>
+      <td>1.999814</td>
+      <td>-8.571900e-04</td>
+      <td>9742.3000</td>
+      <td>0.091216</td>
+      <td>7.930975</td>
+    </tr>
+    <tr>
+      <td>A35</td>
+      <td>860</td>
+      <td>1.999814</td>
+      <td>-4.315900e+02</td>
+      <td>626.9200</td>
+      <td>-0.540595</td>
+      <td>0.688014</td>
+    </tr>
+    <tr>
+      <td>A34</td>
+      <td>860</td>
+      <td>1.999814</td>
+      <td>-1.696000e+03</td>
+      <td>21944.0000</td>
+      <td>-0.379217</td>
+      <td>38.514000</td>
+    </tr>
+    <tr>
+      <td>A2</td>
+      <td>860</td>
+      <td>1.999814</td>
+      <td>-4.308700e+02</td>
+      <td>480.9600</td>
+      <td>0.018521</td>
+      <td>2.068195</td>
+    </tr>
+    <tr>
+      <td>A48</td>
+      <td>860</td>
+      <td>1.999814</td>
+      <td>-5.425600e+02</td>
+      <td>623.8500</td>
+      <td>-1.143518</td>
+      <td>0.647891</td>
+    </tr>
+    <tr>
+      <td>A29</td>
+      <td>860</td>
+      <td>1.999814</td>
+      <td>-8.860600e-01</td>
+      <td>9.6983</td>
+      <td>1.944085</td>
+      <td>5.994210</td>
+    </tr>
+  </tbody>
+</table>
+        
+        <h2>Verification</h2>
+        <p><strong>✓ Sample size preserved:</strong> 43,004 observations</p>
+        <p><strong>✓ No observations removed</strong></p>
+        <p><strong>✓ Missing values unchanged</strong></p>
+        <p><strong>✓ Ready for imputation step</strong></p>
+    </body>
+    </html>
+    

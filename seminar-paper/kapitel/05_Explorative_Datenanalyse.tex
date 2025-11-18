@@ -1,0 +1,185 @@
+\chapter{Explorative Datenanalyse}
+
+Die in Kapitel 4 dokumentierte Datenaufbereitung resultierte in einem vollständigen Datensatz mit 43.004 Beobachtungen, 64 Finanzkennzahlen und 0\,\% fehlenden Werten. Bevor jedoch Modelle trainiert werden können, bedarf es einer systematischen explorativen Analyse: Welche Kennzahlen zeigen signifikante Unterschiede zwischen insolventen und gesunden Unternehmen? Wie stark korrelieren die Features untereinander? Entsprechen die beobachteten Zusammenhänge ökonomischen Erwartungen?
+
+Dieses Kapitel dokumentiert die Ergebnisse der \textbf{Phase 02: Explorative Datenanalyse}. Abschnitt 5.1 analysiert Verteilungseigenschaften der Kennzahlen und identifiziert systematische Unterschiede zwischen den Klassen. Abschnitt 5.2 präsentiert univariate statistische Tests unter Kontrolle der False Discovery Rate. Abschnitt 5.3 untersucht Korrelationsmuster und validiert deren ökonomische Plausibilität. Die gewonnenen Erkenntnisse bilden die Grundlage für die nachfolgende Feature Selection (Kapitel 6).
+
+\section{Verteilungsanalyse der Finanzkennzahlen}
+
+Die Verteilung von Finanzkennzahlen ist selten normalverteilt – extreme Schiefe, Outlier und multimodale Muster sind die Regel, nicht die Ausnahme \cite{altman1968financial}. Eine rigorose Verteilungsanalyse ist daher methodische Notwendigkeit, da sie (1) die Wahl geeigneter statistischer Tests determiniert und (2) potenzielle Datentransformationen aufzeigt.
+
+\subsection{Stichprobengrößen und Klassenbalance}
+
+Die explorative Analyse erfolgte separat für jeden der fünf Prognosehorizonte. Tabelle \ref{tab:eda_sample_sizes} zeigt die Verteilung der Beobachtungen nach Horizont und Insolvenzstatus.
+
+\begin{table}[htbp]
+\centering
+\caption{Stichprobengrößen und Insolvenzraten nach Horizont}
+\label{tab:eda_sample_sizes}
+\begin{tabular}{lrrrc}
+\toprule
+\textbf{Horizont} & \textbf{Gesamt} & \textbf{Insolvent} & \textbf{Gesund} & \textbf{Insolvenzrate} \\
+\midrule
+H1 & 6.945 & 271 & 6.674 & 3,90\,\% \\
+H2 & 10.083 & 398 & 9.685 & 3,95\,\% \\
+H3 & 10.416 & 493 & 9.923 & 4,73\,\% \\
+H4 & 9.710 & 513 & 9.197 & 5,28\,\% \\
+H5 & 5.850 & 408 & 5.442 & 6,97\,\% \\
+\midrule
+\textbf{Gesamt} & \textbf{43.004} & \textbf{2.083} & \textbf{40.921} & \textbf{4,84\,\%} \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+{\footnotesize Quelle: Eigene Darstellung basierend auf Script 02a\_distribution\_analysis.py}
+\end{table}
+
+Die Insolvenzrate steigt systematisch von 3,90\,\% in H1 auf 6,97\,\% in H5. Dieses Muster ist erwartbar: In frühen Horizonten (H1, H2) sind finanzielle Schwierigkeiten noch latent, während sie in späten Horizonten (H4, H5) bereits manifest werden. Die deutlich höhere Insolvenzrate in H5 bestätigt, dass die Vorhersage von Insolvenzen, die nur ein Jahr entfernt sind, auf Basis bereits sichtbarer Krisensymptome erfolgt.
+
+\subsection{Schiefe und Verteilungseigenschaften}
+
+Finanzielle Kennzahlen weisen typischerweise rechtsschiefe Verteilungen auf. Die Analyse bestätigt dieses Muster: Im Horizont H1 zeigen \textbf{35 von 64 Kennzahlen} (54,7\,\%) eine extreme Schiefe ($|$Skewness$|$ > 2). Die durchschnittliche absolute Schiefe über alle Features beträgt 3,14, mit einem Maximum von 9,23.
+
+Diese ausgeprägte Nicht-Normalität hat methodische Konsequenzen: Parametrische Tests (t-Test), die Normalverteilung voraussetzen, sind für diese Daten ungeeignet. Die Wahl nicht-parametrischer Verfahren (siehe Abschnitt 5.2) ist damit methodisch zwingend.
+
+\section{Univariate Signifikanztests mit FDR-Kontrolle}
+
+Für jede der 64 Kennzahlen wurde ein univariater Test durchgeführt, um zu prüfen, ob die Verteilung zwischen insolventen und gesunden Unternehmen signifikant unterschiedlich ist. Diese Tests bilden die Grundlage für die Identifikation prädiktiv relevanter Features.
+
+\subsection{Methodologie}
+
+Die Testprozedur folgt einem mehrstufigen Ansatz:
+
+\paragraph{Schritt 1: Normalitätstest} Für jede Kennzahl wurde mittels \textbf{D'Agostino-Pearson K²-Test} geprüft, ob die Verteilung in beiden Gruppen (insolvent/gesund) als normalverteilt angenommen werden kann. Dieser Test ist für große Stichproben ($n$ > 5.000) geeigneter als der Shapiro-Wilk-Test \cite{dagostino1973tests}. Zusätzlich wurden Schiefe und Kurtosis berechnet; Features mit $|$Skewness$|$ > 2 oder $|$Kurtosis$|$ > 5 wurden automatisch als nicht-normal klassifiziert.
+
+\paragraph{Schritt 2: Testvarianten} Basierend auf dem Normalitätsergebnis wurde der geeignete Test gewählt:
+\begin{itemize}[topsep=0.2\baselineskip]
+    \item \textbf{Bei Normalverteilung beider Gruppen:} Student's t-Test (bei Varianzhomogenität) oder Welch's t-Test (bei Varianzheterogenität, geprüft mittels Levene-Test \cite{levene1960robust}).
+    \item \textbf{Bei Nicht-Normalverteilung:} Mann-Whitney U-Test (nicht-parametrisch, verteilungsfrei; \cite{mann1947test}).
+\end{itemize}
+
+\paragraph{Schritt 3: Effektstärken} Neben p-Werten wurden standardisierte Effektstärken berechnet:
+\begin{itemize}[topsep=0.2\baselineskip]
+    \item \textbf{Cohen's d} für parametrische Tests (Interpretation nach \cite{cohen1988statistical}: $|d|$ < 0,5 = klein, 0,5–0,8 = mittel, > 0,8 = groß)
+    \item \textbf{Rank-biserial correlation} für nicht-parametrische Tests (analog zu Cohen's d interpretierbar)
+\end{itemize}
+
+\paragraph{Schritt 4: FDR-Korrektur} Um die Inflation des Fehlers 1. Art bei multiplen Tests zu kontrollieren, wurde die \textbf{Benjamini-Hochberg False Discovery Rate (FDR)} Prozedur angewendet \cite{benjamini1995controlling}. Dies ist weniger konservativ als die Bonferroni-Korrektur und für explorative Analysen geeigneter. Die FDR-Korrektur wurde \textit{je Horizont separat} angewendet (64 Tests pro Horizont), entsprechend der horizont-spezifischen Modellierung in dieser Arbeit.
+
+\subsection{Ergebnisse über alle Horizonte}
+
+Tabelle \ref{tab:univariate_summary} fasst die Testergebnisse zusammen.
+
+\begin{table}[htbp]
+\centering
+\caption{Univariate Testergebnisse nach Horizont}
+\label{tab:univariate_summary}
+\begin{tabular}{lrrrrr}
+\toprule
+\textbf{Horizont} & \textbf{Features} & \textbf{Sig. (p<0{,}05)} & \textbf{Sig. (FDR q<0{,}05)} & \textbf{Verlust} & \textbf{Parametrisch} \\
+\midrule
+H1 & 64 & 53 (82,8\,\%) & 53 (82,8\,\%) & 0 & 0 \\
+H2 & 64 & 52 (81,2\,\%) & 50 (78,1\,\%) & 2 & 0 \\
+H3 & 64 & 54 (84,4\,\%) & 54 (84,4\,\%) & 0 & 1 \\
+H4 & 64 & 58 (90,6\,\%) & 58 (90,6\,\%) & 0 & 0 \\
+H5 & 64 & 57 (89,1\,\%) & 57 (89,1\,\%) & 0 & 0 \\
+\midrule
+\textbf{Gesamt} & \textbf{320} & \textbf{274 (85,6\,\%)} & \textbf{272 (85,0\,\%)} & \textbf{2} & \textbf{1} \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+{\footnotesize Quelle: Eigene Darstellung basierend auf Script 02b\_univariate\_tests.py}
+\end{table}
+
+Drei zentrale Erkenntnisse lassen sich ableiten:
+
+\paragraph{Robuste Signifikanz nach FDR-Kontrolle} Von 320 Tests (64 Features × 5 Horizonte) bleiben nach Benjamini-Hochberg-Korrektur \textbf{272 signifikant} (85,0\,\%). Der Verlust von lediglich 2 Features (beide in H2) zeigt, dass die Unterschiede zwischen den Gruppen robust sind und nicht auf Zufall beruhen.
+
+\paragraph{Nahezu ausschließlich nicht-parametrische Tests} In nur \textbf{1 von 320 Tests} (0,3\,\%) konnte Normalverteilung angenommen werden. Dies bestätigt die in Abschnitt 5.1.2 dokumentierte extreme Schiefe der Finanzkennzahlen und rechtfertigt die Wahl nicht-parametrischer Verfahren.
+
+\paragraph{Steigende Diskriminierungsfähigkeit mit abnehmendem Horizont} Die Anzahl signifikanter Features steigt von 53 (H1) auf 58 (H4), was erwartbar ist: Je näher die Insolvenz, desto deutlicher manifestieren sich die finanziellen Probleme in den Kennzahlen.
+
+\subsection{Beispielhafte Top-Features (Horizont H1)}
+
+Die fünf Features mit den stärksten Effekten in H1 sind: A24 (Effekt: 0,46), A13 (0,43), A26 (0,42), A16 (0,41) und A23 (0,40). Alle zeigen mittlere Effektstärken und wurden mittels Mann-Whitney U-Test als hochsignifikant identifiziert (q-Werte < $10^{-27}$). Diese Features gehören überwiegend zur Kategorie Profitabilität und zeigen die erwartete negative Korrelation mit Insolvenz.
+
+\section{Korrelationsanalyse und ökonomische Validierung}
+
+Multikollinearität – hohe Korrelationen zwischen Prädiktoren – ist bei Finanzkennzahlen unvermeidlich \cite{altman1968financial}. Viele Ratios teilen gemeinsame Nenner (z.\,B. Bilanzsumme) oder sind mathematisch verwandt (z.\,B. inverse Paare). Diese Struktureigenschaft erfordert eine systematische Korrelationsanalyse, um (1) das Ausmaß der Multikollinearität zu quantifizieren und (2) ökonomisch plausible von implausiblen Mustern zu unterscheiden.
+
+\subsection{Ausmaß der Multikollinearität}
+
+Für jeden Horizont wurde die Pearson-Korrelationsmatrix (64 × 64) berechnet. Als „hohe Korrelation" wurden Paare mit $|r|$ > 0,8 definiert – dieser Schwellenwert entspricht einem gängigen Interpretationsrahmen für starke Korrelationen (vgl. \cite{schober2018correlation}) und ist konsistent mit der Literatur zu Multikollinearität \cite{obrien2007caution}. Tabelle \ref{tab:correlation_summary} zeigt die Ergebnisse.
+
+\begin{table}[htbp]
+\centering
+\caption{Multikollinearität nach Horizont}
+\label{tab:correlation_summary}
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Horizont} & \textbf{Hohe Korrelationen ($|r|$ > 0{,}8)} & \textbf{Max. mögliche} & \textbf{Anteil (\%)} \\
+\midrule
+H1 & 73 & 2.016 & 3,6\,\% \\
+H2 & 70 & 2.016 & 3,5\,\% \\
+H3 & 65 & 2.016 & 3,2\,\% \\
+H4 & 68 & 2.016 & 3,4\,\% \\
+H5 & 62 & 2.016 & 3,1\,\% \\
+\midrule
+\textbf{Durchschnitt} & \textbf{68} & \textbf{2.016} & \textbf{3,4\,\%} \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+{\footnotesize Quelle: Eigene Darstellung basierend auf Script 02c\_correlation\_economic.py. Max. mögliche Paare: $\binom{64}{2} = 2.016$}
+\end{table}
+
+Im Durchschnitt zeigen \textbf{68 Feature-Paare} (3,4\,\%) hohe Korrelationen. Dieses Muster ist über alle Horizonte stabil (Schwankung: 62–73). Die moderate Quote zeigt: Während Multikollinearität vorhanden ist, betrifft sie nur einen kleinen Teil der Feature-Paare. Dennoch ist eine systematische Behandlung mittels VIF-Analyse notwendig (siehe Kapitel 6: Multikollinearitätskontrolle).
+
+\subsection{Ökonomische Plausibilitätsvalidierung}
+
+Nicht alle Korrelationen mit der Zielvariable (Insolvenz) sind ökonomisch sinnvoll. Ein Feature könnte statistisch signifikant mit Insolvenz korrelieren, aber in die „falsche" Richtung weisen. Beispiel: Eine hohe Verschuldungskennzahl sollte positiv mit Insolvenz korrelieren – zeigt sie eine negative Korrelation, deutet dies auf Datenprobleme oder nicht-lineare Zusammenhänge hin.
+
+Für jedes der 64 Features wurde basierend auf der Kategorie (Profitabilität, Liquidität, Verschuldung, etc.) eine ökonomisch erwartete Richtung definiert. Tabelle \ref{tab:economic_plausibility} zeigt die Validierungsergebnisse für H1.
+
+\begin{table}[htbp]
+\centering
+\caption{Ökonomische Plausibilität der Feature-Insolvenz-Korrelationen (H1)}
+\label{tab:economic_plausibility}
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Kategorie} & \textbf{Anzahl Features} & \textbf{Plausibel} & \textbf{Implausibel} \\
+\midrule
+Profitabilität & 20 & 18 & 2 \\
+Liquidität & 10 & 8 & 2 \\
+Verschuldung & 17 & 10 & 7 \\
+Aktivität & 15 & 5 & 10 \\
+Größe & 1 & 1 & 0 \\
+Sonstige & 1 & 0 & 1 \\
+\midrule
+\textbf{Gesamt} & \textbf{64} & \textbf{42 (65{,}6\,\%)} & \textbf{22 (34{,}4\,\%)} \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+{\footnotesize Quelle: Eigene Darstellung basierend auf Script 02c\_correlation\_economic.py}
+\end{table}
+
+\textbf{42 von 64 Features} (65,6\,\%) zeigen ökonomisch plausible Korrelationen mit Insolvenz. Die Implausibilitätsrate von 34,4\,\% ist methodisch bemerkenswert und konzentriert sich auf zwei Kategorien:
+
+\paragraph{Verschuldungskennzahlen} 7 von 17 Features (41\,\%) zeigen implausible Muster. Dies könnte auf nicht-lineare Zusammenhänge hindeuten: Extrem hohe Verschuldung führt zur Insolvenz, aber auch extrem niedrige Verschuldung (kein Zugang zu Kreditmärkten) kann problematisch sein.
+
+\paragraph{Aktivitätskennzahlen} 10 von 15 Features (67\,\%) sind implausibel. Aktivitätskennzahlen (z.\,B. Umschlagshäufigkeiten) sind komplex interpretierbar und möglicherweise branchenabhängig.
+
+Diese Erkenntnisse haben methodische Konsequenzen für die Feature Selection: Implausible Features sollten kritisch geprüft werden – entweder durch Entfernung oder durch nicht-lineare Modellierung.
+
+\section{Zusammenfassung der explorativen Erkenntnisse}
+
+Die explorative Datenanalyse liefert vier zentrale Erkenntnisse, die die nachfolgende Modellierung determinieren:
+
+\paragraph{1. Extreme Nicht-Normalität} 35 von 64 Features (55\,\%) zeigen extreme Schiefe. Nur 1 von 320 Tests erfüllte Normalitätsannahmen. \textbf{Implikation:} Nicht-parametrische Methoden oder Datentransformationen sind notwendig.
+
+\paragraph{2. Robuste Diskriminierungsfähigkeit} 272 von 320 Tests (85\,\%) bleiben nach FDR-Kontrolle signifikant. Der Verlust von nur 2 Features zeigt robuste Unterschiede zwischen Klassen. \textbf{Implikation:} Die Datenbasis ist für prädiktive Modellierung geeignet.
+
+\paragraph{3. Begrenzte Multikollinearität (Korrelationsanalyse)} Durchschnittlich 68 Feature-Paare (3,4\,\%) zeigen hohe Korrelationen ($|r|$ > 0,8). \textbf{Implikation:} Korrelationsbasierte Multikollinearität betrifft nur einen kleinen Teil der Features, dennoch ist eine VIF-basierte Analyse zur Identifikation indirekter Kollinearitäten notwendig.
+
+\paragraph{4. Substanzielle ökonomische Implausibilität} 22 von 64 Features (34\,\%) zeigen Korrelationen entgegen ökonomischer Erwartungen. \textbf{Implikation:} Mechanistische Interpretation ist limitiert; datendrivenere Ansätze (z.\,B. Feature Importance aus Random Forests) könnten sinnvoller sein als rein theoriegeleitete Selektion.
+
+Die gewonnenen Erkenntnisse bilden die Grundlage für Kapitel 6 (Multikollinearitätskontrolle), in dem mittels Variance Inflation Factor (VIF) Analyse systematisch multikollineare Features identifiziert und entfernt werden, um ein reduziertes, modellierbares Feature-Set zu erhalten.
+

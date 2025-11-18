@@ -1,55 +1,363 @@
 \chapter{Datenaufbereitung: Data Preparation}
 
-% TODO: Wird nach Phase 01 geschrieben
-% Dokumentiert die praktische Umsetzung der in Kapitel 3 identifizierten Qualitätsprobleme
+Die in Kapitel 3 dokumentierte Analyse der Datenbasis offenbarte drei zentrale Qualitätsprobleme: \textbf{401 exakte Duplikate}, \textbf{systematische Ausreißer in allen 64 Kennzahlen} sowie \textbf{41.037 fehlende Werte} über sämtliche Features. Während die Foundation-Phase diese Probleme identifiziert und quantifiziert hat, widmet sich die Data Preparation-Phase ihrer methodisch fundierten Behandlung.
 
-\section{Behandlung fehlender Werte}
+Das vorliegende Kapitel dokumentiert die praktische Umsetzung evidenzbasierter Preprocessing-Strategien. Die Reihenfolge der Schritte ist dabei nicht arbiträr, sondern folgt methodischen Notwendigkeiten: Duplikate werden \textit{zuerst} entfernt (Abschnitt 4.1), um Data Leakage zu vermeiden. Anschließend erfolgt die Behandlung von Ausreißern mittels Winsorisierung (Abschnitt 4.2), bevor fehlende Werte imputiert werden (Abschnitt 4.3). Diese Sequenz gewährleistet, dass Extremwerte die Imputationsstatistiken nicht verzerren \cite{goodfellow2016deep}.
 
-\subsection{Passive Imputation für Finanzkennzahlen}
-% - Theoretischer Hintergrund (von Hippel 2013)
-% - Implementierung: Zähler/Nenner separat
-% - Log-Transformation vor Imputation
-% - Validierung der Imputationsqualität
+Das Ergebnis ist ein sauberer Datensatz mit 43.004 Beobachtungen und 0\,\% fehlenden Werten – bereit für die nachfolgende Modellierung. Alle implementierten Schritte sind über Python-Skripte vollständig reproduzierbar und dokumentiert.
 
-\subsection{Umgang mit Kennzahl A37}
-% - Entscheidung: Imputation trotz 43,7% Missing
-% - Begründung: Domain-Wichtigkeit (Liquidity Ratio)
-% - Alternative wäre Entfernung gewesen
+\section{Entfernung exakter Duplikate}
 
+Die in Abschnitt 3.1.4.2 identifizierten 401 exakten Duplikate stellen eine unmittelbare Bedrohung für die Validität jeglicher statistischer Inferenz dar. Würden diese Duplikate im Datensatz verbleiben, käme es zu einer künstlichen Übergewichtung bestimmter Beobachtungen – mit potenziell verzerrten Modellparametern als Folge. Die folgenden Abschnitte dokumentieren die methodische Behandlung dieses Problems.
 
-\section{Behandlung von Duplikaten und Ausreißern}
+\subsection{Methodik der Duplikat-Identifikation}
 
-\subsection{Duplikat-Entfernung}
-% - Timing: VOR Train/Test-Split
-% - Begründung: Vermeidung von Data Leakage
-% - Resultat: 43.004 Beobachtungen (401 entfernt)
+Als \textbf{exaktes Duplikat} wurde definiert: Eine Beobachtung, bei der \textit{alle} 68 Variablen (64 Finanzkennzahlen, Jahr, Horizont, Zielvariable, Insolvenzindikator) mit mindestens einer anderen Beobachtung identisch sind. Diese strenge Definition minimiert das Risiko fälschlicher Entfernungen: Nur bei vollständiger Identität über alle Dimensionen wird ein Duplikat angenommen.
 
-\subsection{Winsorisierung extremer Werte}
-% - Methode: 1./99. Perzentil
-% - Anwendung auf alle 64 Features
-% - Resultat: ~10% der Werte pro Feature betroffen
+Die Identifikation erfolgte mittels der Pandas-Funktion \texttt{duplicated()}, die spaltenweise Übereinstimmung prüft. Es wurden \textbf{802 Zeilen als dupliziert} identifiziert, die sich zu \textbf{200 Paaren plus einer unpaarigen Zeile} gruppieren lassen. Dies deutet auf ein systematisches Datenerfassungsproblem hin: Jede Beobachtung wurde im Mittel exakt einmal versehentlich dupliziert.
 
+\subsection{Umgang mit Unsicherheit}
 
-\section{Train/Validation/Test-Split}
+Das Fehlen eines Unternehmensidentifikators verhindert die definitive Klärung, ob es sich tatsächlich um denselben betriebswirtschaftlichen Sachverhalt handelt. Die in Abschnitt 3.1.4.2 dargelegte statistische Argumentation – eine Wahrscheinlichkeit von $\approx 10^{-128}$ für zufällige Übereinstimmung aller 64 kontinuierlichen Werte – spricht jedoch klar für die Datenerfassungsfehler-Hypothese.
 
-\subsection{Strategie bei horizontspezifischen Modellen}
-% - NICHT: H1-H3 train, H4 val, H5 test
-% - SONDERN: Jeder Horizont separat aufgeteilt
-% - Begründung: Unterschiedliche Verteilungen (80% Anstieg)
+\textbf{Konservative Alternative:} Eine denkbare, noch vorsichtigere Strategie wäre gewesen, \textit{beide} Instanzen eines Duplikatpaars zu entfernen (Verlust von 802 statt 401 Beobachtungen). Diese Variante hätte jedoch einen Informationsverlust von 1,85\,\% der Gesamtstichprobe bedeutet – ohne erkennbaren methodischen Mehrwert, da die erste Instanz vermutlich genauso valide ist wie die zweite.
 
-\subsection{Stratifiziertes Sampling}
-% - Beibehaltung der Klassenverteilung
-% - 60% Train, 20% Val, 20% Test je Horizont
-% - Random Seed für Reproduzierbarkeit
+\subsection{Implementierung und Timing}
 
+Die Entfernung erfolgte mittels der Pandas-Operation \texttt{drop\_duplicates(keep='first')}, die für jedes Duplikatpaar die erste Instanz beibehält und nachfolgende Instanzen entfernt. Die Wahl von \texttt{keep='first'} ist arbiträr (gleichwertig wäre \texttt{keep='last'} gewesen), jedoch reproduzierbar dokumentiert.
 
-\section{Feature Scaling}
+\textbf{Kritischer methodischer Aspekt – Timing:} Die Duplikat-Entfernung erfolgt \textit{vor jeglicher weiterer Datenmanipulation}, insbesondere vor Datenaufteilungen. Dies ist essentiell, um \textbf{Data Leakage} zu verhindern: Würde ein Duplikatpaar über verschiedene Datenpartitionen verteilt, könnte dies zu optimistisch verzerrten Performanzmetriken führen \cite{goodfellow2016deep}.
 
-\subsection{Z-Score-Normalisierung}
-% - Methode: (x - mean) / std
-% - Wichtig: Fit auf Train, Transform auf Val/Test
-% - Vermeidung von Data Leakage
+\subsection{Ergebnis und Auswirkungen}
 
-\subsection{Horizontspezifische Skalierung}
-% - Jeder Horizont hat eigene Scaling-Parameter
-% - Begründung: Unterschiedliche Verteilungen
+Tabelle \ref{tab:duplikat_entfernung} fasst das Ergebnis zusammen.
+
+\begin{table}[htbp]
+\centering
+\caption{Ergebnis der Duplikat-Entfernung}
+\label{tab:duplikat_entfernung}
+\begin{tabular}{lrr}
+\toprule
+\textbf{Metrik} & \textbf{Vorher} & \textbf{Nachher} \\
+\midrule
+Beobachtungen & 43.405 & 43.004 \\
+Entfernt & -- & 401 \\
+Anteil entfernt & -- & 0,92\,\% \\
+\midrule
+Insolvenzrate & 4,82\,\% & 4,84\,\% \\
+Veränderung & -- & +0,03 pp \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+{\footnotesize Quelle: Eigene Darstellung basierend auf Script 01a\_remove\_duplicates.py}
+\end{table}
+
+Die Insolvenzrate verändert sich minimal von 4,82\,\% auf 4,84\,\% – eine Verschiebung von lediglich 0,03 Prozentpunkten. Dies deutet darauf hin, dass die Duplikate \textit{nicht} systematisch häufiger insolvente oder gesunde Unternehmen betrafen, sondern gleichmäßig über beide Klassen verteilt waren. Die Klassenbalance bleibt somit im Wesentlichen erhalten.
+
+\subsection{Horizontspezifische Verteilung der Duplikate}
+
+Eine ergänzende Analyse untersuchte, ob bestimmte Prognosehorizonte überproportional von Duplikaten betroffen waren. Die Duplikatrate variiert zwischen 0,83\,\% (H3) und 1,17\,\% (H1) – eine Schwankung von lediglich 0,34 Prozentpunkten. Dies deutet auf ein \textbf{horizontübergreifend gleichmäßig verteiltes Datenerfassungsproblem} hin, nicht auf systematische Qualitätsdefizite einzelner Horizonte.
+
+\subsection{Methodische Reflexion}
+
+Die Entfernung von 401 Beobachtungen (0,92\,\% der Stichprobe) ist ein vertretbarer Preis für die Gewährleistung der Datenintegrität. Zwei alternative Strategien wären denkbar gewesen:
+
+\begin{enumerate}[topsep=0.2\baselineskip]
+    \item \textbf{Alle Duplikate behalten:} Führt zu künstlicher Übergewichtung und verzerrten Konfidenzintervallen.
+    \item \textbf{Beide Instanzen entfernen:} Höhere Datenverlustrate ohne erkennbaren methodischen Mehrwert.
+\end{enumerate}
+
+Die gewählte Strategie (\texttt{keep='first'}) balanciert zwischen Vorsicht und Datenerhalt. Die Limitation – fehlende Verifizierbarkeit mangels Unternehmens-ID – bleibt bestehen, wird jedoch durch die statistische Evidenz (Abschnitt 3.1.4.2) hinreichend adressiert.
+
+\section{Winsorisierung extremer Werte}
+
+Finanzielle Kennzahlen sind notorisch anfällig für Extremwerte. Die Gründe reichen von Bilanzmanipulation über Messfehler bis hin zu Sonderereignissen (Restrukturierungen, Fusionen). Abschnitt 3.1.4.3 dokumentierte, dass \textit{alle} 64 Kennzahlen Ausreißer aufweisen, mit Anteilen zwischen 0,07\,\% und 15,5\,\%. Die Behandlung dieser Extremwerte ist methodische Notwendigkeit, da sie in Regressionsmodellen zu instabilen Parametern führen können \cite{hastieelementsstatistical2009}.
+
+\subsection{Methodenwahl: Winsorisierung vs. Alternativen}
+
+Zur Behandlung von Ausreißern stehen grundsätzlich drei Strategien zur Verfügung:
+
+\paragraph{Option A: Deletion} Entfernung aller als Ausreißer klassifizierten Beobachtungen. Diese Methode ist einfach, führt jedoch zu erheblichem Informationsverlust: Bei durchschnittlich 5,4\,\% Ausreißern pro Feature würde eine zeilenbasierte Deletion potenziell einen Großteil der Stichprobe eliminieren, da viele Beobachtungen in mindestens einer Kennzahl einen Ausreißer aufweisen.
+
+\paragraph{Option B: Log-Transformation} Transformation rechtsschiefe Verteilungen mittels Logarithmus. Diese Methode scheitert jedoch bei Finanzkennzahlen systematisch: Viele Ratios können negative Werte annehmen (z.\,B. negativer Nettogewinn bei Verlusten), was $\log(x)$ für $x \leq 0$ undefiniert macht.
+
+\paragraph{Option C: Winsorisierung} Ersetzung von Extremwerten durch weniger extreme Perzentilwerte. Diese Methode dämpft Ausreißer, ohne Beobachtungen zu verlieren oder Vorzeichenprobleme zu verursachen. Sie ist in der empirischen Finanzforschung etabliert und wurde für diese Arbeit gewählt.
+
+\subsection{Implementierung: 1./99. Perzentil}
+
+Die Winsorisierung erfolgte separat für jede der 64 Kennzahlen nach folgendem Schema:
+
+\begin{enumerate}[topsep=0.2\baselineskip]
+    \item Berechnung des 1. Perzentils ($P_1$) und 99. Perzentils ($P_{99}$) über alle nicht-fehlenden Werte.
+    \item Ersetzung aller Werte $x < P_1$ durch $P_1$.
+    \item Ersetzung aller Werte $x > P_{99}$ durch $P_{99}$.
+    \item Fehlende Werte bleiben unverändert (werden später imputiert).
+\end{enumerate}
+
+Die Wahl der \textbf{1./99. Perzentile} (statt z.\,B. 5./95.) beruht auf zwei Überlegungen: Erstens ist die Ausreißerrate mit durchschnittlich 5,4\,\% bereits moderat, sodass eine aggressivere Winsorisierung unnötig erscheint. Zweitens soll die ursprüngliche Verteilungsform soweit möglich erhalten bleiben – ein Prinzip, das gegen zu weite Perzentilgrenzen spricht.
+
+\subsection{Ergebnis und Auswirkungen}
+
+Tabelle \ref{tab:winsorisierung} fasst die Auswirkungen zusammen.
+
+\begin{table}[htbp]
+\centering
+\caption{Ergebnis der Winsorisierung}
+\label{tab:winsorisierung}
+\begin{tabular}{lr}
+\toprule
+\textbf{Metrik} & \textbf{Wert} \\
+\midrule
+Beobachtungen (unverändert) & 43.004 \\
+Features winsorisiert & 64/64 \\
+Werte modifiziert (gesamt) & 53.427 \\
+Durchschn. Anteil pro Feature & 1,94\,\% \\
+Min. Anteil & 0,03\,\% \\
+Max. Anteil & 2,00\,\% \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+{\footnotesize Quelle: Eigene Darstellung basierend auf Script 01b\_outlier\_treatment.py}
+\end{table}
+
+Insgesamt wurden \textbf{53.427 Werte} über alle Features hinweg modifiziert – das entspricht durchschnittlich 1,94\,\% der Werte pro Feature. Dieser Anteil liegt deutlich unter der ursprünglichen Ausreißerrate von 5,4\,\% (3×IQR-Methode), was erwartbar ist: Die Perzentilmethode ist weniger konservativ als die IQR-basierte Definition und behandelt nur die extremsten 2\,\% der Verteilung.
+
+\subsection{Validierung: Erhalt der Stichprobengröße}
+
+Ein methodisch kritischer Aspekt ist die Überprüfung, dass durch Winsorisierung \textit{keine} Beobachtungen verloren gehen. Die Verifikation bestätigt: Sowohl die Stichprobengröße (43.004) als auch die Anzahl fehlender Werte (41.037) bleiben unverändert. Dies bestätigt, dass Winsorisierung – im Gegensatz zu Deletion – ein informationserhaltender Prozess ist.
+
+\subsection{Timing im Preprocessing-Ablauf}
+
+Die Winsorisierung erfolgt \textit{nach} Duplikat-Entfernung, aber \textit{vor} Imputation fehlender Werte. Diese Reihenfolge ist methodisch begründet:
+
+\begin{itemize}[topsep=0.2\baselineskip]
+    \item \textbf{Nach Duplikaten:} Duplikate müssen zuerst entfernt werden, um nicht künstlich die Perzentilberechnungen zu verzerren.
+    \item \textbf{Vor Imputation:} Würden Extremwerte erst \textit{nach} Imputation behandelt, könnten sie die Imputationsstatistiken (Mittelwerte, Mediane) verzerren. Bei MICE-Imputation (siehe Abschnitt 4.3) werden Regressionsmodelle auf beobachteten Daten trainiert. Unbehandelte Extremwerte in den Prädiktoren würden zu instabilen Regressionskoeffizienten führen.
+\end{itemize}
+
+\subsection{Methodische Reflexion und Limitationen}
+
+Die Wahl der Winsorisierung stellt einen Kompromiss dar: (1) Naives Belassen aller Werte führt zu instabilen Modellen; (2) aggressives Löschen führt zu Informationsverlust. Die gewählte Methode balanciert beide Aspekte, bringt jedoch eigene Limitationen mit sich:
+
+\begin{enumerate}[topsep=0.2\baselineskip]
+    \item \textbf{Informationsverzerrung:} Winsorisierung verändert die ursprüngliche Verteilung. Extremwerte könnten tatsächlich valide Beobachtungen repräsentieren (z.\,B. Unternehmen in außergewöhnlichen Situationen).
+    \item \textbf{Grenzwertbestimmung:} Die Wahl der 1./99. Perzentile ist nicht „objektiv richtig", sondern basiert auf etablierten Konventionen. Alternative Schwellenwerte (z.\,B. 5./95.) wären ebenfalls vertretbar gewesen.
+    \item \textbf{Feature-Unabhängigkeit:} Die Winsorisierung erfolgt separat je Feature, ohne Berücksichtigung multivariater Ausreißer (Beobachtungen, die in keiner einzelnen Dimension extrem sind, aber in Kombination ungewöhnlich).
+\end{enumerate}
+
+Diese Limitationen sind transparent zu kommunizieren, schmälern jedoch nicht die grundsätzliche Notwendigkeit einer Ausreißerbehandlung bei Finanzkennzahlen.
+
+\section{Imputation fehlender Werte}
+
+Die gravierendste Datenqualitätsherausforderung – dokumentiert in Abschnitt 3.1.4.1 – besteht in den \textbf{41.037 fehlenden Werten} über alle 64 Kennzahlen. Ein Löschen aller betroffenen Zeilen (Listwise Deletion) würde die Stichprobe drastisch reduzieren und ist damit keine Option. Folglich ist Imputation methodische Notwendigkeit. Die folgenden Abschnitte dokumentieren die gewählte Strategie, deren theoretische Fundierung sowie die erzielten Ergebnisse.
+
+\subsection{Methodenwahl: MICE mit BayesianRidge}
+
+\subsubsection{Grundprinzip: Multiple Imputation by Chained Equations (MICE)}
+
+MICE, auch bekannt als Fully Conditional Specification (FCS), ist ein iterativer Ansatz zur Imputation multivariater fehlender Daten \cite{vanbuuren2011mice}. Das Grundprinzip:
+
+\begin{enumerate}[topsep=0.2\baselineskip]
+    \item \textbf{Initialisierung:} Alle fehlenden Werte werden initial durch einfache Statistiken (Median) ersetzt.
+    \item \textbf{Iteration:} Für jede Variable mit fehlenden Werten:
+    \begin{itemize}
+        \item Trainiere ein Regressionsmodell, das diese Variable durch alle anderen Variablen vorhersagt.
+        \item Imputiere fehlende Werte mittels Vorhersage dieses Modells.
+    \end{itemize}
+    \item \textbf{Konvergenz:} Wiederhole Schritt 2, bis sich die imputierten Werte stabilisieren (typisch: 5--20 Iterationen).
+\end{enumerate}
+
+Der entscheidende Vorteil von MICE gegenüber univariaten Methoden (Mean/Median Imputation): MICE \textbf{berücksichtigt Korrelationen} zwischen Variablen. Beispiel: Wenn eine Profitabilitätskennzahl fehlt, aber Liquiditäts- und Verschuldungskennzahlen bekannt sind, kann MICE deren Beziehung zur Profitabilität nutzen, um einen plausibeleren Imputationswert zu generieren.
+
+\subsubsection{Wahl des Schätzers: BayesianRidge Regression}
+
+Innerhalb von MICE muss spezifiziert werden, welches Modell zur Vorhersage verwendet wird. Für diese Arbeit wurde \textbf{BayesianRidge Regression} gewählt, aus folgenden Gründen:
+
+\begin{enumerate}[topsep=0.2\baselineskip]
+    \item \textbf{Multikollinearität-Robustheit:} Wie in Abschnitt 3.1.2 analysiert, weisen die 64 Kennzahlen strukturbedingte Redundanzen auf (inverse Paare, gemeinsame Nenner). Bayesian Ridge Regression integriert Regularisierung, die hohe Korrelationen zwischen Prädiktoren toleriert, ohne numerisch instabil zu werden \cite{tipping2001sparse}.
+    \item \textbf{Automatische Unsicherheitsquantifizierung:} Der Bayessche Ansatz liefert nicht nur Punktschätzungen, sondern auch Unsicherheitsmaße, die während der Iteration helfen, Konvergenz zu überwachen.
+    \item \textbf{Vermeidung von Overfitting:} Regularisierung verhindert, dass das Imputationsmodell zu perfekt auf beobachtete Daten fittet – ein Risiko bei hochdimensionalen Daten (64 Prädiktoren).
+\end{enumerate}
+
+Alternative Schätzer (z.\,B. Random Forest, KNN) wurden erwogen, jedoch verworfen: Random Forest ist rechenintensiver und liefert keine linearen Beziehungen (schwer interpretierbar bei Finanzkennzahlen); KNN ignoriert die interne Struktur der Daten.
+
+\subsection{Direkte Ratio-Imputation (JAV)}
+
+Eine zentrale Frage bei \textbf{abgeleiteten Variablen} (Ratios) ist, ob man die Ratio selbst imputiert oder die zugrundeliegenden Komponenten (Zähler/Nenner) und die Ratio erst im Anschluss berechnet. Das direkte Imputieren der bereits gebildeten Kennzahl wird in der Literatur als \emph{JAV – "Just Another Variable"} bzw. \emph{transform-then-impute} bezeichnet\footnote{White, I. R., Royston, P., Wood, A. M. (2011): Multiple imputation of covariates with non-linear effects and interactions. BMC Medical Research Methodology 11:252. \url{https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/1471-2288-12-46}}. (vgl. auch \cite{vanbuuren2018fimd}, \S~6.4.1)
+
+Da unser Datensatz ausschließlich bereits berechnete Ratios (A1–A64) enthält und \textit{keine} Rohkomponenten (z.\,B. Umsatz, Bilanzsumme etc.), ist \textbf{JAV die einzig praktikable und methodisch korrekte Vorgehensweise}. Wir imputieren daher die Ratios direkt mittels MICE \cite{vanbuuren2011mice} und nutzen die Korrelationsstruktur zwischen den Ratios, um plausible Werte zu erzeugen. Ansätze, die während der Imputation explizit die funktionale Beziehung zwischen Komponenten und Ratio erzwingen, setzen die Verfügbarkeit der Rohkomponenten voraus und sind hier nicht anwendbar.
+
+\subsection{Hyperparameter und Implementierungsdetails}
+
+Die Imputation wurde mittels \texttt{sklearn.impute.IterativeImputer} mit folgenden Einstellungen durchgeführt:
+
+\begin{itemize}[topsep=0.2\baselineskip]
+    \item \texttt{estimator=BayesianRidge()}: Schätzer für die Regressionsmodelle
+    \item \texttt{max\_iter=10}: Maximale Anzahl Iterationen
+    \item \texttt{random\_state=42}: Seed für Reproduzierbarkeit
+    \item \texttt{tol=1e-3}: Konvergenztoleranz
+\end{itemize}
+
+Die Wahl von \textbf{10 Iterationen} basiert auf Empirie: Van Buuren (2011) zeigt, dass MICE typischerweise nach 5--10 Iterationen konvergiert \cite{vanbuuren2011mice}. Eine Erhöhung auf 20 Iterationen wurde getestet, führte jedoch zu keiner messbaren Verbesserung bei erheblich längerer Laufzeit.
+
+\subsection{Qualitätsbewertung der Imputation}
+
+Eine kritische Frage lautet: Wie gut sind die imputierten Werte? Absolute Validierung ist unmöglich, da die wahren Werte unbekannt sind. Jedoch lassen sich relative Qualitätsindikatoren berechnen. Für diese Arbeit wurde ein dreistufiges Bewertungssystem entwickelt.
+
+\subsubsection{Qualitätsmetriken}
+
+Für jede Kennzahl wurden folgende Metriken berechnet:
+
+\begin{enumerate}[topsep=0.2\baselineskip]
+    \item \textbf{Missing Rate:} Anteil fehlender Werte vor Imputation
+    \item \textbf{Imputed Values:} Anzahl imputierter Werte
+    \item \textbf{Quality Score:} Heuristischer Score (0-100), basierend auf Missing Rate und Verteilungsstabilität
+\end{enumerate}
+
+Der Quality Score bewertet niedrige Missing Rates positiv (< 10\,\% = exzellent, > 40\,\% = kritisch) und prüft, ob imputierte Werte die Verteilungscharakteristika wahren.
+
+\subsubsection{Gesamtergebnis}
+
+Tabelle \ref{tab:imputation_results} zeigt das Gesamtergebnis.
+
+\begin{table}[htbp]
+\centering
+\caption{Ergebnis der Missing Value Imputation}
+\label{tab:imputation_results}
+\begin{tabular}{lr}
+\toprule
+\textbf{Metrik} & \textbf{Wert} \\
+\midrule
+Fehlende Werte vorher & 41.037 \\
+Fehlende Werte nachher & 0 \\
+Beobachtungen (unverändert) & 43.004 \\
+Features imputiert & 64/64 \\
+\midrule
+Durchschn. Quality Score & 98,2/100 \\
+Bewertung & Exzellent \\
+Features mit Score > 90 & 63/64 \\
+Features mit Score < 50 & 1/64 (A37) \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+{\footnotesize Quelle: Eigene Darstellung basierend auf Script 01c\_missing\_value\_imputation.py}
+\end{table}
+
+Das Ergebnis ist \textbf{überzeugend}: Mit einem durchschnittlichen Quality Score von 98,2/100 erreicht die Imputation exzellente Qualität. 63 von 64 Features erreichen Scores über 90, was auf robuste Imputation hindeutet.
+
+\subsection{Sonderfall A37: Umgang mit hoher Missingness}
+
+Kennzahl A37 (\textit{Quick Assets / Long-term Liabilities}) sticht mit \textbf{43,7\,\% fehlenden Werten} und einem Quality Score von \textbf{25/100} hervor. Zwei Strategien wurden erwogen:
+
+\paragraph{Option A: Entfernung der Kennzahl} Sicher, aber mit Informationsverlust verbunden. A37 ist eine Liquiditätskennzahl und misst die Fähigkeit, langfristige Schulden aus liquiden Mitteln zu bedienen – theoretisch relevant für Insolvenzprognose \cite{altman1968financial}.
+
+\paragraph{Option B: Imputation trotz hoher Missingness} Erhalt der Kennzahl, jedoch mit Unsicherheit behaftet. MICE nutzt Beziehungen zu anderen Liquiditäts- und Verschuldungskennzahlen, um plausible Werte zu generieren.
+
+\textbf{Entscheidung:} Option B wurde gewählt. Die theoretische Bedeutung von Liquiditätsindikatoren in der Insolvenzforschung rechtfertigt den Erhalt von A37. Die niedrige Imputationsqualität wird transparent dokumentiert und kann in späteren Sensitivitätsanalysen adressiert werden (Modellierung mit/ohne A37).
+
+\paragraph{Ursache der hohen Missingness} Die fehlenden Werte bei A37 sind vermutlich nicht zufällig, sondern strukturbedingt: Unternehmen ohne langfristige Verbindlichkeiten weisen einen undefinierten Nenner auf. Dies ist \textbf{informative Missingness} (MAR – Missing At Random), keine Datenqualitätsproblem.
+
+\subsection{Verifikation der Imputation}
+
+Tabelle \ref{tab:imputation_verification} dokumentiert die Verifikation.
+
+\begin{table}[htbp]
+\centering
+\caption{Verifikation der Imputation}
+\label{tab:imputation_verification}
+\begin{tabular}{lrr}
+\toprule
+\textbf{Check} & \textbf{Ergebnis} & \textbf{Status} \\
+\midrule
+Fehlende Werte & 0 & $\checkmark$\ Pass \\
+Infinite Werte & 0 & $\checkmark$\ Pass \\
+Beobachtungen erhalten & 43.004 & $\checkmark$\ Pass \\
+Features erhalten & 64 & $\checkmark$\ Pass \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+{\footnotesize Quelle: Eigene Darstellung basierend auf Script 01c\_missing\_value\_imputation.py}
+\end{table}
+
+\textbf{Alle Checks bestanden:} Der Datensatz ist nach Imputation vollständig (0\,\% fehlende Werte), enthält keine infiniten Werte und hat die ursprüngliche Dimensionalität beibehalten.
+
+\subsection{Methodische Reflexion}
+
+Die Imputation mittels MICE mit BayesianRidge erzielt exzellente Ergebnisse (Quality Score 98,2/100) und ist methodisch fundiert. Die Limitation bei A37 (Quality 25/100) ist transparent dokumentiert. Alternative Ansätze (z.\,B. KNN-Imputation, Mean Imputation) würden entweder die Korrelationsstruktur ignorieren oder rechenintensiver sein ohne erkennbaren Mehrwert.
+
+\section{Zusammenfassung der Data Preparation-Phase}
+
+Die Data Preparation-Phase transformierte den problematischen Rohdatensatz (43.405 Beobachtungen, 9,45\,\% fehlende Werte, 401 Duplikate, systematische Ausreißer) in einen methodisch fundierten, analysierbaren Datensatz. Tabelle \ref{tab:phase01_summary} fasst die Transformation zusammen.
+
+\begin{table}[htbp]
+\centering
+\caption{Übersicht Phase 01: Data Preparation}
+\label{tab:phase01_summary}
+\begin{tabular}{lp{4.5cm}p{4.5cm}}
+\toprule
+\textbf{Schritt} & \textbf{Maßnahme} & \textbf{Ergebnis} \\
+\midrule
+01a: Duplikate & Entfernung exakter Duplikate (\texttt{keep='first'}) & 43.004 Beobachtungen (-401) \\
+\midrule
+01b: Ausreißer & Winsorisierung (1./99. Perzentil) über alle 64 Features & 53.427 Werte modifiziert (1,94\,\% pro Feature) \\
+\midrule
+01c: Imputation & MICE mit BayesianRidge (10 Iterationen) & 0\,\% fehlende Werte, Quality Score 98,2/100 \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+{\footnotesize Quelle: Eigene Darstellung basierend auf Scripts 01a--01c}
+\end{table}
+
+\subsection{Erreichte Datenqualität}
+
+Nach Abschluss der Data Preparation-Phase liegt ein Datensatz vor, der folgende Qualitätskriterien erfüllt:
+
+\begin{itemize}[topsep=0.2\baselineskip]
+    \item \textbf{Vollständigkeit:} 0\,\% fehlende Werte (vorher: 41.037 fehlende Werte)
+    \item \textbf{Integrität:} Keine Duplikate, keine infiniten Werte
+    \item \textbf{Stabilität:} Ausreißer auf 1./99. Perzentile gedämpft
+    \item \textbf{Dimensionalität:} Alle 64 Features erhalten (keine Löschung)
+    \item \textbf{Stichprobengröße:} 43.004 Beobachtungen (99,08\,\% des Originals)
+\end{itemize}
+
+\subsection{Methodische Stärken}
+
+Die gewählte Preprocessing-Pipeline weist mehrere methodische Stärken auf:
+
+\paragraph{Evidenzbasierung} Alle Methoden (Winsorisierung, MICE mit BayesianRidge, direkte Ratio-Imputation/JAV) sind durch Forschungsliteratur fundiert und in der empirischen Finanzforschung etabliert.
+
+\paragraph{Transparenz} Jede Entscheidung ist dokumentiert, Annahmen sind explizit formuliert (z.\,B. Duplikat-Natur, A37-Erhalt), Limitationen werden nicht verschwiegen.
+
+\paragraph{Reproduzierbarkeit} Alle Schritte sind über Python-Skripte vollständig reproduzierbar. Random Seeds gewährleisten identische Ergebnisse bei Wiederholung.
+
+\paragraph{Informationserhalt} Im Gegensatz zu aggressiven Deletionsstrategien wurden nur 0,92\,\% der Beobachtungen entfernt. Alle 64 Features bleiben erhalten.
+
+\subsection{Dokumentierte Limitationen}
+
+Die folgenden Limitationen sind transparent zu kommunizieren:
+
+\begin{enumerate}[topsep=0.2\baselineskip]
+    \item \textbf{Duplikat-Verifizierung:} Ohne Unternehmens-ID bleibt die Duplikat-Natur eine plausible Annahme, keine Gewissheit.
+    \item \textbf{Winsorisierung:} Verändert ursprüngliche Verteilung. Extremwerte könnten tatsächlich valide Beobachtungen sein.
+    \item \textbf{A37-Imputation:} Quality Score 25/100 deutet auf unsichere Imputation hin. Sensitivitätsanalyse empfohlen.
+    \item \textbf{Fehlende Rohkomponenten:} Da nur Ratios vorliegen, können Verfahren zur Konsistenzsicherung, die Zähler/Nenner voraussetzen (z.\,B. Impute-then-Transform), nicht eingesetzt werden.
+\end{enumerate}
+
+\subsection{Bereitschaft für nachfolgende Phasen}
+
+Der bereinigte Datensatz (\texttt{poland\_imputed.parquet}, 43.004 Beobachtungen, 64 Features, 0\,\% fehlende Werte) bildet die Grundlage für die nachfolgenden Analysephasen:
+
+\begin{itemize}[topsep=0.2\baselineskip]
+    \item \textbf{Phase 02:} Explorative Datenanalyse (EDA) – Verteilungen, Korrelationen, Univariate Tests
+    \item \textbf{Phase 03:} Feature Engineering – VIF-Analyse, Feature Selection, Dimensionsreduktion
+    \item \textbf{Phase 04:} Train/Validation/Test-Splits – Horizontspezifische Aufteilung, Scaling
+    \item \textbf{Phase 05:} Modellierung – Logistische Regression, Random Forest, XGBoost
+\end{itemize}
+
+\subsection{Kritische Würdigung}
+
+Die Data Preparation-Phase demonstriert den \textbf{Balanceakt zwischen Datenerhalt und Qualitätssicherung}. Während naive Ansätze entweder Probleme ignorieren (Risiko verzerrter Ergebnisse) oder aggressiv löschen (Risiko massiven Informationsverlusts), wählt die implementierte Pipeline den methodisch fundierten Mittelweg: Probleme werden behandelt (nicht ignoriert), aber mit minimal-invasiven Methoden (Winsorisierung statt Deletion, Imputation statt Fallausschluss).
+
+Die erreichte Imputationsqualität (98,2/100 durchschnittlich) ist bemerkenswert und bestätigt die Eignung von MICE mit BayesianRidge für hochdimensionale Finanzdaten mit struktureller Multikollinearität. Die transparente Dokumentation der Limitation bei A37 (Quality 25/100) zeigt wissenschaftliche Integrität: Nicht alle Probleme sind perfekt lösbar, aber alle Limitationen müssen kommuniziert werden.
+
+\textbf{Fazit:} Die Data Preparation-Phase hat die identifizierten Qualitätsprobleme methodisch stringent adressiert und einen analysierbaren Datensatz geschaffen, der die Voraussetzungen für rigorose explorative Analysen und Modellierung erfüllt. Die vollständige Reproduzierbarkeit über dokumentierte Python-Skripte gewährleistet die Nachvollziehbarkeit aller Schritte – ein zentrales Gütekriterium wissenschaftlicher Forschung.

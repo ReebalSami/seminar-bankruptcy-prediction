@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>02b H5 Univariate Tests</title>
+<style>
+body {font-family: Arial; margin: 20px; background: #f5f5f5;}
+.container {max-width: 1400px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px;}
+h1 {color: #2c3e50; border-bottom: 3px solid #3498db;}
+.metric {display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+color: white; padding: 20px; margin: 10px; border-radius: 8px; min-width: 200px; text-align: center;}
+table {width: 100%; border-collapse: collapse; margin: 20px 0;}
+th, td {border: 1px solid #ddd; padding: 12px; text-align: left;}
+th {background: #3498db; color: white;}
+tr:nth-child(even) {background: #f2f2f2;}
+.info {background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 20px 0;}
+</style></head><body><div class="container">
+<h1>📊 Phase 02b: Univariate Tests - Horizon 5</h1>
+<div class="info">
+<strong>Methodology:</strong> A+ Statistical Rigor
+<ul><li>Step 1: Test normality (D'Agostino K² - appropriate for large n)</li>
+<li>Step 2: Test selection based on normality + variance equality</li>
+<li>Step 3: Effect sizes (Cohen's d or rank-biserial)</li>
+<li>Step 4: FDR correction (Benjamini-Hochberg) to control false discoveries</li></ul>
+</div>
+<div>
+<div class="metric"><div>Total Features</div><div style="font-size:28px; font-weight:bold;">64</div></div>
+<div class="metric"><div>Significant (p&lt;0.05)</div><div style="font-size:28px; font-weight:bold;">57</div></div>
+<div class="metric"><div>Significant (FDR q&lt;0.05)</div><div style="font-size:28px; font-weight:bold;">57</div></div>
+<div class="metric"><div>Parametric Tests</div><div style="font-size:28px; font-weight:bold;">0</div></div>
+</div>
+<h2>Top 10 Features by Effect Size</h2>
+<p><strong>Note:</strong> Significance based on FDR-corrected q-values (Benjamini-Hochberg procedure)</p>
+<table><tr><th>Rank</th><th>Feature</th><th>Test</th><th>P-Value</th><th>Q-Value (FDR)</th><th>Effect Size</th><th>Sig?</th></tr><tr><td>1</td><td><strong>A26</strong></td><td>Mann-Whitney U</td>
+<td>8.32e-86</td><td>5.32e-84</td><td>0.582 (Rank-biserial r)</td><td>✅</td></tr><tr><td>2</td><td><strong>A16</strong></td><td>Mann-Whitney U</td>
+<td>2.45e-85</td><td>7.83e-84</td><td>0.580 (Rank-biserial r)</td><td>✅</td></tr><tr><td>3</td><td><strong>A39</strong></td><td>Mann-Whitney U</td>
+<td>7.96e-84</td><td>1.70e-82</td><td>0.575 (Rank-biserial r)</td><td>✅</td></tr><tr><td>4</td><td><strong>A13</strong></td><td>Mann-Whitney U</td>
+<td>1.37e-81</td><td>2.20e-80</td><td>0.567 (Rank-biserial r)</td><td>✅</td></tr><tr><td>5</td><td><strong>A35</strong></td><td>Mann-Whitney U</td>
+<td>3.23e-79</td><td>4.14e-78</td><td>0.559 (Rank-biserial r)</td><td>✅</td></tr><tr><td>6</td><td><strong>A12</strong></td><td>Mann-Whitney U</td>
+<td>2.29e-78</td><td>2.45e-77</td><td>0.555 (Rank-biserial r)</td><td>✅</td></tr><tr><td>7</td><td><strong>A23</strong></td><td>Mann-Whitney U</td>
+<td>4.45e-75</td><td>4.07e-74</td><td>0.543 (Rank-biserial r)</td><td>✅</td></tr><tr><td>8</td><td><strong>A19</strong></td><td>Mann-Whitney U</td>
+<td>2.73e-74</td><td>2.19e-73</td><td>0.540 (Rank-biserial r)</td><td>✅</td></tr><tr><td>9</td><td><strong>A31</strong></td><td>Mann-Whitney U</td>
+<td>1.18e-72</td><td>8.40e-72</td><td>0.534 (Rank-biserial r)</td><td>✅</td></tr><tr><td>10</td><td><strong>A1</strong></td><td>Mann-Whitney U</td>
+<td>3.97e-72</td><td>2.54e-71</td><td>0.532 (Rank-biserial r)</td><td>✅</td></tr></table>
+<p style="text-align:center; color:#666; margin-top:40px;">
+Generated: 2025-11-17 14:21:23<br>
+Phase 02b: Univariate Statistical Tests - Horizon 5</p>
+</div></body></html>

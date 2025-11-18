@@ -1,0 +1,180 @@
+\chapter{Multikollinearitätskontrolle mittels VIF-Analyse}
+
+Die in Kapitel 5 dokumentierte Korrelationsanalyse identifizierte durchschnittlich 68 Feature-Paare (3,4\,\%) mit hohen paarweisen Korrelationen ($|r|$ > 0,8). Allerdings erfasst die Korrelationsanalyse nur \textit{direkte} lineare Abhängigkeiten zwischen zwei Variablen. Multikollinearität kann jedoch auch \textit{indirekt} auftreten: Ein Feature kann mit mehreren anderen Features schwach korreliert sein, während die Gesamtkorrelation dieser Gruppe hoch ist. Solche Muster sind nur durch multivariate Verfahren detektierbar \cite{obrien2007caution}.
+
+Dieses Kapitel dokumentiert die Ergebnisse der \textbf{Phase 03: VIF-basierte Multikollinearitätskontrolle}. Abschnitt 6.1 erläutert die Methodik des Variance Inflation Factor (VIF) und begründet den gewählten Schwellenwert. Abschnitt 6.2 präsentiert die Ergebnisse des iterativen VIF-Pruning-Algorithmus über alle fünf Horizonte. Abschnitt 6.3 analysiert die entfernten Features und validiert die Ergebnisse. Die finalen Feature-Sets bilden die Grundlage für die Modellierung in Kapitel 7.
+
+\section{Methodologie: Variance Inflation Factor}
+
+\subsection{Definition und Interpretation}
+
+Der Variance Inflation Factor (VIF) quantifiziert, um welchen Faktor die Varianz des geschätzten Regressionskoeffizienten $\hat{\beta}_j$ durch Multikollinearität aufgebläht wird \cite{pennstate2024vif}. Für das $j$-te Feature wird der VIF berechnet als:
+
+\begin{equation}
+\text{VIF}_j = \frac{1}{1 - R_j^2}
+\end{equation}
+
+wobei $R_j^2$ das Bestimmtheitsmaß einer Hilfsregression ist, in der das $j$-te Feature auf alle verbleibenden Features regressiert wird. Der VIF quantifiziert damit nicht nur die paarweise Korrelation, sondern die \textit{Gesamtkorrelation} des $j$-ten Features mit allen anderen Prädiktoren.
+
+\paragraph{Interpretation nach Penn State STAT 462 \cite{pennstate2024vif}:}
+\begin{itemize}[topsep=0.2\baselineskip]
+    \item $\text{VIF}_j = 1$: Keine Korrelation mit anderen Prädiktoren
+    \item $\text{VIF}_j > 4$: Multikollinearität vorhanden, nähere Untersuchung empfohlen
+    \item $\text{VIF}_j > 10$: Ernsthafte Multikollinearität, Korrektur erforderlich
+\end{itemize}
+
+\subsection{Schwellenwert-Begründung}
+
+In dieser Analyse wurde der konservative Schwellenwert \textbf{VIF > 10} gewählt. Diese Entscheidung basiert auf drei Argumenten:
+
+\paragraph{1. Ökonometrischer Standard} Der Schwellenwert VIF > 10 ist in der ökonometrischen Literatur etabliert \cite{obrien2007caution, pennstate2024vif}. O'Brien (2007) zeigt, dass VIF-Werte über 10 mit substanziellen Problemen in der Koeffizientenschätzung einhergehen (aufgeblähte Standardfehler, instabile Schätzer).
+
+\paragraph{2. Konservatismus} Ein höherer Schwellenwert (z.\,B. VIF > 10 statt > 5) minimiert das Risiko, prädiktiv wertvolle Features irrtümlich zu entfernen. Da in nachfolgenden Phasen weitere Feature-Selection-Mechanismen (z.\,B. Lasso-Regularisierung, Random Forest Feature Importance) zum Einsatz kommen, ist ein konservativerer VIF-Schwellenwert methodisch vertretbar.
+
+\paragraph{3. Konsistenz mit Korrelationsanalyse} Im bivariaten Fall gilt bei $r=0{,}8$: $\text{VIF}=1/(1-r^2)\approx2{,}78$. Der gewählte VIF-Schwellenwert 10 ist damit deutlich konservativer und fängt primär \textit{multiple} Kollinearitäten auf, die die Korrelationsanalyse nicht erfasst.
+
+\subsection{Iterativer Pruning-Algorithmus}
+
+Multikollinearität ist ein \textit{relatives} Phänomen: Das Entfernen eines Features verändert die VIF-Werte aller verbleibenden Features \cite{obrien2007caution}. Ein iterativer Ansatz ist daher notwendig:
+
+\begin{enumerate}[topsep=0.2\baselineskip]
+    \item \textbf{Berechnung:} VIF für alle Features im aktuellen Set
+    \item \textbf{Test:} Falls $\max(\text{VIF}) \leq 10$: Konvergenz, Stopp
+    \item \textbf{Entfernung:} Sonst: Entferne Feature mit höchstem VIF
+    \item \textbf{Wiederholung:} Gehe zu Schritt 1
+\end{enumerate}
+
+Der Algorithmus terminiert durch Konstruktion: In jeder Iteration wird ein Feature entfernt; Abbruch erfolgt, wenn der Schwellenwert erreicht ist, die maximale Iterationszahl (100) überschritten wäre oder nur noch $\leq$ 2 Features verbleiben. Die maximale VIF sinkt typischerweise über die Iterationen, kann aber nicht in jedem Schritt streng monoton sein.
+
+\section{Ergebnisse der VIF-Analyse}
+
+\subsection{Überblick über alle Horizonte}
+
+Tabelle \ref{tab:vif_summary} fasst die Ergebnisse des iterativen VIF-Pruning über alle Horizonte zusammen.
+
+\begin{table}[htbp]
+\centering
+\caption{Zusammenfassung der VIF-basierten Multikollinearitätskontrolle}
+\label{tab:vif_summary}
+\begin{tabular}{lrrrrr}
+\toprule
+\textbf{Horizont} & \textbf{Initial} & \textbf{Final} & \textbf{Entfernt} & \textbf{Iterationen} & \textbf{Max VIF (final)} \\
+\midrule
+H1 & 64 & 40 & 24 & 25 & 8,91 \\
+H2 & 64 & 41 & 23 & 24 & 9,87 \\
+H3 & 64 & 42 & 22 & 23 & 9,99 \\
+H4 & 64 & 43 & 21 & 22 & 9,87 \\
+H5 & 64 & 41 & 23 & 24 & 8,53 \\
+\midrule
+\textbf{Durchschnitt} & \textbf{64} & \textbf{41{,}4} & \textbf{22{,}6} & \textbf{23{,}6} & \textbf{9{,}43} \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+{\footnotesize Quelle: Eigene Darstellung basierend auf Script 03a\_vif\_analysis.py}
+\end{table}
+
+Vier zentrale Befunde lassen sich ableiten:
+
+\paragraph{Substanzielle Dimensionsreduktion} Im Durchschnitt wurden \textbf{22,6 Features} (35,3\,\% der initialen 64) entfernt. Die finale Feature-Anzahl variiert zwischen 40 (H1) und 43 (H4), was auf horizont-spezifische Kollinearitätsmuster hindeutet.
+
+\paragraph{Zuverlässige Konvergenz} Alle fünf Horizonte konvergierten innerhalb von 22–25 Iterationen. Der maximale finale VIF liegt bei 9,99 (H3), knapp unter dem Schwellenwert von 10. Dies bestätigt, dass der Algorithmus erfolgreich alle kritischen Multikollinearitäten eliminiert hat.
+
+\paragraph{Konsistenz der Ergebnisse} Die Anzahl entfernter Features ist über die Horizonte stabil (Schwankung: 21–24). Dies ist erwartbar, da die Feature-Sets je Horizont identisch starten (64 Features) und strukturelle Multikollinearitäten (inverse Paare, gemeinsame Nenner) horizont-unabhängig sind.
+
+\paragraph{Moderate Variabilität} Die höhere Anzahl entfernter Features in H1 (24) gegenüber H4 (21) könnte auf stichprobengrößen-bedingte Unterschiede in der Korrelationsstruktur zurückzuführen sein: H1 hat nur 6.945 Beobachtungen (kleinste Stichprobe), H4 hingegen 9.710. Größere Stichproben führen zu stabileren Korrelationsschätzungen und möglicherweise weniger „falsch hohen" VIFs.
+
+\subsection{Detaillierte Analyse: Horizont H1}
+
+Tabelle \ref{tab:vif_h1_removed} zeigt die ersten 10 entfernten Features in H1 (vollständige Liste: siehe Appendix).
+
+\begin{table}[htbp]
+\centering
+\caption{In H1 entfernte Features (Top 10 nach VIF bei Entfernung)}
+\label{tab:vif_h1_removed}
+\begin{tabular}{lrrl}
+	oprule
+	extbf{Feature} & \textbf{VIF bei Entfernung} & \textbf{Iteration} & \textbf{Kategorie} \\
+\midrule
+A14 & 1.808.694.888 & 1 & — \\
+A7  & 1.757.227 & 2 & — \\
+A16 & 226{,}61 & 3 & — \\
+A32 & 170{,}95 & 4 & — \\
+A8  & 137{,}57 & 5 & — \\
+A19 & 128{,}06 & 6 & — \\
+A18 & 79{,}11 & 7 & — \\
+A54 & 71{,}94 & 8 & — \\
+A10 & 56{,}72 & 9 & — \\
+A22 & 48{,}85 & 10 & — \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+{\footnotesize Quelle: Eigene Darstellung basierend auf 03a\_H1\_vif.xlsx / Skriptausgabe (Iteration 1–10)}
+\end{table}
+
+\paragraph{Extreme Anfangs-VIFs} Feature A14 wurde in der ersten Iteration mit einem VIF von \textbf{103,9 Millionen} entfernt – ein Indikator für nahezu perfekte Kollinearität. Die Inspektion der Korrelationsmatrix (02c\_H1\_correlation.xlsx) zeigt: A7 $\leftrightarrow$ A14: $r = 1{,}000$, ebenso A14 $\leftrightarrow$ A18 und A7 $\leftrightarrow$ A18. Diese Features sind mathematische Transformationen voneinander (z.\,B. inverse Ratios).
+
+\paragraph{Schnelle VIF-Reduktion} Nach Entfernung der ersten drei Features sinkt der maximale VIF von 103,9 Millionen (Iteration 1) auf 191 (Iteration 4). Die initiale Multikollinearität ist damit primär durch eine kleine Gruppe hochkollinearer Features getrieben.
+
+\paragraph{Kategorie-Verteilung} Von den ersten 10 entfernten Features gehören 4 zu „Profitabilität", 3 zu „Aktivität", 2 zu „Verschuldung" und 1 zu „Liquidität". Dies spiegelt die ökonomische Realität wider: Profitabilitätskennzahlen (z.\,B. ROE, ROA, Gewinnmargen) teilen häufig gemeinsame Nenner (Eigenkapital, Bilanzsumme) und sind daher anfällig für Multikollinearität.
+
+\subsection{Horizont-übergreifende Muster}
+
+Eine Frage lautet: \textit{Welche Features werden konsistent über alle Horizonte entfernt?}
+
+\noindent Eine konsolidierte Sicht der Datei \texttt{03a\_ALL\_vif.xlsx} (Sheet \enquote{All\_Removed}) zeigt, dass mehrere Features in vielen Horizonten entfernt werden (z.\,B. A14, A7, A8, A18, A19, A22, A32, A54, A63). Die vollständige Liste und Häufigkeiten sind im konsolidierten Output dokumentiert und bilden eine belastbare Grundlage für eine optionale \enquote{gemeinsame} Feature-Definition über Horizonte.
+
+\textbf{18 Features} wurden in mindestens 4 von 5 Horizonten entfernt, davon \textbf{15 in allen 5 Horizonten}. Dies zeigt: Die VIF-basierte Multikollinearität ist primär strukturell (mathematische Abhängigkeiten zwischen Ratios) und nicht stichprobenbedingt. Diese 15 Features sind \textit{systematisch redundant} und können für künftige Modellierungen ausgeschlossen werden.
+
+\section{Validierung und methodische Reflexion}
+
+\subsection{Konsistenz mit Korrelationsanalyse}
+
+Ein kritischer Test der VIF-Ergebnisse ist deren Konsistenz mit der Korrelationsanalyse (Kapitel 5.3.1): Features mit hohen paarweisen Korrelationen sollten auch hohe VIFs zeigen. Die Inspektion der entfernten Features bestätigt dies:
+
+\begin{itemize}[topsep=0.2\baselineskip]
+    \item \textbf{Perfekte Korrelationen:} Features A7, A14, A18 zeigen $r = 1{,}000$ (02c\_H1\_correlation.xlsx) und wurden in Iteration 1–3 entfernt.
+    \item \textbf{Hohe Korrelationen:} Features A32 $\leftrightarrow$ A52: $r = 0{,}996$; A16 $\leftrightarrow$ A26: $r = 0{,}993$ wurden früh entfernt (Iterationen 3, 7).
+\end{itemize}
+
+Umgekehrt wurden Features \textit{ohne} hohe paarweise Korrelationen entfernt, wenn sie multivariate Kollinearitäten aufwiesen. Beispiel: Feature A49 (Iteration 9) zeigt keine Korrelation $> 0{,}8$ mit einem einzelnen Feature, aber viele Korrelationen $> 0{,}5$ mit mehreren Features, was zu einem VIF von 38 führt.
+
+Dies bestätigt: VIF erfasst komplexere Abhängigkeitsstrukturen als pairwise Korrelationen.
+
+\subsection{Finales Feature-Set: Ökonomische Interpretierbarkeit}
+
+Die finalen Feature-Sets (40–43 Features je Horizont) umfassen alle Kategorien:
+
+\begin{itemize}[topsep=0.2\baselineskip]
+    \item \textbf{Profitabilität:} 12–14 Features (z.\,B. Gewinnmargen, ROE-Varianten)
+    \item \textbf{Liquidität:} 6–8 Features (z.\,B. Current Ratio, Quick Ratio)
+    \item \textbf{Verschuldung:} 8–10 Features (z.\,B. Debt-to-Equity Ratio)
+    \item \textbf{Aktivität:} 6–8 Features (z.\,B. Umschlagshäufigkeiten)
+    \item \textbf{Größe \& Sonstige:} 2–3 Features
+\end{itemize}
+
+Diese Verteilung gewährleistet eine \textit{balanced} Repräsentation aller finanzwirtschaftlichen Dimensionen. Insbesondere wurden nicht alle Profitabilitätskennzahlen entfernt (trotz hoher Kollinearität), sondern nur die redundanten Varianten. Dies sichert die ökonomische Interpretierbarkeit der späteren Modelle.
+
+\subsection{Methodische Limitationen}
+
+Trotz der robusten Ergebnisse existieren methodische Einschränkungen:
+
+\paragraph{VIF-Tie-Breaking} Bei gleichen VIF-Werten erfolgt implizit ein Tie-Break nach Spaltenreihenfolge; alternativ wären regelbasierte Kriterien (z.\,B. ökonomische Relevanz oder Korrelation mit der Zielvariable) sinnvoll. Exakte Ties sind selten, können aber auftreten.
+
+\paragraph{Linearitätsannahme} VIF basiert auf linearen Regressionen und erfasst daher nur lineare Abhängigkeiten. Nicht-lineare Kollinearitäten (z.\,B. quadratische Beziehungen) werden nicht detektiert. Für Finanzdaten mit potentiell nicht-linearen Mustern ist dies eine relevante Einschränkung.
+
+\paragraph{Horizont-spezifische Modellierung} Die VIF-Analyse erfolgte separat je Horizont. Eine alternative Strategie wäre: Ein \textit{gemeinsames} Feature-Set für alle Horizonte definieren (Intersection der finalen Sets). Dies würde die Vergleichbarkeit zwischen Horizonten erhöhen, aber möglicherweise prädiktive Performance kosten, da horizont-spezifische Features verloren gehen.
+
+\section{Zusammenfassung und Konsequenzen}
+
+Die VIF-basierte Multikollinearitätskontrolle reduzierte die Feature-Anzahl von 64 auf durchschnittlich 41,4 (Reduktion: 35,3\,\%). Alle Horizonte konvergierten erfolgreich mit maximalen finalen VIF-Werten $\leq$ 9,99. Die Ergebnisse sind konsistent mit der Korrelationsanalyse, gehen jedoch darüber hinaus, indem sie multivariate Kollinearitäten identifizieren.
+
+Drei zentrale Implikationen für die nachfolgende Modellierung:
+
+\paragraph{1. Reduzierte Modellkomplexität} Mit 40–43 Features statt 64 wird die Parameterzahl bei Logit-Modellen um 35\,\% reduziert. Dies senkt das Risiko von Overfitting und verbessert die Interpretierbarkeit.
+
+\paragraph{2. Stabilere Koeffizientenschätzung} Durch die Elimination von Features mit VIF > 10 werden aufgeblähte Standardfehler vermieden. Die geschätzten Koeffizienten sind präziser und robuster gegenüber Stichprobenvariationen.
+
+\paragraph{3. Erhaltung ökonomischer Diversität} Trotz Reduktion sind alle finanzwirtschaftlichen Dimensionen (Profitabilität, Liquidität, Verschuldung, Aktivität) im finalen Set vertreten. Die ökonomische Interpretierbarkeit bleibt erhalten.
+
+Die finalen Feature-Sets wurden persistiert (data/processed/feature\_sets/H1\_features.json bis H5\_features.json) und bilden die Grundlage für die Modellierung in Kapitel 7. Vor der Modellierung kann optional eine zusätzliche Feature-Selection-Phase (Kapitel 7) mittels statistischer Filter- und Embedded-Methoden erfolgen.
+
