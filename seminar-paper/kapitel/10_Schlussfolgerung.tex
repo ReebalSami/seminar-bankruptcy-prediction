@@ -1,0 +1,33 @@
+% ------------------------------------------------------------------
+% Chapter: Conclusion
+% ------------------------------------------------------------------
+\chapter{Conclusion}
+
+Diese Arbeit verbindet klassische Bilanzlogik mit moderner, reproduzierbarer
+Datenanalyse zu einem kompakten Frühwarnsystem. Kern ist eine Pipeline, die
+(a) Multikollinearität systematisch abbaut (VIF), (b) Features über Filter-,
+Wrapper- und Embedded-Methoden selektiert und deren Robustheit mit Nested-CV
+und dem Stabilitätsmaß nach \textcite{nogueira2018stability} prüft, (c) EPV-
+Leitplanken berücksichtigt und (d) konsensorientierte Endmengen bildet. Auf
+Basis dieser Sets zeigt der Modellvergleich über fünf Horizonte, dass ein
+Random Forest in vier von fünf Fällen die höchste ROC-AUC erzielt, während ein
+Soft-Voting-Ensemble bei kurzer Frist (H1) knapp vorn liegt. Bemerkenswert ist,
+dass kleine, stabile Merkmalsmengen die Güte der Vollmengen weitgehend halten
+(AUC-Retention ca. 97--102\%) und damit Interpretierbarkeit und
+Verallgemeinerbarkeit fördern.
+
+Methodisch tragen drei Entscheidungen wesentlich zur Glaubwürdigkeit bei:
+(1) klare Trennung von Auswahl und Bewertung (Nested-CV in der Selektion,
+stratifizierte CV in der Modellierung), (2) Stabilität als Qualitätskriterium
+für Merkmalslisten, (3) EPV-Disziplin, um Überparametrisierung zu vermeiden.
+Diese Maßnahmen reduzieren Optimismus und erleichtern eine ehrliche
+Projektdokumentation.
+
+Praktisch bietet die Pipeline einen Einstieg für Kredit- und
+Risikofunktionen, die auf interpretierbare Kennzahlen, schlanke Modelle und
+stabile Entscheidungen angewiesen sind. Künftige Arbeit (Kap.~\ref{chap:future-work})
+liegt in gruppenbewusster CV (sofern Firmen-IDs verfügbar),
+Kalibrierung und Schwellenwahl mit Kostenfunktion, systematischem
+Hyperparameter-Tuning, stabilitätsgewichteter Konsensbildung sowie temporalen
+Validierungsschemata. Damit lässt sich die hier gezeigte Robustheit weiter in
+Richtung operativer Umsetzung entwickeln.

@@ -1,0 +1,39 @@
+% ------------------------------------------------------------------
+% Chapter: Future Work
+% ------------------------------------------------------------------
+\chapter{Limitations and Future Work}
+\label{chap:future-work}
+
+\section{Unfinished Tasks (Computational Constraints)}
+\begin{itemize}
+  \item \textbf{Verschachtelte Auswahl H5:} Die verschachtelte (nested) Einbettung in Phase~04c ist für H1--H4 abgeschlossen; H5 ausstehend. Nach Abschluss: \textbf{04d} mit Nested-Inputs neu ausführen und \textbf{Phase 05} erneut mit Nested-Features evaluieren (Sensitivitätsvergleich alt vs. nested).
+  \item \textbf{04b Wrapper-Fix erneut rechnen:} Die Konfigurationsbereinigung (Random State, LR-Defaults) in 04b wurde implementiert, jedoch noch nicht neu berechnet. Neuberechnung optional nach Abgabe.
+\end{itemize}
+
+\section{Methodological Enhancements}
+Die in Kap.~8 zusammengefasste Bewertungsmatrix (vgl. Tab.~\ref{tab:phase06_model_eval_matrix}) bietet eine kompakte Übersicht über die Verfahren je Horizont und dient als Ausgangspunkt für die folgenden Vertiefungen.
+\begin{itemize}
+  \item \textbf{Group-aware Cross-Validation (Panel/Temporal Leakage):} Falls mehrere Jahre pro Firma vorliegen, sollten Beobachtungen derselben Firma nicht auf verschiedene Folds verteilt werden. Empfohlen: \emph{GroupKFold} bzw. \emph{StratifiedGroupKFold} in scikit-learn \parencite{sklearnGroupKFold,sklearnCVGuide}. Ohne eindeutige Firmen-ID ist dies nicht umsetzbar; wir dokumentieren die potentielle Leckage als Limitation.
+  \item \textbf{Hyperparameter-Tuning je Horizont:} Systematische Suche (z.\,B. Random/Optuna) für RF/GB/ET/SVC/CatBoost mit konsistentem Nested-CV. Erwartung: moderate AUC-Gewinne, robustere Varianz.
+  \item \textbf{Wahrscheinlichkeitskalibrierung \& Schwellenanalyse:} Platt-Scaling bzw. Isotone Kalibrierung (\texttt{CalibratedClassifierCV}); Schwellenwahl nach Kostenfunktion (Type-I/II-Kosten) und PR-Kurven. Zusätzliche Metriken: Brier Score, Expected Calibration Error.
+  \item \textbf{Konsens unter Stabilitäts-Guides:} Nutzung der Nogueira-Stabilität aus Nested-Outputs als Gewichtung/Filter in 04d (z.\,B. Mindeststabilität), anstelle reiner Schnitt-/Mehrheitsmengen.
+  \item \textbf{Zeitliche Validierung:} Falls zeitliche Ordnung rekonstruierbar ist: rollierende/geblockte CV, um Vorwärts-Prognose realistisch zu simulieren.
+  \item \textbf{Interpretierbarkeit:} SHAP für Baumverfahren; Konfidenzintervalle/Bootstrap für Logit-Koeffizienten; Stabilität der Koeffizienten über Folds.
+\end{itemize}
+
+\section{Cross-Dataset Generalization}
+\begin{itemize}
+  \item \textbf{Polish $\rightarrow$ American/TEJ:} Abbildung semantischer Kategorien (Profitabilität, Liquidität, Leverage, etc.) auf andere Datensätze (Konfigurationsdatei \texttt{semantic\_categories}). Vergleich der Konsens-Features und der Sieger-Modelle je Horizont.
+\end{itemize}
+
+\section{Runtime Engineering}
+\begin{itemize}
+  \item \textbf{Grid-Reduktion und Checkpointing:} Kleinere \texttt{C}-Grids für Elastic Net, adaptive \texttt{max\_iter}/\texttt{tol}; Zwischenspeicherung foldweiser Ergebnisse zur Wiederaufnahme.
+  \item \textbf{Parallelisierung/HPC:} Nutzung aller Kerne (\texttt{n\_jobs}) und optional HPC-Cluster; erwartete Beschleunigung v.\,a. in Nested-EN.
+\end{itemize}
+
+\section{Documented Limitations}
+\begin{itemize}
+  \item \textbf{Panel-Leckage-Risiko:} Ohne Gruppen-IDs (Firma/Jahr) kann Stratifikation allein nicht verhindern, dass Firmensamples über Folds geteilt werden. Dies ist als potentielle Quelle leichten Optimismus dokumentiert; künftige Arbeiten sollten \emph{StratifiedGroupKFold} verwenden, sobald Gruppen verfügbar sind \parencite{sklearnGroupKFold,sklearnCVGuide}.
+  \item \textbf{Nicht-nested Endauswahl im alten Ansatz:} Endgültige Auswahlen in 04a/04c (alt) sind leicht optimistisch; Nested-Ergebnisse (H1--H3) quantifizieren diesen Effekt und werden nachlaufend für H4--H5 ergänzt.
+\end{itemize}

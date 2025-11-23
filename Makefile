@@ -1,4 +1,4 @@
-.PHONY: help install clean run-poland run-american run-taiwan run-comparison run-all report paper
+.PHONY: help install clean run-poland run-american run-taiwan run-comparison run-all report paper phase04-tables phase05-modeling phase05-eval phase05-tables phase05-modeling-extra
 
 # Colors
 GREEN=\033[0;32m
@@ -34,6 +34,11 @@ help:
 	@echo "$(YELLOW)Reports:$(NC)"
 	@echo "  make report         - Generate master HTML report"
 	@echo "  make paper          - Compile LaTeX seminar paper (German)"
+	@echo "  make phase04-tables - Generate Phase 04 LaTeX tables for paper"
+	@echo "  make phase05-modeling - Run Phase 05 modeling (LR + RF)"
+	@echo "  make phase05-eval     - Aggregate modeling metrics and HTML overview"
+	@echo "  make phase05-tables   - Generate Phase 05 LaTeX tables for paper"
+	@echo "  make phase05-modeling-extra - Run extra models + soft-voting ensemble"
 	@echo ""
 
 install:
@@ -156,3 +161,47 @@ paper:
 	@cd seminar-paper && pdflatex -interaction=nonstopmode doku_main.tex
 	@cd seminar-paper && pdflatex -interaction=nonstopmode doku_main.tex
 	@echo "$(GREEN)✓ Paper compiled: seminar-paper/doku_main.pdf$(NC)"
+
+phase04-tables:
+	@echo "$(BLUE)Generating Phase 04 LaTeX tables...$(NC)"
+	@$(PYTHON) scripts/paper_helper/generate_phase04_tables_v2.py
+	@echo "$(GREEN)✓ Tables updated under seminar-paper/tables$(NC)"
+
+phase05-modeling:
+	@echo "$(BLUE)Running Phase 05 Modeling (LR + RF)...$(NC)"
+	@$(PYTHON) scripts/05_modeling/05_modeling_train_evaluate.py
+	@echo "$(GREEN)✓ Modeling outputs in results/05_modeling$(NC)"
+
+phase05-modeling-extra:
+	@echo "$(BLUE)Running Phase 05 Extra Models (GB, ET, SVC, Ensemble)...$(NC)"
+	@$(PYTHON) scripts/05_modeling/05b_modeling_extra_models.py
+	@echo "$(GREEN)✓ Extra modeling outputs in results/05_modeling/extra$(NC)"
+
+phase05-eval:
+	@echo "$(BLUE)Aggregating Phase 05 model metrics...$(NC)"
+	@$(PYTHON) scripts/06_model_evaluation/06_aggregate_and_plots.py
+	@echo "$(GREEN)✓ Evaluation outputs in results/06_model_evaluation$(NC)"
+
+phase05-tables:
+	@echo "$(BLUE)Generating Phase 05 LaTeX tables...$(NC)"
+	@$(PYTHON) scripts/paper_helper/generate_phase05_tables.py
+	@$(PYTHON) scripts/paper_helper/generate_phase05_comparison_tables.py
+	@$(PYTHON) scripts/paper_helper/generate_phase06_tables.py
+	@echo "$(GREEN)✓ Tables updated under seminar-paper/tables$(NC)"
+
+paper-assets:
+	@echo "$(BLUE)Copying paper assets...$(NC)"
+	@$(UV) run python scripts/paper_helper/copy_phase00_assets.py
+	@$(UV) run python scripts/paper_helper/copy_phase01_assets.py
+	@$(UV) run python scripts/paper_helper/copy_phase02_assets.py
+	@$(UV) run python scripts/paper_helper/generate_phase03_assets.py
+	@$(UV) run python scripts/paper_helper/copy_phase03_assets.py
+	@$(UV) run python scripts/paper_helper/generate_phase04_assets.py
+	@$(UV) run python scripts/paper_helper/copy_phase04_assets.py
+	@$(UV) run python scripts/paper_helper/generate_phase05_assets.py
+	@$(UV) run python scripts/paper_helper/copy_phase05_assets.py
+	@$(UV) run python scripts/paper_helper/generate_phase03_tables.py
+	@$(UV) run python scripts/paper_helper/generate_phase05_tables.py
+	@$(UV) run python scripts/paper_helper/generate_phase05_comparison_tables.py
+	@$(UV) run python scripts/paper_helper/generate_phase06_tables.py
+	@echo "$(GREEN)✓ Paper assets copied$(NC)"

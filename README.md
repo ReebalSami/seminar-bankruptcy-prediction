@@ -23,48 +23,38 @@
 
 ---
 
-## Current Status: Foundation Phase Complete ✅
+## Status & Results (Consolidated)
 
-### **Phase 00: Foundation (100% DONE)**
+- **Phases 00–03 (Foundation, Prep, EDA, Multikollinearität):** abgeschlossen. Datensatz: 43.405 Beobachtungen, 64 Kennzahlen, starke Klassenungleichverteilung (4,82%). Entscheidung: horizontspezifische Modelle (H1–H5).
+- **Phase 04 (Feature Selection):**
+  - Alte (nicht-verschachtelte) Auswahl für H1–H5 als Grundlage der Modellierung verwendet; Guardrails: EPV ≥ 10, Leistungs-Retention.
+  - Verschachtelte (Nested-CV) Ergebnisse vorhanden für H1–H3; H4/H5 in Arbeit. Beobachtung: AUC-Differenzen klein; Nested reduziert Optimismus, v. a. bei Ridge.
+  - Stabilität (Nogueira): H2 Ridge > Lasso > EN; H3 Lasso > Ridge > EN. Konsensbildung mit EPV-Deckelung.
+- **Phase 05/06 (Modellierung & Evaluation; 5-fach Stratified CV, class_weight=balanced):**
+  - ROC-AUC Sieger je Horizont: H1 Soft-Voting 0,796; H2–H5 Random Forest 0,845 / 0,780 / 0,812 / 0,864.
+  - PR-AUC der Sieger: H1 0,183; H2 0,341; H3 0,140; H4 0,218; H5 0,420.
+- **Seminar-Paper:** LaTeX-Kapitel 07–09 aktualisiert (Nested vs. Alt, Stabilität, Future Work). Tabellen (Phase 04/05) werden aus Ergebnissen generiert.
 
-| Script | Purpose | Status |
-|--------|---------|--------|
-| 00a | Dataset overview, feature mapping | ✅ Complete |
-| 00b | Feature analysis, category distribution | ✅ Complete |
-| 00c | Temporal structure, bankruptcy trends | ✅ Complete |
-| 00d | Data quality assessment | ✅ Complete |
+### Makefile Quickstart
+- Setup: `make install`
+- Phase 04 Tabellen + Paper: `make phase04-tables && make phase05-tables && make paper`
+- Modeling (falls erneut nötig): `make phase05-modeling` und `make phase05-modeling-extra`, danach `make phase05-eval` und `make phase05-tables`.
 
-**Key Findings:**
-- ✅ 64 features: 6 categories (Profitability:20, Leverage:17, Activity:15, Liquidity:10, Size:1, Other:1)
-- ⚠️ ALL 64 features have missing values (max: A37 at 43.7%)
-- ⚠️ 401 duplicate rows (200 pairs) - assumed data entry errors
-- ⚠️ ALL 64 features have outliers (0.07%-15.5%, mean: 5.4%)
-- ⚠️ **Bankruptcy rate increases 80%: H1 (3.86%) → H5 (6.94%)**
-- ✅ Data structure: Repeated cross-sections (NOT panel data)
-- ✅ **Decision Made:** Horizon-specific modeling (5 separate models)
+### Paper Build
+- PDF: `seminar-paper/doku_main.pdf`
+- Tabellenquellen: `seminar-paper/tables/phase04_*` und `phase05_*`
 
----
+### Methodische Guardrails
+- EPV-Regel (min. 10 Events je Variable) und Leistungs-Retention in 04d umgesetzt.
+- Nested-CV für eingebettete Methoden (H1–H3), Stabilität nach Nogueira berichtet.
 
-### **Phase 01: Data Preparation (100% DONE)**
+### Bekannte Limitationen
+- Mögliche Panel-/Identitätsleckage ohne Firmen-ID; Empfehlung: StratifiedGroupKFold sobald Gruppen verfügbar.
+- Keine Kalibrierung/Schwellenoptimierung in Phase 05/06 (bewusst ausgelassen; siehe Future Work).
+- H4–H5: Nested-CV noch laufend; Modellierung erfolgt fürs Paper mit alter Auswahl, Nested als Sensitivitätsvergleich.
 
-| Script | Purpose | Status |
-|--------|---------|--------|
-| 01a | Remove duplicates | Complete |
-| 01b | Outlier treatment (winsorization) | Complete |
-| 01c | Missing value imputation | Complete |
-
-**Results:**
-- 43,004 observations (401 duplicates removed)
-- 0% missing values (imputation quality: 98.2/100)
-- Outliers dampened via winsorization (1st/99th percentiles)
-- Clean dataset ready for exploratory analysis
-
-**Output File:** `data/processed/poland_imputed.parquet`
-
----
-
-## Next Phase: Exploratory Data Analysis (Phase 02)
-
+### Future Work (Kurzüberblick)
+- Group-aware CV (StratifiedGroupKFold), horizontspezifisches Tuning, Kalibrierung (Platt/Isoton) und Schwellenanalyse, Zeit-/Block-CV, Stabilitäts-gewichtete Konsensbildung, Cross-Dataset-Vergleich.
 **Planned Activities:**
 - Distribution analysis per horizon (H1-H5)
 - Univariate feature analysis (t-tests, effect sizes)
@@ -98,9 +88,6 @@ seminar-bankruptcy-prediction/
 ├── data/
 │   ├── raw/                 # Original datasets
 │   └── processed/           # Cleaned data
-│
-├── docs/
-│   └── 00_FOUNDATION_CRITICAL_FINDINGS.md  # Complete review
 │
 └── src/bankruptcy_prediction/  # Shared utilities
     ├── data/                   # Data loaders
@@ -160,16 +147,9 @@ open results/00_foundation/00d_data_quality.xlsx
 
 ---
 
-## Documentation
+## Archived documentation
 
-**Core Files (ONLY):**
-1. **README.md** (this file) - Project overview
-2. **docs/PROJECT_STATUS.md** - Current state tracker
-3. **PERFECT_PROJECT_ROADMAP.md** - Phase-by-phase plan
-4. **COMPLETE_PIPELINE_ANALYSIS.md** - Detailed methodology review
-
-**Archived:**
-- `archive/docs_old/` - Historical documentation
+All standalone Markdown documentation has been consolidated into this README. Historical files were moved to `archive/docs/` (and existing `archive/*` subfolders). Refer to the LaTeX paper for canonical methodology and results.
 
 ---
 

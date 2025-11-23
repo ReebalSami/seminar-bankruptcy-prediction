@@ -1,14 +1,14 @@
-\chapter{Multikollinearitätskontrolle mittels VIF-Analyse}
+\chapter{Multikollinearitätskontrolle}
 
-Die in Kapitel 5 dokumentierte Korrelationsanalyse identifizierte durchschnittlich 68 Feature-Paare (3,4\,\%) mit hohen paarweisen Korrelationen ($|r|$ > 0,8). Allerdings erfasst die Korrelationsanalyse nur \textit{direkte} lineare Abhängigkeiten zwischen zwei Variablen. Multikollinearität kann jedoch auch \textit{indirekt} auftreten: Ein Feature kann mit mehreren anderen Features schwach korreliert sein, während die Gesamtkorrelation dieser Gruppe hoch ist. Solche Muster sind nur durch multivariate Verfahren detektierbar \cite{obrien2007caution}.
+Die in Kapitel 5 dokumentierte Korrelationsanalyse identifizierte durchschnittlich 68 Feature-Paare (3,4\,\%) mit hohen paarweisen Korrelationen ($|r|$ > 0,8). Allerdings erfasst die Korrelationsanalyse nur \textit{direkte} lineare Abhängigkeiten zwischen zwei Variablen. Multikollinearität kann jedoch auch \textit{indirekt} auftreten: Ein Feature kann mit mehreren anderen Features schwach korreliert sein, während die Gesamtkorrelation dieser Gruppe hoch ist. Solche Muster sind nur durch multivariate Verfahren detektierbar \parencite{obrien2007caution}.
 
-Dieses Kapitel dokumentiert die Ergebnisse der \textbf{Phase 03: VIF-basierte Multikollinearitätskontrolle}. Abschnitt 6.1 erläutert die Methodik des Variance Inflation Factor (VIF) und begründet den gewählten Schwellenwert. Abschnitt 6.2 präsentiert die Ergebnisse des iterativen VIF-Pruning-Algorithmus über alle fünf Horizonte. Abschnitt 6.3 analysiert die entfernten Features und validiert die Ergebnisse. Die finalen Feature-Sets bilden die Grundlage für die Modellierung in Kapitel 7.
+Dieses Kapitel dokumentiert die Ergebnisse der \textbf{Phase 03: VIF-basierte Multikollinearitätskontrolle}. Abschnitt 6.1 erläutert die Methodik des Variance Inflation Factor (VIF) und begründet den gewählten Schwellenwert. Abschnitt 6.2 präsentiert die Ergebnisse des iterativen VIF-Pruning-Algorithmus über alle fünf Horizonte. Abschnitt 6.3 analysiert die entfernten Features und validiert die Ergebnisse. Die finalen Feature-Sets bilden die Eingangsbasis für die Feature Selection in Kapitel 7.
 
 \section{Methodologie: Variance Inflation Factor}
 
 \subsection{Definition und Interpretation}
 
-Der Variance Inflation Factor (VIF) quantifiziert, um welchen Faktor die Varianz des geschätzten Regressionskoeffizienten $\hat{\beta}_j$ durch Multikollinearität aufgebläht wird \cite{pennstate2024vif}. Für das $j$-te Feature wird der VIF berechnet als:
+Der Variance Inflation Factor (VIF) quantifiziert, um welchen Faktor die Varianz des geschätzten Regressionskoeffizienten $\hat{\beta}_j$ durch Multikollinearität aufgebläht wird \parencite{pennstate2024vif}. Für das $j$-te Feature wird der VIF berechnet als:
 
 \begin{equation}
 \text{VIF}_j = \frac{1}{1 - R_j^2}
@@ -16,7 +16,7 @@ Der Variance Inflation Factor (VIF) quantifiziert, um welchen Faktor die Varianz
 
 wobei $R_j^2$ das Bestimmtheitsmaß einer Hilfsregression ist, in der das $j$-te Feature auf alle verbleibenden Features regressiert wird. Der VIF quantifiziert damit nicht nur die paarweise Korrelation, sondern die \textit{Gesamtkorrelation} des $j$-ten Features mit allen anderen Prädiktoren.
 
-\paragraph{Interpretation nach Penn State STAT 462 \cite{pennstate2024vif}:}
+\paragraph{Interpretation nach Penn State STAT 462 \parencite{pennstate2024vif}:}
 \begin{itemize}[topsep=0.2\baselineskip]
     \item $\text{VIF}_j = 1$: Keine Korrelation mit anderen Prädiktoren
     \item $\text{VIF}_j > 4$: Multikollinearität vorhanden, nähere Untersuchung empfohlen
@@ -27,7 +27,7 @@ wobei $R_j^2$ das Bestimmtheitsmaß einer Hilfsregression ist, in der das $j$-te
 
 In dieser Analyse wurde der konservative Schwellenwert \textbf{VIF > 10} gewählt. Diese Entscheidung basiert auf drei Argumenten:
 
-\paragraph{1. Ökonometrischer Standard} Der Schwellenwert VIF > 10 ist in der ökonometrischen Literatur etabliert \cite{obrien2007caution, pennstate2024vif}. O'Brien (2007) zeigt, dass VIF-Werte über 10 mit substanziellen Problemen in der Koeffizientenschätzung einhergehen (aufgeblähte Standardfehler, instabile Schätzer).
+\paragraph{1. Ökonometrischer Standard} Der Schwellenwert VIF > 10 ist in der ökonometrischen Literatur etabliert \parencite{obrien2007caution, pennstate2024vif}. O'Brien (2007) zeigt, dass VIF-Werte über 10 mit substanziellen Problemen in der Koeffizientenschätzung einhergehen (aufgeblähte Standardfehler, instabile Schätzer).
 
 \paragraph{2. Konservatismus} Ein höherer Schwellenwert (z.\,B. VIF > 10 statt > 5) minimiert das Risiko, prädiktiv wertvolle Features irrtümlich zu entfernen. Da in nachfolgenden Phasen weitere Feature-Selection-Mechanismen (z.\,B. Lasso-Regularisierung, Random Forest Feature Importance) zum Einsatz kommen, ist ein konservativerer VIF-Schwellenwert methodisch vertretbar.
 
@@ -35,7 +35,7 @@ In dieser Analyse wurde der konservative Schwellenwert \textbf{VIF > 10} gewähl
 
 \subsection{Iterativer Pruning-Algorithmus}
 
-Multikollinearität ist ein \textit{relatives} Phänomen: Das Entfernen eines Features verändert die VIF-Werte aller verbleibenden Features \cite{obrien2007caution}. Ein iterativer Ansatz ist daher notwendig:
+Multikollinearität ist ein \textit{relatives} Phänomen: Das Entfernen eines Features verändert die VIF-Werte aller verbleibenden Features \parencite{obrien2007caution}. Ein iterativer Ansatz ist daher notwendig:
 
 \begin{enumerate}[topsep=0.2\baselineskip]
     \item \textbf{Berechnung:} VIF für alle Features im aktuellen Set
@@ -73,6 +73,14 @@ H5 & 64 & 41 & 23 & 24 & 8,53 \\
 {\footnotesize Quelle: Eigene Darstellung basierend auf Script 03a\_vif\_analysis.py}
 \end{table}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/phase03/removed_per_horizon.png}
+\caption{Entfernte Features pro Horizont (Schwellenwert: VIF > 10)}
+\label{fig:vif_removed_per_horizon}
+{\footnotesize Quelle: Eigene Darstellung basierend auf 03a\_ALL\_vif.xlsx}
+\end{figure}
+
 Vier zentrale Befunde lassen sich ableiten:
 
 \paragraph{Substanzielle Dimensionsreduktion} Im Durchschnitt wurden \textbf{22,6 Features} (35,3\,\% der initialen 64) entfernt. Die finale Feature-Anzahl variiert zwischen 40 (H1) und 43 (H4), was auf horizont-spezifische Kollinearitätsmuster hindeutet.
@@ -92,36 +100,36 @@ Tabelle \ref{tab:vif_h1_removed} zeigt die ersten 10 entfernten Features in H1 (
 \caption{In H1 entfernte Features (Top 10 nach VIF bei Entfernung)}
 \label{tab:vif_h1_removed}
 \begin{tabular}{lrrl}
-	oprule
-	extbf{Feature} & \textbf{VIF bei Entfernung} & \textbf{Iteration} & \textbf{Kategorie} \\
+\toprule
+\textbf{Kennzahl (Code)} & \textbf{VIF bei Entfernung} & \textbf{Iteration} & \textbf{Kategorie} \\
 \midrule
-A14 & 1.808.694.888 & 1 & — \\
-A7  & 1.757.227 & 2 & — \\
-A16 & 226{,}61 & 3 & — \\
-A32 & 170{,}95 & 4 & — \\
-A8  & 137{,}57 & 5 & — \\
-A19 & 128{,}06 & 6 & — \\
-A18 & 79{,}11 & 7 & — \\
-A54 & 71{,}94 & 8 & — \\
-A10 & 56{,}72 & 9 & — \\
-A22 & 48{,}85 & 10 & — \\
+Gross Profit + Interest / Assets (A14) & 1.808.694.888 & 1 & Profitabilität \\
+EBIT / Assets (A7) & 1.757.227 & 2 & Profitabilität \\
+GP + Depr. / Liabilities (A16) & 226,61 & 3 & Verschuldung \\
+Payables Days (A32) & 170,95 & 4 & Aktivität \\
+Equity / Liabilities (A8) & 137,57 & 5 & Verschuldung \\
+Gross Margin (A19) & 128,06 & 6 & Profitabilität \\
+Gross Profit / Assets (A18) & 79,11 & 7 & Profitabilität \\
+Constant Capital / Fixed Assets (A54) & 71,94 & 8 & Verschuldung \\
+Equity / Assets (A10) & 56,72 & 9 & Verschuldung \\
+Operating Profit / Assets (A22) & 48,85 & 10 & Profitabilität \\
 \bottomrule
 \end{tabular}
 \par\smallskip
 {\footnotesize Quelle: Eigene Darstellung basierend auf 03a\_H1\_vif.xlsx / Skriptausgabe (Iteration 1–10)}
 \end{table}
 
-\paragraph{Extreme Anfangs-VIFs} Feature A14 wurde in der ersten Iteration mit einem VIF von \textbf{103,9 Millionen} entfernt – ein Indikator für nahezu perfekte Kollinearität. Die Inspektion der Korrelationsmatrix (02c\_H1\_correlation.xlsx) zeigt: A7 $\leftrightarrow$ A14: $r = 1{,}000$, ebenso A14 $\leftrightarrow$ A18 und A7 $\leftrightarrow$ A18. Diese Features sind mathematische Transformationen voneinander (z.\,B. inverse Ratios).
+\paragraph{Extreme Anfangs-VIFs} Feature A14 (Gross Profit + Interest / Assets) wurde in der ersten Iteration mit einem VIF von \textbf{1,8 Milliarden} entfernt – ein Indikator für nahezu perfekte Kollinearität. Die Inspektion der Korrelationsanalyse (H1, Phase 02c) zeigt: A7 (EBIT / Assets) $\leftrightarrow$ A14 (Gross Profit + Interest / Assets): $r = 1{,}000$, ebenso A14 (Gross Profit + Interest / Assets) $\leftrightarrow$ A18 (Gross Profit / Assets) und A7 (EBIT / Assets) $\leftrightarrow$ A18 (Gross Profit / Assets). Diese Features sind mathematische Transformationen voneinander (z.\,B. inverse Ratios).
 
-\paragraph{Schnelle VIF-Reduktion} Nach Entfernung der ersten drei Features sinkt der maximale VIF von 103,9 Millionen (Iteration 1) auf 191 (Iteration 4). Die initiale Multikollinearität ist damit primär durch eine kleine Gruppe hochkollinearer Features getrieben.
+\paragraph{Schnelle VIF-Reduktion} Nach Entfernung der ersten drei Features sinkt der maximale VIF von 1,8 Milliarden (Iteration 1) auf 226 (Iteration 3), dann auf 137 (Iteration 5). Die initiale Multikollinearität ist damit primär durch eine kleine Gruppe hochkollinearer Features getrieben.
 
-\paragraph{Kategorie-Verteilung} Von den ersten 10 entfernten Features gehören 4 zu „Profitabilität", 3 zu „Aktivität", 2 zu „Verschuldung" und 1 zu „Liquidität". Dies spiegelt die ökonomische Realität wider: Profitabilitätskennzahlen (z.\,B. ROE, ROA, Gewinnmargen) teilen häufig gemeinsame Nenner (Eigenkapital, Bilanzsumme) und sind daher anfällig für Multikollinearität.
+\paragraph{Kategorie-Verteilung} Von den ersten 10 entfernten Features gehören 5 zu „Profitabilität", 4 zu „Verschuldung" und 1 zu „Aktivität" (keine „Liquidität"). Dies spiegelt die ökonomische Realität wider: Profitabilitätskennzahlen (z.\,B. ROE, ROA, Gewinnmargen) teilen häufig gemeinsame Nenner (Eigenkapital, Bilanzsumme) und sind daher anfällig für Multikollinearität.
 
 \subsection{Horizont-übergreifende Muster}
 
 Eine Frage lautet: \textit{Welche Features werden konsistent über alle Horizonte entfernt?}
 
-\noindent Eine konsolidierte Sicht der Datei \texttt{03a\_ALL\_vif.xlsx} (Sheet \enquote{All\_Removed}) zeigt, dass mehrere Features in vielen Horizonten entfernt werden (z.\,B. A14, A7, A8, A18, A19, A22, A32, A54, A63). Die vollständige Liste und Häufigkeiten sind im konsolidierten Output dokumentiert und bilden eine belastbare Grundlage für eine optionale \enquote{gemeinsame} Feature-Definition über Horizonte.
+\noindent Eine konsolidierte Sicht der Datei \texttt{03a\_ALL\_vif.xlsx} (Sheet \enquote{All\_Removed}) zeigt, dass mehrere Features in vielen Horizonten entfernt werden (z.\,B. A14 (Gross Profit + Interest / Assets), A7 (EBIT / Assets), A8 (Equity / Liabilities), A18 (Gross Profit / Assets), A19 (Gross Margin), A22 (Operating Profit / Assets), A32 (Payables Days), A54 (Constant Capital / Fixed Assets), A63 (Payables Turnover)). Die vollständige Liste und Häufigkeiten sind im konsolidierten Output dokumentiert und bilden eine belastbare Grundlage für eine optionale \enquote{gemeinsame} Feature-Definition über Horizonte.
 
 \textbf{18 Features} wurden in mindestens 4 von 5 Horizonten entfernt, davon \textbf{15 in allen 5 Horizonten}. Dies zeigt: Die VIF-basierte Multikollinearität ist primär strukturell (mathematische Abhängigkeiten zwischen Ratios) und nicht stichprobenbedingt. Diese 15 Features sind \textit{systematisch redundant} und können für künftige Modellierungen ausgeschlossen werden.
 
@@ -129,14 +137,14 @@ Eine Frage lautet: \textit{Welche Features werden konsistent über alle Horizont
 
 \subsection{Konsistenz mit Korrelationsanalyse}
 
-Ein kritischer Test der VIF-Ergebnisse ist deren Konsistenz mit der Korrelationsanalyse (Kapitel 5.3.1): Features mit hohen paarweisen Korrelationen sollten auch hohe VIFs zeigen. Die Inspektion der entfernten Features bestätigt dies:
+Ein kritischer Test der VIF-Ergebnisse ist deren Konsistenz mit der Korrelationsanalyse (Abschnitt 5.3): Features mit hohen paarweisen Korrelationen sollten auch hohe VIFs zeigen. Die Inspektion der entfernten Features bestätigt dies:
 
 \begin{itemize}[topsep=0.2\baselineskip]
-    \item \textbf{Perfekte Korrelationen:} Features A7, A14, A18 zeigen $r = 1{,}000$ (02c\_H1\_correlation.xlsx) und wurden in Iteration 1–3 entfernt.
-    \item \textbf{Hohe Korrelationen:} Features A32 $\leftrightarrow$ A52: $r = 0{,}996$; A16 $\leftrightarrow$ A26: $r = 0{,}993$ wurden früh entfernt (Iterationen 3, 7).
+    \item \textbf{Perfekte Korrelationen:} Features A7 (EBIT / Assets), A14 (Gross Profit + Interest / Assets), A18 (Gross Profit / Assets) zeigen $r = 1{,}000$ (Phase 02c, H1) und wurden in Iteration 1–3 entfernt.
+    \item \textbf{Hohe Korrelationen:} Features A32 (Payables Days) $\leftrightarrow$ A52 (Payables Days (COGS)): $r = 0{,}996$; A16 (GP + Depr. / Liabilities) $\leftrightarrow$ A26 (NP + Depr. / Liabilities): $r = 0{,}993$ wurden früh entfernt.
 \end{itemize}
 
-Umgekehrt wurden Features \textit{ohne} hohe paarweise Korrelationen entfernt, wenn sie multivariate Kollinearitäten aufwiesen. Beispiel: Feature A49 (Iteration 9) zeigt keine Korrelation $> 0{,}8$ mit einem einzelnen Feature, aber viele Korrelationen $> 0{,}5$ mit mehreren Features, was zu einem VIF von 38 führt.
+Umgekehrt wurden Features \textit{ohne} hohe paarweise Korrelationen entfernt, wenn sie multivariate Kollinearitäten aufwiesen. Beispiel: Feature A49 (EBITDA Margin; Iteration 13) zeigt keine Korrelation $> 0{,}8$ mit einem einzelnen Feature, aber viele Korrelationen $> 0{,}5$ mit mehreren Features, was zu einem VIF von 38{,}42 führt.
 
 Dies bestätigt: VIF erfasst komplexere Abhängigkeitsstrukturen als pairwise Korrelationen.
 
@@ -176,5 +184,5 @@ Drei zentrale Implikationen für die nachfolgende Modellierung:
 
 \paragraph{3. Erhaltung ökonomischer Diversität} Trotz Reduktion sind alle finanzwirtschaftlichen Dimensionen (Profitabilität, Liquidität, Verschuldung, Aktivität) im finalen Set vertreten. Die ökonomische Interpretierbarkeit bleibt erhalten.
 
-Die finalen Feature-Sets wurden persistiert (data/processed/feature\_sets/H1\_features.json bis H5\_features.json) und bilden die Grundlage für die Modellierung in Kapitel 7. Vor der Modellierung kann optional eine zusätzliche Feature-Selection-Phase (Kapitel 7) mittels statistischer Filter- und Embedded-Methoden erfolgen.
+Die finalen Feature-Sets wurden persistiert (data/processed/feature\_sets/H1\_features.json bis H5\_features.json) und bilden die Eingangsbasis für die Feature Selection in Kapitel 7. Nach der Feature Selection erfolgt die finale Modellierung in Kapitel 8.
 

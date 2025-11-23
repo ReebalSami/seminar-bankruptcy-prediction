@@ -1,24 +1,36 @@
 \chapter{Theoretischer Hintergrund und Stand der Forschung}
 
-% TODO: Literaturübersicht (kann parallel zu Code-Phasen geschrieben werden)
+Frühe Ansätze der Insolvenzprognose beruhen auf Kennzahlen und Linearkombinationen. 
+Beavers univariate Tests identifizierten bereits in den 1960er-Jahren Trennschärfe in Liquiditäts- und Ertragskennzahlen, während der Z-Score nach \textcite{altman1968financial} eine multivariate 
+Diskriminanzanalyse etablierte. Diese Klassiker wirken bis heute fort, stoßen aber bei 
+Heterogenität, Nichtlinearität und zeitlicher Verschiebung der Signale an Grenzen.
 
-\section{Historische Entwicklung der Insolvenzprognose}
-% - Altman Z-Score (1968)
-% - Beaver Ratios (1966)
-% - Entwicklung zu ML-Methoden
+Mit der Ausbreitung datengetriebener Methoden erweiterte sich das Spektrum auf 
+Logit-Modelle, Boosting/Bagging-Ansätze und tiefe Netze. Meta-Analysen und 
+Vergleichsarbeiten zeigen, dass moderne ML-Methoden—insbesondere Ensemble-Verfahren—
+klassische Spezifikationen häufig übertreffen, wenn Vorverarbeitung, Regularisierung 
+und Validierung sorgfältig ausgelegt sind \parencite{barboza2017machine,sun2024bankruptcy,hastieelementsstatistical2009}.
 
-\section{Kennzahlenbasierte Früherkennung}
-% - Finanzkennzahlen als Prädiktoren
-% - Kategorien (Profitabilität, Liquidität, etc.)
+Die ökonomische Intuition bleibt jedoch zentral: Kennzahlen zu Profitabilität, Liquidität, 
+Leverage, Effizienz und Aktivität bilden die klassische Grundlage der Früherkennung. 
+Gleichzeitig erfordern Verhältniskennzahlen besondere Sorgfalt in der Aufbereitung 
+(Winsorisierung/Imputation) und in der Modellierung (Robustheit gegenüber Ausreißern 
+und Verzerrungen) \parencite{vonhippel2013passive,vanbuuren2018fimd}. Multikollinearität ist 
+weit verbreitet und verzerrt Koeffizienten und Unsicherheiten, weshalb VIF-Grenzen als 
+praktikable Daumenregel genutzt werden—unter Beachtung der methodischen Einschränkungen \parencite{obrien2007caution,pennstate2024vif}.
 
-\section{Machine Learning in der Insolvenzprognose}
-% - Logistische Regression als Baseline
-% - Random Forests
-% - XGBoost
-% - Vergleichsstudien (Barboza et al. 2017, Sun et al. 2024)
+Methodisch ist die Validierung der entscheidende Hebel zur Vermeidung von Optimismus. 
+Nested Cross-Validation reduziert Selektionsbias, der bei Hyperparameter- und 
+Merkmalsauswahl sonst systematisch entsteht \parencite{cawley2010overfitting,varma2006bias}. 
+Für unbalancierte Zielgrößen empfiehlt sich neben ROC-AUC die PR-AUC \parencite{saito2015precision}. 
+Zudem quantifiziert ein Stabilitätsmaß die Robustheit der Merkmalsauswahl über Folds 
+\parencite{nogueira2018stability}, und die 
+EPV-Regel dient als Guardrail gegen überparametrisierte Logit-Modelle \parencite{peduzzi1996epv,steyerberg2019clinical}. 
+Schließlich mahnen Arbeiten zur Interpretierbarkeit, für risikorelevante Entscheidungen 
+nach Möglichkeit transparente Modelle oder stabile, kleine Feature-Sets vorzuziehen \parencite{rudin2019stop}.
 
-\section{Methodische Herausforderungen}
-% - Klassenimbalance
-% - Missing Values bei Finanzkennzahlen
-% - Multikollinearität
-% - Temporale Validierung
+Vor diesem Hintergrund verbindet die vorliegende Arbeit klassische Bilanzlogik mit 
+aktuellen ML-Praktiken: kontrollierte Multikollinearitätsreduktion, 
+mehrgleisige Feature-Selektion mit Stabilität und Nested-CV, EPV-konforme 
+Endmengen sowie ein fairer, stratifizierter Modellvergleich über mehrere 
+Prognosehorizonte.

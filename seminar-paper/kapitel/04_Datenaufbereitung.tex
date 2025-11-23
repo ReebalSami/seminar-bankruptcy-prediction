@@ -2,13 +2,13 @@
 
 Die in Kapitel 3 dokumentierte Analyse der Datenbasis offenbarte drei zentrale Qualitätsprobleme: \textbf{401 exakte Duplikate}, \textbf{systematische Ausreißer in allen 64 Kennzahlen} sowie \textbf{41.037 fehlende Werte} über sämtliche Features. Während die Foundation-Phase diese Probleme identifiziert und quantifiziert hat, widmet sich die Data Preparation-Phase ihrer methodisch fundierten Behandlung.
 
-Das vorliegende Kapitel dokumentiert die praktische Umsetzung evidenzbasierter Preprocessing-Strategien. Die Reihenfolge der Schritte ist dabei nicht arbiträr, sondern folgt methodischen Notwendigkeiten: Duplikate werden \textit{zuerst} entfernt (Abschnitt 4.1), um Data Leakage zu vermeiden. Anschließend erfolgt die Behandlung von Ausreißern mittels Winsorisierung (Abschnitt 4.2), bevor fehlende Werte imputiert werden (Abschnitt 4.3). Diese Sequenz gewährleistet, dass Extremwerte die Imputationsstatistiken nicht verzerren \cite{goodfellow2016deep}.
+Das vorliegende Kapitel dokumentiert die praktische Umsetzung evidenzbasierter Preprocessing-Strategien. Die Reihenfolge der Schritte ist dabei nicht arbiträr, sondern folgt methodischen Notwendigkeiten: Duplikate werden \textit{zuerst} entfernt (Abschnitt 4.1), um Data Leakage zu vermeiden. Anschließend erfolgt die Behandlung von Ausreißern mittels Winsorisierung (Abschnitt 4.2), bevor fehlende Werte imputiert werden (Abschnitt 4.3). Diese Sequenz gewährleistet, dass Extremwerte die Imputationsstatistiken nicht verzerren \parencite{goodfellow2016deep}.
 
 Das Ergebnis ist ein sauberer Datensatz mit 43.004 Beobachtungen und 0\,\% fehlenden Werten – bereit für die nachfolgende Modellierung. Alle implementierten Schritte sind über Python-Skripte vollständig reproduzierbar und dokumentiert.
 
 \section{Entfernung exakter Duplikate}
 
-Die in Abschnitt 3.1.4.2 identifizierten 401 exakten Duplikate stellen eine unmittelbare Bedrohung für die Validität jeglicher statistischer Inferenz dar. Würden diese Duplikate im Datensatz verbleiben, käme es zu einer künstlichen Übergewichtung bestimmter Beobachtungen – mit potenziell verzerrten Modellparametern als Folge. Die folgenden Abschnitte dokumentieren die methodische Behandlung dieses Problems.
+Die in Abschnitt 3.4 identifizierten 401 exakten Duplikate stellen eine unmittelbare Bedrohung für die Validität jeglicher statistischer Inferenz dar. Würden diese Duplikate im Datensatz verbleiben, käme es zu einer künstlichen Übergewichtung bestimmter Beobachtungen – mit potenziell verzerrten Modellparametern als Folge. Die folgenden Abschnitte dokumentieren die methodische Behandlung dieses Problems.
 
 \subsection{Methodik der Duplikat-Identifikation}
 
@@ -18,7 +18,7 @@ Die Identifikation erfolgte mittels der Pandas-Funktion \texttt{duplicated()}, d
 
 \subsection{Umgang mit Unsicherheit}
 
-Das Fehlen eines Unternehmensidentifikators verhindert die definitive Klärung, ob es sich tatsächlich um denselben betriebswirtschaftlichen Sachverhalt handelt. Die in Abschnitt 3.1.4.2 dargelegte statistische Argumentation – eine Wahrscheinlichkeit von $\approx 10^{-128}$ für zufällige Übereinstimmung aller 64 kontinuierlichen Werte – spricht jedoch klar für die Datenerfassungsfehler-Hypothese.
+Das Fehlen eines Unternehmensidentifikators verhindert die definitive Klärung, ob es sich tatsächlich um denselben betriebswirtschaftlichen Sachverhalt handelt. Die in Abschnitt 3.4 dargelegte statistische Argumentation – eine Wahrscheinlichkeit von $\approx 10^{-128}$ für zufällige Übereinstimmung aller 64 kontinuierlichen Werte – spricht jedoch klar für die Datenerfassungsfehler-Hypothese.
 
 \textbf{Konservative Alternative:} Eine denkbare, noch vorsichtigere Strategie wäre gewesen, \textit{beide} Instanzen eines Duplikatpaars zu entfernen (Verlust von 802 statt 401 Beobachtungen). Diese Variante hätte jedoch einen Informationsverlust von 1,85\,\% der Gesamtstichprobe bedeutet – ohne erkennbaren methodischen Mehrwert, da die erste Instanz vermutlich genauso valide ist wie die zweite.
 
@@ -26,7 +26,7 @@ Das Fehlen eines Unternehmensidentifikators verhindert die definitive Klärung, 
 
 Die Entfernung erfolgte mittels der Pandas-Operation \texttt{drop\_duplicates(keep='first')}, die für jedes Duplikatpaar die erste Instanz beibehält und nachfolgende Instanzen entfernt. Die Wahl von \texttt{keep='first'} ist arbiträr (gleichwertig wäre \texttt{keep='last'} gewesen), jedoch reproduzierbar dokumentiert.
 
-\textbf{Kritischer methodischer Aspekt – Timing:} Die Duplikat-Entfernung erfolgt \textit{vor jeglicher weiterer Datenmanipulation}, insbesondere vor Datenaufteilungen. Dies ist essentiell, um \textbf{Data Leakage} zu verhindern: Würde ein Duplikatpaar über verschiedene Datenpartitionen verteilt, könnte dies zu optimistisch verzerrten Performanzmetriken führen \cite{goodfellow2016deep}.
+\textbf{Kritischer methodischer Aspekt – Timing:} Die Duplikat-Entfernung erfolgt \textit{vor jeglicher weiterer Datenmanipulation}, insbesondere vor Datenaufteilungen. Dies ist essentiell, um \textbf{Data Leakage} zu verhindern: Würde ein Duplikatpaar über verschiedene Datenpartitionen verteilt, könnte dies zu optimistisch verzerrten Performanzmetriken führen \parencite{goodfellow2016deep}.
 
 \subsection{Ergebnis und Auswirkungen}
 
@@ -67,11 +67,11 @@ Die Entfernung von 401 Beobachtungen (0,92\,\% der Stichprobe) ist ein vertretba
     \item \textbf{Beide Instanzen entfernen:} Höhere Datenverlustrate ohne erkennbaren methodischen Mehrwert.
 \end{enumerate}
 
-Die gewählte Strategie (\texttt{keep='first'}) balanciert zwischen Vorsicht und Datenerhalt. Die Limitation – fehlende Verifizierbarkeit mangels Unternehmens-ID – bleibt bestehen, wird jedoch durch die statistische Evidenz (Abschnitt 3.1.4.2) hinreichend adressiert.
+Die gewählte Strategie (\texttt{keep='first'}) balanciert zwischen Vorsicht und Datenerhalt. Die Limitation – fehlende Verifizierbarkeit mangels Unternehmens-ID – bleibt bestehen, wird jedoch durch die statistische Evidenz (Abschnitt 3.4) hinreichend adressiert.
 
 \section{Winsorisierung extremer Werte}
 
-Finanzielle Kennzahlen sind notorisch anfällig für Extremwerte. Die Gründe reichen von Bilanzmanipulation über Messfehler bis hin zu Sonderereignissen (Restrukturierungen, Fusionen). Abschnitt 3.1.4.3 dokumentierte, dass \textit{alle} 64 Kennzahlen Ausreißer aufweisen, mit Anteilen zwischen 0,07\,\% und 15,5\,\%. Die Behandlung dieser Extremwerte ist methodische Notwendigkeit, da sie in Regressionsmodellen zu instabilen Parametern führen können \cite{hastieelementsstatistical2009}.
+Finanzielle Kennzahlen sind notorisch anfällig für Extremwerte. Die Gründe reichen von Bilanzmanipulation über Messfehler bis hin zu Sonderereignissen (Restrukturierungen, Fusionen). Abschnitt 3.4 dokumentierte, dass \textit{alle} 64 Kennzahlen Ausreißer aufweisen, mit Anteilen zwischen 0,07\,\% und 15,5\,\%. Die Behandlung dieser Extremwerte ist methodische Notwendigkeit, da sie in Regressionsmodellen zu instabilen Parametern führen können \parencite{hastieelementsstatistical2009}.
 
 \subsection{Methodenwahl: Winsorisierung vs. Alternativen}
 
@@ -149,13 +149,13 @@ Diese Limitationen sind transparent zu kommunizieren, schmälern jedoch nicht di
 
 \section{Imputation fehlender Werte}
 
-Die gravierendste Datenqualitätsherausforderung – dokumentiert in Abschnitt 3.1.4.1 – besteht in den \textbf{41.037 fehlenden Werten} über alle 64 Kennzahlen. Ein Löschen aller betroffenen Zeilen (Listwise Deletion) würde die Stichprobe drastisch reduzieren und ist damit keine Option. Folglich ist Imputation methodische Notwendigkeit. Die folgenden Abschnitte dokumentieren die gewählte Strategie, deren theoretische Fundierung sowie die erzielten Ergebnisse.
+Die gravierendste Datenqualitätsherausforderung – dokumentiert in Abschnitt 3.4 – besteht in den \textbf{41.037 fehlenden Werten} über alle 64 Kennzahlen. Ein Löschen aller betroffenen Zeilen (Listwise Deletion) würde die Stichprobe drastisch reduzieren und ist damit keine Option. Folglich ist Imputation methodische Notwendigkeit. Die folgenden Abschnitte dokumentieren die gewählte Strategie, deren theoretische Fundierung sowie die erzielten Ergebnisse.
 
 \subsection{Methodenwahl: MICE mit BayesianRidge}
 
 \subsubsection{Grundprinzip: Multiple Imputation by Chained Equations (MICE)}
 
-MICE, auch bekannt als Fully Conditional Specification (FCS), ist ein iterativer Ansatz zur Imputation multivariater fehlender Daten \cite{vanbuuren2011mice}. Das Grundprinzip:
+MICE, auch bekannt als Fully Conditional Specification (FCS), ist ein iterativer Ansatz zur Imputation multivariater fehlender Daten \parencite{vanbuuren2011mice}. Das Grundprinzip:
 
 \begin{enumerate}[topsep=0.2\baselineskip]
     \item \textbf{Initialisierung:} Alle fehlenden Werte werden initial durch einfache Statistiken (Median) ersetzt.
@@ -174,7 +174,7 @@ Der entscheidende Vorteil von MICE gegenüber univariaten Methoden (Mean/Median 
 Innerhalb von MICE muss spezifiziert werden, welches Modell zur Vorhersage verwendet wird. Für diese Arbeit wurde \textbf{BayesianRidge Regression} gewählt, aus folgenden Gründen:
 
 \begin{enumerate}[topsep=0.2\baselineskip]
-    \item \textbf{Multikollinearität-Robustheit:} Wie in Abschnitt 3.1.2 analysiert, weisen die 64 Kennzahlen strukturbedingte Redundanzen auf (inverse Paare, gemeinsame Nenner). Bayesian Ridge Regression integriert Regularisierung, die hohe Korrelationen zwischen Prädiktoren toleriert, ohne numerisch instabil zu werden \cite{tipping2001sparse}.
+    \item \textbf{Multikollinearität-Robustheit:} Wie in Abschnitt 3.2 analysiert, weisen die 64 Kennzahlen strukturbedingte Redundanzen auf (inverse Paare, gemeinsame Nenner). Bayesian Ridge Regression integriert Regularisierung, die hohe Korrelationen zwischen Prädiktoren toleriert, ohne numerisch instabil zu werden \parencite{tipping2001sparse}.
     \item \textbf{Automatische Unsicherheitsquantifizierung:} Der Bayessche Ansatz liefert nicht nur Punktschätzungen, sondern auch Unsicherheitsmaße, die während der Iteration helfen, Konvergenz zu überwachen.
     \item \textbf{Vermeidung von Overfitting:} Regularisierung verhindert, dass das Imputationsmodell zu perfekt auf beobachtete Daten fittet – ein Risiko bei hochdimensionalen Daten (64 Prädiktoren).
 \end{enumerate}
@@ -183,9 +183,9 @@ Alternative Schätzer (z.\,B. Random Forest, KNN) wurden erwogen, jedoch verworf
 
 \subsection{Direkte Ratio-Imputation (JAV)}
 
-Eine zentrale Frage bei \textbf{abgeleiteten Variablen} (Ratios) ist, ob man die Ratio selbst imputiert oder die zugrundeliegenden Komponenten (Zähler/Nenner) und die Ratio erst im Anschluss berechnet. Das direkte Imputieren der bereits gebildeten Kennzahl wird in der Literatur als \emph{JAV – "Just Another Variable"} bzw. \emph{transform-then-impute} bezeichnet\footnote{White, I. R., Royston, P., Wood, A. M. (2011): Multiple imputation of covariates with non-linear effects and interactions. BMC Medical Research Methodology 11:252. \url{https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/1471-2288-12-46}}. (vgl. auch \cite{vanbuuren2018fimd}, \S~6.4.1)
+Eine zentrale Frage bei \textbf{abgeleiteten Variablen} (Ratios) ist, ob man die Ratio selbst imputiert oder die zugrundeliegenden Komponenten (Zähler/Nenner) und die Ratio erst im Anschluss berechnet. Das direkte Imputieren der bereits gebildeten Kennzahl wird in der Literatur als \emph{JAV – "Just Another Variable"} bzw. \emph{transform-then-impute} bezeichnet\footnote{White, I. R., Royston, P., Wood, A. M. (2011): Multiple imputation of covariates with non-linear effects and interactions. BMC Medical Research Methodology 11:252. \url{https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/1471-2288-12-46}}. (vgl. auch \parencite{vanbuuren2018fimd}, \S~6.4.1)
 
-Da unser Datensatz ausschließlich bereits berechnete Ratios (A1–A64) enthält und \textit{keine} Rohkomponenten (z.\,B. Umsatz, Bilanzsumme etc.), ist \textbf{JAV die einzig praktikable und methodisch korrekte Vorgehensweise}. Wir imputieren daher die Ratios direkt mittels MICE \cite{vanbuuren2011mice} und nutzen die Korrelationsstruktur zwischen den Ratios, um plausible Werte zu erzeugen. Ansätze, die während der Imputation explizit die funktionale Beziehung zwischen Komponenten und Ratio erzwingen, setzen die Verfügbarkeit der Rohkomponenten voraus und sind hier nicht anwendbar.
+Da unser Datensatz ausschließlich bereits berechnete Ratios (A1–A64) enthält und \textit{keine} Rohkomponenten (z.\,B. Umsatz, Bilanzsumme etc.), ist \textbf{JAV die einzig praktikable und methodisch korrekte Vorgehensweise}. Wir imputieren daher die Ratios direkt mittels MICE \parencite{vanbuuren2011mice} und nutzen die Korrelationsstruktur zwischen den Ratios, um plausible Werte zu erzeugen. Ansätze, die während der Imputation explizit die funktionale Beziehung zwischen Komponenten und Ratio erzwingen, setzen die Verfügbarkeit der Rohkomponenten voraus und sind hier nicht anwendbar.
 
 \subsection{Hyperparameter und Implementierungsdetails}
 
@@ -198,7 +198,7 @@ Die Imputation wurde mittels \texttt{sklearn.impute.IterativeImputer} mit folgen
     \item \texttt{tol=1e-3}: Konvergenztoleranz
 \end{itemize}
 
-Die Wahl von \textbf{10 Iterationen} basiert auf Empirie: Van Buuren (2011) zeigt, dass MICE typischerweise nach 5--10 Iterationen konvergiert \cite{vanbuuren2011mice}. Eine Erhöhung auf 20 Iterationen wurde getestet, führte jedoch zu keiner messbaren Verbesserung bei erheblich längerer Laufzeit.
+Die Wahl von \textbf{10 Iterationen} basiert auf Empirie: Van Buuren (2011) zeigt, dass MICE typischerweise nach 5--10 Iterationen konvergiert \parencite{vanbuuren2011mice}. Eine Erhöhung auf 20 Iterationen wurde getestet, führte jedoch zu keiner messbaren Verbesserung bei erheblich längerer Laufzeit.
 
 \subsection{Qualitätsbewertung der Imputation}
 
@@ -243,17 +243,25 @@ Features mit Score < 50 & 1/64 (A37) \\
 {\footnotesize Quelle: Eigene Darstellung basierend auf Script 01c\_missing\_value\_imputation.py}
 \end{table}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/phase01/imputation_quality.png}
+\caption{Imputationsqualität: Verteilung der Quality Scores und Diagnostik}
+\label{fig:imputation_quality}
+{\footnotesize Quelle: Eigene Darstellung basierend auf Script 01c\_missing\_value\_imputation.py}
+\end{figure}
+
 Das Ergebnis ist \textbf{überzeugend}: Mit einem durchschnittlichen Quality Score von 98,2/100 erreicht die Imputation exzellente Qualität. 63 von 64 Features erreichen Scores über 90, was auf robuste Imputation hindeutet.
 
 \subsection{Sonderfall A37: Umgang mit hoher Missingness}
 
 Kennzahl A37 (\textit{Quick Assets / Long-term Liabilities}) sticht mit \textbf{43,7\,\% fehlenden Werten} und einem Quality Score von \textbf{25/100} hervor. Zwei Strategien wurden erwogen:
 
-\paragraph{Option A: Entfernung der Kennzahl} Sicher, aber mit Informationsverlust verbunden. A37 ist eine Liquiditätskennzahl und misst die Fähigkeit, langfristige Schulden aus liquiden Mitteln zu bedienen – theoretisch relevant für Insolvenzprognose \cite{altman1968financial}.
+\paragraph{Option A: Entfernung der Kennzahl} Sicher, aber mit Informationsverlust verbunden. A37 ist eine Liquiditätskennzahl und misst die Fähigkeit, langfristige Schulden aus liquiden Mitteln zu bedienen – theoretisch relevant für Insolvenzprognose \parencite{altman1968financial}.
 
 \paragraph{Option B: Imputation trotz hoher Missingness} Erhalt der Kennzahl, jedoch mit Unsicherheit behaftet. MICE nutzt Beziehungen zu anderen Liquiditäts- und Verschuldungskennzahlen, um plausible Werte zu generieren.
 
-\textbf{Entscheidung:} Option B wurde gewählt. Die theoretische Bedeutung von Liquiditätsindikatoren in der Insolvenzforschung rechtfertigt den Erhalt von A37. Die niedrige Imputationsqualität wird transparent dokumentiert und kann in späteren Sensitivitätsanalysen adressiert werden (Modellierung mit/ohne A37).
+\textbf{Entscheidung:} Option B wurde gewählt. Die theoretische Bedeutung von Liquiditätsindikatoren in der Insolvenzforschung rechtfertigt den Erhalt von A37. Die niedrige Imputationsqualität wird transparent dokumentiert und kann in späteren Sensitivitätsanalysen adressiert werden (Modellierung mit/ohne A37) oder durch datengetriebene Feature Selection (Kapitel 7) evaluiert werden.
 
 \paragraph{Ursache der hohen Missingness} Die fehlenden Werte bei A37 sind vermutlich nicht zufällig, sondern strukturbedingt: Unternehmen ohne langfristige Verbindlichkeiten weisen einen undefinierten Nenner auf. Dies ist \textbf{informative Missingness} (MAR – Missing At Random), keine Datenqualitätsproblem.
 
@@ -348,10 +356,10 @@ Die folgenden Limitationen sind transparent zu kommunizieren:
 Der bereinigte Datensatz (\texttt{poland\_imputed.parquet}, 43.004 Beobachtungen, 64 Features, 0\,\% fehlende Werte) bildet die Grundlage für die nachfolgenden Analysephasen:
 
 \begin{itemize}[topsep=0.2\baselineskip]
-    \item \textbf{Phase 02:} Explorative Datenanalyse (EDA) – Verteilungen, Korrelationen, Univariate Tests
-    \item \textbf{Phase 03:} Feature Engineering – VIF-Analyse, Feature Selection, Dimensionsreduktion
-    \item \textbf{Phase 04:} Train/Validation/Test-Splits – Horizontspezifische Aufteilung, Scaling
-    \item \textbf{Phase 05:} Modellierung – Logistische Regression, Random Forest, XGBoost
+    \item \textbf{Phase 02:} Explorative Datenanalyse (Kapitel 5) – Verteilungen, Korrelationen, Univariate Tests
+    \item \textbf{Phase 03:} Multikollinearitätskontrolle (Kapitel 6) – VIF-Analyse zur Reduktion redundanter Features
+    \item \textbf{Phase 04:} Feature Selection (Kapitel 7) – Filter-, Wrapper- und Embedded-Methoden unter EPV-Schutzschranken
+    \item \textbf{Phase 05:} Modellierung (Kapitel 8) – Logistische Regression, Random Forest, XGBoost
 \end{itemize}
 
 \subsection{Kritische Würdigung}

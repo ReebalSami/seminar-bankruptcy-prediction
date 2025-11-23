@@ -1,7 +1,9 @@
 \chapter{Einleitung}
 
-% TODO: Hier wird die Einleitung geschrieben (nach Foundation Phase komplett)
-% - Motivation: Warum Früherkennung wichtig ist
-% - Forschungsfrage: ML vs. klassische Logit-Modelle
-% - Datensatz: Polish Companies Bankruptcy
-% - Aufbau der Arbeit
+Noch bevor eine Insolvenz offiziell wird, beginnt sie oft leise: Liquidität versickert, Margen erodieren, Bilanzrelationen kippen. Für Banken, Lieferanten und Aufsichten ist entscheidend, diese Signale 
+frühzeitig und belastbar zu erkennen. Klassische Kennzahlensysteme und Scoring-Modelle haben hier Pionierarbeit geleistet, doch sie stoßen bei komplexen Mustern, kleinen Stichproben und 
+Klassenungleichgewichten an Grenzen \parencite{altman1968financial,barboza2017machine,saito2015precision}.
+
+Diese Arbeit verfolgt ein klares Ziel: ein Frühwarnsystem, das präzise genug für die Praxis ist und zugleich nüchtern, nachvollziehbar und leicht zu pflegen bleibt. Wir setzen auf bekannte Bilanzkennzahlen und formen daraus ein kleines, tragfähiges Set. Die Modelle werden über mehrere Vorlaufhorizonte hinweg fair geprüft und miteinander verglichen: eine gut interpretierbare logistische Regression als Ausgangspunkt und robuste Baumverfahren als Gegenstück. Wichtig ist die Anwendbarkeit im Alltag: wenige Größen, klare Auswertung, belastbare Aussagen.
+
+Die zentrale Botschaft ist einfach: Mit schlanken, stabilen Kennzahlensets lassen sich solide Vorhersagen erzielen. Über weite Strecken erweist sich der Random Forest als stärkste Wahl, während auf kurzer Frist ein leichtes Ensemble knapp vorn liegt (Kap.~7–8). Der Beitrag dieser Arbeit ist damit ein transparentes Vorgehen, das sich ohne große Hürden in bestehende Risikoprozesse integrieren lässt. Kapitel~2 skizziert den Forschungsstand, Kapitel~3–6 die Datenbasis und Aufbereitung, Kapitel~7–8 die Auswahl und den Modellvergleich; Kapitel~9 zeigt konkrete nächste Schritte.

@@ -14,7 +14,8 @@
 % Shared header (packages, fonts, biblatex, etc.)
 % --------------------------------------------------------------------
 \input{stuff/header}
-\DefineBibliographyStrings{english}{andothers = {et al.}}
+\DefineBibliographyStrings{english}{andothers = {et al\adddot}}
+\DefineBibliographyStrings{ngerman}{andothers = {et al\adddot}}
 % ------- Global spacing fixes for a more scientific look -------------
 % (Keep here so they apply even if header changes)
 \KOMAoptions{parskip=half}            % compact paragraph spacing
@@ -70,7 +71,12 @@
 \include{kapitel/04_Datenaufbereitung}
 \include{kapitel/05_Explorative_Datenanalyse}
 \include{kapitel/06_Multikollinearitaetskontrolle}
-\include{kapitel/07_Modellierung}
+\include{kapitel/07_Feature_Selection}
+\include{kapitel/08_Modellierung}
+
+% Future directions prior to concluding bibliography
+\include{kapitel/09_Future_Work}
+\include{kapitel/10_Schlussfolgerung}
 
 % Bibliography
 \printbibliography

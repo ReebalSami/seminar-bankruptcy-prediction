@@ -1,0 +1,222 @@
+{
+  "timestamp": "20251118_213440",
+  "git_commit": "b51f16e96f1664c6fe589663ca08a6d3c53b9c98",
+  "config": {
+    "path": "config/project_config.yaml",
+    "sha256": "16bb05ea1f2397179baf8f830181d65f7d1cca1c2a2b12f53978ba821b006077",
+    "snapshot": "results/04_feature_selection/run_manifests/config_20251118_213440.yaml"
+  },
+  "scripts": [
+    {
+      "path": "scripts/04_feature_selection/04a_filter_methods.py",
+      "sha256": "f3bd24e84d483ed8dd038858ee56795fd88c2d8758f47641f73440e512ef9e86"
+    },
+    {
+      "path": "scripts/04_feature_selection/04b_wrapper_methods.py",
+      "sha256": "f47b66f55dc1d7062621f74d495dbd1d0ccb2c50ee98870227ff3f800e30c1bf"
+    },
+    {
+      "path": "scripts/04_feature_selection/04c_embedded_methods_PERFECT.py",
+      "sha256": "56114df73dd4e4abba4fd316cf21e4866f5b8f58360a3077e1bca2f07f2e8926"
+    },
+    {
+      "path": "scripts/04_feature_selection/04d_stability_consensus.py",
+      "sha256": "bc492bbe684b284e91dee170c63e54ae5b47ba41d406efc3bfbcd7f4e7f41f3c"
+    }
+  ],
+  "results": {
+    "dir": "results/04_feature_selection",
+    "files": [
+      "04a_ALL_filter_summary.xlsx",
+      "04a_H1_filter.html",
+      "04a_H1_filter.xlsx",
+      "04a_H1_filter_selected.json",
+      "04a_H2_filter.html",
+      "04a_H2_filter.xlsx",
+      "04a_H2_filter_selected.json",
+      "04a_H3_filter.html",
+      "04a_H3_filter.xlsx",
+      "04a_H3_filter_selected.json",
+      "04a_H4_filter.html",
+      "04a_H4_filter.xlsx",
+      "04a_H4_filter_selected.json",
+      "04a_H5_filter.html",
+      "04a_H5_filter.xlsx",
+      "04a_H5_filter_selected.json",
+      "04b_ALL_wrapper_summary.xlsx",
+      "04b_H1_wrapper.html",
+      "04b_H1_wrapper.xlsx",
+      "04b_H1_wrapper_selected.json",
+      "04b_H2_wrapper.html",
+      "04b_H2_wrapper.xlsx",
+      "04b_H2_wrapper_selected.json",
+      "04b_H3_wrapper.html",
+      "04b_H3_wrapper.xlsx",
+      "04b_H3_wrapper_selected.json",
+      "04b_H4_wrapper.html",
+      "04b_H4_wrapper.xlsx",
+      "04b_H4_wrapper_selected.json",
+      "04b_H5_wrapper.html",
+      "04b_H5_wrapper.xlsx",
+      "04b_H5_wrapper_selected.json",
+      "04c_H1_embedded.xlsx",
+      "04c_H1_embedded_selected.json",
+      "04c_H2_embedded.xlsx",
+      "04c_H2_embedded_selected.json",
+      "04c_H3_embedded.xlsx",
+      "04c_H3_embedded_selected.json",
+      "04c_H4_embedded.xlsx",
+      "04c_H4_embedded_selected.json",
+      "04c_H5_embedded.xlsx",
+      "04c_H5_embedded_selected.json",
+      "04d_ALL_consensus.html",
+      "04d_ALL_consensus.xlsx"
+    ]
+  },
+  "phase04": {
+    "embedded_metrics": {
+      "H1": {
+        "lasso": {
+          "n_features": 35,
+          "roc_auc": 0.7751309212794201,
+          "pr_auc": 0.13927412320043442
+        },
+        "elastic_net": {
+          "n_features": 40,
+          "roc_auc": 0.7706945267577311,
+          "pr_auc": 0.13895690092393903
+        },
+        "ridge": {
+          "n_features": 30,
+          "roc_auc": 0.7841746705053254,
+          "pr_auc": 0.1466268382387645
+        },
+        "random_forest": {
+          "n_features": 40,
+          "roc_auc": 0.7706945267577311,
+          "pr_auc": 0.13895690092393903
+        }
+      },
+      "H2": {
+        "lasso": {
+          "n_features": 38,
+          "roc_auc": 0.710317272566869,
+          "pr_auc": 0.10253469843052536
+        },
+        "elastic_net": {
+          "n_features": 41,
+          "roc_auc": 0.708599834665377,
+          "pr_auc": 0.10205913220140683
+        },
+        "ridge": {
+          "n_features": 30,
+          "roc_auc": 0.7178493102344092,
+          "pr_auc": 0.10576917920363879
+        },
+        "random_forest": {
+          "n_features": 41,
+          "roc_auc": 0.708599834665377,
+          "pr_auc": 0.10205913220140683
+        }
+      },
+      "H3": {
+        "lasso": {
+          "n_features": 34,
+          "roc_auc": 0.7380988488651085,
+          "pr_auc": 0.12066978815115395
+        },
+        "elastic_net": {
+          "n_features": 29,
+          "roc_auc": 0.7416477915615747,
+          "pr_auc": 0.12077007232513186
+        },
+        "ridge": {
+          "n_features": 30,
+          "roc_auc": 0.7383974540728684,
+          "pr_auc": 0.11707379426453121
+        },
+        "random_forest": {
+          "n_features": 42,
+          "roc_auc": 0.7330477772645558,
+          "pr_auc": 0.11745632586739325
+        }
+      },
+      "H4": {
+        "lasso": {
+          "n_features": 37,
+          "roc_auc": 0.7606720825917761,
+          "pr_auc": 0.17917865799006305
+        },
+        "elastic_net": {
+          "n_features": 41,
+          "roc_auc": 0.7583614478344083,
+          "pr_auc": 0.17559725532965725
+        },
+        "ridge": {
+          "n_features": 30,
+          "roc_auc": 0.7622875449283761,
+          "pr_auc": 0.1797578915653381
+        },
+        "random_forest": {
+          "n_features": 38,
+          "roc_auc": 0.7474797441292704,
+          "pr_auc": 0.16260296843277194
+        }
+      },
+      "H5": {
+        "lasso": {
+          "n_features": 31,
+          "roc_auc": 0.8543873032242877,
+          "pr_auc": 0.40021507486424374
+        },
+        "elastic_net": {
+          "n_features": 32,
+          "roc_auc": 0.8524421189607999,
+          "pr_auc": 0.39838068980922325
+        },
+        "ridge": {
+          "n_features": 30,
+          "roc_auc": 0.8529193150270163,
+          "pr_auc": 0.3985023864960494
+        },
+        "random_forest": {
+          "n_features": 36,
+          "roc_auc": 0.8405272702921975,
+          "pr_auc": 0.3603357488098352
+        }
+      }
+    },
+    "consensus": {
+      "H1": {
+        "count": 10,
+        "method_used": "intersection",
+        "retention_ratio": 1.0145051730322325,
+        "roc_auc": 0.7827777918629683
+      },
+      "H2": {
+        "count": 9,
+        "method_used": "intersection",
+        "retention_ratio": 0.9652781164313059,
+        "roc_auc": 0.6846025597459205
+      },
+      "H3": {
+        "count": 7,
+        "method_used": "intersection",
+        "retention_ratio": 1.0161671820752216,
+        "roc_auc": 0.7436214385423241
+      },
+      "H4": {
+        "count": 8,
+        "method_used": "intersection",
+        "retention_ratio": 0.9759416755930409,
+        "roc_auc": 0.740204074741885
+      },
+      "H5": {
+        "count": 10,
+        "method_used": "intersection",
+        "retention_ratio": 0.9896067438203183,
+        "roc_auc": 0.8380082807867801
+      }
+    }
+  }
+}

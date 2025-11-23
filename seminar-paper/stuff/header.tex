@@ -1,9 +1,9 @@
 %%%%%%%%%%%%%%%%%%%  Document info  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\projname}{***}
-\newcommand{\titel}{***}
+\newcommand{\projname}{Seminar Data Science \& AI}
+\newcommand{\titel}{Frühwarnsystems für Unternehmenskrisen}
 \newcommand{\untertitel}{}
-\newcommand{\thesisname}{***}
-\newcommand{\Datum}{19.\,November~2025}
+\newcommand{\thesisname}{Seminar Data Science \& AI}
+\newcommand{\Datum}{20.\,November~2025}
 \newcommand{\authorname}{
   \begin{tabular}{ll}
     Reebal Sami  & 106441 \\
@@ -14,7 +14,7 @@
 % ----------------------- Core setup ------------------------------
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[main=english,ngerman]{babel} % English UI (ToC, Lists, etc.)
+\usepackage[main=ngerman,english]{babel} % German UI (Inhaltsverzeichnis, etc.)
 \usepackage{microtype}
 \usepackage{amsmath}                     % for align*, equation, etc.
 \usepackage{amssymb}                     % for symbols like \checkmark
@@ -68,7 +68,11 @@
   backend=biber,
   style=authoryear,
   sorting=nty,
-  natbib=true
+  natbib=true,
+  maxbibnames=99,
+  maxcitenames=2,
+  uniquename=false,
+  uniquelist=false
 ]{biblatex}
 \addbibresource{sources.bib} % file name must be exactly this
 

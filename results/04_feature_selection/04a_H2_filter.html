@@ -1,0 +1,245 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Phase 04a: Filter Methods - Horizon 2</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                margin: 40px;
+                background-color: #f5f5f5;
+            }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                background-color: white;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            h1 {
+                color: #2c3e50;
+                border-bottom: 3px solid #3498db;
+                padding-bottom: 10px;
+            }
+            h2 {
+                color: #34495e;
+                margin-top: 30px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+            }
+            th, td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+            th {
+                background-color: #3498db;
+                color: white;
+                font-weight: bold;
+            }
+            tr:hover {
+                background-color: #f5f5f5;
+            }
+            .metric {
+                display: inline-block;
+                margin: 10px 20px 10px 0;
+                padding: 10px 15px;
+                background-color: #ecf0f1;
+                border-radius: 5px;
+            }
+            .metric-label {
+                font-weight: bold;
+                color: #7f8c8d;
+            }
+            .metric-value {
+                font-size: 1.2em;
+                color: #2c3e50;
+            }
+            .section {
+                margin-top: 30px;
+                padding: 20px;
+                background-color: #f8f9fa;
+                border-left: 4px solid #3498db;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Phase 04a: Filter Methods - Horizon 2</h1>
+            
+            <div class="section">
+                <h2>Dataset Overview</h2>
+                <div class="metric">
+                    <span class="metric-label">Observations:</span>
+                    <span class="metric-value">10,083</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">VIF Features:</span>
+                    <span class="metric-value">41</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Bankruptcy Rate:</span>
+                    <span class="metric-value">3.95%</span>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Method Comparison</h2>
+                <table>
+                    <tr>
+                        <th>Method</th>
+                        <th>Optimal K</th>
+                        <th>ROC-AUC (mean ± std)</th>
+                        <th>PR-AUC (mean ± std)</th>
+                    </tr>
+    
+                    <tr>
+                        <td><strong>Spearman Rank Correlation</strong></td>
+                        <td>26</td>
+                        <td>0.7051 ± 0.0315</td>
+                        <td>0.0997 ± 0.0174</td>
+                    </tr>
+    
+                    <tr>
+                        <td><strong>Mutual Information</strong></td>
+                        <td>23</td>
+                        <td>0.7006 ± 0.0361</td>
+                        <td>0.0927 ± 0.0216</td>
+                    </tr>
+    
+                    <tr>
+                        <td><strong>ANOVA F-Test</strong></td>
+                        <td>23</td>
+                        <td>0.7128 ± 0.0278</td>
+                        <td>0.1045 ± 0.0218</td>
+                    </tr>
+        
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2>Top 10 Features (by Average Rank)</h2>
+                <table>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Feature</th>
+                        <th>Spearman |ρ|</th>
+                        <th>MI Score</th>
+    <th>F-Statistic</th>
+                        <th>Avg Rank</th>
+                    </tr>
+    
+                    <tr>
+                        <td>1</td>
+                        <td><strong>A24</strong></td>
+                        <td>0.1125</td>
+                        <td>0.0081</td>
+        <td>83.48</td>
+                        <td>3.3</td>
+                    </tr>
+        
+                    <tr>
+                        <td>2</td>
+                        <td><strong>A26</strong></td>
+                        <td>0.1078</td>
+                        <td>0.0084</td>
+        <td>31.85</td>
+                        <td>5.7</td>
+                    </tr>
+        
+                    <tr>
+                        <td>3</td>
+                        <td><strong>A38</strong></td>
+                        <td>0.0975</td>
+                        <td>0.0029</td>
+        <td>114.59</td>
+                        <td>5.7</td>
+                    </tr>
+        
+                    <tr>
+                        <td>4</td>
+                        <td><strong>A25</strong></td>
+                        <td>0.0872</td>
+                        <td>0.0027</td>
+        <td>84.62</td>
+                        <td>8.3</td>
+                    </tr>
+        
+                    <tr>
+                        <td>5</td>
+                        <td><strong>A2</strong></td>
+                        <td>0.0856</td>
+                        <td>0.0029</td>
+        <td>84.36</td>
+                        <td>8.3</td>
+                    </tr>
+        
+                    <tr>
+                        <td>6</td>
+                        <td><strong>A12</strong></td>
+                        <td>0.0906</td>
+                        <td>0.0033</td>
+        <td>28.86</td>
+                        <td>9.3</td>
+                    </tr>
+        
+                    <tr>
+                        <td>7</td>
+                        <td><strong>A42</strong></td>
+                        <td>0.0690</td>
+                        <td>0.0084</td>
+        <td>49.77</td>
+                        <td>10.0</td>
+                    </tr>
+        
+                    <tr>
+                        <td>8</td>
+                        <td><strong>A6</strong></td>
+                        <td>0.0556</td>
+                        <td>0.0094</td>
+        <td>50.15</td>
+                        <td>10.7</td>
+                    </tr>
+        
+                    <tr>
+                        <td>9</td>
+                        <td><strong>A3</strong></td>
+                        <td>0.0856</td>
+                        <td>0.0016</td>
+        <td>81.66</td>
+                        <td>11.3</td>
+                    </tr>
+        
+                    <tr>
+                        <td>10</td>
+                        <td><strong>A56</strong></td>
+                        <td>0.0745</td>
+                        <td>0.0034</td>
+        <td>35.97</td>
+                        <td>11.3</td>
+                    </tr>
+        
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2>Interpretation</h2>
+                <p><strong>Spearman Rank Correlation:</strong> Measures monotonic relationship between feature and target. Non-parametric, robust to outliers.</p>
+                <p><strong>Mutual Information:</strong> Captures non-linear dependencies. Higher MI = more predictive power.</p>
+    <p><strong>ANOVA F-Test:</strong> Parametric test assuming normality. Serves as baseline comparison.</p>
+                <p><strong>Optimal k selection:</strong> Determined via 5-fold stratified CV using ROC-AUC as criterion.</p>
+            </div>
+            
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #7f8c8d; font-size: 0.9em;">
+                <p>Generated on: 2025-11-18 16:35:17</p>
+                <p>Project: Bankruptcy Prediction Seminar (FH Wedel) - Phase 04a: Filter Methods</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    

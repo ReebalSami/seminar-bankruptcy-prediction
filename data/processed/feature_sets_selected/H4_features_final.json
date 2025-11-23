@@ -1,0 +1,30 @@
+{
+  "horizon": 4,
+  "features": [
+    "A12",
+    "A13",
+    "A24",
+    "A26",
+    "A38",
+    "A39",
+    "A58",
+    "A62"
+  ],
+  "count": 8,
+  "method_used": "intersection",
+  "mean_cross_method_agreement": 0.5431621920034563,
+  "performance": {
+    "roc_auc_mean": 0.740204074741885,
+    "roc_auc_std": 0.01632377788364275,
+    "pr_auc_mean": 0.15046721669437088,
+    "pr_auc_std": 0.011744774857813835
+  },
+  "baseline_performance": {
+    "roc_auc_mean": 0.7584511382732912,
+    "roc_auc_std": 0.024723598446812513,
+    "pr_auc_mean": 0.1754995480140707,
+    "pr_auc_std": 0.023301485879964175
+  },
+  "retention_ratio": 0.9759416755930409,
+  "threshold_met": true
+}
