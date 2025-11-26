@@ -50,3 +50,6 @@ logs/*.log
 
 # Development artifacts (kept locally only)
 archive/
+
+# IDE configuration (kept locally only)
+.windsurf/
