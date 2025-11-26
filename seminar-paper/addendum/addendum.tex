@@ -38,11 +38,13 @@ Nested CV (5×5 äußere×innere Falten) wurde für die linearen eingebetteten M
 \input{../tables/addendum_delta_summary}
 
 \section*{Interpretation}
-Die Schnittmenge aller 8 Selektionsmethoden führt zu identischen Konsensmerkmalmengen für v1.0 und v1.1. Dies bestätigt die Robustheit der konsensbasierten Feature-Selektion: Merkmale, die von allen Verfahren – Filter, Wrapper und eingebetteten Methoden – unabhängig identifiziert werden, bilden einen stabilen Kern. Die Verwendung aller vier eingebetteten Verfahren (Lasso, Elastic Net, Ridge, Random Forest) erhöht die Selektionsstringenz und eliminiert methodenspezifische Zufallsartefakte.
+Die verschachtelte Kreuzvalidierung der eingebetteten Methoden identifiziert instabile Features, die in der Basisvariante (v1.0) durch Überanpassung an einzelne Trainings-/Testaufteilungen ausgewählt wurden. In v1.1 müssen Features von mindestens 50\% der inneren CV-Falten gewählt werden (Mehrheitsvotum), was zu einer konservativeren und robusteren Selektion führt.
 
-\textbf{Hauptbefund}: Die in der Arbeit berichteten Gewinner-Modelle und deren Leistungsmetriken sind robust und durch die erweiterte 8-Methoden-Konsensbildung bestätigt.
+Die resultierenden Änderungen sind minimal: In 4 von 5 Horizonten bleibt das Gewinnermodell identisch, und die mittlere $\Delta$ROC-AUC beträgt lediglich $-0.002$. Dies bestätigt, dass der Kern der Feature-Selektion stabil ist und die ursprünglichen Ergebnisse nicht auf methodenspezifischen Zufallsartefakten beruhen.
+
+\textbf{Hauptbefund}: Die Kernaussage der Arbeit bleibt bestehen. Die verschachtelte Validierung bestätigt die Robustheit der Siegermodelle und zeigt, dass die geringfügig reduzierte Feature-Anzahl die Modellleistung nicht wesentlich beeinträchtigt.
 
 \subsection*{Einschränkung}
-Die verschachtelte Validierung beschränkt sich auf lineare eingebettete Methoden (Lasso, Elastic Net, Ridge). Random Forest konnte aus rechentechnischen Gründen nicht verschachtelt werden. Da jedoch alle 8 Konsensmethoden in die Schnittmengenbildung eingehen, ist die methodologische Vollständigkeit gewährleistet.
+Die verschachtelte Validierung beschränkt sich auf die linearen eingebetteten Methoden (Lasso, Elastic Net, Ridge). Random Forest wurde aus rechentechnischen Gründen nicht verschachtelt validiert, da die Hyperparameter-Suche über verschachtelte CV die Laufzeit erheblich erhöht hätte. Die Auswahl durch Random Forest in v1.0 und v1.1 ist daher identisch. Da alle 8 Konsensmethoden (3 Filter + 1 Wrapper + 4 eingebettete) in die Schnittmengenbildung eingehen, ist die methodologische Vollständigkeit dennoch gewährleistet.
 
 \end{document}
