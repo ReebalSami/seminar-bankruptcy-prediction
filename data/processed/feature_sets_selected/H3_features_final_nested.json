@@ -5,17 +5,16 @@
     "A24",
     "A26",
     "A38",
-    "A39",
-    "A49"
+    "A39"
   ],
-  "count": 6,
+  "count": 5,
   "method_used": "intersection",
-  "mean_cross_method_agreement": 0.46567276397643464,
+  "mean_cross_method_agreement": 0.4692218250748227,
   "performance": {
-    "roc_auc_mean": 0.7416451769600094,
-    "roc_auc_std": 0.01993688661995984,
-    "pr_auc_mean": 0.11543228003422468,
-    "pr_auc_std": 0.014321596112871529
+    "roc_auc_mean": 0.7371297104138026,
+    "roc_auc_std": 0.020551760140887592,
+    "pr_auc_mean": 0.11397964570423103,
+    "pr_auc_std": 0.013272090322823185
   },
   "baseline_performance": {
     "roc_auc_mean": 0.7317904491106442,
@@ -23,6 +22,6 @@
     "pr_auc_mean": 0.11642404428769873,
     "pr_auc_std": 0.011505561447589716
   },
-  "retention_ratio": 1.0134665980696276,
+  "retention_ratio": 1.0072961615031288,
   "threshold_met": true
 }

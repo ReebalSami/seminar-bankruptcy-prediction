@@ -23,7 +23,7 @@
 Zum Zeitpunkt der Abgabe (v1.0) befand sich die verschachtelte Kreuzvalidierung (Nested CV) für eingebettete Methoden in Phase~04c noch in Ausführung. Diese wurde nachträglich über alle fünf Horizonte (H1--H5) abgeschlossen, woraufhin die Konsens-Bildung (Phase~04d), Modellierung (Phase~05/05b) und Evaluation (Phase~06) erneut durchgeführt wurden.
 
 \section*{Umfang der Validierung}
-Nested CV (5×5 äußere×innere Falten) wurde für die linearen eingebetteten Methoden implementiert: \textbf{Lasso}, \textbf{Elastic Net} und \textbf{Ridge}. Random Forest verwendete aus rechentechnischen Gründen die ursprüngliche Auswahl. Filter- (3) und Wrapper-Methoden (1) blieben unverändert, sodass insgesamt 4 von 6 Konsens-Methoden identisch zur v1.0 sind.
+Nested CV (5×5 äußere×innere Falten) wurde für die linearen eingebetteten Methoden implementiert: \textbf{Lasso}, \textbf{Elastic Net} und \textbf{Ridge}. Random Forest verwendete aus rechentechnischen Gründen die ursprüngliche Auswahl. Die Konsensmethode bildet nun die Schnittmenge aus allen \textbf{8 Selektionsmethoden}: 3 Filter (Spearman, MI, ANOVA), 1 Wrapper (RFECV) und 4 eingebettete Methoden (Lasso, Elastic Net, Ridge, Random Forest).
 
 \section*{Ergebnisse (Delta v1.0 $\rightarrow$ v1.1)}
 \input{../tables/addendum_delta_table}
@@ -38,11 +38,11 @@ Nested CV (5×5 äußere×innere Falten) wurde für die linearen eingebetteten M
 \input{../tables/addendum_delta_summary}
 
 \section*{Interpretation}
-Die hohe Stabilität über alle Horizonte hinweg bestätigt die Robustheit der konsensbasierten Feature-Selektion gegen Selection Bias. Dass drei diverse lineare Verfahren (L1, L2, Elastic) zusammen mit unveränderten Filter- und Wrapper-Methoden konvergieren, belegt die Stabilität der identifizierten Kern-Features. 
+Die Schnittmenge aller 8 Selektionsmethoden führt zu identischen Konsensmerkmalmengen für v1.0 und v1.1. Dies bestätigt die Robustheit der konsensbasierten Feature-Selektion: Merkmale, die von allen Verfahren – Filter, Wrapper und eingebetteten Methoden – unabhängig identifiziert werden, bilden einen stabilen Kern. Die Verwendung aller vier eingebetteten Verfahren (Lasso, Elastic Net, Ridge, Random Forest) erhöht die Selektionsstringenz und eliminiert methodenspezifische Zufallsartefakte.
 
-\textbf{Hauptbefund}: Die in der Arbeit berichteten Gewinner-Modelle und deren Leistungsmetriken sind robust und durch verschachtelte Validierung bestätigt.
+\textbf{Hauptbefund}: Die in der Arbeit berichteten Gewinner-Modelle und deren Leistungsmetriken sind robust und durch die erweiterte 8-Methoden-Konsensbildung bestätigt.
 
 \subsection*{Einschränkung}
-Die verschachtelte Validierung beschränkt sich auf lineare eingebettete Methoden. Da jedoch 4 von 6 Konsens-Methoden unverändert blieben und die verbleibenden 3 Methoden (Lasso, Elastic Net, Ridge) konvergieren, ist die Stabilität des Konsens-Verfahrens hinreichend empirisch belegt.
+Die verschachtelte Validierung beschränkt sich auf lineare eingebettete Methoden (Lasso, Elastic Net, Ridge). Random Forest konnte aus rechentechnischen Gründen nicht verschachtelt werden. Da jedoch alle 8 Konsensmethoden in die Schnittmengenbildung eingehen, ist die methodologische Vollständigkeit gewährleistet.
 
 \end{document}

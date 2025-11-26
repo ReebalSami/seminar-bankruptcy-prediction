@@ -2,10 +2,10 @@
 Phase 04d: Stability Analysis & Consensus Feature Selection
 ============================================================
 
-Integrates results from all feature selection methods:
-- Filter methods (Spearman, MI, ANOVA F)
-- Wrapper methods (RFECV)
-- Embedded methods (Lasso, Random Forest)
+Integrates results from all feature selection methods (8 total):
+- Filter methods (3): Spearman, MI, ANOVA F
+- Wrapper methods (1): RFECV
+- Embedded methods (4): Lasso, Elastic Net, Ridge, Random Forest
 
 Performs:
 1. Cross-method agreement analysis (Jaccard similarity)
@@ -294,25 +294,41 @@ def analyze_horizon_consensus(horizon: int, df: pd.DataFrame, vif_features: List
 
     embedded = method_results["embedded"]
     nested = method_results.get("nested") or {}
+    
+    # Extract embedded method features (Lasso, Elastic Net, Ridge, RF)
     l1 = embedded.get("lasso", {}).get("selected_features", [])
+    en = embedded.get("elastic_net", {}).get("selected_features", [])
+    ridge = embedded.get("ridge", {}).get("selected_features", [])
     rf_emb = embedded.get("random_forest", {}).get("selected_features", [])
-    # Prefer nested if available
+    
+    # Prefer nested if available (Lasso, Elastic Net, Ridge only - no nested RF)
     if isinstance(nested, dict):
         if "lasso" in nested:
             cand = _extract_nested_feats(nested["lasso"])
             if cand:
                 l1 = cand
+        if "elastic_net" in nested:
+            cand = _extract_nested_feats(nested["elastic_net"])
+            if cand:
+                en = cand
+        if "ridge" in nested:
+            cand = _extract_nested_feats(nested["ridge"])
+            if cand:
+                ridge = cand
         if "random_forest" in nested:
             cand = _extract_nested_feats(nested["random_forest"])
             if cand:
                 rf_emb = cand
 
+    # Build consensus from ALL 8 methods (3 filter + 1 wrapper + 4 embedded)
     selections = {
         "Spearman": method_results["filter"]["spearman_selected"],
         "Mutual_Info": method_results["filter"]["mi_selected"],
         "ANOVA_F": method_results["filter"]["anova_selected"],
         "RFECV": method_results["wrapper"]["selected_features"],
         "Lasso_L1": l1,
+        "Elastic_Net": en,
+        "Ridge_L2": ridge,
         "Random_Forest": rf_emb,
     }
     

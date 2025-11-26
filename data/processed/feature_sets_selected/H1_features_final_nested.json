@@ -13,7 +13,7 @@
   ],
   "count": 9,
   "method_used": "intersection",
-  "mean_cross_method_agreement": 0.5986304819496672,
+  "mean_cross_method_agreement": 0.6387926515082863,
   "performance": {
     "roc_auc_mean": 0.7830138502042437,
     "roc_auc_std": 0.018713810868003992,

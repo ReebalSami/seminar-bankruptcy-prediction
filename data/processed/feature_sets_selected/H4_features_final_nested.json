@@ -1,7 +1,6 @@
 {
   "horizon": 4,
   "features": [
-    "A12",
     "A13",
     "A24",
     "A26",
@@ -10,14 +9,14 @@
     "A58",
     "A62"
   ],
-  "count": 8,
+  "count": 7,
   "method_used": "intersection",
-  "mean_cross_method_agreement": 0.5630069537086833,
+  "mean_cross_method_agreement": 0.5876632501947429,
   "performance": {
-    "roc_auc_mean": 0.740204074741885,
-    "roc_auc_std": 0.01632377788364275,
-    "pr_auc_mean": 0.15046721669437088,
-    "pr_auc_std": 0.011744774857813835
+    "roc_auc_mean": 0.7423180768872754,
+    "roc_auc_std": 0.017407078607793138,
+    "pr_auc_mean": 0.150418939148557,
+    "pr_auc_std": 0.010968604611542506
   },
   "baseline_performance": {
     "roc_auc_mean": 0.7584511382732912,
@@ -25,6 +24,6 @@
     "pr_auc_mean": 0.1754995480140707,
     "pr_auc_std": 0.023301485879964175
   },
-  "retention_ratio": 0.9759416755930409,
+  "retention_ratio": 0.9787289377365234,
   "threshold_met": true
 }

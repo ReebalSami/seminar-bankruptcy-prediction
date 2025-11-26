@@ -5,21 +5,20 @@
     "A25",
     "A29",
     "A3",
-    "A30",
     "A38",
     "A41",
     "A48",
     "A58",
     "A62"
   ],
-  "count": 10,
+  "count": 9,
   "method_used": "intersection",
-  "mean_cross_method_agreement": 0.5834959201018142,
+  "mean_cross_method_agreement": 0.6050546722159541,
   "performance": {
-    "roc_auc_mean": 0.8380082807867801,
-    "roc_auc_std": 0.02096671842468235,
-    "pr_auc_mean": 0.3626783404222963,
-    "pr_auc_std": 0.036706105017073
+    "roc_auc_mean": 0.8384060741259433,
+    "roc_auc_std": 0.021442937909299378,
+    "pr_auc_mean": 0.36215567601748494,
+    "pr_auc_std": 0.03892340905464424
   },
   "baseline_performance": {
     "roc_auc_mean": 0.8468093876883849,
@@ -27,6 +26,6 @@
     "pr_auc_mean": 0.3901518632380471,
     "pr_auc_std": 0.026006447462892483
   },
-  "retention_ratio": 0.9896067438203183,
+  "retention_ratio": 0.9900764992870699,
   "threshold_met": true
 }
