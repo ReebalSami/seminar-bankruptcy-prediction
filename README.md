@@ -140,7 +140,12 @@ All parameters are centralized in `config/project_config.yaml`:
 
 **Setup:**
 ```bash
-make install  # Creates .venv with Python 3.13 and installs dependencies
+# Install uv package manager if not already installed
+# See: https://docs.astral.sh/uv/getting-started/installation/
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Create virtual environment and install dependencies
+make install  # Creates .venv with Python 3.13 and installs dependencies using uv
 ```
 
 **Complete Pipeline (All Phases):**
