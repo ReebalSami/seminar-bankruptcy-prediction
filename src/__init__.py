@@ -2,11 +2,10 @@
 Bankruptcy Prediction Analysis Package
 ======================================
 
+Shared utilities for the bankruptcy prediction pipeline.
+
 Modules:
-- metadata: Feature name mappings and categorization
-- visualization: Reusable plotting functions
-- evaluation: Model evaluation utilities
-- cross_horizon: Cross-horizon validation
+- bankruptcy_prediction.utils: Configuration, logging, metadata, target utilities
 """
 
 __version__ = "0.1.0"

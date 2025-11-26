@@ -1,4 +1,5 @@
 .PHONY: help install clean run-poland run-american run-taiwan run-comparison run-all report paper \
+        phase01 phase02 phase03 phase04 \
         phase04-tables phase05-modeling phase05-eval phase05-tables phase05-modeling-extra \
         phase04d-consensus-nested phase05-modeling-nested phase05-modeling-extra-nested phase06-eval-nested \
         delta-addendum addendum
@@ -37,11 +38,19 @@ help:
 	@echo "$(YELLOW)Reports:$(NC)"
 	@echo "  make report         - Generate master HTML report"
 	@echo "  make paper          - Compile LaTeX seminar paper (German)"
+	@echo ""
+	@echo "$(YELLOW)Pipeline Phases:$(NC)"
+	@echo "  make phase01        - Data preparation (duplicates, outliers, imputation)"
+	@echo "  make phase02        - Exploratory analysis (distributions, tests, correlations)"
+	@echo "  make phase03        - Multicollinearity analysis (VIF)"
+	@echo "  make phase04        - Feature selection (filter, wrapper, embedded, consensus)"
+	@echo "  make phase05-modeling - Base models (LR, RF)"
+	@echo "  make phase05-modeling-extra - Extra models + ensemble"
+	@echo "  make phase05-eval   - Aggregate metrics and plots"
+	@echo ""
+	@echo "$(YELLOW)Paper Tables:$(NC)"
 	@echo "  make phase04-tables - Generate Phase 04 LaTeX tables for paper"
-	@echo "  make phase05-modeling - Run Phase 05 modeling (LR + RF)"
-	@echo "  make phase05-eval     - Aggregate modeling metrics and HTML overview"
-	@echo "  make phase05-tables   - Generate Phase 05 LaTeX tables for paper"
-	@echo "  make phase05-modeling-extra - Run extra models + soft-voting ensemble"
+	@echo "  make phase05-tables - Generate Phase 05 LaTeX tables for paper"
 	@echo ""
 
 install:
@@ -164,6 +173,37 @@ paper:
 	@cd seminar-paper && pdflatex -interaction=nonstopmode doku_main.tex
 	@cd seminar-paper && pdflatex -interaction=nonstopmode doku_main.tex
 	@echo "$(GREEN)✓ Paper compiled: seminar-paper/doku_main.pdf$(NC)"
+
+# -----------------------------------------------------------------------------
+# Complete Pipeline Phases
+# -----------------------------------------------------------------------------
+phase01:
+	@echo "$(BLUE)Phase 01: Data Preparation...$(NC)"
+	@$(PYTHON) scripts/01_data_preparation/01a_remove_duplicates.py
+	@$(PYTHON) scripts/01_data_preparation/01b_outlier_treatment.py
+	@$(PYTHON) scripts/01_data_preparation/01c_missing_value_imputation.py
+	@$(PYTHON) scripts/01_data_preparation/01d_create_horizon_datasets.py
+	@echo "$(GREEN)✓ Phase 01 complete: data/processed/poland_imputed.parquet$(NC)"
+
+phase02:
+	@echo "$(BLUE)Phase 02: Exploratory Analysis...$(NC)"
+	@$(PYTHON) scripts/02_exploratory_analysis/02a_distribution_analysis.py
+	@$(PYTHON) scripts/02_exploratory_analysis/02b_univariate_tests.py
+	@$(PYTHON) scripts/02_exploratory_analysis/02c_correlation_economic.py
+	@echo "$(GREEN)✓ Phase 02 complete: results/02_exploratory_analysis/$(NC)"
+
+phase03:
+	@echo "$(BLUE)Phase 03: Multicollinearity Analysis...$(NC)"
+	@$(PYTHON) scripts/03_multicollinearity/03a_vif_analysis.py
+	@echo "$(GREEN)✓ Phase 03 complete: results/03_multicollinearity/$(NC)"
+
+phase04:
+	@echo "$(BLUE)Phase 04: Feature Selection...$(NC)"
+	@$(PYTHON) scripts/04_feature_selection/04a_filter_methods.py
+	@$(PYTHON) scripts/04_feature_selection/04b_wrapper_methods.py
+	@$(PYTHON) scripts/04_feature_selection/04c_embedded_methods.py
+	@$(PYTHON) scripts/04_feature_selection/04d_stability_consensus.py
+	@echo "$(GREEN)✓ Phase 04 complete: data/processed/feature_sets_selected/$(NC)"
 
 phase04-tables:
 	@echo "$(BLUE)Generating Phase 04 LaTeX tables...$(NC)"

@@ -2,71 +2,52 @@
 
 **Institution:** FH Wedel  
 **Semester:** WS 2024/25  
-**Topic:** Entwicklung eines Frühwarnsystems für Unternehmenskrisen mit Hilfe maschinellen Lernens  
-**Goal:** German grade 1.0 (excellent)
+**Topic:** Entwicklung eines Frühwarnsystems für Unternehmenskrisen mit Hilfe maschinellen Lernens
 
 ---
 
 ## Project Overview
 
 **Research Focus:**
-- Early warning indicators for corporate bankruptcy
-- Predictive analytics using financial ratios
-- Comparison: Random Forests vs Logistic Regression
-- Multi-horizon prediction (1-5 years ahead)
+- Early warning system for corporate bankruptcy
+- Multi-horizon prediction (1-5 years before bankruptcy)
+- Machine learning methods for financial distress prediction
 
-**Dataset:** Polish Companies Bankruptcy (Kaggle)
-- 43,405 observations
-- 64 financial ratio features (A1-A64)
+**Dataset:** Polish Companies Bankruptcy Data
+- 43,004 observations (after duplicate removal)
+- 64 financial ratio features
 - 5 prediction horizons (H1-H5)
-- Target: Bankruptcy within horizon period
+- Class distribution: 4.84% bankruptcy rate
 
 ---
 
-## Status & Results (Consolidated)
+## Project Results
 
-- **Phases 00–03 (Foundation, Prep, EDA, Multikollinearität):** abgeschlossen. Datensatz: 43.405 Beobachtungen, 64 Kennzahlen, starke Klassenungleichverteilung (4,82%). Entscheidung: horizontspezifische Modelle (H1–H5).
-- **Phase 04 (Feature Selection):**
-  - Alte (nicht-verschachtelte) Auswahl für H1–H5 als Grundlage der Modellierung verwendet; Guardrails: EPV ≥ 10, Leistungs-Retention.
-  - Verschachtelte (Nested-CV) Ergebnisse vorhanden für H1–H3; H4/H5 in Arbeit. Beobachtung: AUC-Differenzen klein; Nested reduziert Optimismus, v. a. bei Ridge.
-  - Stabilität (Nogueira): H2 Ridge > Lasso > EN; H3 Lasso > Ridge > EN. Konsensbildung mit EPV-Deckelung.
-- **Phase 05/06 (Modellierung & Evaluation; 5-fach Stratified CV, class_weight=balanced):**
-  - ROC-AUC Sieger je Horizont: H1 Soft-Voting 0,796; H2–H5 Random Forest 0,845 / 0,780 / 0,812 / 0,864.
-  - PR-AUC der Sieger: H1 0,183; H2 0,341; H3 0,140; H4 0,218; H5 0,420.
-- **Seminar-Paper:** LaTeX-Kapitel 07–09 aktualisiert (Nested vs. Alt, Stabilität, Future Work). Tabellen (Phase 04/05) werden aus Ergebnissen generiert.
+### Pipeline Phases
 
-### Makefile Quickstart
-- Setup: `make install`
-- Phase 04 Tabellen + Paper: `make phase04-tables && make phase05-tables && make paper`
-- Modeling (falls erneut nötig): `make phase05-modeling` und `make phase05-modeling-extra`, danach `make phase05-eval` und `make phase05-tables`.
+**Phase 00-01:** Foundation & Data Preparation
+- Dataset: 43,004 observations (401 duplicates removed), 64 financial ratios
+- Horizon-specific modeling approach (H1-H5)
+- Class imbalance: 4.84% bankruptcy rate
+- Outlier treatment and missing value imputation completed
 
-### Paper Build
-- PDF: `seminar-paper/doku_main.pdf`
-- Tabellenquellen: `seminar-paper/tables/phase04_*` und `phase05_*`
+**Phase 02-03:** EDA & Multicollinearity Analysis  
+- VIF-based feature reduction per horizon
+- Temporal structure analysis across 5 horizons
+- Correlation and distribution analysis
 
-### Methodische Guardrails
-- EPV-Regel (min. 10 Events je Variable) und Leistungs-Retention in 04d umgesetzt.
-- Nested-CV für eingebettete Methoden (H1–H3), Stabilität nach Nogueira berichtet.
+**Phase 04:** Feature Selection
+- Automated pipeline: Filter methods (Spearman, MI, ANOVA-F)
+- Wrapper methods (RFECV with cross-validation)
+- Embedded methods (Lasso, Elastic Net, Ridge, Random Forest)
+- Consensus approach with EPV guardrails (≥10 events per variable)
+- Final feature sets: 9 features per horizon (H1-H5)
 
-### Bekannte Limitationen
-- Mögliche Panel-/Identitätsleckage ohne Firmen-ID; Empfehlung: StratifiedGroupKFold sobald Gruppen verfügbar.
-- Keine Kalibrierung/Schwellenoptimierung in Phase 05/06 (bewusst ausgelassen; siehe Future Work).
-- H4–H5: Nested-CV noch laufend; Modellierung erfolgt fürs Paper mit alter Auswahl, Nested als Sensitivitätsvergleich.
-
-### Future Work (Kurzüberblick)
-- Group-aware CV (StratifiedGroupKFold), horizontspezifisches Tuning, Kalibrierung (Platt/Isoton) und Schwellenanalyse, Zeit-/Block-CV, Stabilitäts-gewichtete Konsensbildung, Cross-Dataset-Vergleich.
-**Planned Activities:**
-- Distribution analysis per horizon (H1-H5)
-- Univariate feature analysis (t-tests, effect sizes)
-- Correlation matrices and multicollinearity checks
-- Feature importance rankings
-
-**Research-Backed Sequence:**
-```
-Remove duplicates → Treat outliers → Impute missing values → Scale → Split
-```
-
-**Why this order:** "When outliers are removed or treated and missing values accurately imputed, the correlations among predictors become more realistic" (Number Analytics, 2024)
+**Phase 05-06:** Modeling & Evaluation
+- Automated modeling pipeline with 5-fold Stratified CV
+- Class balancing via class_weight parameter
+- Best models: Soft-Voting Ensemble (H1: 0.796 AUC), Random Forest (H2-H5: 0.780-0.864 AUC)
+- Evaluation metrics: ROC-AUC and PR-AUC
 
 ---
 
@@ -74,112 +55,137 @@ Remove duplicates → Treat outliers → Impute missing values → Scale → Spl
 
 ```
 seminar-bankruptcy-prediction/
+├── config/
+│   └── project_config.yaml   # Centralized configuration (datasets, CV, models)
+│
 ├── scripts/
-│   ├── 00_foundation/       # Dataset understanding (COMPLETE)
-│   ├── 01_data_preparation/ # Cleaning & preprocessing (NEXT)
-│   ├── 02_exploratory/      # EDA on cleaned data
-│   ├── 03_multicollinearity/# VIF analysis & feature reduction
-│   ├── 04_feature_selection/# Feature importance & selection
-│   └── 05_model_evaluation/ # Modeling & evaluation
+│   ├── 00_foundation/        # Dataset understanding & foundation review
+│   ├── 01_data_preparation/  # Duplicate removal, outlier treatment, imputation
+│   ├── 02_exploratory_analysis/ # EDA, correlation, temporal analysis
+│   ├── 03_multicollinearity/ # VIF analysis & feature reduction
+│   ├── 04_feature_selection/ # Filter, wrapper, embedded methods + consensus
+│   ├── 05_modeling/          # Base models, extra models (ensembles)
+│   ├── 06_model_evaluation/  # Aggregation, evaluation plots, metrics
+│   └── paper_helper/         # LaTeX table/figure generation scripts
 │
 ├── results/
-│   └── 00_foundation/       # Excel, HTML, PNG outputs
+│   ├── 00_foundation/        # Foundation review outputs
+│   ├── 01_data_preparation/  # Cleaned datasets, outlier reports
+│   ├── 02_exploratory_analysis/ # EDA figures, correlation matrices
+│   ├── 03_multicollinearity/ # VIF analysis results
+│   ├── 04_feature_selection/ # Selected feature sets (H1-H5)
+│   ├── 05_modeling/          # Model training outputs (base + extra)
+│   └── 06_model_evaluation/  # Final metrics, ROC/PR curves
 │
 ├── data/
-│   ├── raw/                 # Original datasets
-│   └── processed/           # Cleaned data
+│   ├── polish-companies-bankruptcy/ # Original Polish bankruptcy data
+│   └── processed/            # Cleaned, imputed data + feature sets
 │
-└── src/bankruptcy_prediction/  # Shared utilities
-    ├── data/                   # Data loaders
-    ├── features/               # Feature engineering
-    └── utils/                  # Logging, config
+├── logs/                     # Execution logs organized by phase
+│   ├── 00_foundation/        # Phase 00 logs
+│   ├── 01_data_preparation/  # Phase 01 logs
+│   ├── 02_exploratory_analysis/ # Phase 02 logs
+│   ├── 03_multicollinearity/ # Phase 03 logs
+│   ├── 04_feature_selection/ # Phase 04 logs (base + nested)
+│   └── 05_modeling/          # Phase 05 logs (base + extra)
+│
+├── seminar-paper/
+│   ├── doku_main.tex         # Main LaTeX paper
+│   ├── kapitel/              # Paper chapters
+│   ├── tables/               # Auto-generated LaTeX tables
+│   ├── figures/              # Auto-generated figures
+│   └── addendum/             # Post-submission nachreichung
+│
+├── src/bankruptcy_prediction/ # Shared utilities (Phases 00-03 only)
+│   └── utils/                # Configuration, logging, metadata, target utils
+│
+└── Makefile                  # Full pipeline automation
 ```
 
 ---
 
-## Key Methodological Decisions
+## Methodology
 
-### ✅ **Methodological Strengths**
+### Key Decisions
 
-1. **Analysis-First Approach:** Understand data before preprocessing
-2. **Foundation Phase:** Complete characterization of dataset
-3. **Evidence-Based:** Research citations for all decisions
-4. **Transparent Reporting:** Document limitations and assumptions
+1. **Horizon-Specific Models:** Separate models for H1-H5 to account for heterogeneous prediction tasks
+2. **Consensus-Based Feature Selection:** Multi-method integration (Filter + Wrapper + Embedded)
+3. **EPV Guardrails:** Minimum 10 events per variable enforced in consensus step
+4. **Automated Pipeline:** Complete workflow from raw data to final paper via Makefile
+5. **Class Balancing:** Stratified CV with class_weight='balanced' parameter
 
-### ⚠️ **Critical Issues Identified**
+### Data Characteristics
 
-1. **Duplicate Nature Unknown:**
-   - 401 exact duplicates (all 68 columns identical)
-   - NO company ID → can't determine if same company or error
-   - **Assumption:** Data entry errors → remove in Phase 01
-
-2. **Horizon Heterogeneity:**
-   - Bankruptcy rate: 3.86% (H1) → 6.94% (H5) = **80% increase**
-   - Foundation analyzed ALL horizons combined
-   - **Decision needed:** Separate models OR pooled with horizon feature
-
-3. **Incomplete Initial Analysis:**
-   - Script 00d v1: Only 10/64 features for outliers ❌
-   - Script 00d v2: ALL 64 features analyzed ✅
+- **Total observations:** 43,004 (401 duplicates removed)
+- **Features:** 64 financial ratios (A1-A64)
+- **Class distribution:** 4.84% bankruptcy (highly imbalanced)
+- **Horizons:** H1 (1 year) to H5 (5 years) before bankruptcy
+- **Final feature sets:** 9 consensus features per horizon
 
 ---
 
-## Running the Project
+## Reproducibility
 
-### Setup
+### Configuration
+
+All parameters are centralized in `config/project_config.yaml`:
+- Dataset paths and feature definitions
+- Class balancing strategy (SMOTE, class_weight)
+- CV strategy (n_splits=5, stratified)
+- Feature selection thresholds
+- Model hyperparameters
+- Random seed (42)
+
+### Pipeline Execution
+
+**Setup:**
 ```bash
-make install  # Activate venv and sync dependencies
+make install  # Creates .venv with Python 3.13 and installs dependencies
 ```
 
-### Execute Foundation Scripts
+**Complete Pipeline (All Phases):**
 ```bash
-python scripts/00_foundation/00a_polish_dataset_overview.py
-python scripts/00_foundation/00b_polish_feature_analysis.py
-python scripts/00_foundation/00c_polish_temporal_structure.py
-python scripts/00_foundation/00d_polish_data_quality.py
+make phase01  # Data preparation (duplicates, outliers, imputation)
+make phase02  # Exploratory analysis (distributions, tests, correlations)
+make phase03  # Multicollinearity analysis (VIF)
+make phase04  # Feature selection (filter, wrapper, embedded, consensus)
+make phase05-modeling        # Base models (LR, RF)
+make phase05-modeling-extra  # Extra models (GB, ET, SVC, Soft-Voting)
+make phase05-eval            # Aggregate metrics and plots
 ```
+
+**Paper Generation:**
+```bash
+make phase04-tables  # Generate Phase 04 feature selection tables
+make phase05-tables  # Generate Phase 05/06 modeling tables
+make paper           # Compile LaTeX paper: seminar-paper/doku_main.pdf
+```
+
+**Nested CV Validation (Post-Submission):**
+```bash
+make phase04d-consensus-nested     # Nested feature selection
+make phase05-modeling-nested       # Nested base models
+make phase05-modeling-extra-nested # Nested extra models
+make phase06-eval-nested           # Nested evaluation
+make addendum                      # Compile nachreichung PDF
+```
+
+### Individual Script Execution
+
+All scripts can be run individually via Python:
+```bash
+.venv/bin/python scripts/04_feature_selection/04a_filter_methods.py
+.venv/bin/python scripts/05_modeling/05_modeling_train_evaluate.py
+# etc.
+```
+
+Parameters are loaded from `config/project_config.yaml` ensuring consistency.
 
 ### View Results
-```bash
-open results/00_foundation/00a_polish_overview.html
-open results/00_foundation/00d_data_quality.xlsx
-```
-
----
-
-## Archived documentation
-
-All standalone Markdown documentation has been consolidated into this README. Historical files were moved to `archive/docs/` (and existing `archive/*` subfolders). Refer to the LaTeX paper for canonical methodology and results.
-
----
-
-## Research Methodology
-
-**Preprocessing Pipeline Order (Evidence-Based):**
-1. Remove duplicates (prevent leakage)
-2. Treat outliers (3×IQR winsorization)
-3. Impute missing values (passive imputation for ratios)
-4. Scale features (z-score normalization)
-5. Split data (temporal holdout: H1-H3 / H4 / H5)
-
-**Then:**
-6. Calculate VIF (requires complete data)
-7. Remove multicollinear features (VIF > 10)
-8. Feature selection (forward/backward, importance)
-9. Model training (Logistic, Random Forest, XGBoost)
-10. Evaluation (ROC-AUC, PR-AUC, calibration)
-
-**Note:** VIF analysis performed after imputation (research-backed approach)
-
----
-
-## Professor's Criteria (Grade 1.0)
-
-✅ **Methodology:** Evidence-based, research citations  
-✅ **Honesty:** Document failures and assumptions  
-✅ **Completeness:** 30-40 pages, all phases covered  
-✅ **Econometrics:** Proper GLM diagnostics (not OLS)  
-✅ **Validation:** Temporal holdout, no data leakage  
+- **Paper:** `seminar-paper/doku_main.pdf`
+- **Data quality:** `results/00_foundation/*.html`
+- **Feature selection:** `results/04_feature_selection/`
+- **Model metrics:** `results/06_model_evaluation/05_ALL_model_eval.xlsx`
 
 ---
 
@@ -188,8 +194,4 @@ All standalone Markdown documentation has been consolidated into this README. Hi
 1. Number Analytics (2024). "VIF Strategies: Reducing Multicollinearity"
 2. Von Hippel (2013). "Multiple imputation for ratios." *Statistics in Medicine*
 3. Coats & Fant (1993). "Bankruptcy prediction across time horizons"
-4. Feature-engine documentation. "Missing Data Imputation"
-
----
-
-**Status:** Foundation phase validated. Ready for Phase 01 after strategy decision.
+4. Nogueira et al. (2018). "Stability of feature selection algorithms." *Data Mining and Knowledge Discovery*

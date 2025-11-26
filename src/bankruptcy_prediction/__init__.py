@@ -2,29 +2,14 @@
 Bankruptcy Prediction Package
 ==============================
 
-A modular, object-oriented framework for bankruptcy prediction analysis.
+Shared utilities for the bankruptcy prediction pipeline (Phases 00-03).
 
-Main Components:
-- data: Data loading and metadata management
-- features: Feature engineering and selection
-- models: Model implementations (Logistic, RF, XGBoost, etc.)
-- evaluation: Model evaluation and comparison
-- visualization: Professional plotting functions
+Components:
+- utils: Configuration loading, logging, metadata handling, target utilities
 
-Usage:
-    from bankruptcy_prediction.data import DataLoader, MetadataParser
-    from bankruptcy_prediction.models import RandomForestModel
-    from bankruptcy_prediction.evaluation import ModelEvaluator
+Note: Phases 04-06 are self-contained and don't depend on these utilities.
 """
 
 __version__ = "1.0.0"
-__author__ = "FH-Wedel Master Thesis"
+__author__ = "FH-Wedel Seminar Project"
 
-# Main exports
-from src.bankruptcy_prediction.data.loader import DataLoader
-from src.bankruptcy_prediction.data.metadata import MetadataParser
-
-__all__ = [
-    'DataLoader',
-    'MetadataParser',
-]
