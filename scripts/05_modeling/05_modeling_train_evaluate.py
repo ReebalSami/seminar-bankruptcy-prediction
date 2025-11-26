@@ -23,6 +23,7 @@ import json
 import logging
 from pathlib import Path
 from typing import Dict, List
+import argparse
 
 import numpy as np
 import pandas as pd
@@ -39,8 +40,7 @@ import argparse
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_PATH = PROJECT_ROOT / "data" / "processed" / "poland_imputed.parquet"
 FEATURES_DIR = PROJECT_ROOT / "data" / "processed" / "feature_sets_selected"
-RESULTS_DIR = PROJECT_ROOT / "results" / "05_modeling"
-RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+RESULTS_DIR_BASE = PROJECT_ROOT / "results"
 
 LOGS_DIR = PROJECT_ROOT / "logs" / "05_modeling"
 LOGS_DIR.mkdir(parents=True, exist_ok=True)
@@ -78,6 +78,7 @@ def cv_scores(pipeline, X: pd.DataFrame, y: pd.Series, folds: int = 5) -> Dict[s
 def main():
     parser = argparse.ArgumentParser(description="Phase 05 Modeling: train + CV evaluate per horizon.")
     parser.add_argument("--horizons", "--h", nargs="*", type=int, help="Subset of horizons to run (e.g., --h 1 2)")
+    parser.add_argument("--variant", choices=["base", "nested"], default="base", help="Use nested feature files and write to nested results dir")
     args = parser.parse_args()
     with open(PROJECT_ROOT / "config" / "project_config.yaml", "r") as f:
         cfg = yaml.safe_load(f)
@@ -87,6 +88,14 @@ def main():
         horizons = [h for h in horizons if h in set(args.horizons)]
     rf_cfg = cfg["feature_selection"]["random_forest"]
     random_state = cfg["analysis"]["random_state"]
+
+    # Variant handling
+    features_suffix = "_nested" if args.variant == "nested" else ""
+    if args.variant == "nested":
+        results_dir = RESULTS_DIR_BASE / "05_modeling_nested"
+    else:
+        results_dir = RESULTS_DIR_BASE / "05_modeling"
+    results_dir.mkdir(parents=True, exist_ok=True)
 
     logger.info("=" * 80)
     logger.info("PHASE 05: MODELING (Baseline LR + RF)")
@@ -101,7 +110,7 @@ def main():
     for h in horizons:
         logger.info("-" * 80)
         logger.info(f"H{h}: preparing data and features")
-        fpath = FEATURES_DIR / f"H{h}_features_final.json"
+        fpath = FEATURES_DIR / f"H{h}_features_final{features_suffix}.json"
         if not fpath.exists():
             logger.warning(f"Final feature set not found: {fpath} — skipping H{h}")
             continue
@@ -164,7 +173,7 @@ def main():
             })
 
         # Persist per-horizon metrics JSON
-        out_json = RESULTS_DIR / f"H{h}_metrics.json"
+        out_json = results_dir / f"H{h}_metrics.json"
         with open(out_json, "w") as f:
             json.dump({"horizon": h, "metrics": metrics_per_model}, f, indent=2)
         logger.info(f"  ✓ Saved: {out_json}")
@@ -183,12 +192,12 @@ def main():
         # (We aggregate after the loop.)
 
     # Aggregate summary to Excel
-    all_summary_xlsx = RESULTS_DIR / "ALL_summary.xlsx"
+    all_summary_xlsx = results_dir / "ALL_summary.xlsx"
     with pd.ExcelWriter(all_summary_xlsx, engine="openpyxl") as writer:
         if summary_rows:
             pd.DataFrame(summary_rows).to_excel(writer, sheet_name="Summary", index=False)
         # Also include all per-horizon model tables if present
-        for p in sorted(RESULTS_DIR.glob("H*_metrics.json")):
+        for p in sorted(results_dir.glob("H*_metrics.json")):
             blob = json.loads(p.read_text())
             h = blob.get("horizon")
             rows = []

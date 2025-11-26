@@ -16,9 +16,6 @@ Output:
 - Excel: results/04_feature_selection/04b_H{1-5}_wrapper.xlsx
 - HTML: results/04_feature_selection/04b_H{1-5}_wrapper.html
 - JSON: Selected features per horizon
-
-Author: Bankruptcy Prediction Project
-Date: 2024-11-18
 """
 
 import json

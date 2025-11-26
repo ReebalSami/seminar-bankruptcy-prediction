@@ -21,9 +21,6 @@ Input:
 Output:
 - Final feature sets: data/processed/feature_sets_selected/H{1-5}_features_final.json
 - Consolidated reports: results/04_feature_selection/04d_ALL_consensus.xlsx/.html
-
-Author: Bankruptcy Prediction Project
-Date: 2024-11-18
 """
 
 import json
@@ -31,6 +28,7 @@ import logging
 from itertools import combinations
 from pathlib import Path
 from typing import Dict, List, Set
+import argparse
 
 import numpy as np
 import pandas as pd
@@ -74,6 +72,11 @@ DATA_PATH = Path("data/processed/poland_imputed.parquet")
 RESULTS_DIR = Path("results/04_feature_selection")
 OUTPUT_DIR = Path("data/processed/feature_sets_selected")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+# Runtime-variant globals (set in main)
+FILE_SUFFIX = ""
+OUTPUT_DIR_FINAL = OUTPUT_DIR
+RESULTS_DIR_FINAL = RESULTS_DIR
 
 # =============================================================================
 # Helper Functions
@@ -270,14 +273,47 @@ def analyze_horizon_consensus(horizon: int, df: pd.DataFrame, vif_features: List
     # Load method results
     method_results = load_method_results(horizon)
     
-    # Extract feature selections
+    # Extract feature selections — prefer nested embedded selections when available
+    def _extract_nested_feats(node) -> List[str]:
+        if not node or not isinstance(node, dict):
+            return []
+        # common keys
+        if isinstance(node.get("selected_features"), list):
+            return list(node["selected_features"])  # type: ignore
+        folds = node.get("fold_selections")
+        if isinstance(folds, list) and folds and all(isinstance(f, list) for f in folds):
+            # majority over folds
+            from collections import Counter
+            c = Counter()
+            for f in folds:
+                c.update(f)
+            # keep those appearing in >50% of folds
+            thresh = len(folds) / 2
+            return [feat for feat, cnt in c.items() if cnt > thresh]
+        return []
+
+    embedded = method_results["embedded"]
+    nested = method_results.get("nested") or {}
+    l1 = embedded.get("lasso", {}).get("selected_features", [])
+    rf_emb = embedded.get("random_forest", {}).get("selected_features", [])
+    # Prefer nested if available
+    if isinstance(nested, dict):
+        if "lasso" in nested:
+            cand = _extract_nested_feats(nested["lasso"])
+            if cand:
+                l1 = cand
+        if "random_forest" in nested:
+            cand = _extract_nested_feats(nested["random_forest"])
+            if cand:
+                rf_emb = cand
+
     selections = {
         "Spearman": method_results["filter"]["spearman_selected"],
         "Mutual_Info": method_results["filter"]["mi_selected"],
         "ANOVA_F": method_results["filter"]["anova_selected"],
         "RFECV": method_results["wrapper"]["selected_features"],
-        "Lasso_L1": method_results["embedded"]["lasso"]["selected_features"],
-        "Random_Forest": method_results["embedded"]["random_forest"]["selected_features"]
+        "Lasso_L1": l1,
+        "Random_Forest": rf_emb,
     }
     
     # Filter out empty methods
@@ -487,7 +523,7 @@ def save_final_feature_sets(all_results: Dict):
             "threshold_met": threshold_met_py
         }
         
-        json_path = OUTPUT_DIR / f"H{horizon}_features_final.json"
+        json_path = OUTPUT_DIR_FINAL / f"H{horizon}_features_final{FILE_SUFFIX}.json"
         with open(json_path, "w") as f:
             json.dump(output_data, f, indent=2)
         
@@ -501,7 +537,7 @@ def generate_consolidated_report(all_results: Dict):
     # ==========================================================================
     # Excel Report
     # ==========================================================================
-    excel_path = RESULTS_DIR / "04d_ALL_consensus.xlsx"
+    excel_path = RESULTS_DIR_FINAL / f"04d_ALL_consensus{FILE_SUFFIX}.xlsx"
     
     with pd.ExcelWriter(excel_path, engine="openpyxl") as writer:
         # Sheet 1: Summary
@@ -547,7 +583,7 @@ def generate_consolidated_report(all_results: Dict):
     # ==========================================================================
     # HTML Report
     # ==========================================================================
-    html_path = RESULTS_DIR / "04d_ALL_consensus.html"
+    html_path = RESULTS_DIR_FINAL / f"04d_ALL_consensus{FILE_SUFFIX}.html"
     
     html_content = f"""
     <!DOCTYPE html>
@@ -637,6 +673,18 @@ def generate_consolidated_report(all_results: Dict):
 
 def main():
     """Main execution function."""
+    parser = argparse.ArgumentParser(description="Phase 04d: Stability & Consensus")
+    parser.add_argument("--variant", choices=["base", "nested"], default="base", help="Write outputs with suffix when 'nested'")
+    args = parser.parse_args()
+
+    global FILE_SUFFIX, OUTPUT_DIR_FINAL, RESULTS_DIR_FINAL
+    if args.variant == "nested":
+        FILE_SUFFIX = "_nested"
+    else:
+        FILE_SUFFIX = ""
+    OUTPUT_DIR_FINAL = OUTPUT_DIR
+    RESULTS_DIR_FINAL = RESULTS_DIR
+
     logger.info("="*80)
     logger.info("PHASE 04d: STABILITY ANALYSIS & CONSENSUS FEATURE SELECTION")
     logger.info("="*80)

@@ -14,10 +14,12 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import argparse
 import pandas as pd
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
+# These will be set based on variant in main()
 MOD_RESULTS = PROJECT_ROOT / "results" / "05_modeling"
 MOD_RESULTS_EXTRA = MOD_RESULTS / "extra"
 EVAL_RESULTS = PROJECT_ROOT / "results" / "06_model_evaluation"
@@ -25,6 +27,16 @@ EVAL_RESULTS.mkdir(parents=True, exist_ok=True)
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Phase 06: Aggregate modeling metrics and build quick views")
+    parser.add_argument("--variant", choices=["base", "nested"], default="base", help="Read from nested modeling results and write to nested evaluation dir when 'nested'")
+    args = parser.parse_args()
+
+    global MOD_RESULTS, MOD_RESULTS_EXTRA, EVAL_RESULTS
+    if args.variant == "nested":
+        MOD_RESULTS = PROJECT_ROOT / "results" / "05_modeling_nested"
+        MOD_RESULTS_EXTRA = MOD_RESULTS / "extra"
+        EVAL_RESULTS = PROJECT_ROOT / "results" / "06_model_evaluation_nested"
+        EVAL_RESULTS.mkdir(parents=True, exist_ok=True)
     # Collect per-horizon metrics (base + extra)
     rows = []
     per_horizon_frames = {}
@@ -86,7 +98,7 @@ def main():
     html_path = EVAL_RESULTS / "05_ALL_model_eval.html"
     html = [
         "<html><head><meta charset='utf-8'><title>Phase 05: Model Evaluation</title>",
-        "<style>body{font-family:Segoe UI,Arial;margin:20px;}table{border-collapse:collapse;}th,td{padding:8px 12px;border:1px solid #ddd;}th{background:#2a9d8f;color:#fff;}</style>",
+        "<style>body{font-family:Arial,sans-serif;margin:20px;}table{border-collapse:collapse;}th,td{padding:8px 12px;border:1px solid #ddd;}th{background:#2a9d8f;color:#fff;}</style>",
         "</head><body>",
         "<h1>Phase 05: Model Evaluation (Aggregated)</h1>",
     ]

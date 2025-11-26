@@ -7,9 +7,6 @@ Implements embedded feature selection:
 2. Random Forest with Permutation Importance
 
 Uses nested cross-validation and stability analysis.
-
-Author: Bankruptcy Prediction Project
-Date: 2024-11-18
 """
 
 import json

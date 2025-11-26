@@ -99,12 +99,12 @@ seminar-bankruptcy-prediction/
 
 ## Key Methodological Decisions
 
-### ✅ **What We Got Right**
+### ✅ **Methodological Strengths**
 
 1. **Analysis-First Approach:** Understand data before preprocessing
 2. **Foundation Phase:** Complete characterization of dataset
 3. **Evidence-Based:** Research citations for all decisions
-4. **Honest Reporting:** Document limitations and assumptions
+4. **Transparent Reporting:** Document limitations and assumptions
 
 ### ⚠️ **Critical Issues Identified**
 
@@ -169,7 +169,7 @@ All standalone Markdown documentation has been consolidated into this README. Hi
 9. Model training (Logistic, Random Forest, XGBoost)
 10. Evaluation (ROC-AUC, PR-AUC, calibration)
 
-**Critical:** VIF analysis MUST come AFTER imputation (research-backed)
+**Note:** VIF analysis performed after imputation (research-backed approach)
 
 ---
 

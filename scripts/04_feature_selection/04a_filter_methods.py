@@ -17,9 +17,6 @@ Output:
 - Excel: results/04_feature_selection/04a_H{1-5}_filter.xlsx
 - HTML: results/04_feature_selection/04a_H{1-5}_filter.html
 - JSON: Feature rankings per method
-
-Author: Bankruptcy Prediction Project
-Date: 2024-11-18
 """
 
 import json

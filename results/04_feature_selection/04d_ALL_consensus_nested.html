@@ -1,0 +1,111 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Phase 04d: Consensus Feature Selection</title>
+        <style>
+            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; background-color: #f5f5f5; }
+            .container { max-width: 1200px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+            h1 { color: #2c3e50; border-bottom: 3px solid #27ae60; padding-bottom: 10px; }
+            h2 { color: #34495e; margin-top: 30px; }
+            table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+            th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+            th { background-color: #27ae60; color: white; font-weight: bold; }
+            tr:hover { background-color: #f5f5f5; }
+            .metric { display: inline-block; margin: 10px 20px 10px 0; padding: 10px 15px; background-color: #ecf0f1; border-radius: 5px; }
+            .metric-label { font-weight: bold; color: #7f8c8d; }
+            .metric-value { font-size: 1.2em; color: #2c3e50; }
+            .section { margin-top: 30px; padding: 20px; background-color: #f0fff4; border-left: 4px solid #27ae60; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Phase 04d: Consensus Feature Selection - All Horizons</h1>
+            
+            <div class="section">
+                <h2>Overview</h2>
+                <p><strong>Consensus Method:</strong> Intersection</p>
+                <p><strong>Methods Integrated:</strong> 6 (Spearman, Mutual Info, ANOVA F, RFECV, Lasso L1, Random Forest)</p>
+            </div>
+            
+            <div class="section">
+                <h2>Summary Across All Horizons</h2>
+                <table>
+                    <tr>
+                        <th>Horizon</th>
+                        <th>VIF Features</th>
+                        <th>Consensus Features</th>
+                        <th>Method Used</th>
+                        <th>Reduction %</th>
+                        <th>Agreement</th>
+                        <th>Retention %</th>
+                        <th>Threshold</th>
+                    </tr>
+    
+                    <tr>
+                        <td><strong>H1</strong></td>
+                        <td>40</td>
+                        <td>9</td>
+                        <td>intersection</td>
+                        <td>77.5%</td>
+                        <td>0.599</td>
+                        <td>101.5%</td>
+                        <td>✓</td>
+                    </tr>
+        
+                    <tr>
+                        <td><strong>H2</strong></td>
+                        <td>41</td>
+                        <td>9</td>
+                        <td>intersection</td>
+                        <td>78.0%</td>
+                        <td>0.561</td>
+                        <td>96.5%</td>
+                        <td>✓</td>
+                    </tr>
+        
+                    <tr>
+                        <td><strong>H3</strong></td>
+                        <td>42</td>
+                        <td>6</td>
+                        <td>intersection</td>
+                        <td>85.7%</td>
+                        <td>0.466</td>
+                        <td>101.3%</td>
+                        <td>✓</td>
+                    </tr>
+        
+                    <tr>
+                        <td><strong>H4</strong></td>
+                        <td>43</td>
+                        <td>8</td>
+                        <td>intersection</td>
+                        <td>81.4%</td>
+                        <td>0.563</td>
+                        <td>97.6%</td>
+                        <td>✓</td>
+                    </tr>
+        
+                    <tr>
+                        <td><strong>H5</strong></td>
+                        <td>41</td>
+                        <td>10</td>
+                        <td>intersection</td>
+                        <td>75.6%</td>
+                        <td>0.583</td>
+                        <td>99.0%</td>
+                        <td>✓</td>
+                    </tr>
+        
+                </table>
+            </div>
+            
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #7f8c8d; font-size: 0.9em;">
+                <p>Generated: 2025-11-23 08:55:10</p>
+                <p>Project: Bankruptcy Prediction Seminar - Phase 04d: Consensus Analysis</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    

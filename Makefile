@@ -1,4 +1,7 @@
-.PHONY: help install clean run-poland run-american run-taiwan run-comparison run-all report paper phase04-tables phase05-modeling phase05-eval phase05-tables phase05-modeling-extra
+.PHONY: help install clean run-poland run-american run-taiwan run-comparison run-all report paper \
+        phase04-tables phase05-modeling phase05-eval phase05-tables phase05-modeling-extra \
+        phase04d-consensus-nested phase05-modeling-nested phase05-modeling-extra-nested phase06-eval-nested \
+        delta-addendum addendum
 
 # Colors
 GREEN=\033[0;32m
@@ -205,3 +208,38 @@ paper-assets:
 	@$(UV) run python scripts/paper_helper/generate_phase05_comparison_tables.py
 	@$(UV) run python scripts/paper_helper/generate_phase06_tables.py
 	@echo "$(GREEN)✓ Paper assets copied$(NC)"
+
+# -----------------------------------------------------------------------------
+# Nested variant pipeline (v1.1): write to *_nested dirs and suffixed files
+# -----------------------------------------------------------------------------
+phase04d-consensus-nested:
+	@echo "$(BLUE)Phase 04d (nested): Stability & Consensus...$(NC)"
+	@$(PYTHON) scripts/04_feature_selection/04d_stability_consensus.py --variant nested
+	@echo "$(GREEN)✓ 04d nested outputs ready$(NC)"
+
+phase05-modeling-nested:
+	@echo "$(BLUE)Phase 05 (nested): Baseline LR + RF...$(NC)"
+	@$(PYTHON) scripts/05_modeling/05_modeling_train_evaluate.py --variant nested
+	@echo "$(GREEN)✓ 05_modeling_nested complete$(NC)"
+
+phase05-modeling-extra-nested:
+	@echo "$(BLUE)Phase 05b (nested): Extra models + Ensemble...$(NC)"
+	@$(PYTHON) scripts/05_modeling/05b_modeling_extra_models.py --variant nested
+	@echo "$(GREEN)✓ 05_modeling_nested/extra complete$(NC)"
+
+phase06-eval-nested:
+	@echo "$(BLUE)Phase 06 (nested): Aggregate modeling metrics...$(NC)"
+	@$(PYTHON) scripts/06_model_evaluation/06_aggregate_and_plots.py --variant nested
+	@echo "$(GREEN)✓ 06_model_evaluation_nested complete$(NC)"
+
+delta-addendum:
+	@echo "$(BLUE)Generating delta assets (v1.0 → v1.1)...$(NC)"
+	@$(PYTHON) scripts/paper_helper/generate_addendum_assets.py
+	@$(PYTHON) scripts/paper_helper/generate_addendum_text.py
+	@echo "$(GREEN)✓ Delta assets generated$(NC)"
+
+addendum:
+	@echo "$(BLUE)Compiling Post-Submission Addendum...$(NC)"
+	@cd seminar-paper/addendum && pdflatex -interaction=nonstopmode addendum.tex
+	@cd seminar-paper/addendum && pdflatex -interaction=nonstopmode addendum.tex
+	@echo "$(GREEN)✓ Addendum compiled: seminar-paper/addendum/addendum.pdf$(NC)"
