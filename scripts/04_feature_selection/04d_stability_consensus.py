@@ -77,6 +77,7 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 FILE_SUFFIX = ""
 OUTPUT_DIR_FINAL = OUTPUT_DIR
 RESULTS_DIR_FINAL = RESULTS_DIR
+USE_NESTED_EMBEDDED = False  # Whether to use nested embedded results
 
 # =============================================================================
 # Helper Functions
@@ -301,8 +302,9 @@ def analyze_horizon_consensus(horizon: int, df: pd.DataFrame, vif_features: List
     ridge = embedded.get("ridge", {}).get("selected_features", [])
     rf_emb = embedded.get("random_forest", {}).get("selected_features", [])
     
-    # Prefer nested if available (Lasso, Elastic Net, Ridge only - no nested RF)
-    if isinstance(nested, dict):
+    # Use nested embedded results ONLY when USE_NESTED_EMBEDDED is True
+    if USE_NESTED_EMBEDDED and isinstance(nested, dict):
+        logger.info("    Using NESTED embedded results (Lasso, EN, Ridge)")
         if "lasso" in nested:
             cand = _extract_nested_feats(nested["lasso"])
             if cand:
@@ -315,10 +317,9 @@ def analyze_horizon_consensus(horizon: int, df: pd.DataFrame, vif_features: List
             cand = _extract_nested_feats(nested["ridge"])
             if cand:
                 ridge = cand
-        if "random_forest" in nested:
-            cand = _extract_nested_feats(nested["random_forest"])
-            if cand:
-                rf_emb = cand
+        # Note: No nested RF available
+    else:
+        logger.info("    Using BASE (non-nested) embedded results")
 
     # Build consensus from ALL 8 methods (3 filter + 1 wrapper + 4 embedded)
     selections = {
@@ -693,11 +694,13 @@ def main():
     parser.add_argument("--variant", choices=["base", "nested"], default="base", help="Write outputs with suffix when 'nested'")
     args = parser.parse_args()
 
-    global FILE_SUFFIX, OUTPUT_DIR_FINAL, RESULTS_DIR_FINAL
+    global FILE_SUFFIX, OUTPUT_DIR_FINAL, RESULTS_DIR_FINAL, USE_NESTED_EMBEDDED
     if args.variant == "nested":
         FILE_SUFFIX = "_nested"
+        USE_NESTED_EMBEDDED = True
     else:
         FILE_SUFFIX = ""
+        USE_NESTED_EMBEDDED = False
     OUTPUT_DIR_FINAL = OUTPUT_DIR
     RESULTS_DIR_FINAL = RESULTS_DIR
 
